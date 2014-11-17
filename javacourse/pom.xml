@@ -24,5 +24,14 @@
   </dependencies>
   <modules>
   	<module>common</module>
+  	<module>objectsinjava</module>
+  	<module>introducingjava</module>
+  	<module>exception</module>
+  	<module>colection</module>
+  	<module>inputoutput</module>
+  	<module>reflection</module>
+  	<module>designpattern</module>
+  	<module>thread</module>
+  	<module>networkgui</module>
   </modules>
 </project>
