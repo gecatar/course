@@ -33,5 +33,6 @@
   	<module>designpattern</module>
   	<module>thread</module>
   	<module>networkgui</module>
+  	<module>chatapplication</module>
   </modules>
 </project>
