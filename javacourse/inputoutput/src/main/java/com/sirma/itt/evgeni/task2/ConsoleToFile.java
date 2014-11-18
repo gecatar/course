@@ -2,6 +2,7 @@ package com.sirma.itt.evgeni.task2;
 
 import java.io.IOException;
 
+import com.sirma.itt.evgeni.streams.StreamWriter;
 import com.sirma.itt.evgeni.util.DirectoryBrowser;
 import com.sirma.itt.evgeni.util.FileStreamExtractor;
 

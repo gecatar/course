@@ -1,4 +1,4 @@
-package com.sirma.itt.evgeni.task2;
+package com.sirma.itt.evgeni.streams;
 
 import java.io.IOException;
 import java.io.OutputStream;
