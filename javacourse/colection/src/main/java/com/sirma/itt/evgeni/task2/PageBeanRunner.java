@@ -1,0 +1,33 @@
+package com.sirma.itt.evgeni.task2;
+
+/**
+ * Separate massive whit objects into Page object.
+ * @author Evgeni Stefanov
+ *
+ */
+public class PageBeanRunner {
+
+	/**
+	 * Allow creating collections whit objects.
+	 * User define Page size.
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		PageBean pageBean = new PageBean();
+		Object[] obj = new Object[10];
+		for (int i = 0; i < 10; i++) {
+			obj[i] = new Integer(i);
+		}
+		pageBean.getPages(obj, 3);
+		System.out.println(pageBean.next());
+		System.out.println(pageBean.next());
+		System.out.println(pageBean.next());
+		System.out.println(pageBean.next());
+		
+		System.out.println(pageBean.previos());
+		System.out.println(pageBean.previos());
+		System.out.println(pageBean.previos());
+	}
+
+}
