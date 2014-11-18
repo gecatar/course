@@ -1,7 +1,6 @@
 package com.sirma.itt.evgeni.task2;
 
 import java.io.IOException;
-import java.nio.file.Path;
 
 import com.sirma.itt.evgeni.util.DirectoryBrowser;
 
