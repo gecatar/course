@@ -14,23 +14,38 @@ public class StreamWriter {
 	 *            file that will be saved.
 	 * @throws IOException
 	 */
-	public void write(OutputStream ost) throws IOException {
+	public void write(OutputStream outputStream) {
 
-		OutputStreamWriter osw = null;
-		osw = new OutputStreamWriter(ost);
+		OutputStreamWriter outputStreamWriter = null;
+		outputStreamWriter = new OutputStreamWriter(outputStream);
 		System.out.println("Enter string:");
 		System.out.println("Type '.' to stop writing!!!");
-		boolean stop = false;
-		while (!stop) {
-			String temp = ConsoleReader.readLine();
-			if (temp.matches(".")) {
-				stop = true;
-			} else {
-				osw.write(temp);
+		try {
+			boolean stop = false;
+			while (!stop) {
+				String temp = ConsoleReader.readLine();
+				if (temp.matches(".")) {
+					stop = true;
+				} else {
+					outputStreamWriter.write(temp);
+					outputStream.flush();
+				}
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			closeStreams(outputStream, outputStreamWriter);
 		}
-		osw.flush();
-		ost.flush();
+	}
+
+	public void closeStreams(OutputStream outputStream,
+			OutputStreamWriter outputStreamWriter) {
+		try {
+			outputStreamWriter.close();
+			outputStream.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 	}
 

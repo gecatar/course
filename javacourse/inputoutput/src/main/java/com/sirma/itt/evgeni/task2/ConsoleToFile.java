@@ -1,7 +1,5 @@
 package com.sirma.itt.evgeni.task2;
 
-import java.io.IOException;
-
 import com.sirma.itt.evgeni.streams.StreamWriter;
 import com.sirma.itt.evgeni.util.DirectoryBrowser;
 import com.sirma.itt.evgeni.util.FileStreamExtractor;
@@ -21,13 +19,8 @@ public class ConsoleToFile {
 	 */
 	public static void main(String[] args) {
 		StreamWriter streamWriter = new StreamWriter();
-		try {
-			streamWriter.write(FileStreamExtractor
-					.getOutputStream(DirectoryBrowser.chooseFile()));
-		} catch (IOException e) {
-			System.out.println("Error while working whit file!!");
-			e.printStackTrace();
-		}
+		streamWriter.write(FileStreamExtractor.getOutputStream(DirectoryBrowser
+				.chooseFile()));
 	}
 
 }

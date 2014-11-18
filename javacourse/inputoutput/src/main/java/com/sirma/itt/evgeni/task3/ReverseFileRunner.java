@@ -1,6 +1,9 @@
 package com.sirma.itt.evgeni.task3;
 
+import java.nio.file.Path;
+
 import com.sirma.itt.evgeni.streams.StreamReader;
+import com.sirma.itt.evgeni.streams.StreamWriter;
 import com.sirma.itt.evgeni.util.DirectoryBrowser;
 import com.sirma.itt.evgeni.util.FileStreamExtractor;
 
@@ -13,14 +16,17 @@ import com.sirma.itt.evgeni.util.FileStreamExtractor;
 public class ReverseFileRunner {
 
 	/**
-	 * Read reverse and save content.
+	 * Read, reverse and save content.
 	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		StreamReader streamReader = new StreamReader();
-		String temp = streamReader.getText(FileStreamExtractor
-				.getInputStream(DirectoryBrowser.chooseFile()));
-		System.out.println(temp);
+		StreamWriter streamWriter = new StreamWriter();
+		Path path = DirectoryBrowser.chooseFile();
+		String buffer = streamReader.getText(FileStreamExtractor
+				.getInputStream(path));
+		streamWriter.write(FileStreamExtractor.getOutputStream(path));
+		System.out.println(buffer);
 	}
 }
