@@ -23,6 +23,22 @@ public class ConsoleReader {
 			return readString();
 		}
 	}
+	
+	/**
+	 * Read string from console. Reading from console continue while user enter
+	 * correct data.
+	 * 
+	 * @return string from user input.
+	 */
+	public static String readLine() {
+		try {
+			return sc.nextLine();
+		} catch (InputMismatchException e) {
+			System.out.println("Input error!!!");
+			sc.next();
+			return readLine();
+		}
+	}
 
 	/**
 	 * Read from console while user enter correct data.

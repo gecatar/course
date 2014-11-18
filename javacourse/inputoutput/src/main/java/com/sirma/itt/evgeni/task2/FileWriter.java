@@ -27,7 +27,7 @@ public class FileWriter {
 			System.out.println("Type '.' to stop writing!!!");
 			boolean stop = false;
 			while (!stop) {
-				String temp = ConsoleReader.readString();
+				String temp = ConsoleReader.readLine();
 				if (temp.matches(".")) {
 					stop = true;
 				} else {
