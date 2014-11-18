@@ -1,8 +1,8 @@
 package com.sirma.itt.evgeni.task2;
 
+import com.sirma.itt.evgeni.streams.FileStreamExtractor;
 import com.sirma.itt.evgeni.streams.StreamWriter;
 import com.sirma.itt.evgeni.util.DirectoryBrowser;
-import com.sirma.itt.evgeni.util.FileStreamExtractor;
 
 /**
  * Read user input and save data to file. Saving stop when user type '.'.

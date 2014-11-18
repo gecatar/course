@@ -1,4 +1,4 @@
-package com.sirma.itt.evgeni.util;
+package com.sirma.itt.evgeni.streams;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
