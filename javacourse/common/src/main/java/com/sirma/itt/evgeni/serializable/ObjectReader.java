@@ -28,11 +28,11 @@ public class ObjectReader {
 		if (inputStream != null) {
 			try {
 				objectInputStream = new ObjectInputStream(inputStream);
+				this.inputStream = inputStream;
 				return true;
 			} catch (IOException e) {
-				e.printStackTrace();
-			} finally {
 				closeStream();
+				e.printStackTrace();
 			}
 		}
 		return false;

@@ -6,8 +6,9 @@ import java.io.OutputStream;
 
 /**
  * Write Object to passed Stream.
+ * 
  * @author Evgeni Stefanov
- *
+ * 
  */
 public class ObjectWriter {
 
@@ -16,11 +17,13 @@ public class ObjectWriter {
 
 	/**
 	 * Write object to stream.
-	 * @param outputStream 
-	 * @param object that will be rited to stream.
+	 * 
+	 * @param outputStream
+	 * @param object
+	 *            that will be rited to stream.
 	 * @return true if writing is successful.
 	 */
-	public boolean writeObject(OutputStream outputStream,Object object) {
+	public boolean writeObject(OutputStream outputStream, Object object) {
 		try {
 			if (setStream(outputStream)) {
 				objectOutputStream.writeObject(object);
@@ -36,18 +39,19 @@ public class ObjectWriter {
 
 	/**
 	 * Create ObjectOutputStream.
+	 * 
 	 * @param outputStream
 	 * @return true if operation is successful.
 	 */
 	private boolean setStream(OutputStream outputStream) {
 		if (outputStream != null) {
 			try {
+				this.outputStream = outputStream;
 				objectOutputStream = new ObjectOutputStream(outputStream);
 				return true;
 			} catch (IOException e) {
-				e.printStackTrace();
-			} finally {
 				closeStream();
+				e.printStackTrace();
 			}
 		}
 		return false;
@@ -58,10 +62,14 @@ public class ObjectWriter {
 	 */
 	private void closeStream() {
 		try {
-			outputStream.close();
-			outputStream = null;
-			objectOutputStream.close();
-			objectOutputStream = null;
+			if (outputStream != null) {
+				outputStream.close();
+				outputStream = null;
+			}
+			if (objectOutputStream != null) {
+				objectOutputStream.close();
+				objectOutputStream = null;
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
