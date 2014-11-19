@@ -14,7 +14,10 @@ public class StreamWriterTest {
 	public void test() {
 		StreamWriter streamWriter = new StreamWriter();
 		ByteArrayOutputStream ost = new ByteArrayOutputStream();
-		fail("Not yet implemented");
+		streamWriter.setStream(ost);
+		streamWriter.write("test test 1 2 3");
+		streamWriter.closeStreams();
+		assertEquals(ost.toString(), "test test 1 2 3");
 	}
 
 }

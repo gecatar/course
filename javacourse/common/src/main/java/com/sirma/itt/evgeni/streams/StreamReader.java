@@ -6,13 +6,18 @@ import java.io.InputStreamReader;
 
 public class StreamReader {
 
+	InputStream inputStream;
+	InputStreamReader inputStreamReader;
+
 	/**
 	 * Return content of stream as text.
-	 * @param inputStream will be read from.
+	 * 
+	 * @param inputStream
+	 *            will be read from.
 	 * @return String whit content of stream.
 	 */
-	public String getText(InputStream inputStream) {
-		InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+	public String getText() {
+
 		StringBuilder stringBuilder = new StringBuilder();
 		try {
 			int readed = 0;
@@ -24,22 +29,43 @@ public class StreamReader {
 		} catch (IOException e) {
 			System.out.println("Error whit stream...");
 		} finally {
-			closeStream(inputStream, inputStreamReader);
+			closeStream();
 		}
-		stringBuilder.reverse();
 		return stringBuilder.toString();
 	}
 
 	/**
+	 * Create InputStreamReader.
+	 * 
+	 * @param inputStream
+	 * @return true if stream is set correctly.
+	 */
+	public boolean setStream(InputStream inputStream) {
+		if (inputStream != null) {
+			this.inputStream = inputStream;
+			inputStreamReader = new InputStreamReader(inputStream);
+			return true;
+		}
+		return false;
+	}
+
+	/**
 	 * Closing streams.
+	 * 
 	 * @param inputStream
 	 * @param inputStreamReader
 	 */
-	private void closeStream(InputStream inputStream,
-			InputStreamReader inputStreamReader) {
+	private void closeStream() {
 		try {
-			inputStream.close();
-			inputStreamReader.close();
+			if (inputStream != null) {
+				inputStream.close();
+				inputStream = null;
+			}
+			if (inputStreamReader != null) {
+				inputStreamReader.close();
+				inputStreamReader = null;
+			}
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

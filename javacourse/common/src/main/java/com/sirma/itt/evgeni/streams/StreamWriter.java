@@ -7,6 +7,10 @@ import java.io.OutputStreamWriter;
 import com.sirma.itt.evgeni.util.ConsoleReader;
 
 public class StreamWriter {
+
+	OutputStream outputStream;
+	OutputStreamWriter outputStreamWriter;
+
 	/**
 	 * Save user input while user enter only '.'.
 	 * 
@@ -14,35 +18,34 @@ public class StreamWriter {
 	 *            file that will be saved.
 	 * @throws IOException
 	 */
-	public void write(OutputStream outputStream) {
-
-		OutputStreamWriter outputStreamWriter = null;
-		outputStreamWriter = new OutputStreamWriter(outputStream);
-		System.out.println("Enter string:");
-		System.out.println("Type '.' to stop writing!!!");
+	public void write(String text) {
 		try {
-			boolean stop = false;
-			while (!stop) {
-				String temp = ConsoleReader.readLine();
-				if (temp.matches(".")) {
-					stop = true;
-				} else {
-					outputStreamWriter.write(temp);
-					outputStream.flush();
-				}
-			}
+			outputStreamWriter.write(text);
+			outputStreamWriter.flush();
 		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			closeStreams(outputStream, outputStreamWriter);
+			closeStreams();
+			System.out.println("Error while saving to file!!!");
 		}
 	}
 
-	public void closeStreams(OutputStream outputStream,
-			OutputStreamWriter outputStreamWriter) {
+	public boolean setStream(OutputStream outputStream) {
+		if (outputStream != null) {
+			outputStreamWriter = new OutputStreamWriter(outputStream);
+			return true;
+		}
+		return false;
+	}
+
+	public synchronized void closeStreams() {
 		try {
-			outputStreamWriter.close();
-			outputStream.close();
+			if (outputStreamWriter != null) {
+				outputStreamWriter.close();
+				outputStreamWriter = null;
+			}
+			if (outputStreamWriter != null) {
+				outputStreamWriter.close();
+				outputStreamWriter = null;
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

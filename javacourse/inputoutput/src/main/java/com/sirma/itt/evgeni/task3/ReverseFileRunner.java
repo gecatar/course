@@ -21,12 +21,17 @@ public class ReverseFileRunner {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		StreamReader streamReader = new StreamReader();
 		StreamWriter streamWriter = new StreamWriter();
+		StreamReader streamReader = new StreamReader();
+		System.out.println("Choose file.");
 		Path path = DirectoryBrowser.chooseFile();
-		String buffer = streamReader.getText(FileStreamExtractor
-				.getInputStream(path));
-		streamWriter.write(FileStreamExtractor.getOutputStream(path));
-		System.out.println(buffer);
+		streamReader.setStream(FileStreamExtractor.getInputStream(path));
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(streamReader.getText());
+		stringBuilder.reverse();
+		streamWriter.setStream(FileStreamExtractor.getOutputStream(path));
+		streamWriter.write(stringBuilder.toString());
+		System.out.println(stringBuilder);
+		streamWriter.closeStreams();
 	}
 }
