@@ -21,6 +21,8 @@ import com.sirma.itt.evgeni.task6.DataClass;
  */
 public class Serializer {
 
+	public static final String FILE_NOT_FOUND_EXCEPTION = "File not found!!!";
+	
 	/**
 	 * Read objects from passed file.
 	 * 
@@ -30,14 +32,13 @@ public class Serializer {
 	 */
 	public DataClass getObject(Path path) throws FileNotFoundException {
 		if (!path.toFile().exists()) {
-			throw new FileNotFoundException("File not found!!!");
+			throw new FileNotFoundException(FILE_NOT_FOUND_EXCEPTION);
 		}
 		try {
 			ObjectInputStream objectStream = null;
 			try {
-				FileInputStream fis = new FileInputStream(path.toString());
-				BufferedInputStream bis = new BufferedInputStream(fis);
-				objectStream = new ObjectInputStream(bis);
+				objectStream = new ObjectInputStream(new BufferedInputStream(
+						new FileInputStream(path.toString())));
 				return (DataClass) objectStream.readObject();
 			} finally {
 				if (objectStream != null)
