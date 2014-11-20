@@ -26,6 +26,7 @@ public class Serializer {
 	 * @return
 	 */
 	public Object getObject(Path path) {
+		
 		try {
 			ObjectInputStream objectStream = null;
 			try {
