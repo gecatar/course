@@ -2,7 +2,9 @@ package com.sirma.itt.evgeni.task6;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -24,18 +26,24 @@ public class Serializer {
 	 * 
 	 * @param path
 	 * @return
+	 * @throws IOException
 	 */
-	public Object getObject(Path path) {
-		
+	public DataClass getObject(Path path) throws FileNotFoundException {
+		if (!path.toFile().exists()) {
+			throw new FileNotFoundException("File not found!!!");
+		}
 		try {
 			ObjectInputStream objectStream = null;
 			try {
-				objectStream = new ObjectInputStream(new BufferedInputStream(
-						new FileInputStream(path.toString())));
-				return objectStream.readObject();
+				FileInputStream fis = new FileInputStream(path.toString());
+				BufferedInputStream bis = new BufferedInputStream(fis);
+				objectStream = new ObjectInputStream(bis);
+				return (DataClass) objectStream.readObject();
 			} finally {
-				objectStream.close();
+				if (objectStream != null)
+					objectStream.close();
 			}
+
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -46,6 +54,7 @@ public class Serializer {
 
 	/**
 	 * Save object to file.
+	 * 
 	 * @param dataClass
 	 * @param path
 	 */
