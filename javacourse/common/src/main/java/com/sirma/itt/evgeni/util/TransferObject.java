@@ -35,7 +35,7 @@ public class TransferObject {
 			ist.skip(offset);
 			byte[] buff = new byte[numberOfBytes];
 			transfered = ist.read(buff, 0, numberOfBytes);
-			ost.write(buff);
+			ost.write(buff, 0, transfered);
 		} catch (IOException e) {
 			e.printStackTrace();
 			transfered = -1;
@@ -64,4 +64,3 @@ public class TransferObject {
 		return transfered;
 	}
 }
-
