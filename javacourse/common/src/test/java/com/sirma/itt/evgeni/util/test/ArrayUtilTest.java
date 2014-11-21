@@ -8,6 +8,9 @@ import com.sirma.itt.evgeni.util.ArrayUtil;
 
 public class ArrayUtilTest {
 
+	/**
+	 * Check correct finding on index of smallest element.
+	 */
 	@Test
 	public void findMinIndexFirst() {
 		int[] array = { 1, 12, 2, 100, 3, 4, 5, 0 };
@@ -17,6 +20,9 @@ public class ArrayUtilTest {
 		assertEquals(expectedIndex,actualIndex);
 	}
 	
+	/**
+	 * Check correct finding on index of smallest element.
+	 */
 	@Test
 	public void findMinIndexSecond() {
 		int[] array = { 1, 12, 2, 0, 3, 4, 5, 100 };
@@ -26,6 +32,9 @@ public class ArrayUtilTest {
 		assertEquals(expectedIndex,actualIndex);
 	}
 	
+	/**
+	 * Check correct finding on sum of the array.
+	 */
 	@Test
 	public void findSumFirst() {
 		int[] array = { 1, 2, 3, 3, 4, 5, 0 };
@@ -35,6 +44,9 @@ public class ArrayUtilTest {
 		assertEquals(expectedSum,actualSum);
 	}
 	
+	/**
+	 * Check correct finding on sum of the array.
+	 */
 	@Test
 	public void findSumSecond() {
 		int[] array = { 1, 2, 3, 3, 4, 5, 6 };
@@ -44,6 +56,9 @@ public class ArrayUtilTest {
 		assertEquals(expectedSum,actualSum);
 	}
 	
+	/**
+	 * Check correct string representation on the array.
+	 */
 	@Test
 	public void printFirstTest() {
 		int[] array = { 1, 2, 3, 3, 4, 5, 67, 68 };
@@ -52,6 +67,9 @@ public class ArrayUtilTest {
 		assertEquals(expectedString, actualString);
 	}
 	
+	/**
+	 * Check correct string representation on the array.
+	 */
 	@Test
 	public void printSecondTest() {
 		int[] array = { 112, 2, 38, 39, 4, 5, 67, 68 };
@@ -73,6 +91,9 @@ public class ArrayUtilTest {
 		assertEquals(expectedIndex,actualIndex);
 	}
 	
+	/**
+	 * Call ArrayUtil and check index of median.
+	 */
 	@Test
 	public void findMedianSecond() {
 		
@@ -98,6 +119,9 @@ public class ArrayUtilTest {
 		assertArrayEquals(expectedArray, actualArray);
 	}
 	
+	/**
+	 * Pass one unsorted array and check order.
+	 */
 	@Test
 	public void testSortingSecond() {
 		
@@ -125,6 +149,9 @@ public class ArrayUtilTest {
 		assertArrayEquals(expectedArray, actualArray);
 	}
 	
+	/**
+	 * Pass Array and check the order.
+	 */
 	@Test
 	public void reverseArraySecondTest() {
 

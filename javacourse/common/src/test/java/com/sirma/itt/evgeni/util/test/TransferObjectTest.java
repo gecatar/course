@@ -9,8 +9,17 @@ import org.junit.Test;
 
 import com.sirma.itt.evgeni.util.TransferObject;
 
+/**
+ * Check correct transferring on data between two streams.
+ * 
+ * @author Evgeni Stefanov
+ * 
+ */
 public class TransferObjectTest {
 
+	/**
+	 * Create two streams and check correct transferring on data between them.
+	 */
 	@Test
 	public void transferTest() {
 
@@ -28,7 +37,10 @@ public class TransferObjectTest {
 		assertTrue(byteOutputStream.size() == 7);
 
 	}
-
+	
+	/**
+	 * Create two streams and check correct transferring on data between them.
+	 */
 	@Test
 	public void offsetTransferTest() {
 		ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
