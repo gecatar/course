@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 /**
- *Gnerate two dice statistic. 
+ *Generate two dice statistic. 
  * @author Evgeni Stefanov
  *
  */

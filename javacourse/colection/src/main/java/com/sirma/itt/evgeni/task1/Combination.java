@@ -11,22 +11,6 @@ public class Combination {
 	private int secondDice;
 
 	/**
-	 * First dice value.
-	 * @return random generated value.
-	 */
-	public int getFirstDice() {
-		return firstDice;
-	}
-
-	/**
-	 * Second dice value.
-	 * @return random generated value.
-	 */
-	public int getSecondDice() {
-		return secondDice;
-	}
-
-	/**
 	 * Return dice combination as text.
 	 */
 	@Override
