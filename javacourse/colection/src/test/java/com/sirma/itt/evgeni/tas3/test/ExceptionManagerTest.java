@@ -8,10 +8,18 @@ import org.junit.Test;
 
 import com.sirma.itt.evgeni.task3.ExceptionManager;
 
+/**
+ * Check correct creating on Exception log.
+ * @author Evgeni Stefanov
+ *
+ */
 public class ExceptionManagerTest {
 
+	/**
+	 * Create error log. And check its content.
+	 */
 	@Test
-	public void test() {
+	public void exceptionManagerTest() {
 		ExceptionManager exmng = new ExceptionManager();
 		exmng.addExceptionUsingCode("INVID");
 		exmng.addExceptionUsingCode("INVPC");

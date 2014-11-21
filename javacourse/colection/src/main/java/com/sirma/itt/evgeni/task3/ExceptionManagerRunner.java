@@ -7,13 +7,15 @@ import com.sirma.itt.evgeni.util.ConsoleReader;
 
 /**
  * Collect errors and their description.
+ * 
  * @author Evgeni Stefanov
- *
+ * 
  */
 public class ExceptionManagerRunner {
 
 	/**
 	 * Allow user to add errors and their description.
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -34,22 +36,29 @@ public class ExceptionManagerRunner {
 		while (choise != 9) {
 			choise = ConsoleReader.readInt();
 			switch (choise) {
-			case 1:
+			case 1: {
+				System.out.println("Enter error code:");
 				exmng.addExceptionUsingCode(ConsoleReader.readString());
 				break;
-			case 2:
+			}
+			case 2: {
+				System.out.println("Enter mesage. If mesage is incorect it will not be stored.");
 				exmng.addExceptionMesage(ConsoleReader.readString());
 				break;
-			case 3:
+			}
+			case 3: {
 				List<String> list = exmng.getMesages();
 				for (String str : list) {
 					System.out.println(str);
 				}
 				break;
-			case 4:
+			}
+			case 4: {
+				System.out.println("Enter key and description for new type error.");
 				exmng.addExceptionAndDescription(ConsoleReader.readString(),
 						ConsoleReader.readString());
 				break;
+			}
 			}
 		}
 	}
