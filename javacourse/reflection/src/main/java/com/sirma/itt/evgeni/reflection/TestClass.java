@@ -20,22 +20,6 @@ public class TestClass implements Comparator{
 	private Long lng = new Long(89798);
 	
 	
-	public int getId() {
-		return id;
-	}
-	
-	public int getCount() {
-		return count;
-	}
-	
-	public int getIndex() {
-		return index;
-	}
-	
-	public StringBuilder getStb() {
-		return stb;
-	}
-	
 	public String getString() {
 		return string;
 	}
@@ -49,28 +33,12 @@ public class TestClass implements Comparator{
 		
 	}
 	/**
-	 * Public example.
-	 */
-	public void testPublic() {
-		System.out.println("Public method.");
-	}
-
-	/**
 	 * Private example.
 	 */
 	private void testPrivate() {
 		System.out.println("Private method. Executed.");
 	}
 	
-	/**
-	 * Summing two integer.
-	 * @param add 
-	 * @return sum of count and add.
-	 */
-	public int sum(int add) {
-		return count + add;
-	}
-
 	public int compare(Object arg0, Object arg1) {
 		return 0;
 	}
