@@ -11,9 +11,9 @@ public class Tree {
 	}
 
 	// define number of nodes
-	static int count = 3;	
+	private int count = 3;	
 	//Starting point.
-	Leaf node;
+	private Leaf node;
 
 	
 	/**

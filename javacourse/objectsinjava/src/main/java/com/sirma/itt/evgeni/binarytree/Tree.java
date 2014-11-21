@@ -7,7 +7,7 @@ package com.sirma.itt.evgeni.binarytree;
  */
 public class Tree {
 
-	Node node;
+	private Node node;
 
 	public Tree(int number) {
 		node = new Node(number);
