@@ -5,8 +5,17 @@ import java.nio.file.Path;
 
 import com.sirma.itt.evgeni.util.DirectoryBrowser;
 
+/**
+ * Create new object save it to file.
+ * @author Evgeni Stefanov
+ *
+ */
 public class SerializerRunner {
 
+	/**
+	 * Save and read object from file.
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		Serializer serializer = new Serializer();

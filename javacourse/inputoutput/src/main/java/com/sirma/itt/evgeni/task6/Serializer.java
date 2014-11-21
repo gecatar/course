@@ -26,8 +26,8 @@ public class Serializer {
 	/**
 	 * Read objects from passed file.
 	 * 
-	 * @param path
-	 * @return
+	 * @param path the path to file which will be read from.
+	 * @return extracted object from file.
 	 * @throws IOException
 	 */
 	public DataClass getObject(Path path) throws FileNotFoundException {
@@ -56,8 +56,8 @@ public class Serializer {
 	/**
 	 * Save object to file.
 	 * 
-	 * @param dataClass
-	 * @param path
+	 * @param dataClass the object that will be saved in file.
+	 * @param path the path to file.
 	 */
 	public void saveObject(DataClass dataClass, Path path) {
 		try {
