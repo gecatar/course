@@ -17,8 +17,8 @@ public class ArrayUtil {
 	public static int getMinElement(int[] array) {
 
 		int minIndex = 0;
-		int minValue;
-		minValue = array[0];
+		int minValue = array[0];
+
 		for (int i = 0; i < array.length; i++) {
 			if (minValue > array[i]) {
 				minValue = array[i];
@@ -55,8 +55,9 @@ public class ArrayUtil {
 
 		StringBuilder stringBuilder = new StringBuilder();
 		for (int value : array) {
-			stringBuilder.append(Integer.toString(value)).append(" ");
+			stringBuilder.append(value).append(" ");
 		}
+		
 		return stringBuilder.toString();
 	}
 
@@ -138,7 +139,7 @@ public class ArrayUtil {
 
 		int left = 0;
 		int right = array.length - 1;
-		while (left <= right) {
+		while (left < right) {
 			int temp = array[right];
 			array[right] = array[left];
 			array[left] = temp;
