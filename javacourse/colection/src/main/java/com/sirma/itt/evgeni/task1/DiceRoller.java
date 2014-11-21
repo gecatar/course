@@ -3,6 +3,7 @@ package com.sirma.itt.evgeni.task1;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 /**
  *Generate two dice statistic. 
@@ -30,6 +31,10 @@ public class DiceRoller {
 		combinations.put(count,
 				new Combination(firstDice.rool(), secondDice.rool()));
 		count++;
+	}
+	
+	public Set<Entry<Integer,Combination>> getReport(){
+		return combinations.entrySet();
 	}
 
 	/**

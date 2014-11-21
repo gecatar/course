@@ -18,6 +18,17 @@ public class Combination {
 		return new StringBuilder().append("First Dice:").append(firstDice)
 				.append(" Second Dice:").append(secondDice).toString();
 	}
+	/**
+	 * 
+	 * @return value of first dice.
+	 */
+	public int getFirstDice(){
+		return firstDice;
+	}
+	
+	public int getSecondDice(){
+		return secondDice;
+	}
 
 	public Combination(int firstDice, int secondDice) {
 		this.firstDice = firstDice;
