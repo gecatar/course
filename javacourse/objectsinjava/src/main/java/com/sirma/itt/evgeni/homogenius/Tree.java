@@ -15,7 +15,7 @@ public class Tree<D extends Data> {
 	// define number of nodes
 	private int count = 3;
 	//Starting point.
-	Field<D> node;
+	private Field<D> node;
 	
 	/**
 	 * Return data saved in node as string.
