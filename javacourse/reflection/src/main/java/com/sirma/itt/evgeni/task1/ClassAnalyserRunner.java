@@ -19,10 +19,11 @@ public class ClassAnalyserRunner {
 	 */
 	public static void main(String[] args) {
 
+		ClassAnalyzer analyzer = new ClassAnalyzer();
 		TestClass temp = new TestClass();
-		ReflectionUtil.setClass(temp);
-		System.out.println("State after setup:");
-		ReflectionUtil.analyse(temp);
+		System.out.println(analyzer.listDeclaredFields(temp));
+		System.out.println("-----------------------------------");
+		System.out.println(analyzer.listDeclaredMethods(temp));
 	}
 
 }

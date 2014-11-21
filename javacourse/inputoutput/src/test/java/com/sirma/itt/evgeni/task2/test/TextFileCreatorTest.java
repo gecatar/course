@@ -2,6 +2,7 @@ package com.sirma.itt.evgeni.task2.test;
 
 import static org.junit.Assert.*;
 
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.OutputStreamWriter;
@@ -21,10 +22,18 @@ public class TextFileCreatorTest {
 	@Test
 	public void saveTextTest() throws FileNotFoundException {
 
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		OutputStreamWriter osw = new OutputStreamWriter(bos);
+		
 		TextFileCreator textFileCreator = Mockito.mock(TextFileCreator.class);
 		Mockito.when(textFileCreator.getLine()).thenReturn("123456")
 				.thenReturn("test").thenReturn(".");
-		textFileCreator.saveText(Paths.get("c:\\Users\\root\\test.txt"));
+		Mockito.when(textFileCreator.getStream(Mockito.any(Path.class)))
+				.thenReturn(osw);
+		textFileCreator.saveText(null);
+		
+		int buffSize = bos.size();
+		assertTrue(bos.size()==11);
 	}
 
 }

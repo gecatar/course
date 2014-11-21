@@ -17,26 +17,34 @@ import com.sirma.itt.evgeni.util.ConsoleReader;
  */
 public class TextFileCreator {
 
+	public String testMockedGetLine() {
+		return getLine();
+	}
+
+	public void saveToStream(OutputStreamWriter osw) throws IOException {
+		if (osw != null) {
+			System.out.println("Type text: Enter '.' to stop.");
+			String text = new String();
+			while (!text.matches(".")) {
+				text = getLine();
+				osw.write(text);
+			}
+		}
+	}
+
 	/**
 	 * Save text to file.
+	 * 
 	 * @param path
 	 */
 	public void saveText(Path path) {
 		OutputStreamWriter outputStream = null;
 		try {
 			outputStream = getStream(path);
-			String text = new String();
-			System.out.println(path);
-			System.out.println("Type text: Enter '.' to stop.");
-			while (!text.matches(".")) {
-				text = getLine();
-				outputStream.write(text);
-			}
+			saveToStream(outputStream);
 		} catch (FileNotFoundException e) {
-			System.out.println("File not found!!!");
 			e.printStackTrace();
 		} catch (IOException e) {
-			System.out.println("Error while saving to file!!!");
 			e.printStackTrace();
 		} finally {
 			closeStream(outputStream);
@@ -45,6 +53,7 @@ public class TextFileCreator {
 
 	/**
 	 * Read line from console.
+	 * 
 	 * @return
 	 */
 	public String getLine() {
@@ -53,9 +62,11 @@ public class TextFileCreator {
 
 	/**
 	 * Extract stream from file.
-	 * @param path the path to file.
+	 * 
+	 * @param path
+	 *            the path to file.
 	 * @return stream extracted from file.
-	 * @throws FileNotFoundException 
+	 * @throws FileNotFoundException
 	 */
 	public OutputStreamWriter getStream(Path path) throws FileNotFoundException {
 		return new OutputStreamWriter(new BufferedOutputStream(
@@ -64,6 +75,7 @@ public class TextFileCreator {
 
 	/**
 	 * Close stream.
+	 * 
 	 * @param outputStream
 	 */
 	public void closeStream(OutputStreamWriter outputStream) {
