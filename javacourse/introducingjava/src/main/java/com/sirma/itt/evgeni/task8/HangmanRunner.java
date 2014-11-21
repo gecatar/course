@@ -26,7 +26,7 @@ public class HangmanRunner {
 			hangman.checkLetter(userChoise.charAt(0));
 			if (hangman.getWrongGuess() > 0) {
 				if (hangman.isOpen()) {
-					System.out.println("Congrachilation!!!!!!!!!!! Your opene the word!!!");
+					System.out.println("Congrachilation!!!!!!!!!!! Your opened the word!!!");
 					hangman.getWord();
 				}
 			} else {

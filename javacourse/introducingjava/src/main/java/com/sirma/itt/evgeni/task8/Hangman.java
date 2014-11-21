@@ -9,12 +9,12 @@ import java.util.Random;
  */
 public class Hangman {
 
-	String[] words = { "telephone", "cartrige", "microscope", "torpedo",
+	private String[] words = { "telephone", "cartrige", "microscope", "torpedo",
 			"aircraft", "inspector", "detective", "mailbox", "elephant" };
-	Random rnd = new Random();
-	String word = new String();
-	String opened = new String();
-	byte wrongGuess = 9;
+	private Random rnd = new Random();
+	private String word = new String();
+	private String opened = new String();
+	private byte wrongGuess = 9;
 
 	/**
 	 * choose random word
@@ -44,12 +44,11 @@ public class Hangman {
 	 * @return true if word is fully opened.
 	 */
 	public Boolean isOpen() {
-		for (int i = 0; i < opened.length(); i++) {
-			if (opened.charAt(i) == 45) {
-				return false;
-			}
+		if (opened.contains("-")) {
+			return false;
+		} else {
+			return true;
 		}
-		return true;
 	}
 
 	/**
