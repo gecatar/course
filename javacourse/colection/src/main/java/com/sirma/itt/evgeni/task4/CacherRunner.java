@@ -1,14 +1,19 @@
 package com.sirma.itt.evgeni.task4;
 
 /**
- * 
+ * Check cache behavior.
  * @author Evgeni Stefanov
  *
  */
 public class CacherRunner {
 
+	/**
+	 * Add elements in cacher. User define size on cacher.
+	 * @param args
+	 */
 	public static void main(String[] args) {
-		
+		System.out.println("Create 10 objects and test cache functionality!!!");
+		System.out.println("Enter size on cacher:");
 		Cacher cacher = new Cacher(5);
 		Object[] obj = new Object[10];
 		
