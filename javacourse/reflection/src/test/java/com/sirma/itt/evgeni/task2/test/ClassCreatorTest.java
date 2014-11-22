@@ -1,4 +1,4 @@
-package com.sirma.itt.evgeni.task1.test;
+package com.sirma.itt.evgeni.task2.test;
 
 import static org.junit.Assert.*;
 
