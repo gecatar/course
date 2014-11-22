@@ -10,8 +10,15 @@ import com.sirma.itt.evgeni.util.ReflectionUtil;
  */
 public class PrivateReaderRunner {
 
+	/**
+	 * Read private fields and execute private methods.
+	 * @param args
+	 */
 	public static void main(String[] args) {
-		ReflectionUtil.readPrivate(new TestClass());
+		PrivateReader privateReader = new PrivateReader();
+		TestClass testClass = new TestClass();
+		System.out.println(privateReader.getPrivateFileds(testClass));
+		System.out.println(privateReader.invokePrivateMethods(testClass));
 	}
 
 }
