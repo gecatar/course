@@ -17,7 +17,6 @@ public class TextFileCreatorRunner {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		TextFileCreator textFileCreator = new TextFileCreator();
-		textFileCreator.saveText(DirectoryBrowser.chooseFile());
+
 	}
 }

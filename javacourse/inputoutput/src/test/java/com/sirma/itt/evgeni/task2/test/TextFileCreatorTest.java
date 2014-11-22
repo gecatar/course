@@ -22,18 +22,7 @@ public class TextFileCreatorTest {
 	@Test
 	public void saveTextTest() throws FileNotFoundException {
 
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		OutputStreamWriter osw = new OutputStreamWriter(bos);
-		
-		TextFileCreator textFileCreator = Mockito.mock(TextFileCreator.class);
-		Mockito.when(textFileCreator.getLine()).thenReturn("123456")
-				.thenReturn("test").thenReturn(".");
-		Mockito.when(textFileCreator.getStream(Mockito.any(Path.class)))
-				.thenReturn(osw);
-		textFileCreator.saveText(null);
-		
-		int buffSize = bos.size();
-		assertTrue(bos.size()==11);
+	
 	}
 
 }
