@@ -13,21 +13,7 @@ public class TestClass implements Comparator{
 	
 	public int id = 0;
 	private int count = 9;
-	private int index = 8;
-	private char ch;
-	private long ln = 0;
-	private short sh = 8;
-	private Long lng = new Long(89798);
-	
-	
-	public String getString() {
-		return string;
-	}
-
-	Rectangle rect = new Rectangle();
-	StringBuilder stb = new StringBuilder();
-
-	private String string = new String("Private String!!!!");
+	public int index = 8;
 	
 	public TestClass(){
 		
