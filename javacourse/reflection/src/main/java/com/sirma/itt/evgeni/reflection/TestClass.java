@@ -1,6 +1,5 @@
 package com.sirma.itt.evgeni.reflection;
 
-import java.awt.Rectangle;
 import java.util.Comparator;
 
 /**

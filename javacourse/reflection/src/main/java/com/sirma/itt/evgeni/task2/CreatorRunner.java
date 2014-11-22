@@ -1,7 +1,5 @@
 package com.sirma.itt.evgeni.task2;
 
-import com.sirma.itt.evgeni.util.ReflectionUtil;
-
 /**
  * Create new instance. Name represent name of class that will be created.
  * @author Evgeni Stefanov
@@ -9,10 +7,16 @@ import com.sirma.itt.evgeni.util.ReflectionUtil;
  */
 public class CreatorRunner {
 
+	/**
+	 * Create class whit reflection.
+	 * @param args
+	 */
 	public static void main(String[] args) {
-		String name = "com.sirma.itt.javatrain.evgeni.reflection.TestClass";
-		ReflectionUtil.CreateFromName(name);
-
+		ClassCreator classCreator = new ClassCreator();
+		String name = "com.sirma.itt.evgeni.reflection.TestClass";
+		Object object = classCreator.createFromName(name);
+		System.out.println(classCreator.listInterfaces(object));
+		System.out.println(classCreator.getParrent(object));
 	}
 
 }
