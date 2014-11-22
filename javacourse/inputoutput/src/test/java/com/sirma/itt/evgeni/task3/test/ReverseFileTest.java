@@ -22,6 +22,13 @@ public class ReverseFileTest {
 	}
 	
 	@Test
+	public void reverseTextTest(){
+		String text = "123456";
+		String expectedText = "654321";
+		String actualText = fileReverser.reverseText(text);
+	}
+	
+	@Test
 	public void readTextTest(){
 		String text = "654321";
 		assertTrue(fileReverser.saveText(text, path));
