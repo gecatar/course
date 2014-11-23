@@ -20,27 +20,13 @@ import com.sirma.itt.evgeni.util.ConsoleReader;
  */
 public class TextFileCreator {
 
-	public boolean reverseFile(String path) throws FileNotFoundException {
-		try {
-			getText(path);
-			fuckStreams(path);
-			return true;
-		} catch (FileNotFoundException e) {
-			throw e;
-		} catch (IOException e) {
-			return false;
-		}
-	}
-
-	public void getText(String path) throws FileNotFoundException, IOException {
-		try (InputStreamReader isr = new InputStreamReader(
-				new BufferedInputStream(new FileInputStream(path)))) {
-
-		}
-	}
-
-	public void fuckStreams(String path) throws FileNotFoundException,
-			IOException {
+	/**
+	 * Save user input to file. Saving stop when '.' is entered.
+	 * @param path
+	 * @return
+	 * @throws FileNotFoundException
+	 */
+	public boolean createFile(String path) throws FileNotFoundException {
 
 		try (OutputStreamWriter osw = new OutputStreamWriter(
 				new BufferedOutputStream(new FileOutputStream(path)))) {
@@ -50,6 +36,12 @@ public class TextFileCreator {
 				text = getLine();
 				osw.write(text);
 			}
+			return true;
+		} catch (FileNotFoundException e) {
+			throw e;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
 		}
 	}
 

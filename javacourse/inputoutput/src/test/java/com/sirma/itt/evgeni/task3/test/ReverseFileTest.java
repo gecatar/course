@@ -2,6 +2,7 @@ package com.sirma.itt.evgeni.task3.test;
 
 import static org.junit.Assert.*;
 
+import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -12,13 +13,12 @@ import com.sirma.itt.evgeni.task3.FileReverser;
 public class ReverseFileTest {
 
 	FileReverser fileReverser = new FileReverser();
-	Path path = Paths.get("c:\\users\\root\\testreverse");
+	String path = "c:\\users\\root\\testreverse";
 	
 	@Test
-	public void saveTextTest(){
+	public void saveTextTest() throws FileNotFoundException{
 		String text = "123456";
-		assertTrue(fileReverser.saveText(text, path));
-		assertEquals(text, fileReverser.getText(path));
+		assertTrue(fileReverser.reverseFile(path));
 	}
 	
 	@Test
@@ -31,8 +31,6 @@ public class ReverseFileTest {
 	@Test
 	public void readTextTest(){
 		String text = "654321";
-		assertTrue(fileReverser.saveText(text, path));
-		assertEquals(text, fileReverser.getText(path));
 	}
 
 }

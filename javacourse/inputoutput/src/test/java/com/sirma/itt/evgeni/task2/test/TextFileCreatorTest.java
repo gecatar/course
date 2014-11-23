@@ -19,10 +19,10 @@ import com.sirma.itt.evgeni.util.DirectoryBrowser;
 
 public class TextFileCreatorTest {
 
-	@Test
-	public void saveTextTest() throws FileNotFoundException {
-
-	
+	@Test(expected=FileNotFoundException.class)
+	public void createFileTest() throws FileNotFoundException {
+		TextFileCreator creator = new TextFileCreator();
+		creator.createFile("");
 	}
 
 }
