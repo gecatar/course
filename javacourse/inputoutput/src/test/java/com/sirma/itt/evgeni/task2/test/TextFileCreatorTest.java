@@ -33,6 +33,6 @@ public class TextFileCreatorTest {
 	@Test
 	public void createFileTestSecond() throws IOException{
 		creator.createFile("C:\\eclipse\\test.txt");
-		System.out.println(reverser.getText("C:\\eclipse\\test.txt"));
+		assertEquals("45678910",reverser.getText("C:\\eclipse\\test.txt"));
 	}
 }

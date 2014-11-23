@@ -5,13 +5,13 @@ import com.sirma.itt.evgeni.util.TextUtil;
 
 public class Reader implements UserInputReader {
 
-	int count = 0;
+	int count = 3;
 
 	@Override
 	public String readString() {
 		if (count < 10) {
 			count++;
-			return TextUtil.getRandomString(10);
+			return Integer.toString(count);
 		} else {
 			return ".";
 		}
@@ -27,7 +27,7 @@ public class Reader implements UserInputReader {
 	public String readLine() {
 		if (count < 10) {
 			count++;
-			return TextUtil.getRandomString(10);
+			return Integer.toString(count);
 		} else {
 			return ".";
 		}

@@ -39,9 +39,9 @@ public class TextFileCreator {
 				new BufferedOutputStream(new FileOutputStream(path)))) {
 			System.out.println("Type text: Enter '.' to stop.");
 			String text = new String();
-			while (!text.matches(".")) {
-				text = getLine();
+			while (!text.contains(".")) {
 				osw.write(text);
+				text = getLine();
 			}
 			return true;
 		} catch (FileNotFoundException e) {
