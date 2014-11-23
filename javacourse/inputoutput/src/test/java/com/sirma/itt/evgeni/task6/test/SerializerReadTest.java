@@ -24,17 +24,11 @@ public class SerializerReadTest {
 	@Test()
 	public void getObjectTest() {
 
-		try {
-			Path path = Paths.get("c:\\users\\root\\testserial");
-			assertNotNull("Object shouldn't be null",
-					serializer.getObject(path));
-			path = Paths.get("c:\\users\\roo%$^$%t\\testserial");
-			serializer.getObject(path);
-			fail("Grumna");
-		} catch (Exception e) {
-			assertTrue(e instanceof FileNotFoundException);
-			assertEquals(Serializer.FILE_NOT_FOUND_EXCEPTION, e.getMessage());
-		}
+		Path path = Paths.get("c:\\users\\root\\testserial");
+		assertNotNull("Object shouldn't be null",
+				serializer.getObject(path.toString()));
+		path = Paths.get("c:\\users\\roo%$^$%t\\testserial");
+		serializer.getObject(path.toString());
 
 	}
 
@@ -46,14 +40,10 @@ public class SerializerReadTest {
 		DataClass data = new DataClass();
 		Path path = Paths.get("c:\\users\\root\\savetest");
 		data.count = 0;
-		serializer.saveObject(data, path);
-		try {
-			data = serializer.getObject(path);
-			if (data.count != 0) {
-				fail("Object not readed!!!");
-			}
-		} catch (FileNotFoundException e) {
-			fail("File not founded!!!");
+		serializer.saveObject(data, path.toString());
+		data = serializer.getObject(path.toString());
+		if (data.count != 0) {
+			fail("Object not readed!!!");
 		}
 
 	}

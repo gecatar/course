@@ -21,56 +21,43 @@ import com.sirma.itt.evgeni.task6.DataClass;
  */
 public class Serializer {
 
-	public static final String FILE_NOT_FOUND_EXCEPTION = "File not found!!!";
-	
 	/**
 	 * Read objects from passed file.
 	 * 
-	 * @param path the path to file which will be read from.
+	 * @param path
+	 *            the path to file which will be read from.
 	 * @return extracted object from file.
 	 * @throws IOException
 	 */
-	public DataClass getObject(Path path) throws FileNotFoundException {
-		if (!path.toFile().exists()) {
-			throw new FileNotFoundException(FILE_NOT_FOUND_EXCEPTION);
-		}
-		try {
-			ObjectInputStream objectStream = null;
-			try {
-				objectStream = new ObjectInputStream(new BufferedInputStream(
-						new FileInputStream(path.toString())));
-				return (DataClass) objectStream.readObject();
-			} finally {
-				if (objectStream != null)
-					objectStream.close();
-			}
-
+	public DataClass getObject(String path) {
+		try (ObjectInputStream objectStream = new ObjectInputStream(
+				new BufferedInputStream(new FileInputStream(path)))) {
+			return (DataClass) objectStream.readObject();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
+			return null;
 		} catch (IOException e) {
 			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 
 	/**
 	 * Save object to file.
 	 * 
-	 * @param dataClass the object that will be saved in file.
-	 * @param path the path to file.
+	 * @param dataClass
+	 *            the object that will be saved in file.
+	 * @param path
+	 *            the path to file.
 	 */
-	public void saveObject(DataClass dataClass, Path path) {
-		try {
-			ObjectOutputStream outputStream = null;
-			try {
-				outputStream = new ObjectOutputStream(new BufferedOutputStream(
-						new FileOutputStream(path.toString())));
-				outputStream.writeObject(dataClass);
-			} finally {
-				outputStream.close();
-			}
+	public boolean saveObject(DataClass dataClass, String path) {
+		try (ObjectOutputStream outputStream = new ObjectOutputStream(
+				new BufferedOutputStream(new FileOutputStream(path)))) {
+			outputStream.writeObject(dataClass);
+			return true;
 		} catch (IOException e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 }

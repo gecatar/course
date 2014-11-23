@@ -21,14 +21,10 @@ public class SerializerRunner {
 		Serializer serializer = new Serializer();
 		DataClass data = new DataClass();
 		Path path = DirectoryBrowser.chooseFile();
-		serializer.saveObject(data, path);
-		try {
-			DataClass temp = serializer.getObject(path);
-			if (temp != null) {
-				System.out.println(temp.count);
-			}
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
+		serializer.saveObject(data, path.toString());
+		DataClass temp = serializer.getObject(path.toString());
+		if (temp != null) {
+			System.out.println(temp.count);
 		}
 	}
 
