@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.nio.file.Path;
 
+import com.sirma.itt.evgeni.interfaces.UserInputReader;
 import com.sirma.itt.evgeni.util.ConsoleReader;
 
 /**
@@ -20,14 +21,20 @@ import com.sirma.itt.evgeni.util.ConsoleReader;
  */
 public class TextFileCreator {
 
+	UserInputReader reader;
+
+	public TextFileCreator(UserInputReader reader) {
+		this.reader = reader;
+	}
+
 	/**
 	 * Save user input to file. Saving stop when '.' is entered.
+	 * 
 	 * @param path
 	 * @return
 	 * @throws FileNotFoundException
 	 */
 	public boolean createFile(String path) throws FileNotFoundException {
-
 		try (OutputStreamWriter osw = new OutputStreamWriter(
 				new BufferedOutputStream(new FileOutputStream(path)))) {
 			System.out.println("Type text: Enter '.' to stop.");
@@ -51,7 +58,7 @@ public class TextFileCreator {
 	 * @return
 	 */
 	public String getLine() {
-		return ConsoleReader.readLine();
+		return reader.readLine();
 	}
 
 }
