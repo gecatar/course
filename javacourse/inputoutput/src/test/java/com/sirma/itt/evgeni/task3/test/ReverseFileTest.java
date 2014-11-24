@@ -17,12 +17,22 @@ public class ReverseFileTest {
 	// String path = "c:\\users\\root\\testreverse";
 	String path = "C:\\eclipse\\test.txt";
 
-//	@Test
+	/**
+	 * Check corect storing on data to file.
+	 * @throws IOException
+	 */
+	@Test
 	public void saveTextTest() throws IOException {
 		String text = "123456";
 		fileReverser.saveText(path, text);
+		assertEquals("123456",fileReverser.getText("C:\\eclipse\\test.txt"));
 	}
 
+	/**
+	 * Check correct reversing on file.
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	@Test
 	public void reverseTextTest() throws FileNotFoundException, IOException {
 		String text = "123456";

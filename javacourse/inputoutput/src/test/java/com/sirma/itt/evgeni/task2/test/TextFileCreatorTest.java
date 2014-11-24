@@ -17,6 +17,10 @@ public class TextFileCreatorTest {
 	TextFileCreator creator;
 	FileReverser reverser;
 	
+	/**
+	 * Create reverser object to read data from file.
+	 * @throws Exception
+	 */
 	@Before
 	public void setUp() throws Exception {
 		UserInputReader reader = new Reader();
@@ -25,11 +29,19 @@ public class TextFileCreatorTest {
 	}
 	
 
+	/**
+	 * Force create file to throw exception.
+	 * @throws FileNotFoundException
+	 */
 	@Test(expected=FileNotFoundException.class)
 	public void createFileTest() throws FileNotFoundException {
 		creator.createFile("");
 	}
 	
+	/**
+	 * Save data to file and check its content.
+	 * @throws IOException
+	 */
 	@Test
 	public void createFileTestSecond() throws IOException{
 		creator.createFile("C:\\eclipse\\test.txt");
