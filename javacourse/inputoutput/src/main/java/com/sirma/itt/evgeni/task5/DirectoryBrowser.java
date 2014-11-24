@@ -26,6 +26,7 @@ public class DirectoryBrowser {
 			return files.length;
 		}
 		if(file.isFile()){
+			System.out.println("Path is on file!!!");
 			return 1;
 		}
 		return 0;
