@@ -1,5 +1,8 @@
 package com.sirma.itt.evgeni.task2;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,50 +16,59 @@ import com.sirma.itt.evgeni.util.TransferObject;
 
 public class DownloadAgent extends Thread {
 
-	URL url;
-	URLConnection urlConection;
-	InputStream ist;
-	OutputStream ost;
-	boolean correctURL;
 	DownloadProgressUpdater progressUpdater;
-	JFileChooser fileChooser = new JFileChooser();
-	long size;
-	long downloaded;
+	String url;
 
-	public DownloadAgent(String url,DownloadProgressUpdater progressUpdater ) {
+	public DownloadAgent(DownloadProgressUpdater progressUpdater, String url) {
 		this.progressUpdater = progressUpdater;
-		correctURL = true;
-		try {
-			this.url = new URL(url);
-			urlConection = this.url.openConnection();
-			ist = urlConection.getInputStream();
-			size = urlConection.getContentLength();
-			fileChooser.showSaveDialog(fileChooser);
-			ost = new FileOutputStream(fileChooser.getSelectedFile());
-		} catch (Exception e) {
-			correctURL = false;
-		}
+		this.url = url;
+	}
+
+	public File getFile() {
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.showSaveDialog(fileChooser);
+		return fileChooser.getSelectedFile();
+	}
+
+	public InputStream getInputStream(URLConnection conection)
+			throws IOException {
+		return conection.getInputStream();
+	}
+
+	public URLConnection getConection(String url) throws IOException {
+		return new URL(url).openConnection();
+	}
+
+	public OutputStream getOutputStream(File file) throws FileNotFoundException {
+		return new BufferedOutputStream(new FileOutputStream(file));
 	}
 
 	public void run() {
-		downloadFile();
+		downloadFile(url);
 	}
 
-	public void downloadFile() {
-		TransferObject tranferator = new TransferObject(ist, ost);
-		int readed = 0;
-		while (readed != -1) {
-			downloaded += readed;
-			readed = tranferator.transfer(1000);
-			int percentProgress = (int) (100 * downloaded / size);
-			progressUpdater.setProgress(percentProgress);
-		}
+	public boolean downloadFile(String res) {
+		TransferObject transferator = null;
 		try {
-			ist.close();
-			ost.flush();
-			ost.close();
+			URLConnection conection;
+			conection = getConection(res);
+			long size = conection.getContentLengthLong();
+			transferator = new TransferObject(getInputStream(conection),
+					getOutputStream(getFile()));
+			int readed = 0;
+			long downloaded = 0;
+			while (readed != -1) {
+				downloaded += readed;
+				readed = transferator.transfer(1000);
+				int percentProgress = (int) (100 * downloaded / size);
+				progressUpdater.setProgress(percentProgress);
+			}
+			return true;
 		} catch (IOException e) {
 			e.printStackTrace();
+			return false;
+		} finally {
+			transferator.close();
 		}
 
 	}

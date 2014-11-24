@@ -54,21 +54,24 @@ public class DownloadView extends JFrame implements ActionListener, DownloadProg
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == downloadFile) {
 			downloadProgress.setVisible(true);
-			new DownloadAgent(textField.getText(), this).start();
+			new DownloadAgent(this,textField.getText()).start();
 		}
 	}
 
 	public void setProgress(int progress) {
-		// TODO Auto-generated method stub
-		
+		downloadProgress.setValue(progress);
 	}
 
 	public void setFileSize(long fileSize) {
+	}
+
+	public void setDownloadedSize(long downloadedSize) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void setDownloadedSize(long downloadedSize) {
+
+	public void setDownloadError(String error) {
 		// TODO Auto-generated method stub
 		
 	}

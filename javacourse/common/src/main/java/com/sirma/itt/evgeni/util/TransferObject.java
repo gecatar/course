@@ -10,7 +10,7 @@ import java.io.OutputStream;
  * @author Evgeni Stefanov
  * 
  */
-public class TransferObject {
+public class TransferObject implements AutoCloseable {
 
 	InputStream ist = null;
 	OutputStream ost = null;
@@ -62,5 +62,20 @@ public class TransferObject {
 			transfered = -1;
 		}
 		return transfered;
+	}
+
+	public void close() {
+		try {
+			if (ist != null) {
+				ist.close();
+				ist = null;
+			}
+			if (ost != null) {
+				ost.close();
+				ost = null;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
