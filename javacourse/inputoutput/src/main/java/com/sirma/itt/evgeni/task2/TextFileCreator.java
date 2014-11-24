@@ -21,7 +21,7 @@ import com.sirma.itt.evgeni.util.ConsoleReader;
  */
 public class TextFileCreator {
 
-	UserInputReader reader;
+	private UserInputReader reader;
 
 	public TextFileCreator(UserInputReader reader) {
 		this.reader = reader;
@@ -57,7 +57,7 @@ public class TextFileCreator {
 	 * 
 	 * @return
 	 */
-	public String getLine() {
+	private String getLine() {
 		return reader.readLine();
 	}
 
