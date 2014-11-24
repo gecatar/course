@@ -1,10 +1,10 @@
 package com.sirma.itt.evgeni.task2;
 
 /**
- * Create Pages that store objects.
- * Print their content.
+ * Create Pages that store objects. Print their content.
+ * 
  * @author Evgeni Stefanov
- *
+ * 
  */
 public class PageBean {
 
@@ -22,6 +22,7 @@ public class PageBean {
 	 */
 	public Page[] getPages(Object[] obj, int pageSize) {
 
+		curent = -1;
 		int pages = obj.length / pageSize;
 		if (obj.length % pageSize > 0) {
 			pages++;
