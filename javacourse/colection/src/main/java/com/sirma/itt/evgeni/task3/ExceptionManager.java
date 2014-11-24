@@ -32,6 +32,13 @@ public class ExceptionManager {
 	public List<String> getMesages() {
 		return Arrays.asList(message.split("\\" + SEPARATOR));
 	}
+	
+	/**
+	 * Clear saved errors.
+	 */
+	public void clearLog(){
+		String message = new String();
+	}
 
 	/**
 	 * Add message to string whit all messages. Separated whit constant separator.
