@@ -65,7 +65,7 @@ public class DownloadAgent extends Thread {
 			}
 			return true;
 		} catch (IOException e) {
-			e.printStackTrace();
+			progressUpdater.setDownloadError(e.getMessage());
 			return false;
 		} finally {
 			transferator.close();
