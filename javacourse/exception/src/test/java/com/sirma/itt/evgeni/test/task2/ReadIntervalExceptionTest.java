@@ -4,7 +4,7 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import com.sirma.itt.evgeni.task2.IntervalReader;
+import com.sirma.itt.evgeni.task2.RangeValidator;
 import com.sirma.itt.evgeni.util.ValueNotInRangeException;
 
 /**
@@ -21,9 +21,8 @@ public class ReadIntervalExceptionTest {
 	 * @throws ValueNotInRangeException
 	 */
 	@Test(expected = ValueNotInRangeException.class)
-	public void readIntervalTest() throws ValueNotInRangeException {
-		IntervalReader intervalReader = new IntervalReader(new Reader());
-		intervalReader.readInterval(13, 28);
+	public void rangeValidatorTest() throws ValueNotInRangeException {
+		RangeValidator.chekIsInRange(0, 1, 2);
 	}
 
 	/**
@@ -32,8 +31,7 @@ public class ReadIntervalExceptionTest {
 	@Test
 	public void readIntervalSecondTest() {
 		try {
-			IntervalReader intervalReader = new IntervalReader(new Reader());
-			intervalReader.readInterval(10, 28);
+			RangeValidator.chekIsInRange(0, 2, 1);
 
 		} catch (ValueNotInRangeException e) {
 			fail("Un expected: ValueNotInRangeException!!!!");

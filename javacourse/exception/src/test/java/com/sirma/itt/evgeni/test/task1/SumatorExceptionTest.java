@@ -5,63 +5,48 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import com.sirma.itt.evgeni.util.MathUtil;
+
 /**
  * Check correct exception throwing on MathUtil class.
+ * 
  * @author Evgeni Stefanov
- *
+ * 
  */
 public class SumatorExceptionTest {
-	
+
 	/**
-	 * Pass two long numbers and check result.
-	 * Numbers are represented as Strings.
+	 * Pass two long numbers and check result. Numbers are represented as
+	 * Strings.
 	 */
 	@Test
 	public void sumStringTest() {
-		
-		String firstNumber = "999999999";
-		String secondNumber = "1";
-		String expected = "1000000000";
-		String actual = MathUtil.sumString(firstNumber, secondNumber);
-		
-		assertEquals(expected, actual);
-		
+		assertEquals("1000000000", MathUtil.sumString("1", "999999999"));
 	}
-	
+
 	/**
-	 * Pass two long numbers and check result.
-	 * Numbers are represented as Strings.
+	 * Pass two long numbers and check result. Numbers are represented as
+	 * Strings.
 	 */
 	@Test
 	public void sumStringSecondTest() {
-		
-		String firstNumber = "223";
-		String secondNumber = "323";
-		String expected = "546";
-		String actual = MathUtil.sumString(firstNumber, secondNumber);
-		
-		assertEquals(expected, actual);
-		
+		assertEquals("546", MathUtil.sumString("223", "323"));
+
 	}
-	
+
 	/**
 	 * Check behavior when null pointer are passed.
 	 */
-	@Test(expected=IllegalArgumentException.class)
-	public void NullPointerTest(){
-		String firstNumber = null;
-		String secondNumber = null;
-		MathUtil.sumString(firstNumber, secondNumber);
+	@Test(expected = IllegalArgumentException.class)
+	public void NullPointerTest() {
+		MathUtil.sumString(null, null);
 	}
 
 	/**
 	 * Check for exception event.
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void test() {
-		String firstNumber = "71287812738127498172481249";
-		String secondNumber = "928398329482349o099";
-		MathUtil.sumString(firstNumber, secondNumber);
+		MathUtil.sumString("71287812738127498172481249", "928398329482349o099");
 	}
 
 }

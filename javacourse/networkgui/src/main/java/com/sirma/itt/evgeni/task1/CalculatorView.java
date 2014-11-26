@@ -55,6 +55,10 @@ public class CalculatorView extends JFrame implements ActionListener{
 		}
 		setVisible(true);
 	}
+	
+	public void displaySymbol(){
+		
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

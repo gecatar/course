@@ -9,13 +9,7 @@ import com.sirma.itt.evgeni.util.ValueNotInRangeException;
  * @author Evgeni Stefanov
  * 
  */
-public class IntervalReader {
-
-	UserInputReader reader;
-
-	public IntervalReader(UserInputReader reader) {
-		this.reader = reader;
-	}
+public class RangeValidator {
 
 	/**
 	 * Return values only if there are in range min max.
@@ -23,8 +17,7 @@ public class IntervalReader {
 	 * @param max the maximum value - excluded.
 	 * @throws ValueNotInRangeException
 	 */
-	public void readInterval(int min, int max) throws ValueNotInRangeException {
-		int value = reader.readInt();
+	public static void chekIsInRange(int min, int max, int value) throws ValueNotInRangeException {
 		if (value < min || value >= max) {
 			throw new ValueNotInRangeException("Value is not in range!!!");
 		}
