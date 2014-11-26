@@ -177,16 +177,16 @@ public class ClientWindow extends JFrame implements ActionListener, Window {
 				conversation.get(temp.getName()).append(
 						createMesage("You", temp.getText()));
 			}
-			controler.sendMesage(new Mesage(nickname.getText(), temp.getName(),
-					temp.getText()));
+		//	controler.sendMesage(new Mesage(nickname.getText(), temp.getName(),
+		//			temp.getText()));
 			temp.setText("");
 		}
 		if (e.getSource() == startConection) {
-			controler.startConection(ipAdress.getText(), 7005,
-					nickname.getText());
+		//	controler.startConection(ipAdress.getText(), 7005,
+		//			nickname.getText());
 		}
 		if (e.getSource() == stopConection) {
-			controler.stopConection();
+		//	controler.stopConection();
 		}
 	}
 
