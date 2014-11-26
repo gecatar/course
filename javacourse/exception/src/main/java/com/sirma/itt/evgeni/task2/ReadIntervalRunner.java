@@ -1,6 +1,8 @@
 package com.sirma.itt.evgeni.task2;
 
-import com.sirma.itt.evgeni.util.ConsoleReader;
+import com.sirma.itt.evgeni.interfaces.UserInputReader;
+import com.sirma.itt.evgeni.util.InputReader;
+import com.sirma.itt.evgeni.util.ValueNotInRangeException;
 
 /**
  * Call ConsoleReader class and pass minimum and maximum expected value. If
@@ -17,15 +19,17 @@ public class ReadIntervalRunner {
 	 */
 	public static void main(String[] args) {
 
+		UserInputReader reader = new InputReader();
+		IntervalReader intervalReader = new IntervalReader(reader);
 		try {
 			System.out
 					.println("Verify user input. Must be in range (min - max).");
 			System.out.println("Enter minimum value");
-			int min = ConsoleReader.readInt();
+			int min = reader.readInt();
 			System.out.println("Enter maximum value");
-			int max = ConsoleReader.readInt();
-			ConsoleReader.readIntInterval(min, max);
-		} catch (IllegalArgumentException e) {
+			int max = reader.readInt();
+			intervalReader.readInterval(min, max);
+		} catch (ValueNotInRangeException e) {
 			System.out.println(e.getMessage());
 		}
 	}

@@ -86,29 +86,4 @@ public class ConsoleReader {
 			return readFloat();
 		}
 	}
-
-	/**
-	 * Read integer value and throw exception if value is not in range.
-	 * 
-	 * @param min
-	 *            if user input is below min an exception occur.
-	 * @param max
-	 *            if user input is higher then exception occur.
-	 * @return user input value.
-	 * @throws IllegalArgumentException
-	 *             when user data is not in range.
-	 */
-	public static int readIntInterval(int min, int max) {
-
-		try {
-			int number = sc.nextInt();
-			if (number <= min || number >= max) {
-				throw new IllegalArgumentException("Enter value only in expected range!!!");
-			}
-			return number;
-		} catch (NoSuchElementException e) {
-			System.out.println("Enter only integer!!!");
-			return readIntInterval(min, max);
-		} 
-	}
 }

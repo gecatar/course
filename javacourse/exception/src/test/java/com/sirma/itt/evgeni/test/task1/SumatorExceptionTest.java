@@ -1,5 +1,7 @@
 package com.sirma.itt.evgeni.test.task1;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 import com.sirma.itt.evgeni.util.MathUtil;
@@ -9,6 +11,48 @@ import com.sirma.itt.evgeni.util.MathUtil;
  *
  */
 public class SumatorExceptionTest {
+	
+	/**
+	 * Pass two long numbers and check result.
+	 * Numbers are represented as Strings.
+	 */
+	@Test
+	public void sumStringTest() {
+		
+		String firstNumber = "999999999";
+		String secondNumber = "1";
+		String expected = "1000000000";
+		String actual = MathUtil.sumString(firstNumber, secondNumber);
+		
+		assertEquals(expected, actual);
+		
+	}
+	
+	/**
+	 * Pass two long numbers and check result.
+	 * Numbers are represented as Strings.
+	 */
+	@Test
+	public void sumStringSecondTest() {
+		
+		String firstNumber = "223";
+		String secondNumber = "323";
+		String expected = "546";
+		String actual = MathUtil.sumString(firstNumber, secondNumber);
+		
+		assertEquals(expected, actual);
+		
+	}
+	
+	/**
+	 * Check behavior when null pointer are passed.
+	 */
+	@Test(expected=IllegalArgumentException.class)
+	public void NullPointerTest(){
+		String firstNumber = null;
+		String secondNumber = null;
+		MathUtil.sumString(firstNumber, secondNumber);
+	}
 
 	/**
 	 * Check for exception event.
