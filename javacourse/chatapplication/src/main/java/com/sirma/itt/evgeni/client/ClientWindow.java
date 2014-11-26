@@ -19,24 +19,24 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import com.sirma.itt.evgeni.comunication.Controler;
+import com.sirma.itt.evgeni.comunication.Mesage;
 import com.sirma.itt.evgeni.comunication.Window;
 
-
-public class ClientWindow extends JFrame implements ActionListener, Window {
+public class ClientWindow extends JFrame implements ActionListener, Window,
+		ConversationListener {
 
 	Controler controler;
 	JTabbedPane staffPane = new JTabbedPane();
 	JTabbedPane conversationPane = new JTabbedPane();
 	JPanel comboPanel = new JPanel();
-	JList userList;
-	DefaultListModel listModel;
+	JList<String> userList;
+	DefaultListModel<String> listModel;
 	Map<String, JTextArea> conversation = new HashMap<String, JTextArea>();
 	JTextField ipAdress = new JTextField(15);
 	JTextField port = new JTextField(4);
@@ -57,8 +57,8 @@ public class ClientWindow extends JFrame implements ActionListener, Window {
 		stopConection.addActionListener(this);
 		// -----------------------------------
 		listModel = new DefaultListModel<String>();
-		userList = new JList(listModel);
-		userList.addMouseListener(new ListListener(userList, listModel, this));
+		userList = new JList<String>(listModel);
+		userList.addMouseListener(new ListListener(this));
 		// ----------------------------------
 		JLabel ipLabel = new JLabel("IP Adress");
 		ipLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -99,13 +99,19 @@ public class ClientWindow extends JFrame implements ActionListener, Window {
 		conversationPane.setSelectedIndex(conversationPane.indexOfTab(name));
 	}
 
-	public void displayMesage(String sender, String text) {
+	public void showMesage(String sender, String text) {
 		if (conversation.containsKey(sender)) {
-			conversation.get(sender).append(createMesage(sender, text));
+			displayMesage(sender, text);
 			selectConversation(sender);
 		} else {
 			addConversation(sender);
-			displayMesage(sender, text);
+			showMesage(sender, text);
+		}
+	}
+
+	public void displayMesage(String sender, String text) {
+		if (conversation.get(sender) != null) {
+			conversation.get(sender).append(createTextMesage(sender, text));
 		}
 	}
 
@@ -120,15 +126,15 @@ public class ClientWindow extends JFrame implements ActionListener, Window {
 			listModel.removeElement(name);
 		}
 	}
-	
-	public void clearUserList(){
+
+	public void clearUserList() {
 		listModel.clear();
 	}
-	
-	public void setConectionStatus(boolean conected){
-		if(conected==true){
+
+	public void setConectionStatus(boolean conected) {
+		if (conected == true) {
 			setTitle("Conected...");
-		}else{
+		} else {
 			setTitle("disconected...");
 			clearUserList();
 		}
@@ -158,7 +164,7 @@ public class ClientWindow extends JFrame implements ActionListener, Window {
 		return panel;
 	}
 
-	private String createMesage(String sender, String text) {
+	private String createTextMesage(String sender, String text) {
 		StringBuilder stb = new StringBuilder();
 		stb.append("<");
 		stb.append(dateFormat.format(new Date()));
@@ -175,19 +181,23 @@ public class ClientWindow extends JFrame implements ActionListener, Window {
 			JTextField temp = (JTextField) e.getSource();
 			if (conversation.containsKey(temp.getName())) {
 				conversation.get(temp.getName()).append(
-						createMesage("You", temp.getText()));
+						createTextMesage("You", temp.getText()));
 			}
-		//	controler.sendMesage(new Mesage(nickname.getText(), temp.getName(),
-		//			temp.getText()));
+			controler.sendMesage(nickname.getText(), temp.getName(),
+					temp.getText());
 			temp.setText("");
 		}
 		if (e.getSource() == startConection) {
-		//	controler.startConection(ipAdress.getText(), 7005,
-		//			nickname.getText());
+			controler.startConection(ipAdress.getText(), "7005");
 		}
 		if (e.getSource() == stopConection) {
-		//	controler.stopConection();
+			controler.stopConection();
 		}
+	}
+
+	public void userSelected() {
+		addConversation(listModel.getElementAt(userList.getSelectedIndex()));
+		selectConversation(listModel.getElementAt(userList.getSelectedIndex()));
 	}
 
 }

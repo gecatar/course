@@ -8,6 +8,6 @@ public interface Window {
 
 	void removeUser(String user);
 
-	void displayMesage(String user, String text);
+	void showMesage(String sender, String text);
 
 }

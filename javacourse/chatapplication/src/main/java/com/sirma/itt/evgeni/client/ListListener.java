@@ -10,21 +10,15 @@ import com.sirma.itt.evgeni.comunication.Window;
 
 public class ListListener implements MouseListener {
 
-	Window window;
-	JList userList;
-	ListModel<String> listModel;
+	ConversationListener conversationListener;
 
-	public ListListener(JList userList, ListModel<String> listModel,
-			Window window) {
-		this.userList = userList;
-		this.window = window;
-		this.listModel = listModel;
+	public ListListener(ConversationListener conversationListener) {
+		this.conversationListener = conversationListener;
 	}
 
 	public void mouseClicked(MouseEvent e) {
 		if (e.getClickCount() == 2) {
-		//	window.addConversation(listModel.getElementAt(userList.getSelectedIndex()));
-		//	window.selectConversation(listModel.getElementAt(userList.getSelectedIndex()));
+			conversationListener.userSelected();
 		}
 	}
 

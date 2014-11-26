@@ -34,12 +34,11 @@ public class DataTransferator extends Thread {
 		try {
 			while (stop != true) {
 				Mesage mesage = (Mesage) ist.readObject();
-		//		comunicator.processMesage(mesage, this);
+				comunicator.processMesage(mesage, this);
 			}
 		} catch (IOException e) {
 		} catch (ClassNotFoundException e) {
 		} finally {
-			stop = true;
 			closeSocket();
 		}
 	}

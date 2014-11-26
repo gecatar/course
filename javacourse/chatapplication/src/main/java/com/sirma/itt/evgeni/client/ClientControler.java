@@ -1,54 +1,51 @@
 package com.sirma.itt.evgeni.client;
 
 import com.sirma.itt.evgeni.comunication.Comunicator;
+import com.sirma.itt.evgeni.comunication.Conector;
 import com.sirma.itt.evgeni.comunication.Controler;
 import com.sirma.itt.evgeni.comunication.Mesage;
+import com.sirma.itt.evgeni.comunication.MesageCommand;
 import com.sirma.itt.evgeni.comunication.Window;
 
-public class ClientControler implements Controler{
+public class ClientControler implements Controler {
 
-	Client client;
+	Comunicator comunicator;
 	Window window;
 
-	public void setComunicator(Client client) {
-		this.client = client;
+	public void setComunicator(Comunicator comunicator) {
+		this.comunicator = comunicator;
 	}
 
 	public void setWindow(Window window) {
 		this.window = window;
 	}
 
-	public void startConection(String ipAdress, int port, String nickname) {
-	//	client.startConection(ipAdress, port, nickname);
-	}
-
-	public void proccesMesage(Mesage mesage) {
-		if (mesage.commandID == 1) {
-			window.displayMesage(mesage.sender, mesage.text);
-		}
-		if (mesage.commandID == 2) {
-			window.addUser(mesage.sender);
-		}
-		if (mesage.commandID == 3) {
-			window.removeUser(mesage.sender);
-		}
-	}
-
-	public void sendMesage(Mesage mesage) {
-		client.sendMesage(mesage);
+	public void startConection(String ip, String port) {
+		comunicator.startConection(ip, Integer.parseInt(port));
 	}
 
 	public void stopConection() {
-		client.stopConection();
+		comunicator.stopConection();
 	}
 
 	public void setConectionStatus(boolean conected) {
 		window.setConectionStatus(conected);
 	}
 
-	public void setComunicator(Comunicator comunicator) {
-		// TODO Auto-generated method stub
-		
+	public void showMesage(String sender, String text) {
+		window.showMesage(sender, text);
+
 	}
 
+	public void sendMesage(String sender, String receiver, String text) {
+		comunicator.sendMesage(new Mesage(sender, receiver, text));
+	}
+
+	public void addUser(String name) {
+		window.addUser(name);
+	}
+
+	public void removeUser(String name) {
+		window.removeUser(name);
+	}
 }

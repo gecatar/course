@@ -90,7 +90,7 @@ public class ServerWindow extends JFrame implements Window{
 		
 	}
 
-	public void displayMesage(String user, String text) {
+	public void showMesage(String sender, String text) {
 		// TODO Auto-generated method stub
 		
 	}
