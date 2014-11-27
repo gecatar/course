@@ -11,7 +11,6 @@ public class DataTransferator extends Thread {
 	Socket socket;
 	ObjectOutputStream ost;
 	ObjectInputStream ist;
-	boolean stop = false;
 
 	public DataTransferator(Comunicator comunicator, Socket socket,
 			ObjectOutputStream ost, ObjectInputStream ist) {
@@ -26,34 +25,30 @@ public class DataTransferator extends Thread {
 			ost.writeObject(mesage);
 			ost.flush();
 		} catch (IOException e) {
-			closeSocket();
+			comunicator.closeUserSession(this);
 		}
 	}
 
 	public void run() {
 		try {
-			while (stop != true) {
+			while (true) {
 				Mesage mesage = (Mesage) ist.readObject();
 				comunicator.processMesage(mesage, this);
 			}
 		} catch (IOException e) {
 		} catch (ClassNotFoundException e) {
 		} finally {
-			closeSocket();
+			comunicator.closeUserSession(this);
 		}
 	}
 
-	public synchronized void closeSocket() {
+	public void closeSocket() {
 		try {
-			stop = true;
 			if (socket != null) {
 				socket.close();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
-		} finally {
-			comunicator.removeDataTransferator(this);
-			socket = null;
 		}
 	}
 }

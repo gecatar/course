@@ -5,7 +5,10 @@ import com.sirma.itt.evgeni.util.ConsoleReader;
 public class UIRunner {
 
 	public static void main(String[] args) {
-		ClientWindow window = new ClientWindow(new ClientControler());
+		
+		ClientControler clientControler = new ClientControler();
+		Client client = new Client(clientControler);
+		ClientWindow window = new ClientWindow(clientControler);
 		int choise = 0;
 		while (choise != -1) {
 			System.out.println("1)Add conversation");

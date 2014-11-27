@@ -26,12 +26,12 @@ public class ClientConector extends Conector {
 					socket.getOutputStream());
 			ObjectInputStream ist = new ObjectInputStream(
 					socket.getInputStream());
-			comunicator.addDataTransferator(new DataTransferator(comunicator,
+			comunicator.addUserSession(new DataTransferator(comunicator,
 					socket, ost, ist));
 		} catch (UnknownHostException e) {
-			stopConector();
+			comunicator.stopConection();
 		} catch (IOException e) {
-			stopConector();
+			comunicator.stopConection();
 		}
 	}
 

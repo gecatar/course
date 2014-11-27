@@ -29,12 +29,12 @@ public class ServerConector extends Conector {
 						socket.getOutputStream());
 				ObjectInputStream ist = new ObjectInputStream(
 						socket.getInputStream());
-				comunicator.addDataTransferator(new DataTransferator(
+				comunicator.addUserSession(new DataTransferator(
 						comunicator, socket, ost, ist));
 			}
 		} catch (IOException e) {
 		} finally {
-			stopConector();
+			comunicator.closeConectorSession();
 		}
 
 	}

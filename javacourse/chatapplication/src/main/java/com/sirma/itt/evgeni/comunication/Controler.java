@@ -19,5 +19,7 @@ public interface Controler {
 	public void sendMesage(String sender, String receiver, String text);
 
 	public void showMesage(String sender, String text);
+	
+	public void setName(String name);
 
 }

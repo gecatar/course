@@ -12,7 +12,7 @@ public abstract class Conector extends Thread {
 		this.ipAdress = ipAdress;
 		this.port = port;
 	}
-	
+
 	public abstract void setAutoclosable(AutoCloseable autoClosable);
 
 	public synchronized void stopConector() {

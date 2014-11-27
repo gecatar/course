@@ -7,20 +7,20 @@ import com.sirma.itt.evgeni.comunication.Mesage;
 import com.sirma.itt.evgeni.comunication.Window;
 
 public class ServerControler implements Controler {
+	
+	Comunicator comunicator;
+	Window window;
 
 	public void setComunicator(Comunicator comunicator) {
-		// TODO Auto-generated method stub
-
+		this.comunicator = comunicator;
 	}
 
 	public void setWindow(Window window) {
-		// TODO Auto-generated method stub
-
+		this.window = window;
 	}
 
 	public void startConection(String ip, String port) {
-		// TODO Auto-generated method stub
-
+		comunicator.startConection(ip, Integer.parseInt(port));
 	}
 
 	public void setConectionStatus(boolean conected) {
@@ -51,6 +51,11 @@ public class ServerControler implements Controler {
 	public void showMesage(String sender, String text) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public void setName(String name) {
+		comunicator.setName(name);
+		
 	}
 
 }

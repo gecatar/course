@@ -59,7 +59,7 @@ public class ServerWindow extends JFrame implements Window{
 
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == startConection)
-				//	controler.startConection(ipAdress.getText(), 7005);
+					controler.startConection(ipAdress.getText(), "7005");
 				;
 				if (e.getSource() == stopConection)
 				//	controler.stopConection();

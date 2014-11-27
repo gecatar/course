@@ -48,4 +48,8 @@ public class ClientControler implements Controler {
 	public void removeUser(String name) {
 		window.removeUser(name);
 	}
+
+	public void setName(String name) {
+		comunicator.setName(name);
+	}
 }

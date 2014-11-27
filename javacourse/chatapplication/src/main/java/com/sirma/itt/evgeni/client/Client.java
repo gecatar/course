@@ -12,7 +12,7 @@ public class Client implements Comunicator {
 	private Controler controler;
 	private Conector conector;
 	private DataTransferator transferator;
-	private String nickname;
+	private String name;
 
 	public Client(Controler controler) {
 		this.controler = controler;
@@ -21,20 +21,40 @@ public class Client implements Comunicator {
 
 	public void startConection(String ip, int port) {
 		if (conector == null) {
-			conector = new ClientConector(this,ip,port);
+			conector = new ClientConector(this, ip, port);
 			conector.start();
 		}
 	}
 
 	public void stopConection() {
 		if (conector != null) {
-			// conector.closeSocket();
+			conector.stopConector();
 			conector = null;
 		}
+		closeUserSession(transferator);
 	}
 
-	public void removeConector() {
-		conector = null;
+	public void sendUserData() {
+		sendMesage(new Mesage(name, MesageCommand.USER_LOG_IN));
+	}
+
+	public void addUserSession(DataTransferator transferator) {
+		addDataTransferator(transferator);
+		controler.setConectionStatus(true);
+		sendUserData();
+	}
+
+	public void closeUserSession(DataTransferator transferator) {
+		controler.setConectionStatus(false);
+		removeDataTransferator(transferator);
+	}
+
+	public void addDataTransferator(DataTransferator transferator) {
+		this.transferator = transferator;
+	}
+
+	public void removeDataTransferator(DataTransferator dataTransferator) {
+		transferator = null;
 	}
 
 	public void processMesage(Mesage mesage, DataTransferator transferator) {
@@ -50,32 +70,16 @@ public class Client implements Comunicator {
 		}
 	}
 
-	public void removeConection() {
-		transferator = null;
-		stopConection();
-		controler.setConectionStatus(false);
-	}
-
 	public void sendMesage(Mesage mesage) {
-		if (mesage.sender.length() > 0) {
-			transferator.sendData(mesage);
-		}
+		transferator.sendData(mesage);
+	}
+
+	public void closeConectorSession() {
+		// TODO Auto-generated method stub
 
 	}
 
-	public void addDataTransferator(DataTransferator transferator) {
-		this.transferator = transferator;
-		this.transferator.start();
-		this.transferator.sendData(new Mesage(nickname,
-				MesageCommand.USER_LOG_IN));
-		controler.setConectionStatus(true);
+	public void setName(String name) {
+		this.name = name;
 	}
-
-	public boolean removeDataTransferator(DataTransferator dataTransferator) {
-		transferator = null;
-		stopConection();
-		controler.setConectionStatus(false);
-		return true;
-	}
-
 }

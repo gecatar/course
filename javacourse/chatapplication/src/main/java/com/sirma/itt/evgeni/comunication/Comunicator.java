@@ -5,15 +5,18 @@ public interface Comunicator {
 	public void startConection(String ip, int port);
 
 	public void stopConection();
-
-	public void sendMesage(Mesage mesage);
-
-	public void removeConector();
-
-	public void addDataTransferator(DataTransferator transferator);
-
-	public boolean removeDataTransferator(DataTransferator dataTransferator);
+	
+	public void addUserSession(DataTransferator transferator);
+	
+	public void closeUserSession(DataTransferator transferator);
+	
+	public void closeConectorSession();
+	
+	public void setName(String name);
 
 	public void processMesage(Mesage mesage, DataTransferator transferator);
+	
+	public void sendMesage(Mesage mesage);
+
 
 }
