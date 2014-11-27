@@ -103,6 +103,12 @@ public class Server implements Comunicator {
 		return false;
 	}
 
+	/**
+	 * Add user to list whit registered users.
+	 * @param name
+	 * @param transferator
+	 * @return
+	 */
 	public boolean addUserInMap(String name, DataTransferator transferator) {
 		if (!users.containsKey(name)) {
 			users.put(name, transferator);
@@ -137,7 +143,7 @@ public class Server implements Comunicator {
 	}
 
 	/**
-	 * Send all active user at moment of registering on user.
+	 * Send all registered users at moment of registering on user.
 	 * 
 	 * @param transferator
 	 */
