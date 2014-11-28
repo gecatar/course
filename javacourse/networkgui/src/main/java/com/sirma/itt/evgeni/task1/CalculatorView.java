@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 
 public class CalculatorView extends JFrame implements ActionListener {
 
-	JTextField display = new JTextField();
+	Display display;
 
 	public CalculatorView() {
 
@@ -22,8 +22,7 @@ public class CalculatorView extends JFrame implements ActionListener {
 		setSize(new Dimension(300, 300));
 		JPanel comboPanel = new JPanel();
 		comboPanel.setLayout(new BoxLayout(comboPanel, BoxLayout.Y_AXIS));
-		display = new JTextField();
-		display.setMaximumSize(new Dimension(300, 60));
+		display = new Display();
 		JLabel label = new JLabel();
 		label.setText("kerokoegp");
 		JPanel panel = new JPanel();
@@ -40,7 +39,7 @@ public class CalculatorView extends JFrame implements ActionListener {
 			digits[i].addActionListener(this);
 			panel.add(digits[i]);
 		}
-		JButton[] operations = new JButton[6];
+		JButton[] operations = new JButton[7];
 		operations[0] = new JButton("-");
 		operations[0].setName("-");
 		operations[1] = new JButton("+");
@@ -53,34 +52,24 @@ public class CalculatorView extends JFrame implements ActionListener {
 		operations[4].setName("=");
 		operations[5] = new JButton("C");
 		operations[5].setName("C");
-		for (int i = 0; i < 6; i++) {
+		operations[6] = new JButton(".");
+		operations[6].setName(".");
+		for (int i = 0; i < 7; i++) {
 			operations[i].addActionListener(this);
 			panel.add(operations[i]);
 		}
 		setVisible(true);
 	}
 
-	public void addSymbol(String symbol) {
-		display.setText((new StringBuilder(display.getText()).append(symbol))
-				.toString());
-	}
-
-	public void removeSymbol() {
-		String text = display.getText();
-		if (text.length() > 0) {
-			text = text.substring(0, text.length() - 1);
-			display.setText(text);
-		}
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().getClass() == JButton.class) {
-			String symbol = ((JButton) e.getSource()).getName();
-			if (symbol.equals("C")) {
-				removeSymbol();
+			char symbol = ((JButton) e.getSource()).getName().charAt(0);
+			if (symbol == 'C') {
+				display.removeSymbol();
 			} else {
-				addSymbol(symbol);
+				display.addSymbol(symbol);
 			}
 		}
 	}
