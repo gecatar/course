@@ -14,6 +14,13 @@ public class CalculationRunner {
 		operation[2] = new Operation(3,4,'+');
 		operation[3] = new Operation(4,5,'+');
 		
+		for(int i=0;i<4;i++){
+			int previousOperationIndex = i-1;
+			int nextOperationIndex = i+1;
+			if(previousOperationIndex>0){
+				
+			}
+		}
 		
 	}
 

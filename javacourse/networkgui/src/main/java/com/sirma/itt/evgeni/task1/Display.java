@@ -39,7 +39,7 @@ public class Display extends JTextField {
 	}
 	
 	/**
-	 * Return tru if previous symbol is dot.
+	 * Return true if previous symbol is dot.
 	 * @return
 	 */
 	public boolean previousIsDot(){

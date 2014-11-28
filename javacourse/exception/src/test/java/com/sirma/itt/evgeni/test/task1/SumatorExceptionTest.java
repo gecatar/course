@@ -22,6 +22,14 @@ public class SumatorExceptionTest {
 	public void sumStringTest() {
 		assertEquals("1000000000", MathUtil.sumString("1", "999999999"));
 	}
+	
+	/**
+	 * Test when String whit zero length is passed.
+	 */
+	@Test
+	public void sumStringEmptySting(){
+		assertEquals("999999999", MathUtil.sumString("", "999999999"));
+	}
 
 	/**
 	 * Pass two long numbers and check result. Numbers are represented as
