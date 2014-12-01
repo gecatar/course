@@ -10,11 +10,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 public class CalculatorView extends JFrame implements ActionListener {
 
 	Display display;
+	Calculator calculator = new Calculator();
 
 	public CalculatorView() {
 
@@ -61,13 +61,12 @@ public class CalculatorView extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().getClass() == JButton.class) {
 			char symbol = ((JButton) e.getSource()).getName().charAt(0);
-			if (symbol == 'C') {
-				display.removeSymbol();
+			if (symbol == '=') {
+				// calculator.calculateString(display.getText());
 			} else {
 				display.addSymbol(symbol);
 			}

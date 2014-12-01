@@ -1,15 +1,28 @@
 package com.sirma.itt.evgeni.task1;
 
+import java.math.BigDecimal;
+
 public class Operation {
 
-	public int firstNumber;
-	public int secondNumber;
+	public BigDecimal firstNumber;
+	public BigDecimal secondNumber;
 	public char operation;
 
-	public Operation(int firstNumber, int secondNumber, char operation) {
+	public Operation(BigDecimal firstNumber, BigDecimal secondNumber,
+			char operation) {
 		this.firstNumber = firstNumber;
 		this.secondNumber = secondNumber;
 		this.operation = operation;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("\n");
+		stringBuilder.append("First number:").append(firstNumber);
+		stringBuilder.append(" Second number:").append(secondNumber);
+		stringBuilder.append(" Operation:").append(operation);
+		return stringBuilder.toString();
 	}
 
 }
