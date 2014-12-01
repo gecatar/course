@@ -7,12 +7,12 @@ public class Calculator {
 
 	public void calculateOperations(ArrayList<Operation> operations) {
 
-		for (int i = 0; i < operations.size(); i++) {
+		for (int i = 0; i < operations.size();) {
 			BigDecimal operationResult = calculate(operations.get(i));
-			if (i - 1 <= 0) {
+			if (i - 1 >= 0) {
 				operations.get(i - 1).secondNumber = operationResult;
-				operations.remove(i);
 			}
+			operations.remove(i);
 			if (i < operations.size()) {
 				operations.get(i).firstNumber = operationResult;
 			}

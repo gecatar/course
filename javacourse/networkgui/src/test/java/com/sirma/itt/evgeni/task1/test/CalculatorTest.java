@@ -2,10 +2,14 @@ package com.sirma.itt.evgeni.task1.test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import com.sirma.itt.evgeni.task1.Calculator;
+import com.sirma.itt.evgeni.task1.Operation;
 
 public class CalculatorTest {
 
@@ -18,8 +22,20 @@ public class CalculatorTest {
 
 	@Test
 	public void extractOperationsTest() {
-		calculator.calculateOperations(calculator
-				.extractOperations("1+2+3+4+5"));
+
+		ArrayList<Operation> operations = new ArrayList<Operation>();
+		operations.add(new Operation(new BigDecimal("1"), new BigDecimal("2"),
+				'-'));
+		operations.add(new Operation(new BigDecimal("2"), new BigDecimal("3"),
+				'-'));
+		operations.add(new Operation(new BigDecimal("3"), new BigDecimal("4"),
+				'-'));
+		operations.add(new Operation(new BigDecimal("4"), new BigDecimal("5"),
+				'-'));
+		operations.add(new Operation(new BigDecimal("5"), new BigDecimal("6"),
+				'-'));
+
+		calculator.calculateOperations(operations);
 	}
 
 	// @Test
