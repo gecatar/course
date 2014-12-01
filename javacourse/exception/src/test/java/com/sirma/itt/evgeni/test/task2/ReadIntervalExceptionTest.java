@@ -34,7 +34,7 @@ public class ReadIntervalExceptionTest {
 			RangeValidator.chekIsInRange(0, 2, 1);
 
 		} catch (ValueNotInRangeException e) {
-			fail("Un expected: ValueNotInRangeException!!!!");
+			fail("Unexpected: ValueNotInRangeException!!!!");
 		}
 	}
 }

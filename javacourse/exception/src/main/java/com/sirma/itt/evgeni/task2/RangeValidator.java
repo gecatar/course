@@ -1,6 +1,5 @@
 package com.sirma.itt.evgeni.task2;
 
-import com.sirma.itt.evgeni.interfaces.UserInputReader;
 import com.sirma.itt.evgeni.util.ValueNotInRangeException;
 
 /**

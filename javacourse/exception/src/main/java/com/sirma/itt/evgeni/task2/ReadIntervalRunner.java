@@ -20,7 +20,7 @@ public class ReadIntervalRunner {
 	 */
 	public static void main(String[] args) {
 
-		try {
+	
 			System.out
 					.println("Verify user input. Must be in range (min - max).");
 			System.out.println("Enter minimum value");
@@ -29,9 +29,12 @@ public class ReadIntervalRunner {
 			int max = ConsoleReader.readInt();
 			System.out.println("Enter value:");
 			int value = ConsoleReader.readInt();
-			RangeValidator.chekIsInRange(min, max, value);
-		} catch (ValueNotInRangeException e) {
-			System.out.println(e.getMessage());
-		}
+			try {
+				RangeValidator.chekIsInRange(min, max, value);
+			} catch (ValueNotInRangeException e) {
+				e.printStackTrace();
+			}
+	
+		
 	}
 }
