@@ -20,6 +20,25 @@ public class Calculator {
 
 	}
 
+	public void calculateDivideAndMultiply(ArrayList<Operation> operations) {
+		BigDecimal operationResult;
+
+		for (int i = 0; i < operations.size();) {
+			if (operations.get(i).operation == '/') {
+				operationResult = calculate(operations.get(i));
+				if (i - 1 >= 0) {
+					operations.get(i - 1).secondNumber = operationResult;
+				}
+				operations.remove(i);
+				if (i < operations.size()) {
+					operations.get(i).firstNumber = operationResult;
+				}
+			} else {
+				i++;
+			}
+		}
+	}
+
 	public BigDecimal calculate(Operation operation) {
 		return operation.firstNumber.add(operation.secondNumber);
 	}
