@@ -84,7 +84,7 @@ public class Calculator {
 
 		StringBuilder stringBuilder = new StringBuilder();
 		boolean dotIsFindet = false;
-		for (int i = index; i < string.length(); i++) {
+		for (; index < string.length(); index++) {
 			char temp = string.charAt(index);
 			if (Character.isDigit(temp) || temp == '.') {
 				if (temp == '.') {

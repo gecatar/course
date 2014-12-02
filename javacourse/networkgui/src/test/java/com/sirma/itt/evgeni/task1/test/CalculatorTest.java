@@ -35,12 +35,12 @@ public class CalculatorTest {
 		System.out.println(calculator.calculateOperations(operations));
 	}
 
-	// @Test
+	@Test
 	public void calculateOperationsTest() {
 
 		ArrayList<Operation> operations = new ArrayList<Operation>();
-		operations.add(new Operation(new BigDecimal("1"), new BigDecimal("2"),
-				'*'));
+		operations.add(new Operation(new BigDecimal("1.2"),
+				new BigDecimal("2"), '*'));
 		operations.add(new Operation(new BigDecimal("2"), new BigDecimal("3"),
 				'*'));
 		operations.add(new Operation(new BigDecimal("3"), new BigDecimal("2"),
@@ -53,18 +53,16 @@ public class CalculatorTest {
 		System.out.println(calculator.calculateOperations(operations));
 	}
 
-	@Test
+	// @Test
 	public void getNumberTest() {
 		// System.out.println(calculator.getNumber("1234567.876-54", 0));
 		// System.out.println(calculator.getNumber("1234567.876-54", 10));
-		System.out.println(calculator.getNumber("1234567.876-588884", 0));
+		System.out.println(calculator.getNumber("1234567.876-588884", 12));
 	}
 
-	// @Test
+	@Test
 	public void extractOperationTest() {
-		ArrayList<Operation> operations = calculator
-				.extractOperations("1-3+4+7*3");
-
+		System.out.println(calculator.extractOperations("1+.0"));
 	}
 
 }
