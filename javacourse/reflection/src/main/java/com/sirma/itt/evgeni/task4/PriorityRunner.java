@@ -8,17 +8,19 @@ import com.sirma.itt.evgeni.reflection.PtiorityFirst;
 import com.sirma.itt.evgeni.reflection.TestClass;
 
 /**
- * Create Array whit elements that will be sorted by priority.
- * If class contain method whit highest priority from method from other class it must be executed first.
+ * Create Array whit elements that will be sorted by priority. If class contain
+ * method whit highest priority from method from other class it must be executed
+ * first.
+ * 
  * @author Evgeni Stefanov
- *
+ * 
  */
 public class PriorityRunner {
 
 	/**
-	 * Create list whit objects.
-	 * After this sort list using comparator.
-	 * Class which contain method whit highest priority must be on first place.
+	 * Create list whit objects. After this sort list using comparator. Class
+	 * which contain method whit highest priority must be on first place.
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {

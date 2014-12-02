@@ -1,7 +1,5 @@
 package com.sirma.itt.evgeni.task1.test;
 
-import static org.junit.Assert.assertEquals;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
@@ -20,37 +18,53 @@ public class CalculatorTest {
 		calculator = new Calculator();
 	}
 
-	@Test
-	public void extractOperationsTest() {
+	// @Test
+	public void calculateOperationSecondTest() {
+		ArrayList<Operation> operations = new ArrayList<Operation>();
+		operations.add(new Operation(new BigDecimal("1"), new BigDecimal("2"),
+				'+'));
+		operations.add(new Operation(new BigDecimal("2"), new BigDecimal("18"),
+				'+'));
+		operations.add(new Operation(new BigDecimal("18"), new BigDecimal("2"),
+				'/'));
+		operations.add(new Operation(new BigDecimal("2"), new BigDecimal("3"),
+				'*'));
+		operations.add(new Operation(new BigDecimal("3"), new BigDecimal("1"),
+				'*'));
+
+		System.out.println(calculator.calculateOperations(operations));
+	}
+
+	// @Test
+	public void calculateOperationsTest() {
 
 		ArrayList<Operation> operations = new ArrayList<Operation>();
 		operations.add(new Operation(new BigDecimal("1"), new BigDecimal("2"),
-				'-'));
+				'*'));
 		operations.add(new Operation(new BigDecimal("2"), new BigDecimal("3"),
-				'-'));
-		operations.add(new Operation(new BigDecimal("3"), new BigDecimal("4"),
-				'-'));
-		operations.add(new Operation(new BigDecimal("4"), new BigDecimal("5"),
-				'-'));
-		operations.add(new Operation(new BigDecimal("5"), new BigDecimal("6"),
-				'-'));
+				'*'));
+		operations.add(new Operation(new BigDecimal("3"), new BigDecimal("2"),
+				'/'));
+		operations.add(new Operation(new BigDecimal("2"), new BigDecimal("3"),
+				'*'));
+		operations.add(new Operation(new BigDecimal("3"), new BigDecimal("1"),
+				'+'));
 
-		calculator.calculateOperations(operations);
+		System.out.println(calculator.calculateOperations(operations));
 	}
 
-	// @Test
-	public void getNumberSecondTest() {
-		assertEquals("123.456", calculator.getNumber("123.456-789", 0));
-	}
-
-	// @Test(expected = IllegalArgumentException.class)
-	public void getNumberExceptionTest() {
-		assertEquals("123.456", calculator.getNumber("123.456-789", 10));
-	}
-
-	// @Test
+	@Test
 	public void getNumberTest() {
-		assertEquals("123456", calculator.getNumber("123456-789", 0));
+		// System.out.println(calculator.getNumber("1234567.876-54", 0));
+		// System.out.println(calculator.getNumber("1234567.876-54", 10));
+		System.out.println(calculator.getNumber("1234567.876-588884", 0));
+	}
+
+	// @Test
+	public void extractOperationTest() {
+		ArrayList<Operation> operations = calculator
+				.extractOperations("1-3+4+7*3");
+
 	}
 
 }

@@ -5,26 +5,12 @@ import java.util.ArrayList;
 
 public class Calculator {
 
-	public void calculateOperations(ArrayList<Operation> operations) {
-
+	public BigDecimal calculateOperations(ArrayList<Operation> operations) {
+		BigDecimal operationResult = null;
+		// Calculate divide and multiply first.
 		for (int i = 0; i < operations.size();) {
-			BigDecimal operationResult = calculate(operations.get(i));
-			if (i - 1 >= 0) {
-				operations.get(i - 1).secondNumber = operationResult;
-			}
-			operations.remove(i);
-			if (i < operations.size()) {
-				operations.get(i).firstNumber = operationResult;
-			}
-		}
-
-	}
-
-	public void calculateDivideAndMultiply(ArrayList<Operation> operations) {
-		BigDecimal operationResult;
-
-		for (int i = 0; i < operations.size();) {
-			if (operations.get(i).operation == '/') {
+			if (operations.get(i).operation == '/'
+					|| operations.get(i).operation == '*') {
 				operationResult = calculate(operations.get(i));
 				if (i - 1 >= 0) {
 					operations.get(i - 1).secondNumber = operationResult;
@@ -37,10 +23,43 @@ public class Calculator {
 				i++;
 			}
 		}
+		// Calculate subtract and adding.
+		for (int i = 0; i < operations.size();) {
+			if (operations.get(i).operation == '+'
+					|| operations.get(i).operation == '-') {
+				operationResult = calculate(operations.get(i));
+				if (i - 1 >= 0) {
+					operations.get(i - 1).secondNumber = operationResult;
+				}
+				operations.remove(i);
+				if (i < operations.size()) {
+					operations.get(i).firstNumber = operationResult;
+				}
+			} else {
+				i++;
+			}
+		}
+		if (operations.size() > 0) {
+			throw new IllegalArgumentException();
+		}
+		return operationResult;
 	}
 
 	public BigDecimal calculate(Operation operation) {
-		return operation.firstNumber.add(operation.secondNumber);
+		if (operation.operation == '*') {
+			return operation.firstNumber.multiply(operation.secondNumber);
+		}
+		if (operation.operation == '/') {
+			return operation.firstNumber.divide(operation.secondNumber);
+		}
+		if (operation.operation == '+') {
+			return operation.firstNumber.add(operation.secondNumber);
+		}
+		if (operation.operation == '-') {
+			return operation.firstNumber.subtract(operation.secondNumber);
+		}
+		throw new IllegalArgumentException();
+
 	}
 
 	public char getOperation(String string, int index)
@@ -65,23 +84,22 @@ public class Calculator {
 
 		StringBuilder stringBuilder = new StringBuilder();
 		boolean dotIsFindet = false;
-
-		for (; index < string.length(); index++) {
+		for (int i = index; i < string.length(); i++) {
 			char temp = string.charAt(index);
-			if (!Character.isDigit(temp)) {
+			if (Character.isDigit(temp) || temp == '.') {
+				if (temp == '.') {
+					if (!dotIsFindet) {
+						dotIsFindet = true;
+						stringBuilder.append(temp);
+					} else {
+						throw new IllegalArgumentException();
+					}
+				} else {
+					stringBuilder.append(temp);
+				}
+			} else {
 				if (stringBuilder.length() > 0) {
 					return stringBuilder.toString();
-				} else {
-					throw new IllegalArgumentException();
-				}
-			}
-			if (Character.isDigit(temp)) {
-				stringBuilder.append(temp);
-			}
-			if (temp == '.') {
-				if (!dotIsFindet) {
-					dotIsFindet = true;
-					stringBuilder.append(temp);
 				} else {
 					throw new IllegalArgumentException();
 				}
@@ -92,7 +110,6 @@ public class Calculator {
 		} else {
 			throw new IllegalArgumentException();
 		}
-
 	}
 
 	/**
@@ -106,95 +123,27 @@ public class Calculator {
 		ArrayList<Operation> operations = new ArrayList<Operation>();
 		String tempNumber = new String();
 		boolean firstNumberExtracted = false;
-		for (int index = 0; index < string.length();) {
-			String firstNumber;
-			if (!firstNumberExtracted) {
-				firstNumber = getNumber(string, index);
-				index += firstNumber.length();
-			} else {
-				firstNumber = tempNumber;
-			}
-			char operation = getOperation(string, index);
-			index++;
-			String secondNumber = getNumber(string, index);
-			tempNumber = secondNumber;
-			index += secondNumber.length();
-			firstNumberExtracted = true;
-			if (firstNumber.length() > 0 && secondNumber.length() > 0) {
+		try {
+			for (int index = 0; index < string.length();) {
+				String firstNumber;
+				if (!firstNumberExtracted) {
+					firstNumber = getNumber(string, index);
+					index += firstNumber.length();
+				} else {
+					firstNumber = tempNumber;
+				}
+				char operation = getOperation(string, index);
+				index++;
+				String secondNumber = getNumber(string, index);
+				tempNumber = secondNumber;
+				index += secondNumber.length();
+				firstNumberExtracted = true;
 				operations.add(new Operation(new BigDecimal(firstNumber),
 						new BigDecimal(secondNumber), operation));
 			}
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
 		}
 		return operations;
-	}
-
-	public boolean nextIsNumber(String string, int index) {
-
-		int digitStartIndex;
-		int digitEndIndex;
-		char operation;
-		boolean digitDetected = false;
-		for (int i = index; i > string.length(); i++) {
-			char temp = string.charAt(i);
-			if (Character.isDigit(temp) && !digitDetected) {
-				digitDetected = true;
-				digitStartIndex = i;
-			}
-			if (Character.isDigit(temp)) {
-				digitEndIndex = i;
-			}
-			if (temp == '.' && !digitDetected) {
-				// error
-				return false;
-			}
-			if ((temp == '+' || temp == '-' || temp == '*' || temp == '/')
-					&& !digitDetected) {
-				return false;
-			}
-		}
-		return false;
-	}
-
-	public boolean nextIsOperation(String string, int index) {
-		for (int i = index; i < string.length(); i++) {
-			char temp = string.charAt(i);
-			if (temp == '+' || temp == '-' || temp == '*' || temp == '/') {
-				return true;
-			}
-			if (!Character.isDigit(temp)) {
-				return false;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Return true if previous symbol is dot.
-	 * 
-	 * @return
-	 */
-	public boolean previousIsDot(String string) {
-		if (string.length() > 0) {
-			if ((string.charAt(string.length() - 1) == '.')) {
-				return true;
-			}
-			return false;
-		}
-		return false;
-	}
-
-	/**
-	 * Return true if previous symbol is digit.
-	 * 
-	 * @return
-	 */
-	public boolean previousIsDigit(String string) {
-		if (string.length() > 0) {
-			if (Character.isDigit(string.charAt(string.length() - 1))) {
-				return true;
-			}
-			return false;
-		}
-		return false;
 	}
 }

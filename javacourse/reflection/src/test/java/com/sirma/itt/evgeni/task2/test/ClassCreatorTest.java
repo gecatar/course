@@ -1,6 +1,6 @@
 package com.sirma.itt.evgeni.task2.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,8 +10,9 @@ import com.sirma.itt.evgeni.task2.ClassCreator;
 
 /**
  * Test reflection functionality on ClassCreator class.
+ * 
  * @author GecaTM
- *
+ * 
  */
 public class ClassCreatorTest {
 
@@ -43,13 +44,13 @@ public class ClassCreatorTest {
 		String actualParrent = classCreator.getParrent(testClass);
 		assertEquals(expectedParrent, actualParrent);
 	}
-	
+
 	/**
 	 * Check list interfaces function.
 	 */
 	@Test
-	public void listInterfacesTest(){
-		String expectedInterfaces ="Intefaces:\njava.util.Comparator\n";
+	public void listInterfacesTest() {
+		String expectedInterfaces = "Intefaces:\njava.util.Comparator\n";
 		String actualInterfaces = classCreator.listInterfaces(testClass);
 		assertEquals(expectedInterfaces, actualInterfaces);
 	}

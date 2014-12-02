@@ -6,13 +6,15 @@ import com.sirma.itt.evgeni.reflection.TestClass;
 
 /**
  * Read annotation values and determine which is bigger.
+ * 
  * @author Evgeni Stefanov
- *
+ * 
  */
-public class AnotationComparator implements Comparator<TestClass>{
+public class AnotationComparator implements Comparator<TestClass> {
 
 	public int compare(TestClass firstClass, TestClass secondClass) {
-		return AnnotationReader.getPriority(firstClass) - AnnotationReader.getPriority(secondClass);
+		return AnnotationReader.getPriority(firstClass)
+				- AnnotationReader.getPriority(secondClass);
 	}
 
 }

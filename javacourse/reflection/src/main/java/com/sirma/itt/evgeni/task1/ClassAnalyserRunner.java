@@ -1,7 +1,6 @@
 package com.sirma.itt.evgeni.task1;
 
 import com.sirma.itt.evgeni.reflection.TestClass;
-import com.sirma.itt.evgeni.util.ReflectionUtil;
 
 /**
  * Allow set primitive value on selected class. List all declared functions and

@@ -8,7 +8,7 @@ import java.lang.reflect.Modifier;
  * Get information for classes via reflection.
  * 
  * @author GecaTM
- *
+ * 
  */
 public class ClassAnalyzer {
 
@@ -17,25 +17,25 @@ public class ClassAnalyzer {
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("Declared methods:").append("\n");
 		for (Method method : cl.getDeclaredMethods()) {
-			if(Modifier.isPrivate(method.getModifiers())){
+			if (Modifier.isPrivate(method.getModifiers())) {
 				stringBuilder.append("private ");
 			}
-			if(Modifier.isPublic(method.getModifiers())){
+			if (Modifier.isPublic(method.getModifiers())) {
 				stringBuilder.append("public ");
 			}
-			if(Modifier.isProtected(method.getModifiers())){
+			if (Modifier.isProtected(method.getModifiers())) {
 				stringBuilder.append("prptected ");
 			}
 			stringBuilder.append(method.getName()).append("\n");
 		}
 		return stringBuilder.toString();
 	}
-	
-	public String listDeclaredFields(Object object){
+
+	public String listDeclaredFields(Object object) {
 		Class<?> cl = object.getClass();
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("Declared fields:").append("\n");
-		for(Field field:cl.getDeclaredFields()){
+		for (Field field : cl.getDeclaredFields()) {
 			field.setAccessible(true);
 			stringBuilder.append(field.getName()).append(":");
 			try {

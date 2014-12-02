@@ -7,13 +7,15 @@ import java.lang.reflect.Modifier;
 
 /**
  * Read private content from classes via reflection.
+ * 
  * @author GecaTM
- *
+ * 
  */
 public class PrivateReader {
 
 	/**
 	 * Invoke private methods.
+	 * 
 	 * @param object
 	 * @return list of invoked methods and result status.
 	 */
@@ -21,7 +23,7 @@ public class PrivateReader {
 		Class<?> cl = object.getClass();
 		StringBuilder stringBuilder = new StringBuilder();
 		for (Method method : cl.getDeclaredMethods()) {
-			if(Modifier.isPrivate(method.getModifiers())){
+			if (Modifier.isPrivate(method.getModifiers())) {
 				stringBuilder.append("invoke:").append(method.getName());
 				method.setAccessible(true);
 				try {
@@ -44,6 +46,7 @@ public class PrivateReader {
 
 	/**
 	 * Read private fields names and values and save it as string.
+	 * 
 	 * @param object
 	 * @return
 	 */
@@ -63,8 +66,7 @@ public class PrivateReader {
 							"\n");
 					e.printStackTrace();
 				} catch (IllegalAccessException e) {
-					stringBuilder.append("IllegalAccessException").append(
-							"\n");
+					stringBuilder.append("IllegalAccessException").append("\n");
 					e.printStackTrace();
 				}
 			}

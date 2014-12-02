@@ -1,6 +1,6 @@
 package com.sirma.itt.evgeni.task4.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +14,7 @@ import com.sirma.itt.evgeni.task4.AnotationComparator;
  * Check correct extracting on annotation values.
  * 
  * @author GecaTM
- *
+ * 
  */
 public class AnnotationReaderComparatorTest {
 

@@ -1,6 +1,6 @@
 package com.sirma.itt.evgeni.task1.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 

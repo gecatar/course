@@ -7,7 +7,7 @@ import java.lang.reflect.InvocationTargetException;
  * Create classes via reflection, list information about them.
  * 
  * @author GecaTM
- *
+ * 
  */
 public class ClassCreator {
 
