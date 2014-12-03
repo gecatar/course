@@ -66,9 +66,13 @@ public class CalculatorView extends JFrame implements ActionListener {
 		if (e.getSource().getClass() == JButton.class) {
 			char symbol = ((JButton) e.getSource()).getName().charAt(0);
 			if (symbol == '=') {
-				// calculator.calculateString(display.getText());
+				display.setText(calculator.calculateString(display.getText()));
 			} else {
-				display.addSymbol(symbol);
+				if (symbol == 'C') {
+					display.removeSymbol();
+				} else {
+					display.addSymbol(symbol);
+				}
 			}
 		}
 	}

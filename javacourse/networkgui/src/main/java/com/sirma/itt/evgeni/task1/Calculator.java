@@ -1,6 +1,7 @@
 package com.sirma.itt.evgeni.task1;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 public class Calculator {
@@ -50,7 +51,8 @@ public class Calculator {
 			return operation.firstNumber.multiply(operation.secondNumber);
 		}
 		if (operation.operation == '/') {
-			return operation.firstNumber.divide(operation.secondNumber);
+			return operation.firstNumber.divide(operation.secondNumber, 9,
+					RoundingMode.CEILING);
 		}
 		if (operation.operation == '+') {
 			return operation.firstNumber.add(operation.secondNumber);
@@ -110,6 +112,10 @@ public class Calculator {
 		} else {
 			throw new IllegalArgumentException();
 		}
+	}
+
+	public String calculateString(String string) {
+		return calculateOperations(extractOperations(string)).toString();
 	}
 
 	/**

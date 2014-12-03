@@ -14,8 +14,6 @@ import com.sirma.itt.evgeni.task3.FileReverser;
 public class ReverseFileTest {
 
 	FileReverser fileReverser = new FileReverser();
-	// String path = "c:\\users\\root\\testreverse";
-	String path = "C:\\eclipse\\test.txt";
 
 	/**
 	 * Check correct storing on data to file.

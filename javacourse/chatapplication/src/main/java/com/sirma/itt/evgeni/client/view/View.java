@@ -4,15 +4,14 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-public class View extends JFrame{
+public class View extends JFrame {
 
-	public View(){
-		
+	public View(ConverationPane conversationPane) {
+
 		setSize(new Dimension(400, 500));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		add(new ConverationPane());
+		add(conversationPane);
 		setVisible(true);
 	}
-	
-	
+
 }

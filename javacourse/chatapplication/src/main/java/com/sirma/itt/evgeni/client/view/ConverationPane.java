@@ -1,33 +1,38 @@
 package com.sirma.itt.evgeni.client.view;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.swing.JTabbedPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 public class ConverationPane extends JTabbedPane {
 
+	Map<String, Conversation> conversations = new HashMap<String, Conversation>();
+
 	public ConverationPane() {
-		Conversation conversation = new Conversation();
-		add("ijijoi", conversation);
 		setVisible(true);
-		for(int i = 0;i<70;i++){
-			conversation.writeMesage();
-		}
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		conversation.writeMesage();
 	}
 
-	public void addConversation() {
+	public void addConversation(String name) {
+		if (!conversations.containsKey(name)) {
+			Conversation conversation = new Conversation(name);
+			conversations.put(name, conversation);
+			addTab(name, conversation);
+		}
+	}
 
+	public void selectConversation(String name) {
+		setSelectedIndex(indexOfTab(name));
+	}
+
+	public void displayMessage(String name, String message) {
+		if (conversations.containsKey(name)) {
+			conversations.get(name).writeMesage(message);
+			selectConversation(name);
+		} else {
+			addConversation(name);
+			displayMessage(name, message);
+		}
 	}
 
 }

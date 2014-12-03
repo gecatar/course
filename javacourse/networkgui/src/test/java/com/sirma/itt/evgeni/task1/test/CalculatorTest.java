@@ -1,13 +1,13 @@
 package com.sirma.itt.evgeni.task1.test;
 
+import static org.junit.Assert.assertEquals;
+
 import java.math.BigDecimal;
-import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import com.sirma.itt.evgeni.task1.Calculator;
-import com.sirma.itt.evgeni.task1.Operation;
 
 public class CalculatorTest {
 
@@ -18,52 +18,36 @@ public class CalculatorTest {
 		calculator = new Calculator();
 	}
 
-	// @Test
-	public void calculateOperationSecondTest() {
-		ArrayList<Operation> operations = new ArrayList<Operation>();
-		operations.add(new Operation(new BigDecimal("1"), new BigDecimal("2"),
-				'+'));
-		operations.add(new Operation(new BigDecimal("2"), new BigDecimal("18"),
-				'+'));
-		operations.add(new Operation(new BigDecimal("18"), new BigDecimal("2"),
-				'/'));
-		operations.add(new Operation(new BigDecimal("2"), new BigDecimal("3"),
-				'*'));
-		operations.add(new Operation(new BigDecimal("3"), new BigDecimal("1"),
-				'*'));
-
-		System.out.println(calculator.calculateOperations(operations));
-	}
-
-	// @Test
+	/**
+	 * Check correct calculating on operations.
+	 */
+	@Test
 	public void calculateOperationsTest() {
-
-		ArrayList<Operation> operations = new ArrayList<Operation>();
-		operations.add(new Operation(new BigDecimal("1.2"),
-				new BigDecimal("2"), '*'));
-		operations.add(new Operation(new BigDecimal("2"), new BigDecimal("3"),
-				'*'));
-		operations.add(new Operation(new BigDecimal("3"), new BigDecimal("2"),
-				'/'));
-		operations.add(new Operation(new BigDecimal("2"), new BigDecimal("3"),
-				'*'));
-		operations.add(new Operation(new BigDecimal("3"), new BigDecimal("1"),
-				'+'));
-
-		System.out.println(calculator.calculateOperations(operations));
+		assertEquals(new BigDecimal("10"),
+				calculator.calculateOperations(calculator
+						.extractOperations("5*2-4+4-3*3+9")));
+		assertEquals(new BigDecimal("8"),
+				calculator.calculateOperations(calculator
+						.extractOperations("3*3-2*2/4")));
 	}
 
-	// @Test
+	/**
+	 * Check correct extracting of Decimal numbers.
+	 */
+	@Test
 	public void getNumberTest() {
-		// System.out.println(calculator.getNumber("1234567.876-54", 0));
-		// System.out.println(calculator.getNumber("1234567.876-54", 10));
-		System.out.println(calculator.getNumber("1234567.876-588884", 12));
+		assertEquals("588884", calculator.getNumber("1234567.876-588884", 12));
+		assertEquals("1234567.876",
+				calculator.getNumber("1234567.876-588884", 0));
 	}
 
+	/**
+	 * Check number of extracted operations.
+	 */
 	@Test
 	public void extractOperationTest() {
-		System.out.println(calculator.calculateOperations(calculator
-				.extractOperations("1+2+3*2+4/2*2")));
+		assertEquals(6, calculator.extractOperations("1+2+3*2+4/2*2").size());
+
 	}
 
 }
