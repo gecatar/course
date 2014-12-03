@@ -1,5 +1,7 @@
 package com.sirma.itt.evgeni.task2;
 
+import java.util.LinkedList;
+
 /**
  * Create Pages that store objects. Print their content.
  * 
@@ -8,8 +10,10 @@ package com.sirma.itt.evgeni.task2;
  */
 public class PageBean {
 
-	static Page[] page;
-	static int curent = -1;
+	private Page[] page;
+	private int curent = -1;
+	private Page currentPage;
+	private LinkedList<Page> pgs;
 
 	/**
 	 * Create collection of pages.
@@ -37,6 +41,36 @@ public class PageBean {
 			}
 		}
 		return page;
+	}
+
+	public Page getNext() {
+		if (currentPage == null) {
+			return pgs.getFirst();
+		} else {
+			int index = pgs.indexOf(currentPage);
+			index++;
+			if (index < pgs.size()) {
+				return pgs.get(index);
+			} else {
+				index--;
+				return null;
+			}
+		}
+	}
+
+	public Page getPrevious() {
+		if (currentPage == null) {
+			return pgs.getLast();
+		} else {
+			int index = pgs.indexOf(currentPage);
+			index--;
+			if (index > 0) {
+				return pgs.get(index);
+			} else {
+				index++;
+				return null;
+			}
+		}
 	}
 
 	/**
