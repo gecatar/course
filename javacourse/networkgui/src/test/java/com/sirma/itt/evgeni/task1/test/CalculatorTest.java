@@ -35,7 +35,7 @@ public class CalculatorTest {
 		System.out.println(calculator.calculateOperations(operations));
 	}
 
-	@Test
+	// @Test
 	public void calculateOperationsTest() {
 
 		ArrayList<Operation> operations = new ArrayList<Operation>();
@@ -62,7 +62,8 @@ public class CalculatorTest {
 
 	@Test
 	public void extractOperationTest() {
-		System.out.println(calculator.extractOperations("1+.0"));
+		System.out.println(calculator.calculateOperations(calculator
+				.extractOperations("1+2+3*2+4/2*2")));
 	}
 
 }
