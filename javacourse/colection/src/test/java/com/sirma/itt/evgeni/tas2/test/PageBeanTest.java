@@ -1,6 +1,9 @@
 package com.sirma.itt.evgeni.tas2.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+
+import java.util.LinkedList;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,14 +13,15 @@ import com.sirma.itt.evgeni.task2.PageBean;
 
 /**
  * Test correct separating on arrays whit objects.
+ * 
  * @author Evgeni Stefanov
- *
+ * 
  */
 public class PageBeanTest {
-	
+
 	PageBean pageBean;
 	Object[] object;
-	Page[] pages;
+	LinkedList<Page> pages;
 
 	@Before
 	public void setUp() throws Exception {
@@ -27,35 +31,34 @@ public class PageBeanTest {
 			object[i] = new Integer(i);
 		}
 	}
-	
+
 	/**
 	 * Test correct returning on previous page.
 	 */
 	@Test
-	public void previosTest(){
+	public void previosTest() {
 		pages = pageBean.getPages(object, 3);
-		assertNull(pageBean.previos());
-		assertEquals(pages[0], pageBean.next());
-		assertEquals(pages[1], pageBean.next());
-		assertEquals(pages[2], pageBean.next());
-		assertEquals(pages[3], pageBean.next());
-		assertEquals(pages[2], pageBean.previos());
-		assertEquals(pages[1], pageBean.previos());
-		assertEquals(pages[0], pageBean.previos());
-		assertNull(pageBean.previos());
+		assertEquals(pages.get(0), pageBean.getNext());
+		assertEquals(pages.get(1), pageBean.getNext());
+		assertEquals(pages.get(2), pageBean.getNext());
+		assertEquals(pages.get(3), pageBean.getNext());
+		assertEquals(pages.get(2), pageBean.getPrevious());
+		assertEquals(pages.get(1), pageBean.getPrevious());
+		assertEquals(pages.get(0), pageBean.getPrevious());
+		assertNull(pageBean.getPrevious());
 	}
-	
+
 	/**
 	 * Test correct returning on next page.
 	 */
 	@Test
-	public void nextTest(){
+	public void nextTest() {
 		pages = pageBean.getPages(object, 3);
-		assertEquals(pages[0], pageBean.next());
-		assertEquals(pages[1], pageBean.next());
-		assertEquals(pages[2], pageBean.next());
-		assertEquals(pages[3], pageBean.next());
-		assertNull(pageBean.next());
+		assertEquals(pages.get(0), pageBean.getNext());
+		assertEquals(pages.get(1), pageBean.getNext());
+		assertEquals(pages.get(2), pageBean.getNext());
+		assertEquals(pages.get(3), pageBean.getNext());
+		assertNull(pageBean.getNext());
 	}
 
 	/**
@@ -64,7 +67,7 @@ public class PageBeanTest {
 	@Test
 	public void getPagesTest() {
 		pages = pageBean.getPages(object, 3);
-		assertEquals(4, pages.length);
+		assertEquals(4, pages.size());
 	}
 
 }
