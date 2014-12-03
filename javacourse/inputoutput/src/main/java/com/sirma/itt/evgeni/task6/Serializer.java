@@ -2,16 +2,15 @@ package com.sirma.itt.evgeni.task6;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.nio.file.Path;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import com.sirma.itt.evgeni.task6.DataClass;
+import com.sirma.itt.evgeni.task2.TextFileCreator;
 
 /**
  * Read and save objects.
@@ -20,6 +19,9 @@ import com.sirma.itt.evgeni.task6.DataClass;
  * 
  */
 public class Serializer {
+
+	private static final Logger LOGGER = Logger.getLogger(TextFileCreator.class
+			.getName());
 
 	/**
 	 * Read objects from passed file.
@@ -33,11 +35,8 @@ public class Serializer {
 		try (ObjectInputStream objectStream = new ObjectInputStream(
 				new BufferedInputStream(new FileInputStream(path)))) {
 			return (DataClass) objectStream.readObject();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return null;
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (ClassNotFoundException | IOException e) {
+			LOGGER.log(Level.SEVERE, "Error when getting object!!!", e);
 			return null;
 		}
 	}
@@ -56,7 +55,7 @@ public class Serializer {
 			outputStream.writeObject(dataClass);
 			return true;
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, "Error when saving object!!!", e);
 			return false;
 		}
 	}
