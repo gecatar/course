@@ -44,7 +44,7 @@ public class TextFileCreator {
 			}
 			return true;
 		} catch (IOException e) {
-			LOGGER.log(Level.SEVERE, "Error whe creating text file!!!", e);
+			LOGGER.log(Level.SEVERE, "Error when creating text file!!!", e);
 			return false;
 		}
 	}
