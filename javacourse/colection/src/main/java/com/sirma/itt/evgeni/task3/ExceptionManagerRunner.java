@@ -42,19 +42,21 @@ public class ExceptionManagerRunner {
 				break;
 			}
 			case 2: {
-				System.out.println("Enter mesage. If mesage is incorect it will not be stored.");
+				System.out
+						.println("Enter mesage. If mesage is incorect it will not be stored.");
 				exmng.addExceptionMesage(ConsoleReader.readString());
 				break;
 			}
 			case 3: {
-				List<String> list = exmng.getMesages();
+				List<String> list = exmng.getMesages(exmng.getMesage());
 				for (String str : list) {
 					System.out.println(str);
 				}
 				break;
 			}
 			case 4: {
-				System.out.println("Enter key and description for new type error.");
+				System.out
+						.println("Enter key and description for new type error.");
 				exmng.addExceptionAndDescription(ConsoleReader.readString(),
 						ConsoleReader.readString());
 				break;

@@ -1,6 +1,6 @@
 package com.sirma.itt.evgeni.tas3.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -28,14 +28,14 @@ public class ExceptionManagerTest {
 		exmng.addExceptionUsingCode("INVID");
 		exmng.addExceptionUsingCode("INVPC");
 		exmng.addExceptionUsingCode("INVDC");
-		errors = exmng.getMesages();
+		errors = exmng.getMesages(exmng.getMesage());
 		assertTrue(errors.get(0).equals("Invalid UID"));
 		assertTrue(errors.get(1).equals("Invalid Post Code"));
 		assertTrue(errors.get(2).equals("Invalid Debit Card Number"));
 
 		exmng.addExceptionAndDescription("test", "test error");
 		exmng.addExceptionUsingCode("test");
-		errors = exmng.getMesages();
+		errors = exmng.getMesages(exmng.getMesage());
 		assertTrue(errors.get(3).equals("test error"));
 	}
 
@@ -47,7 +47,7 @@ public class ExceptionManagerTest {
 		exmng.clearLog();
 		exmng.addExceptionAndDescription("test", "test error");
 		exmng.addExceptionUsingCode("test");
-		errors = exmng.getMesages();
+		errors = exmng.getMesages(exmng.getMesage());
 		assertTrue(errors.get(0).equals("test error"));
 	}
 
@@ -60,7 +60,7 @@ public class ExceptionManagerTest {
 		exmng.clearLog();
 		exmng.addExceptionAndDescription("test", "test error");
 		exmng.addExceptionMesage("test error");
-		errors = exmng.getMesages();
+		errors = exmng.getMesages(exmng.getMesage());
 		assertTrue(errors.get(0).equals("test error"));
 	}
 
