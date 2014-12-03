@@ -1,11 +1,11 @@
 package com.sirma.itt.evgeni.task3.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.net.URISyntaxException;
 
 import org.junit.Test;
 
@@ -18,34 +18,34 @@ public class ReverseFileTest {
 	String path = "C:\\eclipse\\test.txt";
 
 	/**
-	 * Check corect storing on data to file.
+	 * Check correct storing on data to file.
+	 * 
 	 * @throws IOException
+	 * @throws URISyntaxException
 	 */
 	@Test
-	public void saveTextTest() throws IOException {
+	public void saveTextTest() throws IOException, URISyntaxException {
 		String text = "123456";
-		fileReverser.saveText(path, text);
-		assertEquals("123456",fileReverser.getText("C:\\eclipse\\test.txt"));
+		File file = new File(getClass().getResource("/test.txt").toURI());
+		fileReverser.saveText(file, text);
+		assertEquals("123456", fileReverser.getText(file));
 	}
 
 	/**
 	 * Check correct reversing on file.
+	 * 
 	 * @throws FileNotFoundException
 	 * @throws IOException
+	 * @throws URISyntaxException
 	 */
 	@Test
-	public void reverseTextTest() throws FileNotFoundException, IOException {
+	public void reverseTextTest() throws IOException, URISyntaxException {
+		File file = new File(getClass().getResource("/test.txt").toURI());
 		String text = "123456";
-		fileReverser.saveText(path, text);
+		fileReverser.saveText(file, text);
 		String expectedText = "654321";
-		fileReverser.reverseFile(path);
-		String actualText = fileReverser.getText(path);
+		fileReverser.reverseFile(file.getPath());
+		String actualText = fileReverser.getText(file);
 		assertEquals(expectedText, actualText);
 	}
-
-	@Test
-	public void readTextTest() {
-		String text = "654321";
-	}
-
 }

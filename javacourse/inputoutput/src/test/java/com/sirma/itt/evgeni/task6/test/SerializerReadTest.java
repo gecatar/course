@@ -1,13 +1,10 @@
 package com.sirma.itt.evgeni.task6.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import junit.framework.Assert;
+import java.io.File;
+import java.net.URISyntaxException;
 
 import org.junit.Test;
 
@@ -17,28 +14,31 @@ import com.sirma.itt.evgeni.task6.Serializer;
 public class SerializerReadTest {
 
 	Serializer serializer = new Serializer();
-	String path = "c:\\users\\root\\testserial";
 	DataClass data = new DataClass();
+
 	/**
 	 * Test retrieving objects from file.
+	 * 
+	 * @throws URISyntaxException
 	 */
 	@Test()
-	public void getObjectTest() {
-
-		serializer.saveObject(data, path);
-		assertNotNull(serializer.getObject(path));
-
+	public void getObjectTest() throws URISyntaxException {
+		File file = new File(getClass().getResource("/testserial").toURI());
+		serializer.saveObject(data, file.getPath());
+		assertNotNull(serializer.getObject(file.getPath()));
 	}
 
 	/**
 	 * Test correct saving on objects in file.
+	 * 
+	 * @throws URISyntaxException
 	 */
 	@Test
-	public void saveObjectTest() {
-		
+	public void saveObjectTest() throws URISyntaxException {
+		File file = new File(getClass().getResource("/test.txt").toURI());
 		data.count = 0;
-		serializer.saveObject(data, path);
-		data = serializer.getObject(path.toString());
+		serializer.saveObject(data, file.getPath());
+		data = serializer.getObject(file.getPath());
 		if (data.count != 0) {
 			fail("Object not readed!!!");
 		}

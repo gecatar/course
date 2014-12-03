@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.sirma.itt.evgeni.interfaces.UserInputReader;
@@ -32,32 +33,19 @@ public class TextFileCreator {
 	 * @return
 	 * @throws FileNotFoundException
 	 */
-	public boolean createFile(String path) throws FileNotFoundException {
+	public boolean createFile(String path) {
 		try (OutputStreamWriter osw = new OutputStreamWriter(
 				new BufferedOutputStream(new FileOutputStream(path)))) {
-			LOGGER.warning("Yeahhhh");
 			System.out.println("Type text: Enter '.' to stop.");
 			String text = new String();
 			while (!text.contains(".")) {
 				osw.write(text);
-				text = getLine();
+				text = reader.readLine();
 			}
 			return true;
-		} catch (FileNotFoundException e) {
-			throw e;
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, "Error whe creating text file!!!", e);
 			return false;
 		}
 	}
-
-	/**
-	 * Read line from console.
-	 * 
-	 * @return
-	 */
-	private String getLine() {
-		return reader.readLine();
-	}
-
 }

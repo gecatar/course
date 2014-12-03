@@ -1,6 +1,7 @@
 package com.sirma.itt.evgeni.task2.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -36,9 +37,9 @@ public class TextFileCreatorTest {
 	 * 
 	 * @throws FileNotFoundException
 	 */
-	@Test(expected = FileNotFoundException.class)
-	public void createFileTest() throws FileNotFoundException {
-		creator.createFile("");
+	@Test
+	public void createFileTest() {
+		assertFalse(creator.createFile(""));
 	}
 
 	/**
@@ -51,6 +52,6 @@ public class TextFileCreatorTest {
 	public void createFileTestSecond() throws IOException, URISyntaxException {
 		File file = new File(getClass().getResource("/test.txt").toURI());
 		creator.createFile(file.getPath());
-		assertEquals("45678910", reverser.getText(file.getPath()));
+		assertEquals("45678910", reverser.getText(file));
 	}
 }
