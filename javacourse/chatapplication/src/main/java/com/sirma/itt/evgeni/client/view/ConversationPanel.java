@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.swing.JTabbedPane;
 
 /**
- * Manage all conversations.
+ * Create and select users conversations.
  * 
  * @author Evgeni Stefanov
  * 
@@ -50,7 +50,7 @@ public class ConversationPanel extends JTabbedPane {
 	}
 
 	/**
-	 * Display message. If conversation doesn't exist first its added.
+	 * Display message. If conversation doesn't exist first its created.
 	 * 
 	 * @param name
 	 *            of conversation.

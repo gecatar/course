@@ -11,14 +11,23 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * Manage user connection request.
+ * 
+ * @author Evgeni Stefanov
+ * 
+ */
 public class ConectionPanel extends JPanel implements ActionListener {
 
 	UserActionListener userListener;
 
+	/**
+	 * Create connection user interface.
+	 * 
+	 * @param userListener
+	 */
 	public ConectionPanel(UserActionListener userListener) {
-
 		this.userListener = userListener;
-
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		JTextField ipAdress = new JTextField(15);
 		JTextField port = new JTextField(4);
@@ -60,6 +69,9 @@ public class ConectionPanel extends JPanel implements ActionListener {
 		add(stopConection);
 	}
 
+	/**
+	 * Detect when user request connection or disconnection.
+	 */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().getClass() == JButton.class) {
 			if (((JButton) e.getSource()).getName().equals("StartConection")) {
