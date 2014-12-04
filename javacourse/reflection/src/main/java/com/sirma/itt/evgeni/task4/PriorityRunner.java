@@ -2,9 +2,9 @@ package com.sirma.itt.evgeni.task4;
 
 import java.util.Arrays;
 
+import com.sirma.itt.evgeni.reflection.PriorityFirst;
 import com.sirma.itt.evgeni.reflection.PrioritySecond;
 import com.sirma.itt.evgeni.reflection.PriorityThird;
-import com.sirma.itt.evgeni.reflection.PtiorityFirst;
 import com.sirma.itt.evgeni.reflection.TestClass;
 
 /**
@@ -28,7 +28,7 @@ public class PriorityRunner {
 		TestClass[] list = new TestClass[3];
 		list[0] = new PriorityThird();
 		list[1] = new PrioritySecond();
-		list[2] = new PtiorityFirst();
+		list[2] = new PriorityFirst();
 		System.out.println(list);
 		Arrays.sort(list, new AnotationComparator());
 		System.out.println(list);

@@ -1,7 +1,7 @@
 package com.sirma.itt.evgeni.reflection;
 
 @Priority(priorityIndex = 9)
-public class PtiorityFirst extends TestClass {
+public class PriorityFirst extends TestClass {
 
 	/**
 	 * Sample method for annotation example.
