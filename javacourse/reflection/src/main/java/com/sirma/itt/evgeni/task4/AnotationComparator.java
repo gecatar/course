@@ -2,6 +2,7 @@ package com.sirma.itt.evgeni.task4;
 
 import java.util.Comparator;
 
+import com.sirma.itt.evgeni.reflection.Priority;
 import com.sirma.itt.evgeni.reflection.TestClass;
 
 /**
@@ -12,9 +13,14 @@ import com.sirma.itt.evgeni.reflection.TestClass;
  */
 public class AnotationComparator implements Comparator<TestClass> {
 
+	@Override
 	public int compare(TestClass firstClass, TestClass secondClass) {
-		return AnnotationReader.getPriority(firstClass)
-				- AnnotationReader.getPriority(secondClass);
+
+		int firstPriority = firstClass.getClass().getAnnotation(Priority.class)
+				.priorityIndex();
+		int secondPriority = secondClass.getClass()
+				.getAnnotation(Priority.class).priorityIndex();
+		return firstPriority - secondPriority;
 	}
 
 }

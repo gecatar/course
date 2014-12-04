@@ -50,7 +50,7 @@ public class ClassCreatorTest {
 	 */
 	@Test
 	public void listInterfacesTest() {
-		String expectedInterfaces = "Intefaces:\njava.util.Comparator\n";
+		String expectedInterfaces = "Intefaces:\njava.util.Comparator";
 		String actualInterfaces = classCreator.listInterfaces(testClass);
 		assertEquals(expectedInterfaces, actualInterfaces);
 	}

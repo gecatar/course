@@ -1,7 +1,7 @@
 package com.sirma.itt.evgeni.task2;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Create classes via reflection, list information about them.
@@ -10,6 +10,9 @@ import java.lang.reflect.InvocationTargetException;
  * 
  */
 public class ClassCreator {
+
+	private static final Logger LOGGER = Logger.getLogger(ClassCreator.class
+			.getName());
 
 	/**
 	 * List interfaces.
@@ -26,7 +29,7 @@ public class ClassCreator {
 			for (Class<?> interfc : cl.getInterfaces()) {
 				stringBuilder.append(interfc.getName()).append("\n");
 			}
-			return stringBuilder.toString();
+			return stringBuilder.toString().trim();
 		}
 		return "";
 	}
@@ -56,37 +59,13 @@ public class ClassCreator {
 	 * @return created object. Or null if operation is not successful.
 	 */
 	public Object createFromName(String name) {
-		Class<?> cl = null;
-		Object object;
-		Constructor<?> constructor = null;
 		try {
-			cl = Class.forName(name);
-			constructor = cl.getConstructor();
-			object = constructor.newInstance();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return null;
-		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
-			return null;
-		} catch (SecurityException e) {
-			e.printStackTrace();
-			return null;
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-			return null;
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-			return null;
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-			return null;
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			return Class.forName(name).newInstance();
+		} catch (ReflectiveOperationException e) {
+			LOGGER.log(Level.SEVERE,
+					"Un able to create object whit reflection", e);
 			return null;
 		}
-
-		return object;
 	}
 
 }

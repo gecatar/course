@@ -1,12 +1,12 @@
 package com.sirma.itt.evgeni.reflection;
 
-@Priority(priorityIndesx = 17)
-public class PriorityThird extends TestClass{
+@Priority(priorityIndex = 97)
+public class PriorityThird extends TestClass {
 
 	/**
 	 * Sample method for annotation example.
 	 */
-	@Priority(priorityIndesx = 57)
+	@Priority(priorityIndex = 57)
 	public void testFunctionFirst() {
 		System.out.println("Sample method for annotation example");
 		System.out.println("methods whit hightest priority");
@@ -15,7 +15,7 @@ public class PriorityThird extends TestClass{
 	/**
 	 * Sample method for annotation example.
 	 */
-	@Priority(priorityIndesx = 71)
+	@Priority(priorityIndex = 71)
 	public void testFunctionSecond() {
 		System.out.println("Sample method for annotation example");
 		System.out.println("methods whit medium priority");
@@ -24,10 +24,9 @@ public class PriorityThird extends TestClass{
 	/**
 	 * Sample method for annotation example.
 	 */
-	@Priority(priorityIndesx = 89)
+	@Priority(priorityIndex = 89)
 	public void testFunctionThird() {
 		System.out.println("Sample method for annotation example");
 		System.out.println("methods whit lowest priority");
 	}
 }
-

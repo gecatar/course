@@ -1,9 +1,10 @@
 package com.sirma.itt.evgeni.task3;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Read private content from classes via reflection.
@@ -12,6 +13,9 @@ import java.lang.reflect.Modifier;
  * 
  */
 public class PrivateReader {
+
+	private static final Logger LOGGER = Logger.getLogger(PrivateReader.class
+			.getName());
 
 	/**
 	 * Invoke private methods.
@@ -29,19 +33,14 @@ public class PrivateReader {
 				try {
 					method.invoke(object);
 					stringBuilder.append(" - OK\n");
-				} catch (IllegalAccessException e) {
-					stringBuilder.append(" - IllegalAccessException\n");
-					e.printStackTrace();
-				} catch (IllegalArgumentException e) {
-					stringBuilder.append(" - IllegalArgumentException\n");
-					e.printStackTrace();
-				} catch (InvocationTargetException e) {
-					stringBuilder.append(" - InvocationTargetException\n");
-					e.printStackTrace();
+				} catch (ReflectiveOperationException e) {
+					stringBuilder.append(" - Reflective Exception\n");
+					LOGGER.log(Level.SEVERE,
+							"Unable to invoke method whit reflection", e);
 				}
 			}
 		}
-		return stringBuilder.toString();
+		return stringBuilder.toString().trim();
 	}
 
 	/**
@@ -61,16 +60,12 @@ public class PrivateReader {
 				stringBuilder.append(field.getName()).append(":");
 				try {
 					stringBuilder.append(field.get(object)).append("\n");
-				} catch (IllegalArgumentException e) {
-					stringBuilder.append("IllegalArgumentException").append(
-							"\n");
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					stringBuilder.append("IllegalAccessException").append("\n");
-					e.printStackTrace();
+				} catch (ReflectiveOperationException e) {
+					stringBuilder.append("Reflective Exception").append("\n");
+					LOGGER.log(Level.SEVERE, "Unable to read private field.", e);
 				}
 			}
 		}
-		return stringBuilder.toString();
+		return stringBuilder.toString().trim();
 	}
 }

@@ -1,13 +1,15 @@
 package com.sirma.itt.evgeni.task4.test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
+import java.util.Arrays;
+
 import org.junit.Test;
 
 import com.sirma.itt.evgeni.reflection.PrioritySecond;
+import com.sirma.itt.evgeni.reflection.PriorityThird;
 import com.sirma.itt.evgeni.reflection.PtiorityFirst;
-import com.sirma.itt.evgeni.task4.AnnotationReader;
+import com.sirma.itt.evgeni.reflection.TestClass;
 import com.sirma.itt.evgeni.task4.AnotationComparator;
 
 /**
@@ -18,41 +20,16 @@ import com.sirma.itt.evgeni.task4.AnotationComparator;
  */
 public class AnnotationReaderComparatorTest {
 
-	AnnotationReader anotationReader;
-	AnotationComparator annotationComparator;
-	PtiorityFirst priorityFirst;
-	PrioritySecond prioritySecond;
-
-	@Before
-	public void setUp() throws Exception {
-		anotationReader = new AnnotationReader();
-		annotationComparator = new AnotationComparator();
-		priorityFirst = new PtiorityFirst();
-		prioritySecond = new PrioritySecond();
-	}
-
-	/*
-	 * Read annotation values and compare result.
-	 */
 	@Test
-	public void getPriorityTest() {
-		int expectedPriority = 99;
-		int actualPriority = anotationReader.getPriority(priorityFirst);
-		assertEquals(expectedPriority, actualPriority);
-		expectedPriority = 84;
-		actualPriority = anotationReader.getPriority(prioritySecond);
-		assertEquals(expectedPriority, actualPriority);
-	}
-
-	/**
-	 * Check correct work on compare function.
-	 */
-	@Test
-	public void AnnotationComparatorTest() {
-		int expectedCompValue = 15;
-		int actualCompValue = annotationComparator.compare(priorityFirst,
-				prioritySecond);
-		assertEquals(expectedCompValue, actualCompValue);
+	public void annotationTest() {
+		TestClass[] list = new TestClass[3];
+		list[0] = new PriorityThird();
+		list[1] = new PrioritySecond();
+		list[2] = new PtiorityFirst();
+		Arrays.sort(list, new AnotationComparator());
+		assertTrue(list[0].getClass() == PtiorityFirst.class);
+		assertTrue(list[1].getClass() == PrioritySecond.class);
+		assertTrue(list[2].getClass() == PriorityThird.class);
 	}
 
 }

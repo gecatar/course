@@ -30,7 +30,7 @@ public class PrivateReaderTest {
 	 */
 	@Test
 	public void invokePrivateMethodTest() {
-		String expectedReport = "invoke:testPrivate - OK\n";
+		String expectedReport = "invoke:testPrivate - OK";
 		String actualReport = privateReader.invokePrivateMethods(testClass);
 		assertEquals(expectedReport, actualReport);
 	}
@@ -40,7 +40,7 @@ public class PrivateReaderTest {
 	 */
 	@Test
 	public void getPrivateFieldsTest() {
-		String expectedReport = "Private fields:\ncount:9\n";
+		String expectedReport = "Private fields:\ncount:9";
 		String actualReport = privateReader.getPrivateFileds(testClass);
 		assertEquals(expectedReport, actualReport);
 	}
