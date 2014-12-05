@@ -72,7 +72,7 @@ public class ViewPanell extends JTabbedPane implements UserActionListener {
 	}
 
 	/**
-	 * Start conection.
+	 * Start connection.
 	 */
 	public void startConection(String nickname, String ip, String port) {
 		uiListener.startConection(nickname, ip, port);
