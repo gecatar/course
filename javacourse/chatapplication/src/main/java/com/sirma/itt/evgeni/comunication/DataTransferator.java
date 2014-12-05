@@ -5,12 +5,18 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+/**
+ * Transfer messages between two DataTranferators.
+ * 
+ * @author Evgeni Stefanov
+ * 
+ */
 public class DataTransferator extends Thread {
 
-	Comunicator comunicator;
-	Socket socket;
-	ObjectOutputStream ost;
-	ObjectInputStream ist;
+	private final Comunicator comunicator;
+	private final Socket socket;
+	private final ObjectOutputStream ost;
+	private final ObjectInputStream ist;
 
 	public DataTransferator(Comunicator comunicator, Socket socket,
 			ObjectOutputStream ost, ObjectInputStream ist) {
@@ -20,6 +26,11 @@ public class DataTransferator extends Thread {
 		this.ist = ist;
 	}
 
+	/**
+	 * Send message.
+	 * 
+	 * @param mesage
+	 */
 	public void sendData(Mesage mesage) {
 		try {
 			ost.writeObject(mesage);
@@ -29,6 +40,10 @@ public class DataTransferator extends Thread {
 		}
 	}
 
+	/**
+	 * Entry point for receiving messages.
+	 */
+	@Override
 	public void run() {
 		try {
 			while (true) {
@@ -42,6 +57,9 @@ public class DataTransferator extends Thread {
 		}
 	}
 
+	/**
+	 * Close socket.
+	 */
 	public void closeSocket() {
 		try {
 			if (socket != null) {

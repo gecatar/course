@@ -12,13 +12,12 @@ import com.sirma.itt.evgeni.comunication.DataTransferator;
 
 public class ClientConector extends Conector {
 
-	
-	
 	public ClientConector(Comunicator comunicator, String ipAdress, int port) {
 		super(comunicator, ipAdress, port);
 	}
 
-	public void start() {
+	@Override
+	public void run() {
 		try {
 			Socket socket = new Socket(ipAdress, port);
 			setAutoclosable(socket);
@@ -38,6 +37,6 @@ public class ClientConector extends Conector {
 	@Override
 	public void setAutoclosable(AutoCloseable autoClosable) {
 		this.autoclosableSocket = autoClosable;
-		
+
 	}
 }

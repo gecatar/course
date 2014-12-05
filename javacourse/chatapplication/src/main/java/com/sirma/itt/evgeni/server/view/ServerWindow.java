@@ -1,4 +1,4 @@
-package com.sirma.itt.evgeni.server;
+package com.sirma.itt.evgeni.server.view;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -10,12 +10,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.sirma.itt.evgeni.comunication.Controler;
-import com.sirma.itt.evgeni.comunication.Mesage;
-import com.sirma.itt.evgeni.comunication.Window;
+import com.sirma.itt.evgeni.client.view.ComunicatorListener;
+import com.sirma.itt.evgeni.comunication.Comunicator;
 
-public class ServerWindow extends JFrame implements Window {
+public class ServerWindow extends JFrame implements ComunicatorListener {
 
+	Comunicator comunicator;
 	JPanel panel = new JPanel();
 	JTextField ipAdress = new JTextField(15);
 	JTextField port = new JTextField(4);
@@ -23,23 +23,9 @@ public class ServerWindow extends JFrame implements Window {
 	JButton stopConection = new JButton("Disconect");
 	JButton sendData = new JButton("Send Test Data");
 	JTextField mesage = new JTextField(8);
-	Controler controler;
 
-	public void updateConectionStatus(boolean conected) {
-		if (conected) {
-			setTitle("Conected...");
-		} else {
-			setTitle("Disconected...");
-		}
-	}
-
-	public void updateMesage(Mesage mesage) {
-		this.mesage.setText(mesage.text);
-	}
-
-	public ServerWindow(final Controler controler) {
-		this.controler = controler;
-		this.controler.setWindow(this);
+	public ServerWindow() {
+		comunicator = new Server(this);
 		add(panel);
 		panel.add(new JLabel("IP Adress"));
 		ipAdress.setText("localhost");
@@ -60,12 +46,13 @@ public class ServerWindow extends JFrame implements Window {
 
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource() == startConection)
-					controler.startConection(ipAdress.getText(), "7005");
+					comunicator.startConection(ipAdress.getText(),
+							Integer.parseInt(port.getText()));
 				;
 				if (e.getSource() == stopConection)
-					// controler.stopConection();
-					if (e.getSource() == sendData)
-						;
+					comunicator.stopConection();
+				if (e.getSource() == sendData)
+					;
 
 			}
 		};
@@ -78,21 +65,26 @@ public class ServerWindow extends JFrame implements Window {
 
 	public void setConectionStatus(boolean conected) {
 		// TODO Auto-generated method stub
-
+		if (conected) {
+			setTitle("Conected...");
+		} else {
+			setTitle("Disconected...");
+		}
 	}
 
-	public void addUser(String user) {
+	public void showMesage(String name, String text) {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void removeUser(String user) {
+	public void addUser(String name) {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void showMesage(String sender, String text) {
+	public void removeUser(String name) {
 		// TODO Auto-generated method stub
 
 	}
+
 }

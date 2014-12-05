@@ -21,6 +21,10 @@ public class ConectionPanel extends JPanel implements ActionListener {
 
 	UserActionListener userListener;
 
+	JTextField ipAdress = new JTextField(15);
+	JTextField port = new JTextField(4);
+	JTextField nickname = new JTextField(10);
+
 	/**
 	 * Create connection user interface.
 	 * 
@@ -29,9 +33,9 @@ public class ConectionPanel extends JPanel implements ActionListener {
 	public ConectionPanel(UserActionListener userListener) {
 		this.userListener = userListener;
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		JTextField ipAdress = new JTextField(15);
-		JTextField port = new JTextField(4);
-		JTextField nickname = new JTextField(10);
+		ipAdress.setText("localhost");
+		port.setText("1300");
+		nickname.setText("User");
 		JButton startConection = new JButton("Conect");
 		startConection.setName("StartConection");
 		startConection.addActionListener(this);
@@ -75,7 +79,8 @@ public class ConectionPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().getClass() == JButton.class) {
 			if (((JButton) e.getSource()).getName().equals("StartConection")) {
-				userListener.startConection("test", "test", "test");
+				userListener.startConection(nickname.getText(),
+						ipAdress.getText(), port.getText());
 			}
 			if (((JButton) e.getSource()).getName().equals("StopConection")) {
 				userListener.stopConection();

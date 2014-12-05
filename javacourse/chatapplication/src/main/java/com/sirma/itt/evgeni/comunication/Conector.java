@@ -13,6 +13,9 @@ public abstract class Conector extends Thread {
 		this.port = port;
 	}
 
+	@Override
+	public abstract void run();
+
 	public abstract void setAutoclosable(AutoCloseable autoClosable);
 
 	public synchronized void stopConector() {

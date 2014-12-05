@@ -1,4 +1,4 @@
-package com.sirma.itt.evgeni.server;
+package com.sirma.itt.evgeni.server.view;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -24,7 +24,6 @@ public class ServerConector extends Conector {
 		try {
 			serverSocket = new ServerSocket(port);
 			setAutoclosable(serverSocket);
-			System.out.println("ksjadoisajsajoi");
 			while (true) {
 				Socket socket = serverSocket.accept();
 				ObjectOutputStream ost = new ObjectOutputStream(
@@ -35,6 +34,7 @@ public class ServerConector extends Conector {
 						socket, ost, ist));
 			}
 		} catch (IOException e) {
+			e.printStackTrace();
 		} finally {
 			comunicator.closeConectorSession();
 		}
