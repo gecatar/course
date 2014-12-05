@@ -1,4 +1,4 @@
-package com.sirma.itt.evgeni.client.view;
+package com.sirma.itt.evgeni.client;
 
 import java.awt.Component;
 import java.awt.Dimension;

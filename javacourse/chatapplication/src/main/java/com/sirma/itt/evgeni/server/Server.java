@@ -1,12 +1,12 @@
-package com.sirma.itt.evgeni.server.view;
+package com.sirma.itt.evgeni.server;
 
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.sirma.itt.evgeni.client.view.ComunicatorListener;
 import com.sirma.itt.evgeni.comunication.Comunicator;
+import com.sirma.itt.evgeni.comunication.ComunicatorListener;
 import com.sirma.itt.evgeni.comunication.Conector;
 import com.sirma.itt.evgeni.comunication.DataTransferator;
 import com.sirma.itt.evgeni.comunication.Mesage;

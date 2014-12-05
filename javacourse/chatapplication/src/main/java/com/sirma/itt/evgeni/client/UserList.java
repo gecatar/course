@@ -1,4 +1,4 @@
-package com.sirma.itt.evgeni.client.view;
+package com.sirma.itt.evgeni.client;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

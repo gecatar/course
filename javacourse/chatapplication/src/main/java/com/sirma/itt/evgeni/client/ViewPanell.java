@@ -1,6 +1,8 @@
-package com.sirma.itt.evgeni.client.view;
+package com.sirma.itt.evgeni.client;
 
 import javax.swing.JTabbedPane;
+
+import com.sirma.itt.evgeni.comunication.UILIstener;
 
 /**
  * Contain all UI elements.
@@ -8,14 +10,14 @@ import javax.swing.JTabbedPane;
  * @author Evgeni Stefanov
  * 
  */
-public class StaffPane extends JTabbedPane implements UserActionListener {
+public class ViewPanell extends JTabbedPane implements UserActionListener {
 
 	ConectionPanel conectionPanel;
 	ConversationPanel conversationPanel;
 	UserList userList;
 	UILIstener uiListener;
 
-	public StaffPane(UILIstener uiListener) {
+	public ViewPanell(UILIstener uiListener) {
 
 		this.uiListener = uiListener;
 		conectionPanel = new ConectionPanel(this);

@@ -1,4 +1,4 @@
-package com.sirma.itt.evgeni.server.view;
+package com.sirma.itt.evgeni.server;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

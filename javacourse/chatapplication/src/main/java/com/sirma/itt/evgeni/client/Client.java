@@ -1,6 +1,7 @@
-package com.sirma.itt.evgeni.client.view;
+package com.sirma.itt.evgeni.client;
 
 import com.sirma.itt.evgeni.comunication.Comunicator;
+import com.sirma.itt.evgeni.comunication.ComunicatorListener;
 import com.sirma.itt.evgeni.comunication.Conector;
 import com.sirma.itt.evgeni.comunication.DataTransferator;
 import com.sirma.itt.evgeni.comunication.Mesage;
