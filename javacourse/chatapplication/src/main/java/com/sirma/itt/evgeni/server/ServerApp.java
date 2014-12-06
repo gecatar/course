@@ -1,12 +1,19 @@
 package com.sirma.itt.evgeni.server;
 
+import com.sirma.itt.evgeni.comunication.Comunicator;
 import com.sirma.itt.evgeni.comunication.ComunicatorListener;
 import com.sirma.itt.evgeni.comunication.UILIstener;
+import com.sirma.itt.evgeni.comunication.Window;
 
 public class ServerApp implements UILIstener, ComunicatorListener {
 
-	public ServerApp() {
+	Comunicator comunicator;
+	ConectionPanel conectionPanel;
 
+	public ServerApp() {
+		comunicator = new Server(this);
+		conectionPanel = new ConectionPanel(this);
+		new Window(conectionPanel);
 	}
 
 	public void setConectionStatus(boolean conected) {
@@ -29,13 +36,15 @@ public class ServerApp implements UILIstener, ComunicatorListener {
 
 	}
 
-	public void startConection(String nickname, String ip, String port) {
+	public void startConection(String name, String ip, String port) {
 		// TODO Auto-generated method stub interface
-
+		comunicator.setName(name);
+		comunicator.startConection(ip, Integer.parseInt(port));
 	}
 
 	public void stopConection() {
 		// TODO Auto-generated method stub interface
+		comunicator.stopConection();
 
 	}
 
