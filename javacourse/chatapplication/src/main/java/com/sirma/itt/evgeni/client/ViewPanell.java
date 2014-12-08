@@ -61,6 +61,7 @@ public class ViewPanell extends JTabbedPane implements UserActionListener {
 	/**
 	 * Send message.
 	 */
+	@Override
 	public void sendMessage(String name, String message) {
 		uiListener.sendMessage(name, message);
 	}
@@ -68,25 +69,30 @@ public class ViewPanell extends JTabbedPane implements UserActionListener {
 	/**
 	 * Highlight user name.
 	 */
+	@Override
 	public void userSelected(String name) {
 		setSelectedIndex(indexOfComponent(conversationPanel));
 		conversationPanel.selectConversation(name);
 	}
 
 	public void setConectionStatus(String conectionCondition) {
+		setSelectedIndex(indexOfComponent(conectionPanel));
 		conectionPanel.setConectionStatus(conectionCondition);
 	}
 
 	/**
 	 * Start connection.
 	 */
+	@Override
 	public void startConection(String nickname, String ip, String port) {
 		uiListener.startConection(nickname, ip, port);
+		userList.listModel.clear();
 	}
 
 	/**
 	 * Stop connection.
 	 */
+	@Override
 	public void stopConection() {
 		uiListener.stopConection();
 	}

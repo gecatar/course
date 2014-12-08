@@ -50,8 +50,7 @@ public class DataTransferator extends Thread {
 				Mesage mesage = (Mesage) ist.readObject();
 				comunicator.processMesage(mesage, this);
 			}
-		} catch (IOException e) {
-		} catch (ClassNotFoundException e) {
+		} catch (IOException | ClassNotFoundException e) {
 		} finally {
 			comunicator.closeUserSession(this);
 		}

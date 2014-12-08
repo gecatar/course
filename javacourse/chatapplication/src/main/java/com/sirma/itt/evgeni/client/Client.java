@@ -27,6 +27,7 @@ public class Client implements Comunicator {
 	/**
 	 * Start connection.
 	 */
+	@Override
 	public void startConection(String ip, int port) {
 		if (conector == null) {
 			conector = new ClientConector(this, ip, port);
@@ -37,6 +38,7 @@ public class Client implements Comunicator {
 	/**
 	 * Send message to server.
 	 */
+	@Override
 	public void sendMesage(String receiver, String text) {
 		transferator.sendData(new Mesage(this.name, receiver, text));
 	}
@@ -44,6 +46,7 @@ public class Client implements Comunicator {
 	/**
 	 * Stop connection.
 	 */
+	@Override
 	public void stopConection() {
 		if (conector != null) {
 			conector.stopConector();
@@ -62,6 +65,7 @@ public class Client implements Comunicator {
 	/**
 	 * Save DataTranferathor and start communication between Client and Server.
 	 */
+	@Override
 	public void addUserSession(DataTransferator transferator) {
 		addDataTransferator(transferator);
 		transferator.start();
@@ -72,8 +76,8 @@ public class Client implements Comunicator {
 	/**
 	 * Stop and delete DataTransferator.
 	 */
+	@Override
 	public void closeUserSession(DataTransferator transferator) {
-		comunicatorListener.setConectionStatus("Disconected...");
 		removeDataTransferator(transferator);
 		conector = null;
 	}
@@ -95,6 +99,7 @@ public class Client implements Comunicator {
 	public synchronized void removeDataTransferator(
 			DataTransferator dataTransferator) {
 		if (dataTransferator != null) {
+			comunicatorListener.setConectionStatus("Disconected...");
 			dataTransferator.closeSocket();
 		}
 		transferator = null;
@@ -103,9 +108,9 @@ public class Client implements Comunicator {
 	/**
 	 * wefwefwe messages.
 	 */
+	@Override
 	public void processMesage(Mesage mesage, DataTransferator transferator) {
 		if (mesage.commandID == MesageCommand.INVALID_USER_NAME) {
-			closeUserSession(transferator);
 			comunicatorListener.setConectionStatus("Invalid User Name...");
 		}
 		if (mesage.commandID == MesageCommand.TEXT_MESAGE) {
@@ -123,16 +128,19 @@ public class Client implements Comunicator {
 	/**
 	 * Close connector and resources that are used.
 	 */
+	@Override
 	public void closeConectorSession() {
 		if (conector != null) {
 			conector.stopConector();
 			conector = null;
 		}
+		comunicatorListener.setConectionStatus("Error when Conecting...");
 	}
 
 	/**
 	 * Set nickname.
 	 */
+	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
