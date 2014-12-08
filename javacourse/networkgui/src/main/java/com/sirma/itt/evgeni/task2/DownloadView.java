@@ -12,14 +12,22 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 
-public class DownloadView extends JFrame implements ActionListener, DownloadProgressUpdater {
+/**
+ * Show progress on downloads.
+ * 
+ * @author Evgeni Stefanov
+ * 
+ */
+public class DownloadView extends JFrame implements ActionListener,
+		DownloadProgressListener {
 
 	JProgressBar downloadProgress = new JProgressBar();
 	JTextField textField = new JTextField(20);
 	JButton downloadFile = new JButton("Start Download");
 	JPanel panel = new JPanel();
 	JLabel percentValue = new JLabel("Progress in percent...");
-	JLabel sizeDownload = new JLabel("Size and current download...");
+	JLabel size = new JLabel("Size");
+	JLabel downloadded = new JLabel("Downloaded size");
 
 	public DownloadView() {
 		setSize(new Dimension(400, 500));
@@ -31,7 +39,8 @@ public class DownloadView extends JFrame implements ActionListener, DownloadProg
 		panel.add(downloadFile);
 		panel.add(downloadProgress);
 		panel.add(percentValue);
-		panel.add(sizeDownload);
+		panel.add(size);
+		panel.add(downloadded);
 		// ------------------------------
 		downloadProgress.setAlignmentX(CENTER_ALIGNMENT);
 		downloadProgress.setMinimum(0);
@@ -45,34 +54,61 @@ public class DownloadView extends JFrame implements ActionListener, DownloadProg
 		downloadFile.setMaximumSize(new Dimension(200, 30));
 		percentValue.setAlignmentX(CENTER_ALIGNMENT);
 		percentValue.setMaximumSize(new Dimension(200, 30));
-		sizeDownload.setAlignmentX(CENTER_ALIGNMENT);
-		sizeDownload.setMaximumSize(new Dimension(200, 30));
+		size.setAlignmentX(CENTER_ALIGNMENT);
+		size.setMaximumSize(new Dimension(200, 30));
+		downloadded.setAlignmentX(CENTER_ALIGNMENT);
+		downloadded.setMaximumSize(new Dimension(200, 30));
 		setVisible(true);
 	}
 
-
+	/**
+	 * Triggered when user click start download button.
+	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == downloadFile) {
 			downloadProgress.setVisible(true);
-			new DownloadAgent(this,textField.getText()).start();
+			new DownloadAgent(this, textField.getText()).start();
 		}
 	}
 
+	/**
+	 * Set progress in percent.
+	 */
+	@Override
 	public void setProgress(int progress) {
 		downloadProgress.setValue(progress);
 	}
 
+	/**
+	 * Set file size.
+	 */
+	@Override
 	public void setFileSize(long fileSize) {
+		size.setText(String.valueOf(fileSize));
 	}
 
+	/**
+	 * Set how much bytes are transfered.
+	 */
+	@Override
 	public void setDownloadedSize(long downloadedSize) {
 		// TODO Auto-generated method stub
-		
+		downloadded.setText(String.valueOf(downloadedSize));
 	}
 
-
+	/**
+	 * Display what error are occurred during download.
+	 */
+	@Override
 	public void setDownloadError(String error) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
+	// Runner-------------------------------------------
+	public static void main(String[] args) {
+		DownloadView downloadView = new DownloadView();
+	}
+	// -------------------------------------------------
 }
