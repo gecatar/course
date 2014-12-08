@@ -2,6 +2,7 @@ package com.sirma.itt.evgeni.server;
 
 import com.sirma.itt.evgeni.comunication.Comunicator;
 import com.sirma.itt.evgeni.comunication.ComunicatorListener;
+import com.sirma.itt.evgeni.comunication.ConectorShutdownHook;
 import com.sirma.itt.evgeni.comunication.UILIstener;
 import com.sirma.itt.evgeni.comunication.Window;
 
@@ -13,6 +14,8 @@ public class ServerApp implements UILIstener, ComunicatorListener {
 	public ServerApp() {
 		comunicator = new Server(this);
 		conectionPanel = new ConectionPanel(this);
+		Runtime.getRuntime().addShutdownHook(
+				new ConectorShutdownHook(comunicator));
 		new Window(conectionPanel);
 	}
 
@@ -52,4 +55,11 @@ public class ServerApp implements UILIstener, ComunicatorListener {
 		// TODO Auto-generated method stub interface
 
 	}
+
+	// Runner------------------------------
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new ServerApp();
+	}
+	// -------------------------------------
 }

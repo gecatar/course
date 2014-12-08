@@ -2,6 +2,7 @@ package com.sirma.itt.evgeni.client;
 
 import com.sirma.itt.evgeni.comunication.Comunicator;
 import com.sirma.itt.evgeni.comunication.ComunicatorListener;
+import com.sirma.itt.evgeni.comunication.ConectorShutdownHook;
 import com.sirma.itt.evgeni.comunication.UILIstener;
 import com.sirma.itt.evgeni.comunication.Window;
 
@@ -13,6 +14,8 @@ public class ClientApp implements UILIstener, ComunicatorListener {
 	public ClientApp() {
 		comunicator = new Client(this);
 		viewPanell = new ViewPanell(this);
+		Runtime.getRuntime().addShutdownHook(
+				new ConectorShutdownHook(comunicator));
 		new Window(viewPanell);
 	}
 
@@ -51,4 +54,11 @@ public class ClientApp implements UILIstener, ComunicatorListener {
 		// TODO Auto-generated method stub interface
 		comunicator.sendMesage(name, text);
 	}
+
+	// Runner--------------------------------
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new ClientApp();
+	}
+	// --------------------------------------
 }
