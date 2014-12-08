@@ -12,6 +12,12 @@ import com.sirma.itt.evgeni.comunication.DataTransferator;
 import com.sirma.itt.evgeni.comunication.Mesage;
 import com.sirma.itt.evgeni.comunication.MesageCommand;
 
+/**
+ * Send and receive messages.
+ * 
+ * @author Evgeni Stefanov
+ * 
+ */
 public class Server implements Comunicator {
 
 	ComunicatorListener comunicatorListener;
@@ -27,6 +33,7 @@ public class Server implements Comunicator {
 	/**
 	 * Create new thread Conector and wait for incoming connection.
 	 */
+	@Override
 	public void startConection(String ipAdress, int port) {
 		if (conector == null) {
 			conector = new ServerConector(this, ipAdress, port);
@@ -37,6 +44,7 @@ public class Server implements Comunicator {
 	/**
 	 * Stop execution on Conector and close all DataTransferators.
 	 */
+	@Override
 	public void stopConection() {
 		if (conector != null) {
 			conector.stopConector();
@@ -53,15 +61,16 @@ public class Server implements Comunicator {
 	/**
 	 * Start DataTransferator. Add user to unregistered user list.
 	 */
+	@Override
 	public void addUserSession(DataTransferator transferator) {
 		transferator.start();
-		comunicatorListener.setConectionStatus("");
 
 	}
 
 	/**
 	 * Close User DataTransferator, remove user from list and notify all users.
 	 */
+	@Override
 	public void closeUserSession(DataTransferator transferator) {
 		transferator.closeSocket();
 		if (isUserInMap(transferator)) {
@@ -88,6 +97,7 @@ public class Server implements Comunicator {
 	/**
 	 * Close Conector. That mean that no more incoming connection are available.
 	 */
+	@Override
 	public void closeConectorSession() {
 		if (conector != null) {
 			conector.stopConector();
@@ -213,6 +223,7 @@ public class Server implements Comunicator {
 		return "";
 	}
 
+	@Override
 	public void processMesage(Mesage mesage, DataTransferator transferator) {
 		if (mesage.commandID == MesageCommand.USER_LOG_IN) {
 			registerUser(mesage.sender, transferator);
@@ -223,11 +234,13 @@ public class Server implements Comunicator {
 
 	}
 
+	@Override
 	public void sendMesage(String receiver, String text) {
 		// TODO Auto-generated method stub
 
 	}
 
+	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
