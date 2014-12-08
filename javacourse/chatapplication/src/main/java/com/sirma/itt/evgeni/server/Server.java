@@ -54,9 +54,8 @@ public class Server implements Comunicator {
 	 * Start DataTransferator. Add user to unregistered user list.
 	 */
 	public void addUserSession(DataTransferator transferator) {
-		// add to unregistered list...
 		transferator.start();
-		comunicatorListener.setConectionStatus(true);
+		comunicatorListener.setConectionStatus("");
 
 	}
 
@@ -65,9 +64,25 @@ public class Server implements Comunicator {
 	 */
 	public void closeUserSession(DataTransferator transferator) {
 		transferator.closeSocket();
-		String name = getUserName(transferator);
-		removeUserFromMap(name);
-		notifyForUserLeaving(name);
+		if (isUserInMap(transferator)) {
+			String name = getUserName(transferator);
+			removeUserFromMap(name);
+			notifyForUserLeaving(name);
+		}
+	}
+
+	/**
+	 * Check is user in conversation list.
+	 * 
+	 * @param transferator
+	 * @return
+	 */
+	public boolean isUserInMap(DataTransferator transferator) {
+		if (users.containsValue(transferator)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -84,7 +99,7 @@ public class Server implements Comunicator {
 		transferator.start();
 	}
 
-	public void sendMesage(String sender, String receiver, String text) {
+	public void sendMesageToUser(String sender, String receiver, String text) {
 		if (users.containsKey(receiver)) {
 			users.get(receiver).sendData(new Mesage(sender, receiver, text));
 		}
@@ -169,8 +184,18 @@ public class Server implements Comunicator {
 			sendUsersList(transferator);
 			notifyForNewUser(name);
 		} else {
+			notifyForBadName(transferator);
 			transferator.closeSocket();
 		}
+	}
+
+	/**
+	 * Notify user for invalid user name.
+	 * 
+	 * @param transferator
+	 */
+	public void notifyForBadName(DataTransferator transferator) {
+		transferator.sendData(new Mesage(MesageCommand.INVALID_USER_NAME));
 	}
 
 	/**
@@ -193,12 +218,12 @@ public class Server implements Comunicator {
 			registerUser(mesage.sender, transferator);
 		}
 		if (mesage.commandID == MesageCommand.TEXT_MESAGE) {
-			sendMesage(mesage.sender, mesage.receiver, mesage.text);
+			sendMesageToUser(mesage.sender, mesage.receiver, mesage.text);
 		}
 
 	}
 
-	public void sendMesage(Mesage mesage) {
+	public void sendMesage(String receiver, String text) {
 		// TODO Auto-generated method stub
 
 	}

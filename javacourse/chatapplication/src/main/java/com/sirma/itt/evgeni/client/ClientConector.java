@@ -37,7 +37,7 @@ public class ClientConector extends Conector {
 					socket, ost, ist));
 		} catch (IOException e) {
 			e.printStackTrace();
-			comunicator.stopConection();
+			comunicator.closeConectorSession();
 		}
 	}
 

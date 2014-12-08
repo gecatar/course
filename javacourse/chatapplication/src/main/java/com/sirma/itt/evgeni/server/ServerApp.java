@@ -16,7 +16,7 @@ public class ServerApp implements UILIstener, ComunicatorListener {
 		new Window(conectionPanel);
 	}
 
-	public void setConectionStatus(boolean conected) {
+	public void setConectionStatus(String conectionCondition) {
 		// TODO Auto-generated method stub server
 
 	}
@@ -48,7 +48,7 @@ public class ServerApp implements UILIstener, ComunicatorListener {
 
 	}
 
-	public void sendMessage(String name, String message) {
+	public void sendMessage(String receiver, String text) {
 		// TODO Auto-generated method stub interface
 
 	}

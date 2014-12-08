@@ -16,8 +16,8 @@ public class ClientApp implements UILIstener, ComunicatorListener {
 		new Window(viewPanell);
 	}
 
-	public void setConectionStatus(boolean conected) {
-		// TODO Auto-generated method stub client
+	public void setConectionStatus(String conectionCondition) {
+		viewPanell.setConectionStatus(conectionCondition);
 
 	}
 
@@ -47,8 +47,8 @@ public class ClientApp implements UILIstener, ComunicatorListener {
 		comunicator.stopConection();
 	}
 
-	public void sendMessage(String name, String message) {
+	public void sendMessage(String name, String text) {
 		// TODO Auto-generated method stub interface
-
+		comunicator.sendMesage(name, text);
 	}
 }

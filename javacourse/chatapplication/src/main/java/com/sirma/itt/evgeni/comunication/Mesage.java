@@ -16,7 +16,11 @@ public class Mesage implements Serializable {
 		commandID = MesageCommand.TEXT_MESAGE;
 	}
 
-	public Mesage(String name,MesageCommand commandID) {
+	public Mesage(MesageCommand commandIP) {
+		this.commandID = commandID;
+	}
+
+	public Mesage(String name, MesageCommand commandID) {
 		this.commandID = commandID;
 		sender = name;
 	}

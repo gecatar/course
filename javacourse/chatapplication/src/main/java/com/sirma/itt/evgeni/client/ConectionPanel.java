@@ -24,6 +24,7 @@ public class ConectionPanel extends JPanel implements ActionListener {
 	JTextField ipAdress = new JTextField(15);
 	JTextField port = new JTextField(4);
 	JTextField nickname = new JTextField(10);
+	JLabel conectionStatus = new JLabel();
 
 	/**
 	 * Create connection user interface.
@@ -33,6 +34,7 @@ public class ConectionPanel extends JPanel implements ActionListener {
 	public ConectionPanel(UserActionListener userListener) {
 		this.userListener = userListener;
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		conectionStatus.setText("Conection Status:Not Connected");
 		ipAdress.setText("localhost");
 		port.setText("1300");
 		nickname.setText("User");
@@ -42,6 +44,7 @@ public class ConectionPanel extends JPanel implements ActionListener {
 		JButton stopConection = new JButton("Disconect");
 		stopConection.setName("StopConection");
 		stopConection.addActionListener(this);
+		conectionStatus.setAlignmentX(Component.CENTER_ALIGNMENT);
 		JLabel ipLabel = new JLabel("IP Adress");
 		ipLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		ipAdress.setMaximumSize(new Dimension(150, 20));
@@ -58,6 +61,7 @@ public class ConectionPanel extends JPanel implements ActionListener {
 		startConection.setAlignmentX(Component.CENTER_ALIGNMENT);
 		stopConection.setAlignmentX(Component.CENTER_ALIGNMENT);
 		// -----------------------------------------------
+		add(conectionStatus);
 		add(ipAdress);
 		add(port);
 		add(nickname);
@@ -71,6 +75,10 @@ public class ConectionPanel extends JPanel implements ActionListener {
 		add(nickname);
 		add(startConection);
 		add(stopConection);
+	}
+
+	public void setConectionStatus(String conectionCondition) {
+		conectionStatus.setText(conectionCondition);
 	}
 
 	/**

@@ -35,6 +35,13 @@ public class Client implements Comunicator {
 	}
 
 	/**
+	 * Send message to server.
+	 */
+	public void sendMesage(String receiver, String text) {
+		transferator.sendData(new Mesage(this.name, receiver, text));
+	}
+
+	/**
 	 * Stop connection.
 	 */
 	public void stopConection() {
@@ -49,7 +56,7 @@ public class Client implements Comunicator {
 	 * Send user details to server.
 	 */
 	public void sendUserData() {
-		sendMesage(new Mesage(name, MesageCommand.USER_LOG_IN));
+		transferator.sendData(new Mesage(name, MesageCommand.USER_LOG_IN));
 	}
 
 	/**
@@ -58,7 +65,7 @@ public class Client implements Comunicator {
 	public void addUserSession(DataTransferator transferator) {
 		addDataTransferator(transferator);
 		transferator.start();
-		comunicatorListener.setConectionStatus(true);
+		comunicatorListener.setConectionStatus("Conected...");
 		sendUserData();
 	}
 
@@ -66,8 +73,9 @@ public class Client implements Comunicator {
 	 * Stop and delete DataTransferator.
 	 */
 	public void closeUserSession(DataTransferator transferator) {
-		comunicatorListener.setConectionStatus(false);
+		comunicatorListener.setConectionStatus("Disconected...");
 		removeDataTransferator(transferator);
+		conector = null;
 	}
 
 	/**
@@ -84,7 +92,11 @@ public class Client implements Comunicator {
 	 * 
 	 * @param dataTransferator
 	 */
-	public void removeDataTransferator(DataTransferator dataTransferator) {
+	public synchronized void removeDataTransferator(
+			DataTransferator dataTransferator) {
+		if (dataTransferator != null) {
+			dataTransferator.closeSocket();
+		}
 		transferator = null;
 	}
 
@@ -92,6 +104,10 @@ public class Client implements Comunicator {
 	 * wefwefwe messages.
 	 */
 	public void processMesage(Mesage mesage, DataTransferator transferator) {
+		if (mesage.commandID == MesageCommand.INVALID_USER_NAME) {
+			closeUserSession(transferator);
+			comunicatorListener.setConectionStatus("Invalid User Name...");
+		}
 		if (mesage.commandID == MesageCommand.TEXT_MESAGE) {
 			comunicatorListener.showMesage(mesage.sender, mesage.text);
 		}
@@ -105,15 +121,13 @@ public class Client implements Comunicator {
 	}
 
 	/**
-	 * Send message to server.
+	 * Close connector and resources that are used.
 	 */
-	public void sendMesage(Mesage mesage) {
-		transferator.sendData(mesage);
-	}
-
 	public void closeConectorSession() {
-		// TODO Auto-generated method stub
-
+		if (conector != null) {
+			conector.stopConector();
+			conector = null;
+		}
 	}
 
 	/**

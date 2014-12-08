@@ -36,6 +36,7 @@ public class ViewPanell extends JTabbedPane implements UserActionListener {
 	 * @param message
 	 */
 	public void displayMessage(String name, String message) {
+		setSelectedComponent(conversationPanel);
 		conversationPanel.displayMessage(name, message);
 	}
 
@@ -68,7 +69,12 @@ public class ViewPanell extends JTabbedPane implements UserActionListener {
 	 * Highlight user name.
 	 */
 	public void userSelected(String name) {
+		setSelectedIndex(indexOfComponent(conversationPanel));
 		conversationPanel.selectConversation(name);
+	}
+
+	public void setConectionStatus(String conectionCondition) {
+		conectionPanel.setConectionStatus(conectionCondition);
 	}
 
 	/**
