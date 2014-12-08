@@ -25,6 +25,7 @@
   	<module>thread</module>
   	<module>networkgui</module>
   	<module>chatapplication</module>
+  	<module>comunication</module>
   </modules>
   <dependencies>
   <dependency>
