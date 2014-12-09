@@ -20,6 +20,7 @@ public class ServerApp extends JFrame implements ActionListener {
 	JLabel conectionStatus = new JLabel();
 
 	public ServerApp() {
+		setTitle("Server");
 		JPanel panel = new JPanel();
 		add(panel);
 		JLabel ipLabel = new JLabel("IP");
@@ -35,15 +36,21 @@ public class ServerApp extends JFrame implements ActionListener {
 		conectionStatus.setAlignmentX(Component.CENTER_ALIGNMENT);
 		conectionStatus.setText("Result:");
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		JButton startConection = new JButton("Get message");
+		JButton startConection = new JButton("Start server");
+		startConection.setAlignmentX(Component.CENTER_ALIGNMENT);
 		startConection.setName("start");
 		startConection.addActionListener(this);
+		JButton stopConection = new JButton("Stop server");
+		stopConection.setAlignmentX(Component.CENTER_ALIGNMENT);
+		stopConection.setName("stop");
+		stopConection.addActionListener(this);
 		panel.add(ipLabel);
 		panel.add(ipAdress);
 		panel.add(portLabel);
 		panel.add(port);
 		panel.add(conectionStatus);
 		panel.add(startConection);
+		panel.add(stopConection);
 		// --------------------------------------
 		setSize(new Dimension(200, 250));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -59,6 +66,9 @@ public class ServerApp extends JFrame implements ActionListener {
 		if (((JButton) ae.getSource()).getName().equals("start")) {
 			server.startConection(ipAdress.getText(),
 					Integer.parseInt(port.getText()));
+		}
+		if (((JButton) ae.getSource()).getName().equals("stop")) {
+			server.stopConection();
 		}
 	}
 

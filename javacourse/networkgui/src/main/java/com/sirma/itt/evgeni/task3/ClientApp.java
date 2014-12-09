@@ -27,6 +27,7 @@ public class ClientApp extends JFrame implements ActionListener {
 	JLabel conectionStatus = new JLabel();
 
 	public ClientApp() {
+		setTitle("Client");
 		JPanel panel = new JPanel();
 		add(panel);
 		JLabel ipLabel = new JLabel("IP");
@@ -44,6 +45,7 @@ public class ClientApp extends JFrame implements ActionListener {
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		JButton startConection = new JButton("Get message");
 		startConection.setName("start");
+		startConection.setAlignmentX(Component.CENTER_ALIGNMENT);
 		startConection.addActionListener(this);
 		panel.add(ipLabel);
 		panel.add(ipAdress);
