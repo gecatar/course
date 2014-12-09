@@ -11,14 +11,15 @@ import java.net.MulticastSocket;
  * @author Evgeni Stefanov
  * 
  */
-public class MulticastTransmiter {
+public class DatagramTransmiter {
 
 	private MulticastSocket multicastSocked;
 	private String ip;
 	private int port;
 
-	public MulticastTransmiter(String ip, int port) {
-
+	public DatagramTransmiter(String ip, int port) {
+		this.ip = ip;
+		this.port = port;
 	}
 
 	/**
