@@ -5,33 +5,47 @@ import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 
+/**
+ * Send data whit multicast socket.
+ * 
+ * @author Evgeni Stefanov
+ * 
+ */
 public class MulticastTransmiter {
-	
-	MulticastSocket socket;
-	InetAddress adress;
-	
-	public void openConection(){
-		try {
-			socket = new MulticastSocket(7005);
-			adress = InetAddress.getByName("localhost");
-		} catch (IOException e) {
-			closeConection();
-			e.printStackTrace();
-		}
+
+	private MulticastSocket multicastSocked;
+	private String ip;
+	private int port;
+
+	public MulticastTransmiter(String ip, int port) {
+
 	}
-	
-	public void sendData(){
-		byte[] data = {'t','e','s','t'};
-		DatagramPacket packet = new DatagramPacket(data,data.length,adress,7005);
+
+	/**
+	 * Open multicast socket.
+	 */
+	public void conect() {
 		try {
-			socket.send(packet);
-			System.out.println("Data sended @!#@!!@$#@$");
+			multicastSocked = new MulticastSocket(port);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void closeConection(){
-		socket.close();
+
+	/**
+	 * Send data gram packages.
+	 * 
+	 * @return
+	 */
+	public boolean sendData(byte[] data) {
+		try {
+			DatagramPacket datagramPacket = new DatagramPacket(data,
+					data.length, InetAddress.getByName(ip), port);
+			multicastSocked.send(datagramPacket);
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }
