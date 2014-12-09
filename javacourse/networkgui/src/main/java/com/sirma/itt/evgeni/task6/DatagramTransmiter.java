@@ -14,8 +14,8 @@ import java.net.MulticastSocket;
 public class DatagramTransmiter {
 
 	private MulticastSocket multicastSocked;
-	private String ip;
-	private int port;
+	private final String ip;
+	private final int port;
 
 	public DatagramTransmiter(String ip, int port) {
 		this.ip = ip;
@@ -25,11 +25,13 @@ public class DatagramTransmiter {
 	/**
 	 * Open multicast socket.
 	 */
-	public void conect() {
+	public boolean conect() {
 		try {
 			multicastSocked = new MulticastSocket(port);
+			return true;
 		} catch (IOException e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 
