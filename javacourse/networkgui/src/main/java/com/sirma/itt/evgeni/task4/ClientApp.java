@@ -36,7 +36,7 @@ public class ClientApp extends JFrame implements ActionListener {
 		conectionStatus.setAlignmentX(Component.CENTER_ALIGNMENT);
 		conectionStatus.setText("Result:");
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		JButton startConection = new JButton("Get message");
+		JButton startConection = new JButton("Conect");
 		startConection.setName("start");
 		startConection.setAlignmentX(Component.CENTER_ALIGNMENT);
 		startConection.addActionListener(this);
@@ -58,7 +58,10 @@ public class ClientApp extends JFrame implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent ae) {
-
+		if (((JButton) ae.getSource()).getName().equals("start")) {
+			client.createConection(ipAdress.getText(),
+					Integer.parseInt(port.getText()));
+		}
 	}
 
 	public static void main(String[] args) {
