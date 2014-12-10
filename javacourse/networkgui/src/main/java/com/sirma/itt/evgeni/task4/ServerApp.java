@@ -12,11 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.sirma.itt.evgeni.task3.Server;
-
 public class ServerApp extends JFrame implements ActionListener {
 
-	Server server = new Server();
+	Server server;
 	JTextField ipAdress = new JTextField(15);
 	JTextField port = new JTextField(4);
 	JLabel conectionStatus = new JLabel();
@@ -66,11 +64,14 @@ public class ServerApp extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		if (((JButton) ae.getSource()).getName().equals("start")) {
-			server.startConection(ipAdress.getText(),
-					Integer.parseInt(port.getText()));
+			if (server == null) {
+				server = new Server(ipAdress.getText(), Integer.parseInt(port
+						.getText()));
+				server.start();
+			}
 		}
 		if (((JButton) ae.getSource()).getName().equals("stop")) {
-			server.stopConection();
+			server.stopServer();
 		}
 	}
 

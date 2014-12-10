@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import com.sirma.itt.evgeni.task3.User;
 
-public class Server {
+public class Server extends Thread {
 
 	private ServerSocket serverSocket;
 	private final ArrayList<User> users;
@@ -48,16 +48,22 @@ public class Server {
 		}
 	}
 
-	public void startReceiving(String ip, int port) throws IOException {
-		serverSocket = new ServerSocket(port);
-		while (true) {
-			Socket socket = serverSocket.accept();
-			ObjectOutputStream outputStream = new ObjectOutputStream(
-					socket.getOutputStream());
-			User temp = new User(socket, outputStream);
-			sendCount(temp);
-			notifyAllUsers();
-			users.add(temp);
+	@Override
+	public void run() {
+		try {
+			serverSocket = new ServerSocket(port);
+			while (true) {
+				Socket socket = serverSocket.accept();
+				System.out.println("Client conected...");
+				ObjectOutputStream outputStream = new ObjectOutputStream(
+						socket.getOutputStream());
+				User temp = new User(socket, outputStream);
+				sendCount(temp);
+				notifyAllUsers();
+				users.add(temp);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }

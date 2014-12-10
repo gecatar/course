@@ -12,15 +12,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class ClientApp extends JFrame implements ActionListener {
+import com.sirma.itt.evgeni.comunication.ComunicatorListener;
 
-	Client client = new Client();
+public class InfoReaderApp extends JFrame implements ActionListener,
+		ComunicatorListener {
+
+	ClientInfoReader infoReader;
 	JTextField ipAdress = new JTextField(15);
 	JTextField port = new JTextField(4);
 	JLabel conectionStatus = new JLabel();
 
-	public ClientApp() {
-		setTitle("Client");
+	public InfoReaderApp() {
+		setTitle("Information about clients...");
 		JPanel panel = new JPanel();
 		add(panel);
 		JLabel ipLabel = new JLabel("IP");
@@ -44,8 +47,8 @@ public class ClientApp extends JFrame implements ActionListener {
 		panel.add(ipAdress);
 		panel.add(portLabel);
 		panel.add(port);
-		panel.add(conectionStatus);
 		panel.add(startConection);
+		panel.add(conectionStatus);
 		// --------------------------------------
 		setSize(new Dimension(200, 250));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -59,13 +62,41 @@ public class ClientApp extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		if (((JButton) ae.getSource()).getName().equals("start")) {
-			client.createConection(ipAdress.getText(),
-					Integer.parseInt(port.getText()));
+			if (infoReader == null) {
+				infoReader = new ClientInfoReader(ipAdress.getText(),
+						Integer.parseInt(port.getText()), this);
+				infoReader.start();
+			}
+		}
+		if (((JButton) ae.getSource()).getName().equals("stop")) {
+			infoReader.stopClient();
 		}
 	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new ClientApp();
+		new InfoReaderApp();
+	}
+
+	@Override
+	public void userConected() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void displayMessage(String message) {
+		// TODO Auto-generated method stub
+		conectionStatus.setText(message);
+	}
+
+	@Override
+	public void conectionStatusChange(boolean conected) {
+		if (conected) {
+			conectionStatus.setText("Conected...!!!");
+		} else {
+			conectionStatus.setText("Disconected...!!!");
+		}
+
 	}
 }
