@@ -1,7 +1,10 @@
 package com.sirma.itt.evgeni.comunication;
 
+import java.net.ServerSocket;
+
 public class Server extends Thread {
 
+	protected ServerSocket serverSocket;
 	protected String ipAdress;
 	protected int port;
 	protected ComunicatorListener listener;

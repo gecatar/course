@@ -3,33 +3,22 @@ package com.sirma.itt.evgeni.task5;
 import java.io.IOException;
 import java.net.ServerSocket;
 
-/**
- * Open connections and receive new clients.
- * 
- * @author Evgeni Stefanov
- * 
- */
-public class Server extends Thread {
+import com.sirma.itt.evgeni.comunication.ComunicatorListener;
+import com.sirma.itt.evgeni.comunication.Server;
 
-	ServerSocket serverSocket;
-	ComunicatorListener comunicatorListener;
+public class MessageReverser extends Server {
 
-	public Server(ComunicatorListener comunicatorListener) {
-		this.comunicatorListener = comunicatorListener;
+	public MessageReverser(String ipAdress, int port,
+			ComunicatorListener listener) {
+		super(ipAdress, port, listener);
 	}
 
-	/**
-	 * Accept new clients.
-	 * 
-	 * @param ip
-	 * @param port
-	 */
 	public void acceptConections(String ip, int port) {
 		try {
 			while (true) {
 				serverSocket = new ServerSocket(port);
-				new serverTransferator(serverSocket.accept()).start();
-				comunicatorListener.userConected();
+				new MessageTransferator(serverSocket.accept()).start();
+				listener.userConected();
 			}
 		} catch (IOException e) {
 			closeServerSocket();
@@ -49,4 +38,5 @@ public class Server extends Thread {
 			}
 		}
 	}
+
 }

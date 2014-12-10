@@ -5,11 +5,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public class serverTransferator extends Thread {
+public class MessageTransferator extends Thread {
 
 	Socket socket;
 
-	public serverTransferator(Socket socket) {
+	public MessageTransferator(Socket socket) {
 		this.socket = socket;
 	}
 

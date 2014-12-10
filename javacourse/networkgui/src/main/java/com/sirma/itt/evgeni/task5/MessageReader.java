@@ -5,14 +5,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public class Client extends Thread {
+import com.sirma.itt.evgeni.comunication.Client;
+import com.sirma.itt.evgeni.comunication.ComunicatorListener;
 
-	String ipAdress;
-	int port;
+public class MessageReader extends Client {
 
-	public Client(String ipAdress, int port) {
-		this.ipAdress = ipAdress;
-		this.port = port;
+	public MessageReader(String ipAdress, int port, ComunicatorListener listener) {
+		super(ipAdress, port, listener);
+		// TODO Auto-generated constructor stub
 	}
 
 	public Socket connect(String ipAdress, int port) throws IOException {
