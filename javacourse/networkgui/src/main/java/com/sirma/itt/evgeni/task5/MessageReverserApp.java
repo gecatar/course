@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import com.sirma.itt.evgeni.comunication.ComunicatorListener;
@@ -21,6 +22,7 @@ public class MessageReverserApp extends JFrame implements ActionListener,
 	JTextField ipAdress = new JTextField(15);
 	JTextField port = new JTextField(4);
 	JLabel conectionStatus = new JLabel();
+	JTextArea textArea = new JTextArea();
 
 	public MessageReverserApp() {
 
@@ -39,6 +41,8 @@ public class MessageReverserApp extends JFrame implements ActionListener,
 		port.setMaximumSize(new Dimension(150, 20));
 		conectionStatus.setAlignmentX(Component.CENTER_ALIGNMENT);
 		conectionStatus.setText("Result:");
+		textArea.setAlignmentX(Component.CENTER_ALIGNMENT);
+		textArea.setMaximumSize(new Dimension(150, 60));
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		JButton startConection = new JButton("Start server");
 		startConection.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -55,6 +59,7 @@ public class MessageReverserApp extends JFrame implements ActionListener,
 		panel.add(conectionStatus);
 		panel.add(startConection);
 		panel.add(stopConection);
+		panel.add(textArea);
 		// --------------------------------------
 		setSize(new Dimension(200, 250));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -81,6 +86,7 @@ public class MessageReverserApp extends JFrame implements ActionListener,
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		new MessageReverserApp();
 	}
 
 	@Override
