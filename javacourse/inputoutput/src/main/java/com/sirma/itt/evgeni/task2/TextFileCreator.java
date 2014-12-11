@@ -38,7 +38,7 @@ public class TextFileCreator {
 				new BufferedOutputStream(new FileOutputStream(path)))) {
 			System.out.println("Type text: Enter '.' to stop.");
 			String text = new String();
-			while (!text.contains(".")) {
+			while (!text.equals(".")) {
 				osw.write(text);
 				text = reader.readLine();
 			}

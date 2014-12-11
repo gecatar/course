@@ -2,7 +2,9 @@ package com.sirma.itt.evgeni.task6;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
+import java.net.InetAddress;
 import java.net.MulticastSocket;
+import java.net.UnknownHostException;
 
 /**
  * Send data whit multicast socket.
@@ -13,11 +15,11 @@ import java.net.MulticastSocket;
 public class DatagramTransmiter {
 
 	private MulticastSocket multicastSocked;
-	private final String ip;
+	private final InetAddress ip;
 	private final int port;
 
-	public DatagramTransmiter(String ip, int port) {
-		this.ip = ip;
+	public DatagramTransmiter(String ip, int port) throws UnknownHostException {
+		this.ip = InetAddress.getByName(ip);
 		this.port = port;
 	}
 
@@ -39,9 +41,10 @@ public class DatagramTransmiter {
 	 * 
 	 * @return
 	 */
-	public boolean sendPacked(DatagramPacket datagramPacket) {
+	public boolean sendPacked(byte[] data) {
 		try {
-			multicastSocked.send(datagramPacket);
+			multicastSocked
+					.send(new DatagramPacket(data, data.length, ip, port));
 			return true;
 		} catch (IOException e) {
 			e.printStackTrace();

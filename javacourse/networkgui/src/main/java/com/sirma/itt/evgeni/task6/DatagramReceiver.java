@@ -15,7 +15,13 @@ public class DatagramReceiver extends Thread {
 
 	private String ip;
 	private int port;
-	private byte[] data;
+	private final byte[] data;
+	private final int dataGramSize;
+
+	public DatagramReceiver(int datagramSize) {
+		this.dataGramSize = datagramSize;
+		data = new byte[dataGramSize];
+	}
 
 	/**
 	 * Read data gram packages while socket is open.
@@ -31,6 +37,5 @@ public class DatagramReceiver extends Thread {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 }

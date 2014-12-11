@@ -24,9 +24,8 @@ public class PrivateReader {
 	 * @return list of invoked methods and result status.
 	 */
 	public String invokePrivateMethods(Object object) {
-		Class<?> cl = object.getClass();
 		StringBuilder stringBuilder = new StringBuilder();
-		for (Method method : cl.getDeclaredMethods()) {
+		for (Method method : object.getClass().getDeclaredMethods()) {
 			if (Modifier.isPrivate(method.getModifiers())) {
 				stringBuilder.append("invoke:").append(method.getName());
 				method.setAccessible(true);
@@ -50,11 +49,9 @@ public class PrivateReader {
 	 * @return
 	 */
 	public String getPrivateFileds(Object object) {
-		Class<?> cl = object.getClass();
-		cl.getDeclaredFields();
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("Private fields:\n");
-		for (Field field : cl.getDeclaredFields()) {
+		for (Field field : object.getClass().getDeclaredFields()) {
 			if (Modifier.isPrivate(field.getModifiers())) {
 				field.setAccessible(true);
 				stringBuilder.append(field.getName()).append(":");

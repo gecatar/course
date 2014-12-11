@@ -1,6 +1,5 @@
 package com.sirma.itt.evgeni.task6;
 
-import java.net.DatagramPacket;
 
 /**
  * Send packages whit different size.
@@ -10,9 +9,9 @@ import java.net.DatagramPacket;
  */
 public class PackageSender {
 
-	private static final int BASIC_SIZE = 8;
-	private static final int EXTENDED_SIZE = 32;
-	private static final int DOUBLE_SIZE = 40;
+	public static final int BASIC_SIZE = 8;
+	public static final int EXTENDED_SIZE = 32;
+	public static final int DOUBLE_SIZE = 40;
 	DatagramTransmiter basicDatagramTransmiter;
 	DatagramTransmiter extendedDatagramTransmiter;
 
@@ -27,14 +26,14 @@ public class PackageSender {
 	 * 
 	 * @param dataGramPacket
 	 */
-	public void send(DatagramPacket dataGramPacket) {
-		if (dataGramPacket.getData().length == BASIC_SIZE) {
-			sendPackage(dataGramPacket, basicDatagramTransmiter);
+	public void send(byte[] data) {
+		if (data.length == BASIC_SIZE) {
+			sendPackage(data, basicDatagramTransmiter);
 		}
-		if (dataGramPacket.getData().length == EXTENDED_SIZE) {
-			sendPackage(dataGramPacket, extendedDatagramTransmiter);
+		if (data.length == EXTENDED_SIZE) {
+			sendPackage(data, extendedDatagramTransmiter);
 		}
-		if (dataGramPacket.getData().length == DOUBLE_SIZE) {
+		if (data.length == DOUBLE_SIZE) {
 			// sendPackage(dataGramPacket, extendedDatagramTransmiter);
 		}
 	}
@@ -44,8 +43,7 @@ public class PackageSender {
 	 * 
 	 * @param dataGramPacked
 	 */
-	public void sendPackage(DatagramPacket dataGramPacked,
-			DatagramTransmiter datagramTransmiter) {
-		datagramTransmiter.sendPacked(dataGramPacked);
+	public void sendPackage(byte[] data, DatagramTransmiter datagramTransmiter) {
+		datagramTransmiter.sendPacked(data);
 	}
 }

@@ -23,10 +23,9 @@ public class ClassCreator {
 	 */
 	public String listInterfaces(Object object) {
 		if (object != null) {
-			Class<?> cl = object.getClass();
 			StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder.append("Intefaces:\n");
-			for (Class<?> interfc : cl.getInterfaces()) {
+			for (Class<?> interfc : object.getClass().getInterfaces()) {
 				stringBuilder.append(interfc.getName()).append("\n");
 			}
 			return stringBuilder.toString().trim();
@@ -44,8 +43,8 @@ public class ClassCreator {
 	public String getParrent(Object object) {
 		if (object != null) {
 			StringBuilder stringBuilder = new StringBuilder();
-			Class<?> cl = object.getClass();
-			stringBuilder.append("Super class:").append(cl.getSuperclass());
+			stringBuilder.append("Super class:").append(
+					object.getClass().getSuperclass());
 			return stringBuilder.toString();
 		}
 		return "";
