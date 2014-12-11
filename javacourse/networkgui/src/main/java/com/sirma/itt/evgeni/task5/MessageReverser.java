@@ -32,6 +32,7 @@ public class MessageReverser extends Server {
 			}
 		} catch (IOException e) {
 			closeServerSocket();
+			listener.conectionStatusChange(false);
 			e.printStackTrace();
 		}
 	}

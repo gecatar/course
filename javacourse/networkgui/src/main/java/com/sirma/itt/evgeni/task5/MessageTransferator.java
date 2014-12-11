@@ -5,6 +5,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+/**
+ * Send and receive messages from client.
+ * 
+ * @author Evgeni Stefanov
+ * 
+ */
 public class MessageTransferator extends Thread {
 
 	Socket socket;
@@ -13,21 +19,44 @@ public class MessageTransferator extends Thread {
 		this.socket = socket;
 	}
 
+	/**
+	 * Read messages from client.
+	 * 
+	 * @param inputStream
+	 * @return
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	public String readMessage(ObjectInputStream inputStream)
 			throws IOException, ClassNotFoundException {
 		return (String) inputStream.readObject();
 	}
 
+	/**
+	 * Send messages to client.
+	 * 
+	 * @param message
+	 * @param outputStream
+	 * @throws IOException
+	 */
 	public void sendMessage(String message, ObjectOutputStream outputStream)
 			throws IOException {
 		outputStream.writeObject(message);
-		closeSocket();
 	}
 
+	/**
+	 * Reverse message.
+	 * 
+	 * @param message
+	 * @return
+	 */
 	public String reverseMessage(String message) {
 		return new StringBuilder(message).reverse().toString();
 	}
 
+	/**
+	 * Start receiving messages.
+	 */
 	@Override
 	public void run() {
 		try {
@@ -45,6 +74,9 @@ public class MessageTransferator extends Thread {
 		}
 	}
 
+	/**
+	 * Close socket.
+	 */
 	public synchronized void closeSocket() {
 		if (socket != null) {
 			try {

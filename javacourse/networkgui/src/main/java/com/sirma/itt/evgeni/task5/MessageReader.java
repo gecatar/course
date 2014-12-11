@@ -67,16 +67,19 @@ public class MessageReader extends Client {
 	public void run() {
 		try {
 			Socket socket = connect(ipAdress, port);
+			listener.conectionStatusChange(true);
 			ObjectInputStream inputStream = new ObjectInputStream(
 					socket.getInputStream());
 			ObjectOutputStream outputStream = new ObjectOutputStream(
 					socket.getOutputStream());
 			UserInputReader inputReader = new InputReader();
 			while (true) {
+				System.out.println("Enter message:");
 				sendMessage(inputReader.readLine(), outputStream);
-				readMessage(inputStream);
+				listener.displayMessage(readMessage(inputStream));
 			}
 		} catch (IOException | ClassNotFoundException e) {
+			listener.conectionStatusChange(false);
 			e.printStackTrace();
 		}
 	}

@@ -15,6 +15,12 @@ import javax.swing.JTextField;
 
 import com.sirma.itt.evgeni.comunication.ComunicatorListener;
 
+/**
+ * Read, send and reverse messages.
+ * 
+ * @author Evgeni Stefanov
+ * 
+ */
 public class MessageReverserApp extends JFrame implements ActionListener,
 		ComunicatorListener {
 
@@ -87,26 +93,42 @@ public class MessageReverserApp extends JFrame implements ActionListener,
 		}
 	}
 
+	/**
+	 * Start app.
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		new MessageReverserApp();
 	}
 
+	/**
+	 * When new user came in.
+	 */
 	@Override
 	public void userConected() {
-		// TODO Auto-generated method stub
-
+		conectionStatus.setText("User conected...");
 	}
 
+	/**
+	 * Display messages received from server.
+	 */
 	@Override
 	public void displayMessage(String message) {
 		// TODO Auto-generated method stub
-
+		conectionStatus.setText("User conected..." + "\n"
+				+ conectionStatus.getText());
 	}
 
+	/**
+	 * Change conection status.
+	 */
 	@Override
 	public void conectionStatusChange(boolean conected) {
-		// TODO Auto-generated method stub
+		if (!conected) {
+			conectionStatus.setText("Disconnected....");
+		}
 
 	}
 }
