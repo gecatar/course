@@ -13,14 +13,14 @@ import java.net.MulticastSocket;
  */
 public class DatagramReceiver extends Thread {
 
-	private String ip;
-	private int port;
-	private final byte[] data;
+	private final String ip;
+	private final int port;
 	private final int dataGramSize;
 
-	public DatagramReceiver(int datagramSize) {
+	public DatagramReceiver(String ip, int port, int datagramSize) {
+		this.ip = ip;
+		this.port = port;
 		this.dataGramSize = datagramSize;
-		data = new byte[dataGramSize];
 	}
 
 	/**
@@ -31,8 +31,10 @@ public class DatagramReceiver extends Thread {
 		try (MulticastSocket multicastSocket = new MulticastSocket(port)) {
 			multicastSocket.joinGroup(InetAddress.getByName(ip));
 			while (true) {
+				byte[] data = new byte[dataGramSize];
 				DatagramPacket packet = new DatagramPacket(data, data.length);
 				multicastSocket.receive(packet);
+				System.out.println("data gram received!!!");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
