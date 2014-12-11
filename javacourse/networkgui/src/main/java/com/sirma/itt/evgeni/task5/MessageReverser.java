@@ -2,6 +2,7 @@ package com.sirma.itt.evgeni.task5;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.util.ArrayList;
 
 import com.sirma.itt.evgeni.comunication.ComunicatorListener;
 import com.sirma.itt.evgeni.comunication.Server;
@@ -14,9 +15,12 @@ import com.sirma.itt.evgeni.comunication.Server;
  */
 public class MessageReverser extends Server {
 
+	private final ArrayList<MessageTransferator> messageTransferators;
+
 	public MessageReverser(String ipAdress, int port,
 			ComunicatorListener listener) {
 		super(ipAdress, port, listener);
+		messageTransferators = new ArrayList<MessageTransferator>();
 	}
 
 	/**
@@ -27,7 +31,10 @@ public class MessageReverser extends Server {
 		try {
 			serverSocket = new ServerSocket(port);
 			while (true) {
-				new MessageTransferator(serverSocket.accept()).start();
+				MessageTransferator temp = new MessageTransferator(
+						serverSocket.accept());
+				messageTransferators.add(temp);
+				temp.start();
 				listener.userConected();
 			}
 		} catch (IOException e) {
@@ -38,7 +45,7 @@ public class MessageReverser extends Server {
 	}
 
 	/**
-	 * Close server socket.
+	 * Close server socket. And created connections.
 	 */
 	public synchronized void closeServerSocket() {
 		if (serverSocket != null) {
@@ -48,6 +55,12 @@ public class MessageReverser extends Server {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+		if (messageTransferators != null) {
+			for (MessageTransferator temp : messageTransferators) {
+				temp.closeSocket();
+			}
+			messageTransferators.clear();
 		}
 	}
 

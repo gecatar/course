@@ -15,6 +15,12 @@ import javax.swing.JTextField;
 
 import com.sirma.itt.evgeni.comunication.ComunicatorListener;
 
+/**
+ * Start and stop receivin on messages.
+ * 
+ * @author Evgeni Stefanov
+ * 
+ */
 public class MessageReaderApp extends JFrame implements ActionListener,
 		ComunicatorListener {
 
