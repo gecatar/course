@@ -2,7 +2,6 @@ package com.sirma.itt.evgeni.task6;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
-import java.net.InetAddress;
 import java.net.MulticastSocket;
 
 /**
@@ -40,10 +39,8 @@ public class DatagramTransmiter {
 	 * 
 	 * @return
 	 */
-	public boolean sendData(byte[] data) {
+	public boolean sendPacked(DatagramPacket datagramPacket) {
 		try {
-			DatagramPacket datagramPacket = new DatagramPacket(data,
-					data.length, InetAddress.getByName(ip), port);
 			multicastSocked.send(datagramPacket);
 			return true;
 		} catch (IOException e) {
