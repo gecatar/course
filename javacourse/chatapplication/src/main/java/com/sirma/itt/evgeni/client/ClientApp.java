@@ -6,6 +6,12 @@ import com.sirma.itt.evgeni.comunication.ConectorShutdownHook;
 import com.sirma.itt.evgeni.comunication.UILIstener;
 import com.sirma.itt.evgeni.comunication.Window;
 
+/**
+ * Send and receive messages from server.
+ * 
+ * @author Evgeni Stefanov
+ * 
+ */
 public class ClientApp implements UILIstener, ComunicatorListener {
 
 	Comunicator comunicator;
@@ -19,45 +25,71 @@ public class ClientApp implements UILIstener, ComunicatorListener {
 		new Window(viewPanell);
 	}
 
+	/**
+	 * Show user connection status.
+	 */
+	@Override
 	public void setConectionStatus(String conectionCondition) {
 		viewPanell.setConectionStatus(conectionCondition);
 
 	}
 
+	/**
+	 * Show message on display.
+	 */
+	@Override
 	public void showMesage(String name, String text) {
-		// TODO Auto-generated method stub client
 		viewPanell.displayMessage(name, text);
 	}
 
+	/**
+	 * Add user in list.
+	 */
+	@Override
 	public void addUser(String name) {
-		// TODO Auto-generated method stub client
 		viewPanell.addUser(name);
 	}
 
+	/**
+	 * Remove user from list.
+	 */
+	@Override
 	public void removeUser(String name) {
-		// TODO Auto-generated method stub client
 		viewPanell.removeUser(name);
 	}
 
+	/**
+	 * Start connection.
+	 */
+	@Override
 	public void startConection(String nickname, String ip, String port) {
-		// TODO Auto-generated method stub interface
 		comunicator.setName(nickname);
 		comunicator.startConection(ip, Integer.parseInt(port));
 	}
 
+	/**
+	 * Stop connection.
+	 */
+	@Override
 	public void stopConection() {
-		// TODO Auto-generated method stub interface
 		comunicator.stopConection();
 	}
 
+	/**
+	 * Send message to user.
+	 */
+	@Override
 	public void sendMessage(String name, String text) {
-		// TODO Auto-generated method stub interface
 		comunicator.sendMesage(name, text);
 	}
 
+	/**
+	 * Start application.
+	 * 
+	 * @param args
+	 */
 	// Runner--------------------------------
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		new ClientApp();
 	}
 	// --------------------------------------

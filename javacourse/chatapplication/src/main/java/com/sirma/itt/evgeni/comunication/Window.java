@@ -5,6 +5,12 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+/**
+ * Mutual window for all comunicators.
+ * 
+ * @author Evgeni Stefanov
+ * 
+ */
 public class Window extends JFrame {
 
 	public Window(Component componnent) {
