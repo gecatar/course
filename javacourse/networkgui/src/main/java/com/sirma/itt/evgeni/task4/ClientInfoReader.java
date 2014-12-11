@@ -8,14 +8,22 @@ import java.net.UnknownHostException;
 import com.sirma.itt.evgeni.comunication.Client;
 import com.sirma.itt.evgeni.comunication.ComunicatorListener;
 
+/**
+ * Read information about clients.
+ * 
+ * @author Evgeni Stefanov
+ * 
+ */
 public class ClientInfoReader extends Client {
 
 	public ClientInfoReader(String ipAdress, int port,
 			ComunicatorListener listener) {
 		super(ipAdress, port, listener);
-		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Start listening for messages.
+	 */
 	@Override
 	public void run() {
 		try {
@@ -29,6 +37,12 @@ public class ClientInfoReader extends Client {
 		}
 	}
 
+	/**
+	 * Create connection.
+	 * 
+	 * @throws UnknownHostException
+	 * @throws IOException
+	 */
 	public void createConection() throws UnknownHostException, IOException {
 		socket = new Socket(ipAdress, port);
 		inputStream = new ObjectInputStream(socket.getInputStream());

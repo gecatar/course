@@ -12,6 +12,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * Send information about clients.
+ * 
+ * @author Evgeni Stefanov
+ * 
+ */
 public class ServerApp extends JFrame implements ActionListener {
 
 	Server server;
@@ -62,7 +68,7 @@ public class ServerApp extends JFrame implements ActionListener {
 	 * When UI Button is pressed.
 	 */
 	@Override
-	public void actionPerformed(ActionEvent ae) {
+	public synchronized void actionPerformed(ActionEvent ae) {
 		if (((JButton) ae.getSource()).getName().equals("start")) {
 			if (server == null) {
 				server = new Server(ipAdress.getText(), Integer.parseInt(port
@@ -71,12 +77,19 @@ public class ServerApp extends JFrame implements ActionListener {
 			}
 		}
 		if (((JButton) ae.getSource()).getName().equals("stop")) {
-			server.stopServer();
+			if (server != null) {
+				server.stopServer();
+				server = null;
+			}
 		}
 	}
 
+	/**
+	 * Start app.
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		new ServerApp();
 	}
 }

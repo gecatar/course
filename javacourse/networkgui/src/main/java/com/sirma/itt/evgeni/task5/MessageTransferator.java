@@ -28,6 +28,7 @@ public class MessageTransferator extends Thread {
 		return new StringBuilder(message).reverse().toString();
 	}
 
+	@Override
 	public void run() {
 		try {
 			ObjectOutputStream outputStream = new ObjectOutputStream(

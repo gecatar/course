@@ -10,10 +10,17 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import com.sirma.itt.evgeni.comunication.ComunicatorListener;
 
+/**
+ * Read and display information about clients.
+ * 
+ * @author Evgeni Stefanov
+ * 
+ */
 public class InfoReaderApp extends JFrame implements ActionListener,
 		ComunicatorListener {
 
@@ -21,6 +28,7 @@ public class InfoReaderApp extends JFrame implements ActionListener,
 	JTextField ipAdress = new JTextField(15);
 	JTextField port = new JTextField(4);
 	JLabel conectionStatus = new JLabel();
+	JTextArea messageArea = new JTextArea();
 
 	public InfoReaderApp() {
 		setTitle("Information about clients...");
@@ -38,6 +46,8 @@ public class InfoReaderApp extends JFrame implements ActionListener,
 		port.setMaximumSize(new Dimension(150, 20));
 		conectionStatus.setAlignmentX(Component.CENTER_ALIGNMENT);
 		conectionStatus.setText("Result:");
+		messageArea.setAlignmentX(Component.CENTER_ALIGNMENT);
+		messageArea.setMaximumSize(new Dimension(150, 100));
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		JButton startConection = new JButton("Conect");
 		startConection.setName("start");
@@ -49,6 +59,7 @@ public class InfoReaderApp extends JFrame implements ActionListener,
 		panel.add(port);
 		panel.add(startConection);
 		panel.add(conectionStatus);
+		panel.add(messageArea);
 		// --------------------------------------
 		setSize(new Dimension(200, 250));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -69,27 +80,38 @@ public class InfoReaderApp extends JFrame implements ActionListener,
 			}
 		}
 		if (((JButton) ae.getSource()).getName().equals("stop")) {
-			infoReader.stopClient();
+			if (infoReader != null) {
+				infoReader.stopClient();
+				infoReader = null;
+			}
 		}
 	}
 
+	/**
+	 * Start app.
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		new InfoReaderApp();
 	}
 
 	@Override
 	public void userConected() {
-		// TODO Auto-generated method stub
-
 	}
 
+	/**
+	 * Display message from server.
+	 */
 	@Override
 	public void displayMessage(String message) {
 		// TODO Auto-generated method stub
-		conectionStatus.setText(message);
+		messageArea.setText(message + "\n" + messageArea.getText());
 	}
 
+	/**
+	 * When connection state change.
+	 */
 	@Override
 	public void conectionStatusChange(boolean conected) {
 		if (conected) {

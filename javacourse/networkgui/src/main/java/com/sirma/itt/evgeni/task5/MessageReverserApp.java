@@ -80,7 +80,10 @@ public class MessageReverserApp extends JFrame implements ActionListener,
 			}
 		}
 		if (((JButton) ae.getSource()).getName().equals("stop")) {
-
+			if (messageReverser != null) {
+				messageReverser.closeServerSocket();
+				messageReverser = null;
+			}
 		}
 	}
 

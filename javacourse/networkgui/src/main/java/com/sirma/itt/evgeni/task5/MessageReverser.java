@@ -6,6 +6,12 @@ import java.net.ServerSocket;
 import com.sirma.itt.evgeni.comunication.ComunicatorListener;
 import com.sirma.itt.evgeni.comunication.Server;
 
+/**
+ * Create connection whit users.
+ * 
+ * @author Evgeni Stefanov
+ * 
+ */
 public class MessageReverser extends Server {
 
 	public MessageReverser(String ipAdress, int port,
@@ -13,10 +19,14 @@ public class MessageReverser extends Server {
 		super(ipAdress, port, listener);
 	}
 
-	public void acceptConections(String ip, int port) {
+	/**
+	 * Start connections.
+	 */
+	@Override
+	public void run() {
 		try {
+			serverSocket = new ServerSocket(port);
 			while (true) {
-				serverSocket = new ServerSocket(port);
 				new MessageTransferator(serverSocket.accept()).start();
 				listener.userConected();
 			}
@@ -33,6 +43,7 @@ public class MessageReverser extends Server {
 		if (serverSocket != null) {
 			try {
 				serverSocket.close();
+				serverSocket = null;
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
