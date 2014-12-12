@@ -118,6 +118,14 @@ public class Calculator {
 		return calculateOperations(extractOperations(string)).toString();
 	}
 
+	public boolean isFirstMinus(String string) {
+		if (string.charAt(0) == '-') {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	/**
 	 * Return list whit all operation extracted from string.
 	 * 
@@ -130,7 +138,13 @@ public class Calculator {
 		String tempNumber = new String();
 		boolean firstNumberExtracted = false;
 		try {
-			for (int index = 0; index < string.length();) {
+			int index = 0;
+			if (isFirstMinus(string)) {
+				tempNumber = "-" + getNumber(string, 1);
+				index += tempNumber.length();
+				firstNumberExtracted = true;
+			}
+			for (; index < string.length();) {
 				String firstNumber;
 				if (!firstNumberExtracted) {
 					firstNumber = getNumber(string, index);

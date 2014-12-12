@@ -11,12 +11,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class CalculatorView extends JFrame implements ActionListener {
+public class CalculatorApp extends JFrame implements ActionListener {
 
 	Display display;
 	Calculator calculator = new Calculator();
 
-	public CalculatorView() {
+	public CalculatorApp() {
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(new Dimension(300, 300));
@@ -75,5 +75,14 @@ public class CalculatorView extends JFrame implements ActionListener {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Calculator runner.
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		new CalculatorApp();
 	}
 }

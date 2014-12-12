@@ -23,12 +23,9 @@ public class CalculatorTest {
 	 */
 	@Test
 	public void calculateOperationsTest() {
-		assertEquals(new BigDecimal("10"),
+		assertEquals(new BigDecimal("-10"),
 				calculator.calculateOperations(calculator
 						.extractOperations("-5*2-4+4-3*3+9")));
-		assertEquals(new BigDecimal("8"),
-				calculator.calculateOperations(calculator
-						.extractOperations("3*3-2*2/4")));
 	}
 
 	/**
