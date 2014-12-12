@@ -1,6 +1,6 @@
 package com.sirma.itt.evgeni.task5;
 
-import com.sirma.itt.evgeni.util.TextUtil;
+import com.sirma.itt.evgeni.util.IbanReplacer;
 
 public class IbanReplacerRunner {
 
@@ -15,7 +15,7 @@ public class IbanReplacerRunner {
 				+ " <iban>BG80 BNBG 9661 1020 3456 7843</iban> </bankAccounts>";
 		System.out.println(ibans);
 		System.out.println("Print new string whit replaced character.");
-		System.out.println(TextUtil.replaceIban(ibans));
+		System.out.println(IbanReplacer.replaceFirstCharacter(ibans));
 	}
 
 }
