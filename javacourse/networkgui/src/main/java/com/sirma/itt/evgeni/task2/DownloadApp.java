@@ -18,7 +18,7 @@ import javax.swing.JTextField;
  * @author Evgeni Stefanov
  * 
  */
-public class DownloadView extends JFrame implements ActionListener,
+public class DownloadApp extends JFrame implements ActionListener,
 		DownloadProgressListener {
 
 	JProgressBar downloadProgress = new JProgressBar();
@@ -29,7 +29,7 @@ public class DownloadView extends JFrame implements ActionListener,
 	JLabel size = new JLabel("Size");
 	JLabel downloadded = new JLabel("Downloaded size");
 
-	public DownloadView() {
+	public DownloadApp() {
 		setSize(new Dimension(400, 500));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -108,7 +108,7 @@ public class DownloadView extends JFrame implements ActionListener,
 
 	// Runner-------------------------------------------
 	public static void main(String[] args) {
-		DownloadView downloadView = new DownloadView();
+		DownloadApp downloadApp = new DownloadApp();
 	}
 	// -------------------------------------------------
 }
