@@ -4,9 +4,10 @@ import java.util.regex.Pattern;
 
 public class TextReplacer {
 
-	private static final Pattern pattern = Pattern.compile(" ");
+	private static final Pattern pattern = Pattern
+			.compile("(\\<x\\>[\\w|\\s]*\\<\\/x>)");
 
 	public static String replace(String text) {
-		return "";
+		return pattern.matcher(text).replaceAll("<x/>");
 	}
 }
