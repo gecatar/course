@@ -22,18 +22,20 @@ public class PageBean {
 	 *            how much items to contain every page.
 	 * @return collection whit pages.
 	 */
-	public LinkedList<Page> getPages(Object[] obj, int pageSize) {
-
+	public LinkedList<Page> getPages(Object[] object, int pageSize) {
 		page = new LinkedList<Page>();
-		int pages = obj.length / pageSize;
-		if (obj.length % pageSize > 0) {
+		if (object == null) {
+			return page;
+		}
+		int pages = object.length / pageSize;
+		if (object.length % pageSize > 0) {
 			pages++;
 		}
 		for (int i = 0; i < pages; i++) {
 			Page temp = new Page();
 			for (int j = 0; j < pageSize; j++) {
-				if (i * pageSize + j < obj.length) {
-					temp.addElement(obj[i * pageSize + j]);
+				if (i * pageSize + j < object.length) {
+					temp.addElement(object[i * pageSize + j]);
 				}
 			}
 			page.add(temp);

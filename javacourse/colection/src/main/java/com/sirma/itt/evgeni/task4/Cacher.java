@@ -47,9 +47,38 @@ public class Cacher {
 		StringBuilder stb = new StringBuilder();
 		Object[] temp = lruCache.toArray();
 		for (Object object : temp) {
-			stb.append((Integer) object).append(" ");
+			stb.append(object).append(" ");
 		}
 		return stb.toString();
+	}
+
+	/**
+	 * Return object by specified key and put its key on first position.
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public Object getObject(int key) {
+		if (objectMap.containsKey(key)) {
+			makeKeyFirst(key);
+			return objectMap.get(key);
+		}
+		return null;
+	}
+
+	/**
+	 * Make passed key on first position in list.
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public boolean makeKeyFirst(int key) {
+		if (lruCache.contains(key)) {
+			lruCache.remove(key);
+			lruCache.addFirst(key);
+			return true;
+		}
+		return false;
 	}
 
 	/**

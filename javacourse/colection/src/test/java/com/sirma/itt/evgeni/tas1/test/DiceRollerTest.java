@@ -1,7 +1,6 @@
 package com.sirma.itt.evgeni.tas1.test;
 
-import static org.junit.Assert.*;
-
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,37 +16,21 @@ public class DiceRollerTest {
 	}
 
 	/**
-	 * Check adding records whe first dice is in map.
+	 * Check behavior when adding existing combination.
 	 */
 	@Test
-	public void addWhenFirstInMap() {
-		diceRoller.addWhenBoothNotInMap(0, 0, 0);
-		diceRoller.addWhenFirstDiceInMap(0, 1, 0);
-		String expectedRecord = "First Dice:0 Second Dice:0\nDrawns:0 \nFirst Dice:0 Second Dice:1\nDrawns:0 \n";
-		assertEquals(expectedRecord, diceRoller.toString());
+	public void addExistingCombinationTest() {
+		diceRoller.clearRecords();
+		Assert.assertTrue(diceRoller.addNonExsistingCombination("1 2", 0));
+		Assert.assertTrue(diceRoller.addExsistingCombination("1 2", 1));
 	}
 
 	/**
-	 * Check behavior when booth dices are not included in map.
+	 * Check behavior when adding non existing combination.
 	 */
 	@Test
-	public void addWhenBoothNotInMapTest() {
-		diceRoller.addWhenBoothNotInMap(0, 0, 0);
-		String expectedRecord = "First Dice:0 Second Dice:0\nDrawns:0 \n";
-		assertEquals(expectedRecord, diceRoller.toString());
+	public void addNonExsistingCombinationTest() {
 		diceRoller.clearRecords();
+		Assert.assertTrue(diceRoller.addNonExsistingCombination("1 2", 0));
 	}
-
-	/**
-	 * Check behavior when booth dices are included in map.
-	 */
-	@Test
-	public void addWhenBoothDiceInMaptest() {
-		diceRoller.addWhenBoothNotInMap(0, 0, 0);
-		diceRoller.addWhenBoothDiceInMap(0, 0, 1);
-		String expectedRecord = "First Dice:0 Second Dice:0\nDrawns:0 1 \n";
-		assertEquals(expectedRecord, diceRoller.toString());
-		diceRoller.clearRecords();
-	}
-
 }

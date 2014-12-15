@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
 /**
  * Generate two dice statistic.
@@ -14,10 +13,10 @@ import java.util.Set;
  */
 public class DiceRoller {
 
-	private Dice firstDice;
-	private Dice secondDice;
+	private final Dice firstDice;
+	private final Dice secondDice;
 
-	Map<Integer, Map<Integer, ArrayList<Integer>>> combinations = new HashMap<Integer, Map<Integer, ArrayList<Integer>>>();
+	Map<String, ArrayList<Integer>> combinations = new HashMap<String, ArrayList<Integer>>();
 
 	public DiceRoller(int sides) {
 		firstDice = new Dice(sides);
@@ -37,66 +36,67 @@ public class DiceRoller {
 	 * Clear saved Records.
 	 */
 	public void clearRecords() {
-		combinations = new HashMap<Integer, Map<Integer, ArrayList<Integer>>>();
+		combinations.clear();
 	}
 
 	/**
 	 * Save combination in record base.
+	 * 
 	 * @param firstDice
 	 * @param secondDice
 	 * @param drawNumber
 	 * @return
 	 */
 	public boolean saveCombination(int firstDice, int secondDice, int drawNumber) {
-		if (combinations.containsKey(firstDice)) {
-			if (combinations.get(firstDice).containsKey(secondDice)) {
-				addWhenBoothDiceInMap(firstDice, secondDice, drawNumber);
-			} else {
-				addWhenFirstDiceInMap(firstDice, secondDice, drawNumber);
-			}
+		String combination = getCombinationString(firstDice, secondDice);
+		if (combinations.containsKey(combination)) {
+			return addExsistingCombination(combination, drawNumber);
 		} else {
-			addWhenBoothNotInMap(firstDice, secondDice, drawNumber);
+			return addNonExsistingCombination(combination, drawNumber);
+		}
+	}
+
+	/**
+	 * Create string whit two values of dices.
+	 * 
+	 * @param firstDice
+	 * @param secondDice
+	 * @return
+	 */
+	public String getCombinationString(int firstDice, int secondDice) {
+		return String.valueOf(firstDice) + " " + secondDice;
+	}
+
+	/**
+	 * Add existing combination.
+	 * 
+	 * @param combination
+	 * @param drawNumber
+	 * @return
+	 */
+	public boolean addExsistingCombination(String combination, int drawNumber) {
+		if (combinations.containsKey(combination)) {
+			combinations.get(combination).add(drawNumber);
+			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * Add combination when first dice is included in record.
-	 * @param firstDice
-	 * @param secondDice
+	 * Add non existing combination.
+	 * 
+	 * @param combination
 	 * @param drawNumber
+	 * @return
 	 */
-	public void addWhenFirstDiceInMap(int firstDice, int secondDice,
-			int drawNumber) {
-		ArrayList<Integer> drawnData = new ArrayList<Integer>();
-		drawnData.add(drawNumber);
-		combinations.get(firstDice).put(secondDice, drawnData);
-	}
-
-	/**
-	 * Add combination when two dices are included.
-	 * @param firstDice
-	 * @param secondDice
-	 * @param drawNumber
-	 */
-	public void addWhenBoothDiceInMap(int firstDice, int secondDice,
-			int drawNumber) {
-		combinations.get(firstDice).get(secondDice).add(drawNumber);
-	}
-
-	/**
-	 * Add combination when booth dices are not in records.
-	 * @param firstDice
-	 * @param secondDice
-	 * @param drawNumber
-	 */
-	public void addWhenBoothNotInMap(int firstDice, int secondDice,
-			int drawNumber) {
-		Map<Integer, ArrayList<Integer>> temp = new HashMap<Integer, ArrayList<Integer>>();
-		ArrayList<Integer> drawnColection = new ArrayList<Integer>();
-		drawnColection.add(drawNumber);
-		temp.put(secondDice, drawnColection);
-		combinations.put(firstDice, temp);
+	public boolean addNonExsistingCombination(String combination, int drawNumber) {
+		if (!combinations.containsKey(combination)) {
+			ArrayList<Integer> temp = new ArrayList<Integer>();
+			temp.add(drawNumber);
+			combinations.put(combination, temp);
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -105,21 +105,14 @@ public class DiceRoller {
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
-		for (Entry<Integer, Map<Integer, ArrayList<Integer>>> firstEntry : combinations
-				.entrySet()) {
-			for (Entry<Integer, ArrayList<Integer>> secondEntry : firstEntry
-					.getValue().entrySet()) {
-				stringBuilder.append("First Dice:").append(firstEntry.getKey())
-						.append(" ");
-				stringBuilder.append("Second Dice:")
-						.append(secondEntry.getKey()).append("\n");
-				stringBuilder.append("Drawns:");
-				for (Integer integer : secondEntry.getValue()) {
-					stringBuilder.append(integer).append(" ");
-				}
-				stringBuilder.append("\n");
+		for (Entry<String, ArrayList<Integer>> entry : combinations.entrySet()) {
+			stringBuilder.append("Dices:").append(entry.getKey()).append(" ");
+			stringBuilder.append("Drawns:");
+			for (Integer integer : entry.getValue()) {
+				stringBuilder.append(integer).append(" ");
 			}
+			stringBuilder.append("\n");
 		}
-		return stringBuilder.toString();
+		return stringBuilder.toString().trim();
 	}
 }
