@@ -20,7 +20,6 @@ public class ServerConector extends Conector {
 
 	@Override
 	public void run() {
-
 		try {
 			serverSocket = new ServerSocket(port);
 			setAutoclosable(serverSocket);
@@ -38,7 +37,6 @@ public class ServerConector extends Conector {
 		} finally {
 			comunicator.closeConectorSession();
 		}
-
 	}
 
 	@Override
