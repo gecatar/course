@@ -20,6 +20,7 @@ public class TextFileCreatorRunner {
 	 */
 	public static void main(String[] args) throws FileNotFoundException {
 		TextFileCreator textFileCreator = new TextFileCreator(new InputReader());
-		textFileCreator.createFile("asda");
+		textFileCreator.createFile(com.sirma.itt.evgeni.util.DirectoryBrowser
+				.chooseFile().toString());
 	}
 }
