@@ -14,8 +14,8 @@ import com.sirma.itt.evgeni.comunication.Window;
  */
 public class ClientApp implements UILIstener, ComunicatorListener {
 
-	Comunicator comunicator;
-	ViewPanell viewPanell;
+	private final Comunicator comunicator;
+	private final ViewPanell viewPanell;
 
 	public ClientApp() {
 		comunicator = new Client(this);
