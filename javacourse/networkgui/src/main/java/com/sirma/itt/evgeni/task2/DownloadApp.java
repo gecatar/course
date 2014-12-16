@@ -21,13 +21,17 @@ import javax.swing.JTextField;
 public class DownloadApp extends JFrame implements ActionListener,
 		DownloadProgressListener {
 
-	JProgressBar downloadProgress = new JProgressBar();
-	JTextField textField = new JTextField(20);
-	JButton downloadFile = new JButton("Start Download");
-	JPanel panel = new JPanel();
-	JLabel percentValue = new JLabel("Progress in percent...");
-	JLabel size = new JLabel("Size");
-	JLabel downloadded = new JLabel("Downloaded size");
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private final JProgressBar downloadProgress = new JProgressBar();
+	private final JTextField textField = new JTextField(20);
+	private final JButton downloadFile = new JButton("Start Download");
+	private final JPanel panel = new JPanel();
+	private final JLabel percentValue = new JLabel("Progress in percent...");
+	private final JLabel size = new JLabel("Size");
+	private final JLabel downloadded = new JLabel("Downloaded size");
 
 	public DownloadApp() {
 		setSize(new Dimension(400, 500));
