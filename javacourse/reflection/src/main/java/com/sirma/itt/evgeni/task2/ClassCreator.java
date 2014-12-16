@@ -58,6 +58,9 @@ public class ClassCreator {
 	 * @return created object. Or null if operation is not successful.
 	 */
 	public Object createFromName(String name) {
+		if (name == null) {
+			return null;
+		}
 		try {
 			return Class.forName(name).newInstance();
 		} catch (ReflectiveOperationException e) {
