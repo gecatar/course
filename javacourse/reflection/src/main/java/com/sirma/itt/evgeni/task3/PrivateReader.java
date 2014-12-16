@@ -24,6 +24,9 @@ public class PrivateReader {
 	 * @return list of invoked methods and result status.
 	 */
 	public String invokePrivateMethods(Object object) {
+		if (object == null) {
+			return "";
+		}
 		StringBuilder stringBuilder = new StringBuilder();
 		for (Method method : object.getClass().getDeclaredMethods()) {
 			if (Modifier.isPrivate(method.getModifiers())) {
@@ -49,6 +52,9 @@ public class PrivateReader {
 	 * @return
 	 */
 	public String getPrivateFileds(Object object) {
+		if (object == null) {
+			return "";
+		}
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("Private fields:\n");
 		for (Field field : object.getClass().getDeclaredFields()) {
