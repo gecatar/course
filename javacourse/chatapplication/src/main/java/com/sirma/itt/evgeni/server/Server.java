@@ -20,11 +20,11 @@ import com.sirma.itt.evgeni.comunication.MesageCommand;
  */
 public class Server implements Comunicator {
 
-	ComunicatorListener comunicatorListener;
-	Conector conector;
-	String name;
+	private final ComunicatorListener comunicatorListener;
+	private Conector conector;
+	private String name;
 
-	Map<String, DataTransferator> users = new ConcurrentHashMap<String, DataTransferator>();
+	private final Map<String, DataTransferator> users = new ConcurrentHashMap<String, DataTransferator>();
 
 	public Server(ComunicatorListener comunicatorListener) {
 		this.comunicatorListener = comunicatorListener;
@@ -109,10 +109,12 @@ public class Server implements Comunicator {
 		transferator.start();
 	}
 
-	public void sendMesageToUser(String sender, String receiver, String text) {
+	public boolean sendMesageToUser(String sender, String receiver, String text) {
 		if (users.containsKey(receiver)) {
 			users.get(receiver).sendData(new Mesage(sender, receiver, text));
+			return true;
 		}
+		return false;
 	}
 
 	/**
