@@ -24,10 +24,9 @@ public class ClassAnalyzer {
 	 * @return string whit extracted data.
 	 */
 	public String listDeclaredMethods(Object object) {
-		Class<?> cl = object.getClass();
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("Declared methods:").append("\n");
-		for (Method method : cl.getDeclaredMethods()) {
+		for (Method method : object.getClass().getDeclaredMethods()) {
 			if (Modifier.isPrivate(method.getModifiers())) {
 				stringBuilder.append("private ");
 			}
@@ -49,10 +48,9 @@ public class ClassAnalyzer {
 	 * @return
 	 */
 	public String listDeclaredFields(Object object) {
-		Class<?> cl = object.getClass();
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("Declared fields:").append("\n");
-		for (Field field : cl.getDeclaredFields()) {
+		for (Field field : object.getClass().getDeclaredFields()) {
 			field.setAccessible(true);
 			stringBuilder.append(field.getName()).append(":");
 			try {
