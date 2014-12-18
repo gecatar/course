@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 /**
  * Store list of objects.
+ * 
  * @author Evgeni Stefanov
- *
+ * 
  */
 public class Page {
 
@@ -14,6 +15,7 @@ public class Page {
 
 	/**
 	 * Add element to page.
+	 * 
 	 * @param obj
 	 */
 	public void addElement(Object obj) {
@@ -27,7 +29,7 @@ public class Page {
 	public String toString() {
 		StringBuilder stb = new StringBuilder();
 		for (int i = 0; i < element.size(); i++) {
-			stb.append("Element " + i + ":" + element.get(i).toString()+" ");
+			stb.append("Element " + i + ":" + element.get(i) + " ");
 		}
 		return stb.toString();
 	}

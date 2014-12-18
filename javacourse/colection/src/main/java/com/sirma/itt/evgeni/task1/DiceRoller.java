@@ -16,7 +16,7 @@ public class DiceRoller {
 	private final Dice firstDice;
 	private final Dice secondDice;
 
-	Map<String, ArrayList<Integer>> combinations = new HashMap<String, ArrayList<Integer>>();
+	private final Map<String, ArrayList<Integer>> combinations = new HashMap<String, ArrayList<Integer>>();
 
 	public DiceRoller(int sides) {
 		firstDice = new Dice(sides);
