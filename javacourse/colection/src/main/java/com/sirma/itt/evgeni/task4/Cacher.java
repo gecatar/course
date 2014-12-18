@@ -45,8 +45,7 @@ public class Cacher {
 	@Override
 	public String toString() {
 		StringBuilder stb = new StringBuilder();
-		Object[] temp = lruCache.toArray();
-		for (Object object : temp) {
+		for (Object object : lruCache.toArray()) {
 			stb.append(object).append(" ");
 		}
 		return stb.toString();
