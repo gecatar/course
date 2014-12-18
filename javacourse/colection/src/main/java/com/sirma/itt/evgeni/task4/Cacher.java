@@ -12,10 +12,10 @@ import java.util.Map;
  */
 public class Cacher {
 
-	ArrayDeque<Integer> lruCache = new ArrayDeque<Integer>();
-	Map<Integer, Object> objectMap = new HashMap<Integer, Object>();
-	int capacity;
-	int count = 0;
+	private final ArrayDeque<Integer> lruCache = new ArrayDeque<Integer>();
+	private final Map<Integer, Object> objectMap = new HashMap<Integer, Object>();
+	private final int capacity;
+	private int count = 0;
 
 	public Cacher(int capacity) {
 		this.capacity = capacity;
