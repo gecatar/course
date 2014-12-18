@@ -90,15 +90,13 @@ public class Cacher {
 	 */
 	void putInFullList(int key, Object obj) {
 		if (objectMap.containsKey(key)) {
-			lruCache.remove(key);
-			lruCache.addFirst(key);
+			makeKeyFirst(key);
 		} else {
 			int lastKey = lruCache.getLast();
 			objectMap.remove(lastKey);
 			lruCache.remove(lastKey);
 			objectMap.put(key, obj);
 			lruCache.addFirst(key);
-
 		}
 
 	}
@@ -111,8 +109,7 @@ public class Cacher {
 	 */
 	void putInNotFullList(int key, Object obj) {
 		if (objectMap.containsKey(key)) {
-			lruCache.remove(key);
-			lruCache.addFirst(key);
+			makeKeyFirst(key);
 		} else {
 			count++;
 			objectMap.put(key, obj);
