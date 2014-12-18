@@ -1,7 +1,6 @@
 package com.sirma.itt.evgeni.task7;
 
-import com.sirma.itt.evgeni.task1.AbstractFactory;
-import com.sirma.itt.evgeni.task1.Calculator;
+import com.sirma.itt.evgeni.task1.Factory;
 import com.sirma.itt.evgeni.task1.FactoryProducer;
 import com.sirma.itt.evgeni.util.ConsoleReader;
 
@@ -20,15 +19,14 @@ public class CalculatorRunner {
 	 */
 	public static void main(String[] args) {
 
-		Calculator calculator = new Calculator();
 		CommandInvoker invoker = new CommandInvoker();
 
-		AbstractFactory factory = FactoryProducer.getFactory("command");
+		Factory factory = FactoryProducer.getFactory("integer");
 
-		invoker.addOperation('-', factory.getCommand("deduct", calculator));
-		invoker.addOperation('*', factory.getCommand("multiply", calculator));
-		invoker.addOperation('/', factory.getCommand("division", calculator));
-		invoker.addOperation('^', factory.getCommand("pow", calculator));
+		invoker.addOperation('-', factory.createInstance("deduct"));
+		invoker.addOperation('*', factory.createInstance("multiply"));
+		invoker.addOperation('/', factory.createInstance("division"));
+		invoker.addOperation('^', factory.createInstance("pow"));
 
 		while (true) {
 			System.out.println("Enter first number:");

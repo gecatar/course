@@ -5,17 +5,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Store object for defined time. If objects are not used they are deleted from list.
+ * Store object for defined time. If objects are not used they are deleted from
+ * list.
+ * 
  * @author Evgeni Stefanov
- *
+ * 
  */
 public class TimeOutTable {
 
-	private Map<String, Object> table = new HashMap<String, Object>();
+	private final Map<String, Object> table = new HashMap<String, Object>();
 	private ArrayDeque<String> used = new ArrayDeque<String>();
 	private ArrayDeque<String> unUsed = new ArrayDeque<String>();
-	private Remover remover;
-	
+	private final Remover remover;
+
 	public TimeOutTable(int removerInterval) {
 		remover = new Remover(this, removerInterval);
 		remover.start();
@@ -27,6 +29,7 @@ public class TimeOutTable {
 	public void releaseRemover() {
 
 		if (table.size() > 0) {
+			System.out.println("releasing thread!!!");
 			synchronized (this) {
 				notifyAll();
 			}
@@ -63,7 +66,9 @@ public class TimeOutTable {
 
 	/**
 	 * Remove object from list.
-	 * @param key that represent object from map.
+	 * 
+	 * @param key
+	 *            that represent object from map.
 	 */
 	public void remove(String key) {
 		if (unUsed.contains(key)) {
@@ -79,8 +84,11 @@ public class TimeOutTable {
 
 	/**
 	 * Add object in map by specified key.
-	 * @param key represent object in map.
-	 * @param object that will be addet to map.
+	 * 
+	 * @param key
+	 *            represent object in map.
+	 * @param object
+	 *            that will be addet to map.
 	 */
 	public void put(String key, Object object) {
 		table.put(key, object);
@@ -90,7 +98,9 @@ public class TimeOutTable {
 
 	/**
 	 * Get object from map.
-	 * @param key represent object in map
+	 * 
+	 * @param key
+	 *            represent object in map
 	 * @return object extracted from map.
 	 */
 	public Object get(String key) {

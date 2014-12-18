@@ -2,17 +2,19 @@ package com.sirma.itt.evgeni.task6;
 
 /**
  * Call function for removing unused objects in last session.
+ * 
  * @author Evgeni Stefanov
- *
+ * 
  */
 public class Remover extends Thread {
 
-	private TimeOutTable table;
-	private int interval;
+	private final TimeOutTable table;
+	private final int interval;
 	private boolean stop;
 
 	/**
 	 * Allow thread to be stooped safely.
+	 * 
 	 * @param stop
 	 */
 	public void setStop(boolean stop) {
@@ -27,12 +29,14 @@ public class Remover extends Thread {
 	/**
 	 * Regular call function that delete unused objects.
 	 */
+	@Override
 	public void run() {
 
 		while (!stop) {
 			try {
 				table.lockRemover();
 				sleep(interval);
+				System.out.println("Removing unused!!!");
 				table.removeUnused();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
