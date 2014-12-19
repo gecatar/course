@@ -20,7 +20,10 @@ public class StockContainer implements Container {
 	public void update(char operation, String description, int quantity,
 			Observable obs) {
 		if (operation == 'b') {
-
+			addQuantity(description, quantity);
+		}
+		if (operation == 's') {
+			removeQuantity(description, quantity, obs);
 		}
 	}
 
@@ -44,11 +47,12 @@ public class StockContainer implements Container {
 	 * @param description
 	 * @param quantity
 	 */
-	public void removeQuantity(String description, int quantity) {
+	public void removeQuantity(String description, int quantity, Observable obs) {
 		if (items.containsKey(description)) {
+			int unAvaibleQuantity = items.get(description) - quantity;
 			items.put(description, items.get(description) + quantity);
 		} else {
-			items.put(description, quantity);
+			obs.notifyAll('u', description, quantity);
 		}
 	}
 
