@@ -29,9 +29,7 @@ public class PriorityRunner {
 		list[0] = new PriorityThird();
 		list[1] = new PrioritySecond();
 		list[2] = new PriorityFirst();
-		System.out.println(list);
 		Arrays.sort(list, new AnotationComparator());
-		System.out.println(list);
 
 	}
 }

@@ -13,9 +13,14 @@ import com.sirma.itt.evgeni.reflection.TestClass;
  */
 public class AnotationComparator implements Comparator<TestClass> {
 
+	/**
+	 * Compare annotation values on objects.
+	 */
 	@Override
 	public int compare(TestClass firstClass, TestClass secondClass) {
-
+		if (firstClass == null || secondClass == null) {
+			throw new NullPointerException("Null object passed to comparator");
+		}
 		int firstPriority = firstClass.getClass().getAnnotation(Priority.class)
 				.priorityIndex();
 		int secondPriority = secondClass.getClass()

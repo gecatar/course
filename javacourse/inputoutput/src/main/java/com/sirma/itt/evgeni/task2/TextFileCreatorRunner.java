@@ -2,6 +2,7 @@ package com.sirma.itt.evgeni.task2;
 
 import java.io.FileNotFoundException;
 
+import com.sirma.itt.evgeni.util.ConsoleReader;
 import com.sirma.itt.evgeni.util.InputReader;
 
 /**
@@ -20,7 +21,7 @@ public class TextFileCreatorRunner {
 	 */
 	public static void main(String[] args) throws FileNotFoundException {
 		TextFileCreator textFileCreator = new TextFileCreator(new InputReader());
-		textFileCreator.createFile(com.sirma.itt.evgeni.util.DirectoryBrowser
-				.chooseFile().toString());
+		System.out.println("Enter path to file:");
+		textFileCreator.createFile(ConsoleReader.readString());
 	}
 }

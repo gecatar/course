@@ -3,6 +3,8 @@ package com.sirma.itt.evgeni.util;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Transfer user defined number of bytes between two streams.
@@ -11,6 +13,9 @@ import java.io.OutputStream;
  * 
  */
 public class TransferObject implements AutoCloseable {
+
+	private static final Logger LOGGER = Logger.getLogger(TransferObject.class
+			.getName());
 
 	InputStream ist = null;
 	OutputStream ost = null;
@@ -37,7 +42,7 @@ public class TransferObject implements AutoCloseable {
 			transfered = ist.read(buff, 0, numberOfBytes);
 			ost.write(buff, 0, transfered);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, "Error while transfering data", e);
 			transfered = -1;
 		}
 		return transfered;
@@ -58,7 +63,7 @@ public class TransferObject implements AutoCloseable {
 				ost.write(buff, 0, transfered);
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, "Error while transfering data", e);
 			transfered = -1;
 		}
 		return transfered;
@@ -75,7 +80,7 @@ public class TransferObject implements AutoCloseable {
 				ost = null;
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, "Error when closing sockets", e);
 		}
 	}
 }
