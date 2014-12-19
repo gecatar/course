@@ -1,7 +1,7 @@
 package com.sirma.itt.evgeni.task7;
 
-import com.sirma.itt.evgeni.task1.Factory;
-import com.sirma.itt.evgeni.task1.FactoryProducer;
+import com.sirma.itt.evgeni.factory.Factory;
+import com.sirma.itt.evgeni.factory.FactoryProducer;
 import com.sirma.itt.evgeni.util.ConsoleReader;
 
 /**

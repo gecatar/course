@@ -1,4 +1,4 @@
-package com.sirma.itt.evgeni.task1;
+package com.sirma.itt.evgeni.commands;
 
 public class SumIntegerCommand implements Command {
 

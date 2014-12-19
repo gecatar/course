@@ -1,6 +1,8 @@
-package com.sirma.itt.evgeni.task1;
+package com.sirma.itt.evgeni.factory;
 
-public class DecimalFactory implements Factory {
+import com.sirma.itt.evgeni.commands.Command;
+
+public class DoubleFactory implements Factory {
 
 	public Command createInstance(String type) {
 		// TODO Auto-generated method stub

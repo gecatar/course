@@ -1,4 +1,6 @@
-package com.sirma.itt.evgeni.task1;
+package com.sirma.itt.evgeni.factory;
+
+import com.sirma.itt.evgeni.commands.Command;
 
 public interface Factory {
 

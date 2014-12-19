@@ -3,7 +3,7 @@ package com.sirma.itt.evgeni.task7;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.sirma.itt.evgeni.task1.Command;
+import com.sirma.itt.evgeni.commands.Command;
 
 /**
  * Store and execute commands.
