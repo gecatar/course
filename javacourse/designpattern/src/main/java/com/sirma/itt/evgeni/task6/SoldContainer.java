@@ -6,8 +6,9 @@ import java.util.Set;
 
 /**
  * Contain information about items which are not available.
+ * 
  * @author Evgeni Stefanov
- *
+ * 
  */
 public class SoldContainer implements Container {
 
@@ -16,14 +17,46 @@ public class SoldContainer implements Container {
 	/**
 	 * If quantity is zero add item in list.
 	 */
-	public void update(String description, int quantity, Observable obs) {
-		if(quantity==0){
-			if(!items.containsKey(description)){
-				items.put(description, quantity);
-			}
+	public void update(char operation, String description, int quantity,
+			Observable obs) {
+		if (operation == 's') {
+			registerSale(description, quantity);
+		}
+		if (operation == 'u') {
+			rollbackSale(description, quantity);
 		}
 	}
 
+	/**
+	 * Roll back quantity.
+	 * 
+	 * @param description
+	 * @param quantity
+	 */
+	public void rollbackSale(String description, int quantity) {
+		registerSale(description, quantity * -1);
+	}
+
+	/**
+	 * Register sold quantity.
+	 * 
+	 * @param description
+	 * @param quantity
+	 */
+	public void registerSale(String description, int quantity) {
+		if (items.containsKey(description)) {
+			int temp = items.get(description);
+			temp += quantity;
+			items.put(description, temp);
+		} else {
+			items.put(description, quantity);
+		}
+	}
+
+	/**
+	 * Print all elements.
+	 */
+	@Override
 	public String toString() {
 		Set<String> keys = items.keySet();
 		StringBuilder stb = new StringBuilder();

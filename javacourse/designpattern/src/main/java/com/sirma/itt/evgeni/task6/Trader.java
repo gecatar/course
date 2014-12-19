@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 /**
  * Manage observers. Add observers to list and notify them when change occur.
+ * 
  * @author Evgeni Stefanov
- *
+ * 
  */
 public class Trader implements Observable {
 
-	//list whit observers.
+	// list whit observers.
 	ArrayList<Container> containers = new ArrayList<Container>();
 
 	/**
@@ -23,29 +24,29 @@ public class Trader implements Observable {
 	 * Create message and send it to all observers.
 	 */
 	public void buyItem(String description, int quantity) {
-		notifyAll(description, quantity);
+		notifyAll('b', description, quantity);
 	}
 
 	/**
 	 * Create message and send it to all observers.
 	 */
 	public void sellItem(String description, int quantity) {
-		quantity *= -1;
-		notifyAll(description, quantity);
+		notifyAll('s', description, quantity);
 	}
 
 	/**
 	 * Send message to all observers.
 	 */
-	public void notifyAll(String description, int quantity) {
+	public void notifyAll(char operation, String description, int quantity) {
 		for (Container container : containers) {
-			container.update(description, quantity, this);
+			container.update(operation, description, quantity, this);
 		}
 	}
 
 	/**
 	 * Call toString function on all observers and display result.
 	 */
+	@Override
 	public String toString() {
 		StringBuilder stb = new StringBuilder();
 		for (Container container : containers) {
