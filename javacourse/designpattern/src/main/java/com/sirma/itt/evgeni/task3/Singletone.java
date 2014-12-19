@@ -2,32 +2,34 @@ package com.sirma.itt.evgeni.task3;
 
 /**
  * Singleton class that can have only one instance.
+ * 
  * @author Evgeni Stefanov
- *
+ * 
  */
-public class TimeProvider {
+public class Singletone {
 
-	private static TimeProvider timeProvider = new TimeProvider();
-	
+	private static Singletone singletone = new Singletone();
+
 	/**
 	 * Private constructor.
 	 */
-	private TimeProvider(){
+	private Singletone() {
 	}
-	
+
 	/**
 	 * User can access instance from this function.
+	 * 
 	 * @return
 	 */
-	public static TimeProvider getReference(){
-		return timeProvider;
+	public static Singletone getReference() {
+		return singletone;
 	}
-	
+
 	/**
 	 * 
 	 * @return current time.
 	 */
-	public long getTime(){
+	public long getTime() {
 		return System.currentTimeMillis();
 	}
 }

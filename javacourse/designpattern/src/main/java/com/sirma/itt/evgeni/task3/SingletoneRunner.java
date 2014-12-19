@@ -1,20 +1,21 @@
 package com.sirma.itt.evgeni.task3;
 
-
 /**
  * Create singleton class. Only one instance off this class is reachable.
+ * 
  * @author Evgeni Stefanov
- *
+ * 
  */
-public class TimeProviderRunner {
+public class SingletoneRunner {
 
 	/**
 	 * Time provider return current time.
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		TimeProvider time = TimeProvider.getReference();
-		System.out.println(time.getTime());
+		Singletone singletone = Singletone.getReference();
+		System.out.println(singletone.getTime());
 	}
 
 }
