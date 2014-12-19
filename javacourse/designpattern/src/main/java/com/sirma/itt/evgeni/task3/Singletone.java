@@ -1,5 +1,8 @@
 package com.sirma.itt.evgeni.task3;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Singleton class that can have only one instance.
  * 
@@ -7,6 +10,9 @@ package com.sirma.itt.evgeni.task3;
  * 
  */
 public class Singletone {
+
+	private static final Logger LOGGER = Logger.getLogger(Singletone.class
+			.getName());
 
 	private static Singletone singletone = new Singletone();
 
@@ -21,7 +27,8 @@ public class Singletone {
 	 * 
 	 * @return
 	 */
-	public static Singletone getReference() {
+	public static Singletone getInstance() {
+		LOGGER.log(Level.INFO, "Instance aquired!!!");
 		return singletone;
 	}
 

@@ -18,9 +18,9 @@ public class SingletoneTest {
 	 */
 	@Test
 	public void test() {
-		Object object = Singletone.getReference();
-		assertEquals(object, Singletone.getReference());
-		assertEquals(object, Singletone.getReference());
+		Object object = Singletone.getInstance();
+		assertEquals(object, Singletone.getInstance());
+		assertEquals(object, Singletone.getInstance());
 	}
 
 }

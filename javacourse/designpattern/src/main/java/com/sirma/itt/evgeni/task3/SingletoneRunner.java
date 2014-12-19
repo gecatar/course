@@ -14,7 +14,7 @@ public class SingletoneRunner {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Singletone singletone = Singletone.getReference();
+		Singletone singletone = Singletone.getInstance();
 		System.out.println(singletone.getTime());
 	}
 
