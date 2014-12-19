@@ -43,7 +43,7 @@ public class ExceptionManager {
 	 * Clear saved errors.
 	 */
 	public void clearLog() {
-		message = new String();
+		message = "";
 	}
 
 	/**
