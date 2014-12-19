@@ -10,8 +10,71 @@ import java.util.LinkedList;
  */
 public class PageBean {
 
-	private LinkedList<Page> page;
+	private final LinkedList<Page> page;
 	private Page currentPage;
+
+	/**
+	 * Create Page Bean.
+	 * 
+	 * @param object
+	 * @param pageSize
+	 */
+	public PageBean(Object[] object, int pageSize) {
+		page = new LinkedList<Page>();
+		if (object != null) {
+			int pages = object.length / pageSize;
+			if (object.length % pageSize > 0) {
+				pages++;
+			}
+			for (int i = 0; i < pages; i++) {
+				Page temp = new Page();
+				for (int j = 0; j < pageSize; j++) {
+					if (i * pageSize + j < object.length) {
+						temp.addElement(object[i * pageSize + j]);
+					}
+				}
+				page.add(temp);
+			}
+		}
+	}
+
+	/**
+	 * Return true if page bean has next page.
+	 * 
+	 * @return
+	 */
+	public boolean hasNext() {
+		if (currentPage == null) {
+			if (page.getFirst() != null)
+				;
+			return true;
+		} else {
+			if (currentPage != page.getLast()) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * Return true if page bean has previous page.
+	 * 
+	 * @return
+	 */
+	public boolean hasPrevious() {
+		if (currentPage == null) {
+			if (page.getLast() != null)
+				;
+			return true;
+		} else {
+			if (currentPage != page.getFirst()) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
 
 	/**
 	 * Create collection of pages.
@@ -22,24 +85,7 @@ public class PageBean {
 	 *            how much items to contain every page.
 	 * @return collection whit pages.
 	 */
-	public LinkedList<Page> getPages(Object[] object, int pageSize) {
-		page = new LinkedList<Page>();
-		if (object == null) {
-			return page;
-		}
-		int pages = object.length / pageSize;
-		if (object.length % pageSize > 0) {
-			pages++;
-		}
-		for (int i = 0; i < pages; i++) {
-			Page temp = new Page();
-			for (int j = 0; j < pageSize; j++) {
-				if (i * pageSize + j < object.length) {
-					temp.addElement(object[i * pageSize + j]);
-				}
-			}
-			page.add(temp);
-		}
+	public LinkedList<Page> getPages() {
 		return page;
 	}
 

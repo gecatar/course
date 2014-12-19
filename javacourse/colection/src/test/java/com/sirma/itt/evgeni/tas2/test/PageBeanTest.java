@@ -1,7 +1,9 @@
 package com.sirma.itt.evgeni.tas2.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.LinkedList;
 
@@ -25,11 +27,39 @@ public class PageBeanTest {
 
 	@Before
 	public void setUp() throws Exception {
-		pageBean = new PageBean();
 		object = new Object[10];
 		for (int i = 0; i < 10; i++) {
 			object[i] = new Integer(i);
 		}
+
+	}
+
+	/**
+	 * Test has next functionality.
+	 */
+	@Test
+	public void hasNextTest() {
+		pageBean = new PageBean(object, 3);
+		assertTrue(pageBean.hasNext());
+		pageBean.getNext();
+		pageBean.getNext();
+		pageBean.getNext();
+		pageBean.getNext();
+		assertFalse(pageBean.hasNext());
+	}
+
+	/**
+	 * Test has previous functionality.
+	 */
+	@Test
+	public void hasPreviousTest() {
+		pageBean = new PageBean(object, 3);
+		assertTrue(pageBean.hasPrevious());
+		pageBean.getPrevious();
+		pageBean.getPrevious();
+		pageBean.getPrevious();
+		pageBean.getPrevious();
+		assertFalse(pageBean.hasPrevious());
 	}
 
 	/**
@@ -37,7 +67,8 @@ public class PageBeanTest {
 	 */
 	@Test
 	public void previosTest() {
-		pages = pageBean.getPages(object, 3);
+		pageBean = new PageBean(object, 3);
+		pages = pageBean.getPages();
 		assertEquals(pages.get(0), pageBean.getNext());
 		assertEquals(pages.get(1), pageBean.getNext());
 		assertEquals(pages.get(2), pageBean.getNext());
@@ -53,21 +84,13 @@ public class PageBeanTest {
 	 */
 	@Test
 	public void nextTest() {
-		pages = pageBean.getPages(object, 3);
+		pageBean = new PageBean(object, 3);
+		pages = pageBean.getPages();
 		assertEquals(pages.get(0), pageBean.getNext());
 		assertEquals(pages.get(1), pageBean.getNext());
 		assertEquals(pages.get(2), pageBean.getNext());
 		assertEquals(pages.get(3), pageBean.getNext());
 		assertNull(pageBean.getNext());
-	}
-
-	/**
-	 * Check correct separating on pages.
-	 */
-	@Test
-	public void getPagesTest() {
-		pages = pageBean.getPages(object, 3);
-		assertEquals(4, pages.size());
 	}
 
 }

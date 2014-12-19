@@ -15,12 +15,11 @@ public class PageBeanRunner {
 	 */
 	public static void main(String[] args) {
 
-		PageBean pageBean = new PageBean();
 		Object[] obj = new Object[10];
 		for (int i = 0; i < 10; i++) {
 			obj[i] = new Integer(i);
 		}
-		pageBean.getPages(obj, 3);
+		PageBean pageBean = new PageBean(obj, 3);
 		System.out.println(pageBean.getNext());
 		System.out.println(pageBean.getNext());
 		System.out.println(pageBean.getNext());
