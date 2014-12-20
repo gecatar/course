@@ -6,6 +6,12 @@ import org.junit.Test;
 
 import com.sirma.itt.evgeni.task5.Holder;
 
+/**
+ * Test adding and removing objects.
+ * 
+ * @author GecaTM
+ *
+ */
 public class HolderTest {
 
 	Holder holder;
