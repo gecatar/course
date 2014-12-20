@@ -23,13 +23,37 @@ public class Mail {
 	private Mail() {
 	}
 
+	public String getFrom() {
+		return from;
+	}
+
+	public String getTo() {
+		return to;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public String getCc() {
+		return cc;
+	}
+
+	public ArrayList<Object> getAtachment() {
+		return atachment;
+	}
+
 	/**
 	 * Create new Builder and set from field.
 	 * 
 	 * @param from
 	 * @return
 	 */
-	static To from(String from) {
+	public static To from(String from) {
 		return new Builder(from);
 	}
 
@@ -39,7 +63,7 @@ public class Mail {
 	 * @author GecaTM
 	 *
 	 */
-	static class Builder implements To {
+	public static class Builder implements To {
 		private Mail mail = new Mail();
 
 		/**
@@ -59,6 +83,11 @@ public class Mail {
 		 */
 		public Builder subject(String subject) {
 			mail.subject = subject;
+			return this;
+		}
+
+		public Builder atachment(ArrayList<Object> atachment) {
+			mail.atachment = atachment;
 			return this;
 		}
 

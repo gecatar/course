@@ -24,7 +24,9 @@ public class FluentRunner {
 		System.out.println("Enter subject:");
 		String subject = ConsoleReader.readString();
 		Mail mail = Mail.from(from).to(to).subject(subject).build();
-
+		System.out.println("Sender:" + mail.getFrom());
+		System.out.println("Receiver:" + mail.getTo());
+		System.out.println("Subject:" + mail.getSubject());
 	}
 
 }
