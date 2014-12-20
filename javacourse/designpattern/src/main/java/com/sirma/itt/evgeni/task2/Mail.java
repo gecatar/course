@@ -3,9 +3,10 @@ package com.sirma.itt.evgeni.task2;
 import java.util.ArrayList;
 
 /**
- * Example class that will be created via "Fluent interface".
+ * Example class mail builder. Responsible for creating mail objects.
+ * 
  * @author Evgeni Stefanov
- *
+ * 
  */
 public class Mail {
 
@@ -15,52 +16,58 @@ public class Mail {
 	private String content;
 	private String cc;
 	private ArrayList<Object> atachment;
-	
-	public String getFrom() {
-		return from;
+
+	private Mail() {
 	}
-	
-	public void setFrom(String from) {
-		this.from = from;
+
+	static To from(String from) {
+		return new Builder(from);
 	}
-	
-	public String getTo() {
-		return to;
+
+	static class Builder implements To {
+		private Mail mail = new Mail();
+
+		public Builder(String from) {
+			mail.from = from;
+		}
+
+		public Builder subject(String subject) {
+			mail.subject = subject;
+			return this;
+		}
+
+		public Builder content(String content) {
+			mail.content = content;
+			return this;
+		}
+
+		public Builder to(String to) {
+			mail.to = to;
+			return this;
+		}
+
+		public Mail build() {
+			return mail;
+		}
 	}
-	
-	public void setTo(String to) {
-		this.to = to;
+
+	public interface To {
+		public Builder to(String subject);
 	}
-	
-	public String getSubject() {
-		return subject;
+
+	public interface Subject {
+		Content subject(String subject);
 	}
-	
-	public void setSubject(String subject) {
-		this.subject = subject;
+
+	public interface Content {
+		Build content(String content);
 	}
-	
-	public String getContent() {
-		return content;
+
+	public interface Setter {
+
 	}
-	
-	public void setContent(String content) {
-		this.content = content;
-	}
-	
-	public String getCc() {
-		return cc;
-	}
-	
-	public void setCc(String cc) {
-		this.cc = cc;
-	}
-	
-	public ArrayList<Object> getAtachment() {
-		return atachment;
-	}
-	
-	public void setAtachment(ArrayList<Object> atachment) {
-		this.atachment = atachment;
+
+	public interface Build {
+		Mail build();
 	}
 }
