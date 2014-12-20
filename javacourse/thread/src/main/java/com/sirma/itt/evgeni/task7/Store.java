@@ -3,6 +3,7 @@ package com.sirma.itt.evgeni.task7;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
 
 /**
  * Manage byers and sellers. Suspend threads that can`t complete actions.
@@ -12,6 +13,8 @@ import java.util.Set;
  */
 public class Store {
 
+	private static final Logger LOGGER = Logger
+			.getLogger(Store.class.getName());
 	private Map<String, Integer> stocks = new HashMap<String, Integer>();
 	private int capacity;
 
@@ -105,6 +108,6 @@ public class Store {
 			stb.append(stocks.get(key));
 			stb.append("\n");
 		}
-		return stb.toString();
+		return stb.toString().trim();
 	}
 }
