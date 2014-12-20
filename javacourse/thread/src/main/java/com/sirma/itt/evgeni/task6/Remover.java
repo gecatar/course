@@ -36,7 +36,6 @@ public class Remover extends Thread {
 			try {
 				table.lockRemover();
 				sleep(interval);
-				System.out.println("Removing unused!!!");
 				table.removeUnused();
 			} catch (InterruptedException e) {
 				e.printStackTrace();

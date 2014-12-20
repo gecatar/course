@@ -3,6 +3,9 @@ package com.sirma.itt.evgeni.task6;
 import java.util.ArrayDeque;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Store object for defined time. If objects are not used they are deleted from
@@ -13,6 +16,8 @@ import java.util.Map;
  */
 public class TimeOutTable {
 
+	private static final Logger LOGGER = Logger.getLogger(TimeOutTable.class
+			.getName());
 	private final Map<String, Object> table = new HashMap<String, Object>();
 	private ArrayDeque<String> used = new ArrayDeque<String>();
 	private ArrayDeque<String> unUsed = new ArrayDeque<String>();
@@ -29,7 +34,6 @@ public class TimeOutTable {
 	public void releaseRemover() {
 
 		if (table.size() > 0) {
-			System.out.println("releasing thread!!!");
 			synchronized (this) {
 				notifyAll();
 			}
@@ -45,7 +49,7 @@ public class TimeOutTable {
 				try {
 					wait();
 				} catch (InterruptedException e) {
-					e.printStackTrace();
+					LOGGER.log(Level.SEVERE, "Thread interupted", e);
 				}
 			}
 		}
@@ -58,6 +62,7 @@ public class TimeOutTable {
 		for (String key : unUsed) {
 			table.remove(key);
 			unUsed.remove(key);
+			LOGGER.log(Level.INFO, "Removing object" + key);
 		}
 		ArrayDeque<String> temp = unUsed;
 		unUsed = used;
@@ -114,5 +119,18 @@ public class TimeOutTable {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Print all elements in table.
+	 */
+	@Override
+	public String toString() {
+		StringBuilder stringBuilder = new StringBuilder();
+		for (Entry<String, Object> entry : table.entrySet()) {
+			stringBuilder.append("key:" + entry.getKey()).append(" element:")
+					.append(entry.getValue()).append("\n");
+		}
+		return stringBuilder.toString().trim();
 	}
 }

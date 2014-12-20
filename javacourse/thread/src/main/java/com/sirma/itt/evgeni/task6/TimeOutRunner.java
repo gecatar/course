@@ -13,7 +13,7 @@ public class TimeOutRunner {
 
 	public static void main(String[] args) {
 
-		TimeOutTable timeOutTest = new TimeOutTable(1000);
+		TimeOutTable timeOutTest = new TimeOutTable(3000);
 
 		timeOutTest.put("hhjgjhgjh", new Object());
 		timeOutTest.put("hhj@#$@", new Object());
