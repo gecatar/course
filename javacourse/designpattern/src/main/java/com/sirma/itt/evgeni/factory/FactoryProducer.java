@@ -1,12 +1,15 @@
 package com.sirma.itt.evgeni.factory;
 
+/**
+ * Create Factory for computation commands.
+ * 
+ * @author GecaTM
+ *
+ */
 public class FactoryProducer {
 
 	public static Factory getFactory(String type) {
 
-		if (type.equalsIgnoreCase("double")) {
-			return new DoubleFactory();
-		}
 		if (type.equalsIgnoreCase("integer")) {
 			return new IntegerFactory();
 		}
