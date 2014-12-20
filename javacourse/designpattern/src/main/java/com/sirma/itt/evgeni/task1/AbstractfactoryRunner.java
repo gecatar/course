@@ -5,8 +5,19 @@ import com.sirma.itt.evgeni.factory.Factory;
 import com.sirma.itt.evgeni.factory.FactoryProducer;
 import com.sirma.itt.evgeni.util.ConsoleReader;
 
+/**
+ * Create mathematical command and make calculation.
+ * 
+ * @author GecaTM
+ *
+ */
 public class AbstractfactoryRunner {
 
+	/**
+	 * Use Abstract Factory pattern.
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		System.out.println("Create multiply command and make calculation.");
 		System.out.println("Enter first number:");
