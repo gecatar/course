@@ -1,6 +1,8 @@
 package com.sirma.itt.evgeni.task6;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Manage observers. Add observers to list and notify them when change occur.
@@ -10,6 +12,9 @@ import java.util.ArrayList;
  */
 public class Trader implements Observable {
 
+	private static final Logger LOGGER = Logger.getLogger(Trader.class
+			.getName());
+
 	// list whit observers.
 	private ArrayList<Container> containers = new ArrayList<Container>();
 
@@ -18,20 +23,29 @@ public class Trader implements Observable {
 	 */
 	public void addObserver(Container container) {
 		containers.add(container);
+		LOGGER.log(Level.INFO, "Observer added.");
 	}
 
 	/**
 	 * Create message and send it to all observers.
 	 */
 	public void buyItem(String description, int quantity) {
-		notifyAll('b', description, quantity);
+		if (description != null) {
+			notifyAll('b', description, quantity);
+		} else {
+			LOGGER.log(Level.SEVERE, "Invalid data passed!!!");
+		}
 	}
 
 	/**
 	 * Create message and send it to all observers.
 	 */
 	public void sellItem(String description, int quantity) {
-		notifyAll('s', description, quantity);
+		if (description != null) {
+			notifyAll('s', description, quantity);
+		} else {
+			LOGGER.log(Level.SEVERE, "Invalid data passed!!!");
+		}
 	}
 
 	/**

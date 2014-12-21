@@ -17,10 +17,10 @@ public class SoldOutContainer implements Container {
 	 */
 	public void update(char operation, String description, int quantity,
 			Observable obs) {
-		if (operation == 'u' && description != null) {
+		if (operation == 'u') {
 			addSoldOutItem(description);
 		}
-		if (operation == 'b' && description != null) {
+		if (operation == 'b') {
 			removeSoldOutItem(description);
 		}
 	}
