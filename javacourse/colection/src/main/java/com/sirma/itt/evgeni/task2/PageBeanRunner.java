@@ -29,6 +29,8 @@ public class PageBeanRunner {
 		System.out.println(pageBean.getPrevious());
 		System.out.println(pageBean.getPrevious());
 		System.out.println(pageBean.getPrevious());
+
+		System.out.println(pageBean);
 	}
 
 }

@@ -132,4 +132,13 @@ public class PageBean {
 			}
 		}
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder stringBuilder = new StringBuilder();
+		for (Page temp : page) {
+			stringBuilder.append(temp).append("\n");
+		}
+		return stringBuilder.toString().trim();
+	}
 }
