@@ -13,30 +13,28 @@ public class TimeOutRunner {
 
 	public static void main(String[] args) {
 
-		TimeOutTable timeOutTest = new TimeOutTable(3000);
-
-		timeOutTest.put("hhjgjhgjh", new Object());
-		timeOutTest.put("hhj@#$@", new Object());
-		timeOutTest.put("hhj@23423#$@", new Object());
+		System.out.println("Enter timeout value:");
+		int timeOut = ConsoleReader.readInt();
+		TimeOutTable timeOutTest = new TimeOutTable(timeOut);
 
 		int choise = 0;
 		while (choise != 9) {
 			choise = ConsoleReader.readInt();
 			if (choise == 1) {
 				System.out.println("adding element...");
-				System.out.println("enter description....$%^$%");
+				System.out.println("enter description:");
 				String temp = ConsoleReader.readString();
 				timeOutTest.put(temp, new Object());
 			}
 			if (choise == 2) {
-				System.out.println("Removing element...@!#");
-				System.out.println("enter description....$%^$%");
+				System.out.println("Removing element...");
+				System.out.println("enter description:");
 				String temp = ConsoleReader.readString();
 				timeOutTest.remove(temp);
 			}
 			if (choise == 3) {
-				System.out.println("Geting element...@!#");
-				System.out.println("enter description....$%^$%");
+				System.out.println("Geting element...");
+				System.out.println("enter description:");
 				String temp = ConsoleReader.readString();
 				System.out.println(timeOutTest.get(temp));
 			}
