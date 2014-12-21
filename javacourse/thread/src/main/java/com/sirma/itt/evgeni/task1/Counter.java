@@ -1,5 +1,8 @@
 package com.sirma.itt.evgeni.task1;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Counting until user send stop command.
  * 
@@ -8,6 +11,8 @@ package com.sirma.itt.evgeni.task1;
  */
 public class Counter extends Thread {
 
+	private static final Logger LOGGER = Logger.getLogger(Counter.class
+			.getName());
 	private int count;
 	private boolean stop;
 
@@ -44,10 +49,10 @@ public class Counter extends Thread {
 	public void run() {
 		while (!stop) {
 			try {
-				sleep(100);
+				sleep(10);
 				incrementCount();
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				LOGGER.log(Level.SEVERE, "Thread interupted", e);
 			}
 		}
 	}
