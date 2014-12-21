@@ -3,7 +3,7 @@ package com.sirma.itt.evgeni.task6;
 import com.sirma.itt.evgeni.util.ConsoleReader;
 
 /**
- * Create time out table tath will manage objects. If objects are not used in
+ * Create time out table that will manage objects. If objects are not used in
  * last session they will be deleted. User define interval for changing session.
  * 
  * @author Evgeni Stefanov
