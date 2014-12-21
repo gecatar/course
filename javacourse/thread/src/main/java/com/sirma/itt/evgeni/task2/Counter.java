@@ -1,5 +1,8 @@
 package com.sirma.itt.evgeni.task2;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Counter thread.
  * 
@@ -8,6 +11,8 @@ package com.sirma.itt.evgeni.task2;
  */
 public class Counter extends Thread {
 
+	private static final Logger LOGGER = Logger.getLogger(Counter.class
+			.getName());
 	private int count;
 	private static boolean stop;
 
@@ -18,6 +23,15 @@ public class Counter extends Thread {
 	 */
 	public void setStop(boolean stop) {
 		this.stop = stop;
+	}
+
+	/**
+	 * Get count.
+	 * 
+	 * @return
+	 */
+	public int getcount() {
+		return count;
 	}
 
 	/**
@@ -40,11 +54,11 @@ public class Counter extends Thread {
 	public void run() {
 		while (!stop && count > 0) {
 			try {
-				sleep(500);
+				sleep(50);
 				decrmentCount();
-				System.out.println(this.getName() + " - Count is:" + count);
+				LOGGER.log(Level.INFO, this.getName() + " - Count is:" + count);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				LOGGER.log(Level.SEVERE, "Trhead interupted.", e);
 			}
 		}
 		stop = true;
