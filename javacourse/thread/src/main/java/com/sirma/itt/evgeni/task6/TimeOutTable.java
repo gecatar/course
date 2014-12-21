@@ -31,7 +31,7 @@ public class TimeOutTable {
 	/**
 	 * Release thread that call function for deleting unused item.
 	 */
-	public void releaseRemover() {
+	private void releaseRemover() {
 
 		if (table.size() > 0) {
 			synchronized (this) {
@@ -43,7 +43,7 @@ public class TimeOutTable {
 	/**
 	 * Lock thread that call function for deleting objects.
 	 */
-	public void lockRemover() {
+	private void lockRemover() {
 		while (table.size() == 0) {
 			synchronized (this) {
 				try {
@@ -132,5 +132,49 @@ public class TimeOutTable {
 					.append(entry.getValue()).append("\n");
 		}
 		return stringBuilder.toString().trim();
+	}
+
+	/**
+	 * Call function for removing unused objects in last session.
+	 * 
+	 * @author Evgeni Stefanov
+	 * 
+	 */
+	public class Remover extends Thread {
+
+		private final TimeOutTable table;
+		private final int interval;
+		private boolean stop;
+
+		/**
+		 * Allow thread to be stooped safely.
+		 * 
+		 * @param stop
+		 */
+		public void setStop(boolean stop) {
+			this.stop = stop;
+		}
+
+		public Remover(TimeOutTable table, int interval) {
+			this.table = table;
+			this.interval = interval;
+		}
+
+		/**
+		 * Regular call function that delete unused objects.
+		 */
+		@Override
+		public void run() {
+
+			while (!stop) {
+				try {
+					table.lockRemover();
+					sleep(interval);
+					table.removeUnused();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 }

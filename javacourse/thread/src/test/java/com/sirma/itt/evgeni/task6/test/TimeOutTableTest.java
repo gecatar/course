@@ -2,7 +2,6 @@ package com.sirma.itt.evgeni.task6.test;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.sirma.itt.evgeni.task6.TimeOutTable;
@@ -10,10 +9,6 @@ import com.sirma.itt.evgeni.task6.TimeOutTable;
 public class TimeOutTableTest {
 
 	TimeOutTable table;
-
-	@Before
-	public void setUp() throws Exception {
-	}
 
 	/**
 	 * Test put object.
@@ -33,22 +28,32 @@ public class TimeOutTableTest {
 		table = new TimeOutTable(10000);
 		table.put("test1", "test11");
 		assertEquals("test11", table.get("test1").toString());
+		table.removeUnused();
+		assertEquals("test11", table.get("test1").toString());
 	}
 
 	/**
 	 * Test remove object.
 	 */
 	@Test
-	public void removeObjectTest() {
-
+	public void removeUnusedObjectTest() {
+		table = new TimeOutTable(10000);
+		table.put("test1", "test11");
+		table.put("test2", "test22");
+		table.put("test3", "test33");
+		table.removeUnused();
+		table.get("test2");
+		table.removeUnused();
+		assertEquals("key:test2 element:test22", table.toString());
 	}
 
 	/**
-	 * Test remove unused objects.
+	 * Test removing on objects from table.
 	 */
-	@Test
-	public void removeUnusedTest() {
-
+	public void removeObjectByKeyTest() {
+		table = new TimeOutTable(10000);
+		table.put("test1", "test11");
+		table.remove("test1");
+		assertEquals(table.get("test1"), null);
 	}
-
 }
