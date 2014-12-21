@@ -33,7 +33,7 @@ public class SoldContainer implements Container {
 	 * @param description
 	 * @param quantity
 	 */
-	public void rollbackSale(String description, int quantity) {
+	private void rollbackSale(String description, int quantity) {
 		registerSale(description, quantity * -1);
 	}
 
@@ -43,7 +43,7 @@ public class SoldContainer implements Container {
 	 * @param description
 	 * @param quantity
 	 */
-	public void registerSale(String description, int quantity) {
+	private void registerSale(String description, int quantity) {
 		if (items.containsKey(description)) {
 			int temp = items.get(description);
 			temp += quantity;
@@ -67,7 +67,7 @@ public class SoldContainer implements Container {
 			stb.append(items.get(key));
 			stb.append("\n");
 		}
-		return stb.toString();
+		return stb.toString().trim();
 	}
 
 }

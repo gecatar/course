@@ -33,7 +33,7 @@ public class StockContainer implements Container {
 	 * @param description
 	 * @param quantity
 	 */
-	public void addQuantity(String description, int quantity) {
+	private void addQuantity(String description, int quantity) {
 		if (items.containsKey(description)) {
 			items.put(description, items.get(description) + quantity);
 		} else {
@@ -47,7 +47,7 @@ public class StockContainer implements Container {
 	 * @param description
 	 * @param quantity
 	 */
-	public void removeQuantity(String description, int quantity, Observable obs) {
+	private void removeQuantity(String description, int quantity, Observable obs) {
 		if (items.containsKey(description)) {
 			int unAvaibleQuantity = quantity - items.get(description);
 			if (unAvaibleQuantity > 0) {
@@ -73,6 +73,6 @@ public class StockContainer implements Container {
 			stb.append(items.get(key));
 			stb.append("\n");
 		}
-		return stb.toString();
+		return stb.toString().trim();
 	}
 }

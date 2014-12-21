@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Trader implements Observable {
 
 	// list whit observers.
-	ArrayList<Container> containers = new ArrayList<Container>();
+	private ArrayList<Container> containers = new ArrayList<Container>();
 
 	/**
 	 * Add observer to list.
