@@ -63,7 +63,7 @@ public class SoldContainer implements Container {
 		for (String key : keys) {
 			stb.append("Description:");
 			stb.append(key);
-			stb.append("Quantity:");
+			stb.append(" Quantity:");
 			stb.append(items.get(key));
 			stb.append("\n");
 		}

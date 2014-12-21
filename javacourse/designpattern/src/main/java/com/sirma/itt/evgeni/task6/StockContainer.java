@@ -49,51 +49,13 @@ public class StockContainer implements Container {
 	 */
 	public void removeQuantity(String description, int quantity, Observable obs) {
 		if (items.containsKey(description)) {
-			int unAvaibleQuantity = items.get(description) - quantity;
-			items.put(description, items.get(description) + quantity);
-		} else {
-			obs.notifyAll('u', description, quantity);
-		}
-	}
-
-	/**
-	 * Add quantity when items is in list.
-	 * 
-	 * @param description
-	 *            determine item.
-	 * @param quantity
-	 *            determine how much quantity will be added. It posible to be
-	 *            negative value.
-	 * @param obs
-	 */
-	void addQuantityExsisting(char operation, String description, int quantity,
-			Observable obs) {
-		int qnt = items.get(description) + quantity;
-		if (qnt > 0) {
-			items.put(description, qnt);
-		} else {
-			if (qnt < 0) {
-				System.out.println("Not enougth quantity!!!");
+			int unAvaibleQuantity = quantity - items.get(description);
+			if (unAvaibleQuantity > 0) {
+				obs.notifyAll('u', description, unAvaibleQuantity);
+				items.put(description, 0);
 			} else {
-				items.remove(description);
-				obs.notifyAll('u', description, qnt);
+				addQuantity(description, quantity * -1);
 			}
-		}
-	}
-
-	/**
-	 * Add item in map, when item doesn't exist.
-	 * 
-	 * @param description
-	 *            determine item.
-	 * @param quantity
-	 *            determine quantity.
-	 * @param obs
-	 */
-	void addQuantityNonExsisting(char operation, String description,
-			int quantity, Observable obs) {
-		if (quantity > 0) {
-			items.put(description, quantity);
 		}
 	}
 
