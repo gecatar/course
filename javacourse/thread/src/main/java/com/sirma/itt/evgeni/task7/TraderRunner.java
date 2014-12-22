@@ -2,10 +2,10 @@ package com.sirma.itt.evgeni.task7;
 
 import com.sirma.itt.evgeni.util.ConsoleReader;
 
-
 /**
- * Allow adding and removing stocks from store.
- * If operation can't be completed thread suspend its execution and wait while state is changed.
+ * Allow adding and removing stocks from store. If operation can't be completed
+ * thread suspend its execution and wait while state is changed.
+ * 
  * @author Evgeni Stefanov
  *
  */
@@ -13,7 +13,7 @@ public class TraderRunner {
 
 	public static void main(String[] args) {
 
-		Store store = new Store(1000);
+		Store store = new Store(10);
 
 		int choise = 0;
 		while (choise != 9) {
@@ -25,21 +25,21 @@ public class TraderRunner {
 			choise = ConsoleReader.readInt();
 
 			if (choise == 1) {
-				
+
 				System.out.println("Enter description:");
 				String description = ConsoleReader.readString();
 				System.out.println("Enter quantity:");
 				int quantity = ConsoleReader.readInt();
-				
+
 				new Buyer(store, description, quantity).start();
 			}
 			if (choise == 2) {
-				
+
 				System.out.println("Enter description:");
 				String description = ConsoleReader.readString();
 				System.out.println("Enter quantity:");
 				int quantity = ConsoleReader.readInt();
-				
+
 				new Seller(store, description, quantity).start();
 			}
 			if (choise == 3) {
