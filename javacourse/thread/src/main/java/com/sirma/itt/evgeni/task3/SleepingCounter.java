@@ -8,7 +8,18 @@ public class SleepingCounter extends Thread {
 	private static final Logger LOGGER = Logger.getLogger(SleepingCounter.class
 			.getName());
 	private int count;
+	private int sleepInterval;
 	private static boolean stop;
+
+	/**
+	 * Set value on count and sleep interval.
+	 * 
+	 * @param count
+	 */
+	public SleepingCounter(int count, int sleepInterval) {
+		this.count = count;
+		this.sleepInterval = sleepInterval;
+	}
 
 	/**
 	 * Tell on threads to stop execution.
@@ -29,15 +40,6 @@ public class SleepingCounter extends Thread {
 	}
 
 	/**
-	 * Get value on count.
-	 * 
-	 * @param count
-	 */
-	public SleepingCounter(int count) {
-		this.count = count;
-	}
-
-	/**
 	 * Decrement count.
 	 */
 	public void decrmentCount() {
@@ -48,7 +50,7 @@ public class SleepingCounter extends Thread {
 	public void run() {
 		while (!stop && count > 0) {
 			try {
-				sleep(100);
+				sleep(sleepInterval);
 				decrmentCount();
 				LOGGER.log(Level.INFO, this.getName() + " - Count is:" + count);
 			} catch (InterruptedException e) {
