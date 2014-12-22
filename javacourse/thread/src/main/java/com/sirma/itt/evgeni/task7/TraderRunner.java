@@ -13,7 +13,9 @@ public class TraderRunner {
 
 	public static void main(String[] args) {
 
-		Store store = new Store(10);
+		System.out.println("Enter size on store:");
+		int size = ConsoleReader.readInt();
+		Store store = new Store(size);
 
 		int choise = 0;
 		while (choise != 9) {
