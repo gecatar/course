@@ -3,6 +3,7 @@ package com.sirma.itt.evgeni.task7;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -16,50 +17,33 @@ public class Store {
 	private static final Logger LOGGER = Logger
 			.getLogger(Store.class.getName());
 	private Map<String, Integer> stocks = new HashMap<String, Integer>();
-	private int capacity;
+	private int freeSpace;
 
 	public Store(int capacity) {
-		this.capacity = capacity;
+		freeSpace = capacity;
+	}
+
+	public int getFreeSpace() {
+		return freeSpace;
 	}
 
 	/**
-	 * Add items in store.
+	 * Add stock.
 	 * 
 	 * @param description
-	 *            describe unit
 	 * @param quantity
-	 *            determine how much quantity will be added.
-	 * @throws InterruptedException
-	 *             when suspended thread be interrupted.
 	 */
 	public synchronized void addStock(String description, int quantity) {
-
-		if (stocks.containsKey(description)) {
-			int temp = stocks.get(description);
-			temp += quantity;
-			if (temp < capacity) {
-				stocks.put(description, temp);
-				notifyAll();
-			} else {
-				try {
-					wait();
-					addStock(description, quantity);
-				} catch (InterruptedException e) {
-					System.out.println("Thread interupted...");
-				}
-
-			}
+		if (quantity <= freeSpace) {
+			updateQuantity(description, quantity);
+			freeSpace -= quantity;
+			notifyAll();
 		} else {
-			if (quantity < capacity) {
-				stocks.put(description, quantity);
-				notifyAll();
-			} else {
-				try {
-					wait();
-					addStock(description, quantity);
-				} catch (InterruptedException e) {
-					System.out.println("Thread interupted...");
-				}
+			try {
+				wait();
+				addStock(description, quantity);
+			} catch (InterruptedException e) {
+				LOGGER.log(Level.SEVERE, "Thread interupted", e);
 			}
 		}
 	}
@@ -76,22 +60,37 @@ public class Store {
 	 */
 	public synchronized void removeStock(String description, int quantity) {
 		if (stocks.containsKey(description)) {
-			int temp = stocks.get(description);
-			temp -= quantity;
-			if (temp >= 0) {
-				stocks.put(description, temp);
+			if (stocks.get(description) >= quantity) {
+				updateExistingtem(description, quantity * -1);
+				freeSpace += quantity;
 				notifyAll();
-			} else {
-				try {
-					wait();
-					removeStock(description, quantity);
-				} catch (InterruptedException e) {
-					System.out.println("Thread interupted...");
-				}
+				return;
 			}
-		} else {
-			System.out.println("Not avaible...!!!");
 		}
+		try {
+			wait();
+			removeStock(description, quantity);
+		} catch (InterruptedException e) {
+			LOGGER.log(Level.SEVERE, "Thread interupdet", e);
+		}
+
+	}
+
+	private void updateQuantity(String description, int quantity) {
+		if (stocks.containsKey(description)) {
+			updateExistingtem(description, quantity);
+		} else {
+			updateNotExistingtem(description, quantity);
+		}
+	}
+
+	private void updateExistingtem(String description, int quantity) {
+		int temp = stocks.get(description);
+		stocks.put(description, quantity + temp);
+	}
+
+	private void updateNotExistingtem(String description, int quantity) {
+		stocks.put(description, quantity);
 	}
 
 	/**
