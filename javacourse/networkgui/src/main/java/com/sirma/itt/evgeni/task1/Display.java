@@ -14,6 +14,7 @@ public class Display extends JTextField {
 
 	public Display() {
 		setMaximumSize(new Dimension(300, 60));
+		setEditable(false);
 	}
 
 	/**
