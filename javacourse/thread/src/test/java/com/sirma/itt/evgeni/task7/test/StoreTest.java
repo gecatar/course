@@ -27,7 +27,7 @@ public class StoreTest {
 	@Test
 	public void addStockTest() {
 		store = new Store(100);
-		store.addStock("test", 15);
+		store.buyStock("test", 15);
 		assertEquals("Description:test Quantity:15", store.toString());
 	}
 
@@ -37,8 +37,8 @@ public class StoreTest {
 	@Test
 	public void removeStockTest() {
 		store = new Store(100);
-		store.addStock("test", 15);
-		store.removeStock("test", 10);
+		store.buyStock("test", 15);
+		store.sellStock("test", 10);
 		assertEquals("Description:test Quantity:5", store.toString());
 	}
 

@@ -15,7 +15,8 @@ public class Seller extends Trader {
 	/**
 	 * Execute sales.
 	 */
+	@Override
 	public void run() {
-		store.removeStock(description, quantity);
+		store.sellStock(description, quantity);
 	}
 }

@@ -15,7 +15,8 @@ public class Buyer extends Trader {
 	/**
 	 * Add stocks to store.
 	 */
+	@Override
 	public void run() {
-		store.addStock(description, quantity);
+		store.buyStock(description, quantity);
 	}
 }

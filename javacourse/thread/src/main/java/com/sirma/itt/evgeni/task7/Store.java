@@ -27,24 +27,41 @@ public class Store {
 		return freeSpace;
 	}
 
+	public synchronized void buyStock(String description, int quantity) {
+		while (!addStock(description, quantity)) {
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				LOGGER.log(Level.SEVERE, "Thread interupdet", e);
+			}
+		}
+		notifyAll();
+	}
+
+	public synchronized void sellStock(String description, int quantity) {
+		while (!removeStock(description, quantity)) {
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				LOGGER.log(Level.SEVERE, "Thread interupdet", e);
+			}
+		}
+		notifyAll();
+	}
+
 	/**
 	 * Add stock.
 	 * 
 	 * @param description
 	 * @param quantity
 	 */
-	public synchronized void addStock(String description, int quantity) {
+	private synchronized boolean addStock(String description, int quantity) {
 		if (quantity <= freeSpace) {
 			updateQuantity(description, quantity);
 			freeSpace -= quantity;
-			notifyAll();
+			return true;
 		} else {
-			try {
-				wait();
-				addStock(description, quantity);
-			} catch (InterruptedException e) {
-				LOGGER.log(Level.SEVERE, "Thread interupted", e);
-			}
+			return false;
 		}
 	}
 
@@ -58,22 +75,15 @@ public class Store {
 	 * @throws InterruptedException
 	 *             when thread is interrupted.
 	 */
-	public synchronized void removeStock(String description, int quantity) {
+	private boolean removeStock(String description, int quantity) {
 		if (stocks.containsKey(description)) {
 			if (stocks.get(description) >= quantity) {
-				updateExistingtem(description, quantity * -1);
+				updateQuantity(description, quantity * -1);
 				freeSpace += quantity;
-				notifyAll();
-				return;
+				return true;
 			}
 		}
-		try {
-			wait();
-			removeStock(description, quantity);
-		} catch (InterruptedException e) {
-			LOGGER.log(Level.SEVERE, "Thread interupdet", e);
-		}
-
+		return false;
 	}
 
 	private void updateQuantity(String description, int quantity) {
