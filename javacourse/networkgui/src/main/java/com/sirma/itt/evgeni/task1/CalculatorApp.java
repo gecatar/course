@@ -7,10 +7,15 @@ public class CalculatorApp {
 	private Calculator calculator = new Calculator();
 	private CalculatorView calculatorView = new CalculatorView();
 	private BigDecimal currentResult = new BigDecimal("0");
+	private char operation;
 
-	public void calculate(String number, char operation) {
+	public void calculate(String number) {
 		calculator.calculate(new Operation(currentResult,
 				new BigDecimal(number), operation));
+	}
+
+	public void setOperation(char operation) {
+		this.operation = operation;
 	}
 
 	/**
