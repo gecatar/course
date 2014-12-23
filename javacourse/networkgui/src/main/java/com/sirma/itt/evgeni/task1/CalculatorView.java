@@ -15,9 +15,11 @@ import javax.swing.JPanel;
 public class CalculatorView extends JFrame implements ActionListener {
 
 	Display display;
+	UIListener uiListener;
 
-	public CalculatorView() {
+	public CalculatorView(UIListener uiListener) {
 
+		this.uiListener = uiListener;
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(new Dimension(400, 250));
 		JPanel comboPanel = new JPanel();
@@ -56,7 +58,7 @@ public class CalculatorView extends JFrame implements ActionListener {
 		for (JButton button : operations) {
 			button.addActionListener(this);
 		}
-		// Adding components to panell.
+		// Adding components to panel.
 		panel.add(digits[7]);
 		panel.add(digits[8]);
 		panel.add(digits[9]);
@@ -81,11 +83,16 @@ public class CalculatorView extends JFrame implements ActionListener {
 		display.setText(String.valueOf(result));
 	}
 
+	public String getNumber() {
+		return display.getText();
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().getClass() == JButton.class) {
 			char symbol = ((JButton) e.getSource()).getName().charAt(0);
 			if (symbol == '=') {
+				uiListener.calculatePresset(display.getText(), '+');
 			}
 			if (symbol == 'C') {
 				display.removeSymbol();
