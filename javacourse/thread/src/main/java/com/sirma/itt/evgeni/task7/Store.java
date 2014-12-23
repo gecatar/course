@@ -27,6 +27,12 @@ public class Store {
 		return freeSpace;
 	}
 
+	/**
+	 * Add items in store. If operation is not successful suspend thread.
+	 * 
+	 * @param description
+	 * @param quantity
+	 */
 	public synchronized void buyStock(String description, int quantity) {
 		while (!addStock(description, quantity)) {
 			try {
@@ -38,6 +44,12 @@ public class Store {
 		notifyAll();
 	}
 
+	/**
+	 * Remove items from store. If operation is not successful suspend thread.
+	 * 
+	 * @param description
+	 * @param quantity
+	 */
 	public synchronized void sellStock(String description, int quantity) {
 		while (!removeStock(description, quantity)) {
 			try {
@@ -49,12 +61,6 @@ public class Store {
 		notifyAll();
 	}
 
-	/**
-	 * Add stock.
-	 * 
-	 * @param description
-	 * @param quantity
-	 */
 	private synchronized boolean addStock(String description, int quantity) {
 		if (quantity <= freeSpace) {
 			updateQuantity(description, quantity);
@@ -65,16 +71,6 @@ public class Store {
 		}
 	}
 
-	/**
-	 * Remove items from store. If operation is not successful suspend thread.
-	 * 
-	 * @param description
-	 *            of item
-	 * @param quantity
-	 *            of item that will be removed.
-	 * @throws InterruptedException
-	 *             when thread is interrupted.
-	 */
 	private boolean removeStock(String description, int quantity) {
 		if (stocks.containsKey(description)) {
 			if (stocks.get(description) >= quantity) {
