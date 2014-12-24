@@ -22,7 +22,7 @@ public class Display extends JTextField {
 	 * 
 	 * @return
 	 */
-	public boolean previousIsFloat() {
+	private boolean previousIsFloat() {
 		for (int i = (getText().length() - 1); i >= 0; i--) {
 			if (getText().charAt(i) == '.') {
 				return true;
@@ -35,26 +35,11 @@ public class Display extends JTextField {
 	}
 
 	/**
-	 * Return true if previous symbol is dot.
-	 * 
-	 * @return
-	 */
-	public boolean previousIsDot() {
-		if (getText().length() > 0) {
-			if ((getText().charAt(getText().length() - 1) == '.')) {
-				return true;
-			}
-			return false;
-		}
-		return false;
-	}
-
-	/**
 	 * Return true if previous symbol is digit.
 	 * 
 	 * @return
 	 */
-	public boolean previousIsDigit() {
+	private boolean previousIsDigit() {
 		if (getText().length() > 0) {
 			if (Character.isDigit(getText().charAt(getText().length() - 1))) {
 				return true;
@@ -69,14 +54,14 @@ public class Display extends JTextField {
 	 * 
 	 * @param digit
 	 */
-	public void addDigit(char digit) {
+	private void addDigit(char digit) {
 		displaySymbol(digit);
 	}
 
 	/**
 	 * 
 	 */
-	public void addDot() {
+	private void addDot() {
 		if (!previousIsFloat()) {
 			if (!previousIsDigit())
 				displaySymbol('0');
