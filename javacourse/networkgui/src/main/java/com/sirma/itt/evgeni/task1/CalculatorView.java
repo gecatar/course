@@ -106,7 +106,7 @@ public class CalculatorView extends JFrame implements ActionListener {
 			if (symbol == 'C') {
 				display.removeSymbol();
 			}
-			if (symbol >= '0' && symbol <= '9') {
+			if ((symbol >= '0' && symbol <= '9') || symbol == '.') {
 				if (clearDisplay == true) {
 					display.setText("");
 					clearDisplay = false;
