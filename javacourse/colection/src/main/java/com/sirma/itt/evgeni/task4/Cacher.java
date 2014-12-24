@@ -38,20 +38,6 @@ public class Cacher {
 	}
 
 	/**
-	 * Print all elements.
-	 * 
-	 * @return elements represented as string.
-	 */
-	@Override
-	public String toString() {
-		StringBuilder stb = new StringBuilder();
-		for (Object object : lruCache.toArray()) {
-			stb.append(object).append(" ");
-		}
-		return stb.toString();
-	}
-
-	/**
 	 * Return object by specified key and put its key on first position.
 	 * 
 	 * @param key
@@ -115,6 +101,20 @@ public class Cacher {
 			objectMap.put(key, obj);
 			lruCache.addFirst(key);
 		}
+	}
+
+	/**
+	 * Print all elements.
+	 * 
+	 * @return elements represented as string.
+	 */
+	@Override
+	public String toString() {
+		StringBuilder stb = new StringBuilder();
+		for (Object object : lruCache.toArray()) {
+			stb.append(object).append(" ");
+		}
+		return stb.toString();
 	}
 
 }

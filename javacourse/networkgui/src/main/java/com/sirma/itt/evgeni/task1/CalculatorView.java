@@ -91,13 +91,16 @@ public class CalculatorView extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().getClass() == JButton.class) {
 			char symbol = ((JButton) e.getSource()).getName().charAt(0);
-			if (symbol == '=') {
-				uiListener.calculatePresset(display.getText(), '+');
+			if (symbol == '=' || symbol == '+' || symbol == '-'
+					|| symbol == '*' || symbol == '/') {
+				if (display.getText().length() > 0) {
+					uiListener.calculatePresset(display.getText(), symbol);
+				}
 			}
 			if (symbol == 'C') {
 				display.removeSymbol();
 			}
-			if (symbol >= 0 || symbol <= 9) {
+			if (symbol >= '0' && symbol <= '9') {
 				display.addSymbol(symbol);
 			}
 		}
