@@ -34,19 +34,6 @@ public class Display extends JTextField {
 		return false;
 	}
 
-	public boolean previousIsOperation() {
-		for (int i = (getText().length() - 1); i >= 0; i--) {
-			char temp = getText().charAt(i);
-			if (temp == '+' || temp == '-' || temp == '*' || temp == '/') {
-				return true;
-			}
-			if (!Character.isDigit(temp)) {
-				return false;
-			}
-		}
-		return false;
-	}
-
 	/**
 	 * Return true if previous symbol is dot.
 	 * 
@@ -87,25 +74,6 @@ public class Display extends JTextField {
 	}
 
 	/**
-	 * Add operation if previous symbol is digit.
-	 * 
-	 * @param operation
-	 */
-	public void addOperation(char operation) {
-		if (previousIsDigit()) {
-			displaySymbol(operation);
-		}
-		if (previousIsOperation()) {
-			removeSymbol();
-			displaySymbol(operation);
-		}
-		if (previousIsDot()) {
-			removeSymbol();
-			displaySymbol(operation);
-		}
-	}
-
-	/**
 	 * 
 	 */
 	public void addDot() {
@@ -123,13 +91,16 @@ public class Display extends JTextField {
 	 */
 	public void addSymbol(char symbol) {
 		if (Character.isDigit(symbol)) {
-			addDigit(symbol);
+			if (symbol == '0') {
+				if (previousIsDigit() || previousIsFloat()) {
+					addDigit(symbol);
+				}
+			} else {
+				addDigit(symbol);
+			}
 		}
 		if (symbol == '.') {
 			addDot();
-		}
-		if ((symbol == '+' || symbol == '-' || symbol == '*' || symbol == '/')) {
-			addOperation(symbol);
 		}
 	}
 

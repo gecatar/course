@@ -3,6 +3,12 @@ package com.sirma.itt.evgeni.task1;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+/**
+ * Calculate Big Decimal numbers.
+ * 
+ * @author GecaTM
+ *
+ */
 public class Calculator {
 
 	public BigDecimal calculate(Operation operation) {
@@ -10,7 +16,7 @@ public class Calculator {
 			return operation.firstNumber.multiply(operation.secondNumber);
 		}
 		if (operation.operation == '/') {
-			return operation.firstNumber.divide(operation.secondNumber, 9,
+			return operation.firstNumber.divide(operation.secondNumber, 20,
 					RoundingMode.CEILING);
 		}
 		if (operation.operation == '+') {

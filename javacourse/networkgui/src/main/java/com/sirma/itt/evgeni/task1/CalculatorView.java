@@ -41,7 +41,7 @@ public class CalculatorView extends JFrame implements ActionListener {
 			digits[i].setMaximumSize(new Dimension(60, 60));
 			digits[i].addActionListener(this);
 		}
-		JButton[] operations = new JButton[7];
+		JButton[] operations = new JButton[8];
 		operations[0] = new JButton("-");
 		operations[0].setName("-");
 		operations[1] = new JButton("+");
@@ -56,6 +56,8 @@ public class CalculatorView extends JFrame implements ActionListener {
 		operations[5].setName("C");
 		operations[6] = new JButton(".");
 		operations[6].setName(".");
+		operations[7] = new JButton("CL");
+		operations[7].setName("D");
 		for (JButton button : operations) {
 			button.addActionListener(this);
 		}
@@ -77,6 +79,7 @@ public class CalculatorView extends JFrame implements ActionListener {
 		panel.add(operations[4]);
 		panel.add(operations[3]);
 		panel.add(operations[5]);
+		panel.add(operations[7]);
 		setVisible(true);
 	}
 
@@ -105,6 +108,9 @@ public class CalculatorView extends JFrame implements ActionListener {
 			}
 			if (symbol == 'C') {
 				display.removeSymbol();
+			}
+			if (symbol == 'D') {
+				display.setText("");
 			}
 			if ((symbol >= '0' && symbol <= '9') || symbol == '.') {
 				if (clearDisplay == true) {
