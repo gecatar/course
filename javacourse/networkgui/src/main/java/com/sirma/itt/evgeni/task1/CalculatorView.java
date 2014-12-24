@@ -14,8 +14,9 @@ import javax.swing.JPanel;
 
 public class CalculatorView extends JFrame implements ActionListener {
 
-	Display display;
-	UIListener uiListener;
+	private Display display;
+	private UIListener uiListener;
+	private boolean clearDisplay;
 
 	public CalculatorView(UIListener uiListener) {
 
@@ -81,6 +82,7 @@ public class CalculatorView extends JFrame implements ActionListener {
 
 	public void displayResults(BigDecimal result) {
 		display.setText(String.valueOf(result));
+		clearDisplay = true;
 	}
 
 	public String getNumber() {
@@ -91,16 +93,24 @@ public class CalculatorView extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().getClass() == JButton.class) {
 			char symbol = ((JButton) e.getSource()).getName().charAt(0);
-			if (symbol == '=' || symbol == '+' || symbol == '-'
-					|| symbol == '*' || symbol == '/') {
+			if (symbol == '+' || symbol == '-' || symbol == '*'
+					|| symbol == '/') {
 				if (display.getText().length() > 0) {
-					uiListener.calculatePresset(display.getText(), symbol);
+					uiListener.operationPresset(display.getText(), symbol);
+					clearDisplay = true;
 				}
+			}
+			if (symbol == '=') {
+				uiListener.calculatePresset(display.getText());
 			}
 			if (symbol == 'C') {
 				display.removeSymbol();
 			}
 			if (symbol >= '0' && symbol <= '9') {
+				if (clearDisplay == true) {
+					display.setText("");
+					clearDisplay = false;
+				}
 				display.addSymbol(symbol);
 			}
 		}

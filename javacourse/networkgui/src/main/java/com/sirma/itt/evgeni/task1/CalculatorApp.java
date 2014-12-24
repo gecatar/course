@@ -6,16 +6,25 @@ public class CalculatorApp implements UIListener {
 
 	private Calculator calculator = new Calculator();
 	private CalculatorView calculatorView = new CalculatorView(this);
-	private BigDecimal firstNumber = new BigDecimal("0");
+	private BigDecimal firstNumber;
 	private boolean firstNumberDefined;
 	private char nextOperation;
 
 	@Override
-	public void calculatePresset(String number, char operation) {
+	public void calculatePresset(String number) {
+		if (firstNumberDefined) {
+			Operation temp = new Operation(firstNumber, new BigDecimal(number),
+					nextOperation);
+			calculatorView.displayResults(calculator.calculate(temp));
+			firstNumberDefined = false;
+		}
+	}
+
+	@Override
+	public void operationPresset(String number, char operation) {
 		if (!firstNumberDefined) {
 			setFirstNumber(number);
 			nextOperation = operation;
-			firstNumberDefined = true;
 		} else {
 			Operation temp = new Operation(firstNumber, new BigDecimal(number),
 					nextOperation);
@@ -27,6 +36,7 @@ public class CalculatorApp implements UIListener {
 	private void setFirstNumber(String firstNumber) {
 		if (firstNumber != null) {
 			this.firstNumber = new BigDecimal(firstNumber);
+			firstNumberDefined = true;
 		}
 	}
 
@@ -38,5 +48,4 @@ public class CalculatorApp implements UIListener {
 	public static void main(String[] args) {
 		new CalculatorApp();
 	}
-
 }
