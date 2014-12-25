@@ -2,15 +2,21 @@ package com.sirma.itt.evgeni.comunication;
 
 public class ServerComunicator extends Comunicator {
 
+	public ServerComunicator(ComunicatorListener comunicatorListener) {
+		super(comunicatorListener);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public void startConection(String ip, int port) {
-		// TODO Auto-generated method stub
-
+		if (conector == null) {
+			conector = new ServerConector(this, ip, port);
+			conector.start();
+		}
 	}
 
 	@Override
 	public void stopConection() {
-		// TODO Auto-generated method stub
 
 	}
 

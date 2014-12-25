@@ -17,9 +17,10 @@ public class ComunicatorView extends JFrame implements ActionListener {
 	protected JTextField ipAdress = new JTextField(15);
 	protected JTextField port = new JTextField(4);
 	protected JLabel conectionStatus = new JLabel();
-	protected Comunicator comunicator;
+	protected ComunicatorViewListener listener;
 
-	public ComunicatorView() {
+	public ComunicatorView(ComunicatorViewListener listener) {
+		this.listener = listener;
 		JPanel panel = new JPanel();
 		add(panel);
 		JLabel ipLabel = new JLabel("IP");
@@ -58,16 +59,29 @@ public class ComunicatorView extends JFrame implements ActionListener {
 	}
 
 	/**
+	 * Change connection status.
+	 * 
+	 * @param conected
+	 */
+	public void setConectionStatus(boolean conected) {
+		if (conected) {
+			conectionStatus.setText("Conected...");
+		} else {
+			conectionStatus.setText("Not conected...");
+		}
+	}
+
+	/**
 	 * When UI Button is pressed.
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (((JButton) e.getSource()).getName().equals("start")) {
-			comunicator.startConection(ipAdress.getText(),
+			listener.startConection(ipAdress.getText(),
 					Integer.parseInt(port.getText()));
 		}
 		if (((JButton) e.getSource()).getName().equals("stop")) {
-			comunicator.stopConection();
+			listener.stopConection();
 		}
 	}
 }

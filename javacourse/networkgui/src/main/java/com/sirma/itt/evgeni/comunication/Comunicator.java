@@ -5,6 +5,10 @@ public abstract class Comunicator {
 	protected ComunicatorListener comunicatorListener;
 	protected Conector conector;
 
+	public Comunicator(ComunicatorListener comunicatorListener) {
+		this.comunicatorListener = comunicatorListener;
+	}
+
 	public abstract void startConection(String ip, int port);
 
 	public abstract void stopConection();
