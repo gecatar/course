@@ -6,15 +6,13 @@ import com.sirma.itt.evgeni.comunication.DataTransferer;
 
 public class InfoReaderClient extends ClientComunicator {
 
-	DataTransferer dataTransferer;
-
 	public InfoReaderClient(ComunicatorListener comunicatorListener) {
 		super(comunicatorListener);
 	}
 
 	@Override
 	public void addUserSession(DataTransferer dataTransferer) {
-		this.dataTransferer = dataTransferer;
+		comunicatorListener.userConected();
 		comunicatorListener.conectionStatusChange(true);
 	}
 
