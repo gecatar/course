@@ -3,6 +3,7 @@ package com.sirma.itt.evgeni.task4;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import com.sirma.itt.evgeni.comunication.Comunicator;
 import com.sirma.itt.evgeni.comunication.ComunicatorListener;
 import com.sirma.itt.evgeni.comunication.ComunicatorView;
 
@@ -15,7 +16,7 @@ import com.sirma.itt.evgeni.comunication.ComunicatorView;
 public class InfoReaderApp extends ComunicatorView implements ActionListener,
 		ComunicatorListener {
 
-	ClientInfoReader infoReader;
+	Comunicator infoReader;
 
 	public InfoReaderApp() {
 		this.setTitle("ClientInfoReader");
