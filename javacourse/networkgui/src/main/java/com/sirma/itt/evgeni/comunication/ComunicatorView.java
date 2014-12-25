@@ -12,14 +12,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class ComunicatorApp extends JFrame implements ActionListener {
+public class ComunicatorView extends JFrame implements ActionListener {
 
 	protected JTextField ipAdress = new JTextField(15);
 	protected JTextField port = new JTextField(4);
 	protected JLabel conectionStatus = new JLabel();
 	protected Comunicator comunicator;
 
-	public ComunicatorApp() {
+	public ComunicatorView() {
 		JPanel panel = new JPanel();
 		add(panel);
 		JLabel ipLabel = new JLabel("IP");
@@ -61,12 +61,12 @@ public class ComunicatorApp extends JFrame implements ActionListener {
 	 * When UI Button is pressed.
 	 */
 	@Override
-	public void actionPerformed(ActionEvent ae) {
-		if (((JButton) ae.getSource()).getName().equals("start")) {
+	public void actionPerformed(ActionEvent e) {
+		if (((JButton) e.getSource()).getName().equals("start")) {
 			comunicator.startConection(ipAdress.getText(),
 					Integer.parseInt(port.getText()));
 		}
-		if (((JButton) ae.getSource()).getName().equals("stop")) {
+		if (((JButton) e.getSource()).getName().equals("stop")) {
 			comunicator.stopConection();
 		}
 	}
