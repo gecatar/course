@@ -12,14 +12,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class ComunicatorView extends JFrame implements ActionListener {
+public class ComunicatorApp extends JFrame implements ActionListener {
 
 	protected JTextField ipAdress = new JTextField(15);
 	protected JTextField port = new JTextField(4);
 	protected JLabel conectionStatus = new JLabel();
 	protected Comunicator comunicator;
 
-	public ComunicatorView() {
+	public ComunicatorApp() {
 		JPanel panel = new JPanel();
 		add(panel);
 		JLabel ipLabel = new JLabel("IP");

@@ -1,19 +1,8 @@
-package com.sirma.itt.evgeni.task4;
+package com.sirma.itt.evgeni.comunication;
 
-import com.sirma.itt.evgeni.comunication.ClientConector;
-import com.sirma.itt.evgeni.comunication.Comunicator;
-import com.sirma.itt.evgeni.comunication.Conector;
-import com.sirma.itt.evgeni.comunication.DataTransferer;
+public class ClientComunicator extends Comunicator {
 
-/**
- * Read information about clients.
- * 
- * @author Evgeni Stefanov
- * 
- */
-public class InfoReader extends Comunicator {
-
-	Conector clientConector;
+	ClientConector clientConector;
 
 	@Override
 	public void startConection(String ip, int port) {
