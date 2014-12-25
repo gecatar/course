@@ -1,8 +1,10 @@
 package com.sirma.itt.evgeni.comunication;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.ServerSocket;
 
-public class Server extends Thread {
+public class Server extends Thread implements ActionListener {
 
 	protected ServerSocket serverSocket;
 	protected String ipAdress;
@@ -21,5 +23,11 @@ public class Server extends Thread {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+
 	}
 }

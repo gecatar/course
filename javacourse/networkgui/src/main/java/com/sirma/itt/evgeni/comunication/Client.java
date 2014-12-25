@@ -1,10 +1,12 @@
 package com.sirma.itt.evgeni.comunication;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public class Client extends Thread {
+public class Client extends Thread implements ActionListener {
 
 	protected String ipAdress;
 	protected int port;
@@ -32,6 +34,12 @@ public class Client extends Thread {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+
 	}
 
 }
