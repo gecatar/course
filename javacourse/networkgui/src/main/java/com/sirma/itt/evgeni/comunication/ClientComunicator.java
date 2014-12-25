@@ -2,8 +2,6 @@ package com.sirma.itt.evgeni.comunication;
 
 public class ClientComunicator extends Comunicator {
 
-	ClientConector clientConector;
-
 	@Override
 	public void startConection(String ip, int port) {
 		if (conector == null) {
@@ -13,13 +11,11 @@ public class ClientComunicator extends Comunicator {
 
 	@Override
 	public void stopConection() {
-		// TODO Auto-generated method stub
-
+		closeConector();
 	}
 
 	@Override
 	public void addUserSession(DataTransferer dataTransferer) {
-		// TODO Auto-generated method stub
 
 	}
 

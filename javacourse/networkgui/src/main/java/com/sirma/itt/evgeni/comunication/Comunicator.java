@@ -2,6 +2,7 @@ package com.sirma.itt.evgeni.comunication;
 
 public abstract class Comunicator {
 
+	protected ComunicatorListener comunicatorListener;
 	protected Conector conector;
 
 	public abstract void startConection(String ip, int port);
