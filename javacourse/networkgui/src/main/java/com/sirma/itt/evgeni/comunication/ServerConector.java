@@ -36,7 +36,6 @@ public class ServerConector extends Conector {
 			LOGGER.log(Level.INFO, "Connection error.", e);
 		} finally {
 			comunicator.closeConector();
-
 		}
 	}
 
