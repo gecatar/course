@@ -3,8 +3,6 @@ package com.sirma.itt.evgeni.task4;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-
 import com.sirma.itt.evgeni.comunication.ComunicatorListener;
 import com.sirma.itt.evgeni.comunication.ComunicatorView;
 
@@ -27,20 +25,8 @@ public class InfoReaderApp extends ComunicatorView implements ActionListener,
 	 * When UI Button is pressed.
 	 */
 	@Override
-	public void actionPerformed(ActionEvent ae) {
-		if (((JButton) ae.getSource()).getName().equals("start")) {
-			if (infoReader == null) {
-				infoReader = new ClientInfoReader(ipAdress.getText(),
-						Integer.parseInt(port.getText()), this);
-				infoReader.start();
-			}
-		}
-		if (((JButton) ae.getSource()).getName().equals("stop")) {
-			if (infoReader != null) {
-				infoReader.stopClient();
-				infoReader = null;
-			}
-		}
+	public void actionPerformed(ActionEvent e) {
+		super.actionPerformed(e);
 	}
 
 	/**
