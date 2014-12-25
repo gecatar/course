@@ -5,13 +5,14 @@ import com.sirma.itt.evgeni.comunication.ComunicatorListener;
 import com.sirma.itt.evgeni.comunication.ComunicatorView;
 import com.sirma.itt.evgeni.comunication.ComunicatorViewListener;
 
-public class InfoApp implements ComunicatorListener, ComunicatorViewListener {
+public class InfoServerApp implements ComunicatorListener,
+		ComunicatorViewListener {
 
 	Comunicator comunicator;
 	ComunicatorView comunicatorView;
 
-	public InfoApp() {
-		comunicator = new InfoServer(this);
+	public InfoServerApp() {
+		comunicator = new InfoReaderServer(this);
 		comunicatorView = new ComunicatorView(this);
 	}
 
@@ -46,7 +47,7 @@ public class InfoApp implements ComunicatorListener, ComunicatorViewListener {
 	}
 
 	public static void main(String[] args) {
-		new InfoApp();
+		new InfoServerApp();
 	}
 
 }

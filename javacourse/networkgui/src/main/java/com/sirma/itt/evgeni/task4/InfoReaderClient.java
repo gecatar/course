@@ -7,7 +7,6 @@ public class InfoReaderClient extends ClientComunicator {
 
 	public InfoReaderClient(ComunicatorListener comunicatorListener) {
 		super(comunicatorListener);
-		// TODO Auto-generated constructor stub
 	}
 
 }
