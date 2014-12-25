@@ -4,7 +4,6 @@ public class ClientComunicator extends Comunicator {
 
 	public ClientComunicator(ComunicatorListener comunicatorListener) {
 		super(comunicatorListener);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

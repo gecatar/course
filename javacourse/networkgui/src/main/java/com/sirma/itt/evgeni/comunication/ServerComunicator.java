@@ -4,7 +4,6 @@ public class ServerComunicator extends Comunicator {
 
 	public ServerComunicator(ComunicatorListener comunicatorListener) {
 		super(comunicatorListener);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -17,25 +16,21 @@ public class ServerComunicator extends Comunicator {
 
 	@Override
 	public void stopConection() {
-
+		closeConector();
 	}
 
 	@Override
 	public void addUserSession(DataTransferer dataTransferer) {
-		// TODO Auto-generated method stub
-
+		comunicatorListener.displayMessage("user conected!!!");
 	}
 
 	@Override
 	public void closeUsersession(DataTransferer dataTransferer) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void receiveMessage(String message, DataTransferer transferer) {
-		// TODO Auto-generated method stub
 
 	}
-
 }

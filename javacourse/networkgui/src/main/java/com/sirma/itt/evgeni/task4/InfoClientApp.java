@@ -14,6 +14,7 @@ public class InfoClientApp implements ComunicatorListener,
 	public InfoClientApp() {
 		comunicator = new InfoReaderClient(this);
 		comunicatorView = new ComunicatorView(this);
+		comunicatorView.setTitle("Client info app...");
 	}
 
 	@Override

@@ -14,6 +14,7 @@ public class InfoServerApp implements ComunicatorListener,
 	public InfoServerApp() {
 		comunicator = new InfoReaderServer(this);
 		comunicatorView = new ComunicatorView(this);
+		comunicatorView.setTitle("Info server app...");
 	}
 
 	@Override
