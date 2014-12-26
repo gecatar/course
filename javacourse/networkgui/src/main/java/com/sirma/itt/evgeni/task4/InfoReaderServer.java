@@ -16,9 +16,29 @@ public class InfoReaderServer extends ServerComunicator {
 
 	@Override
 	public void addUserSession(DataTransferer dataTransferer) {
+		notifyUserLogIn();
 		users.add(dataTransferer);
 		dataTransferer.start();
+		sendInfoToUser(dataTransferer);
 		comunicatorListener.displayMessage("New user conected to server.");
+	}
+
+	private void sendInfoToUser(DataTransferer dataTransferer) {
+		dataTransferer.sendData("You are user number:" + users.size());
+	}
+
+	private void notifyForUserLeaving() {
+		sendMessageToAll("User leave. New count:" + users.size());
+	}
+
+	private void notifyUserLogIn() {
+		sendMessageToAll("User conected. New count:" + users.size());
+	}
+
+	private void sendMessageToAll(String message) {
+		for (DataTransferer temp : users) {
+			temp.sendData(message);
+		}
 	}
 
 	@Override
@@ -27,6 +47,7 @@ public class InfoReaderServer extends ServerComunicator {
 			users.remove(dataTransferer);
 			dataTransferer.closeSocket();
 			comunicatorListener.displayMessage("User disconected from server.");
+			notifyForUserLeaving();
 		}
 	}
 

@@ -11,6 +11,11 @@ public class InfoReaderClient extends ClientComunicator {
 	}
 
 	@Override
+	public void receiveMessage(String message, DataTransferer transferer) {
+		comunicatorListener.displayMessage(message);
+	}
+
+	@Override
 	public void addUserSession(DataTransferer dataTransferer) {
 		comunicatorListener.conectionStatusChange(true);
 		dataTransferer.start();
