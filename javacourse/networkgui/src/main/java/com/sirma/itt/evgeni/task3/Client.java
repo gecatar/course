@@ -18,7 +18,7 @@ public class Client extends ClientComunicator {
 	@Override
 	public void receiveMessage(String message, DataTransferer transferer) {
 		comunicatorListener.displayMessage(message);
-		closeConector();
+		stopConection();
 		comunicatorListener.conectionStatusChange(false);
 	}
 
