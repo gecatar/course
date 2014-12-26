@@ -12,14 +12,13 @@ public class InfoReaderClient extends ClientComunicator {
 
 	@Override
 	public void addUserSession(DataTransferer dataTransferer) {
-		comunicatorListener.userConected();
 		comunicatorListener.conectionStatusChange(true);
 		dataTransferer.start();
 	}
 
 	@Override
 	public void closeUsersession(DataTransferer dataTransferer) {
-		dataTransferer.closeSocket();
+		stopConection();
 		comunicatorListener.conectionStatusChange(false);
 	}
 }

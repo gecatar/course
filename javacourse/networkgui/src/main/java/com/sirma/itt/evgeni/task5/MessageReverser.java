@@ -35,7 +35,6 @@ public class MessageReverser extends Server {
 						serverSocket.accept());
 				messageTransferators.add(temp);
 				temp.start();
-				listener.userConected();
 			}
 		} catch (IOException e) {
 			closeServerSocket();

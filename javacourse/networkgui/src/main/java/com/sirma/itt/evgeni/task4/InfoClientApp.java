@@ -18,15 +18,8 @@ public class InfoClientApp implements ComunicatorListener,
 	}
 
 	@Override
-	public void userConected() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void displayMessage(String message) {
-		// TODO Auto-generated method stub
-
+		comunicatorView.displayMessage(message);
 	}
 
 	@Override
@@ -46,7 +39,6 @@ public class InfoClientApp implements ComunicatorListener,
 
 	@Override
 	public void sendMessage() {
-		// TODO Auto-generated method stub
 
 	}
 

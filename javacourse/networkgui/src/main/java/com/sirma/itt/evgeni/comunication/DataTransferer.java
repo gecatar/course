@@ -15,6 +15,7 @@ public class DataTransferer extends Thread {
 	private final Socket socket;
 	private final ObjectOutputStream ost;
 	private final ObjectInputStream ist;
+	private boolean disposed;
 
 	public DataTransferer(Comunicator comunicator, Socket socket,
 			ObjectOutputStream ost, ObjectInputStream ist) {
@@ -62,7 +63,9 @@ public class DataTransferer extends Thread {
 		} catch (IOException | ClassNotFoundException e) {
 			LOGGER.log(Level.INFO, "Conection lost", e);
 		} finally {
-			comunicator.closeUsersession(this);
+			if (!disposed) {
+				comunicator.closeUsersession(this);
+			}
 		}
 	}
 
@@ -70,6 +73,7 @@ public class DataTransferer extends Thread {
 	 * Close socket.
 	 */
 	public void closeSocket() {
+		disposed = true;
 		try {
 			if (socket != null) {
 				socket.close();

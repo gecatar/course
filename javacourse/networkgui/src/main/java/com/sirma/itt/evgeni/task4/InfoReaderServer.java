@@ -17,21 +17,26 @@ public class InfoReaderServer extends ServerComunicator {
 	@Override
 	public void addUserSession(DataTransferer dataTransferer) {
 		users.add(dataTransferer);
+		dataTransferer.start();
+		comunicatorListener.displayMessage("New user conected to server.");
 	}
 
 	@Override
 	public void closeUsersession(DataTransferer dataTransferer) {
 		if (users.contains(dataTransferer)) {
 			users.remove(dataTransferer);
+			dataTransferer.closeSocket();
+			comunicatorListener.displayMessage("User disconected from server.");
 		}
 	}
 
 	@Override
 	public void stopConection() {
-		closeConector();
+		super.stopConection();
 		for (DataTransferer transferer : users) {
 			transferer.closeSocket();
 		}
+		users.clear();
 	}
 
 }

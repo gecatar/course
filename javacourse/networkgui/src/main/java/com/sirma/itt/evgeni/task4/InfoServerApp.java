@@ -18,13 +18,8 @@ public class InfoServerApp implements ComunicatorListener,
 	}
 
 	@Override
-	public void userConected() {
-
-	}
-
-	@Override
 	public void displayMessage(String message) {
-
+		comunicatorView.displayMessage(message);
 	}
 
 	@Override

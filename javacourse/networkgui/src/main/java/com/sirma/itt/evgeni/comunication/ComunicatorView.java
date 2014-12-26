@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class ComunicatorView extends JFrame implements ActionListener {
@@ -17,6 +18,7 @@ public class ComunicatorView extends JFrame implements ActionListener {
 	protected JTextField ipAdress = new JTextField(15);
 	protected JTextField port = new JTextField(4);
 	protected JLabel conectionStatus = new JLabel();
+	protected JTextArea textArea = new JTextArea();
 	protected ComunicatorViewListener listener;
 
 	public ComunicatorView(ComunicatorViewListener listener) {
@@ -36,14 +38,16 @@ public class ComunicatorView extends JFrame implements ActionListener {
 		conectionStatus.setAlignmentX(Component.CENTER_ALIGNMENT);
 		conectionStatus.setText("Result:");
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		JButton startConection = new JButton("Start server");
+		JButton startConection = new JButton("Start conection");
 		startConection.setAlignmentX(Component.CENTER_ALIGNMENT);
 		startConection.setName("start");
 		startConection.addActionListener(this);
-		JButton stopConection = new JButton("Stop server");
+		JButton stopConection = new JButton("Stop conection");
 		stopConection.setAlignmentX(Component.CENTER_ALIGNMENT);
 		stopConection.setName("stop");
 		stopConection.addActionListener(this);
+		textArea.setAlignmentX(Component.CENTER_ALIGNMENT);
+		textArea.setMaximumSize(new Dimension(150, 200));
 		panel.add(ipLabel);
 		panel.add(ipAdress);
 		panel.add(portLabel);
@@ -51,11 +55,16 @@ public class ComunicatorView extends JFrame implements ActionListener {
 		panel.add(conectionStatus);
 		panel.add(startConection);
 		panel.add(stopConection);
+		panel.add(textArea);
 		// --------------------------------------
-		setSize(new Dimension(200, 250));
+		setSize(new Dimension(300, 450));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		// --------------------------------------
+	}
+
+	public void displayMessage(String message) {
+		textArea.setText(message + "\n" + textArea.getText());
 	}
 
 	/**

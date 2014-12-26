@@ -104,14 +104,6 @@ public class MessageReverserApp extends JFrame implements ActionListener,
 	}
 
 	/**
-	 * When new user came in.
-	 */
-	@Override
-	public void userConected() {
-		conectionStatus.setText("User conected...");
-	}
-
-	/**
 	 * Display messages received from server.
 	 */
 	@Override

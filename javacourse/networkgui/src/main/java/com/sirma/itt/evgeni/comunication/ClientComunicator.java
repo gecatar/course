@@ -12,11 +12,14 @@ public class ClientComunicator extends Comunicator {
 			conector = new ClientConector(this, ip, port);
 			conector.start();
 		}
+		comunicatorListener.displayMessage("Open conection...");
 	}
 
 	@Override
 	public void stopConection() {
 		closeConector();
+		comunicatorListener.displayMessage("Close conector...");
+		comunicatorListener.displayMessage("Close conection...");
 	}
 
 	@Override

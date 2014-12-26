@@ -87,12 +87,6 @@ public class MessageReaderApp extends JFrame implements ActionListener,
 		}
 	}
 
-	@Override
-	public void userConected() {
-		// TODO Auto-generated method stub
-
-	}
-
 	/**
 	 * Display message from server.
 	 */
