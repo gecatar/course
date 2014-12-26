@@ -16,7 +16,6 @@ public class ServerConector extends Conector {
 
 	public ServerConector(Comunicator comunicator, String ipAdress, int port) {
 		super(comunicator, ipAdress, port);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
