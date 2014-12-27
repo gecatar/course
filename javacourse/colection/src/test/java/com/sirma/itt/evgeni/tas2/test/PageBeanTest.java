@@ -33,6 +33,12 @@ public class PageBeanTest {
 
 	}
 
+	public void getFirstAndLastTest() {
+		pageBean = new PageBean(object, 3);
+		assertTrue(pageBean.getFirstPage() != null);
+		assertTrue(pageBean.getLastPage() != null);
+	}
+
 	/**
 	 * Test has next functionality.
 	 */
