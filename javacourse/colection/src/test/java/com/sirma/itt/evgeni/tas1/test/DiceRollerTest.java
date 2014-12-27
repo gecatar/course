@@ -21,8 +21,8 @@ public class DiceRollerTest {
 	@Test
 	public void addExistingCombinationTest() {
 		diceRoller.clearRecords();
-		Assert.assertTrue(diceRoller.addNonExsistingCombination("1 2", 0));
-		Assert.assertTrue(diceRoller.addExsistingCombination("1 2", 1));
+		diceRoller.saveCombination(1, 2, 0);
+		Assert.assertTrue(diceRoller.saveCombination(1, 2, 1));
 	}
 
 	/**
@@ -31,6 +31,6 @@ public class DiceRollerTest {
 	@Test
 	public void addNonExsistingCombinationTest() {
 		diceRoller.clearRecords();
-		Assert.assertTrue(diceRoller.addNonExsistingCombination("1 2", 0));
+		Assert.assertTrue(diceRoller.saveCombination(1, 2, 0));
 	}
 }

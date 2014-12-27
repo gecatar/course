@@ -74,7 +74,7 @@ public class DiceRoller {
 	 * @param drawNumber
 	 * @return
 	 */
-	public boolean addExsistingCombination(String combination, int drawNumber) {
+	private boolean addExsistingCombination(String combination, int drawNumber) {
 		if (combinations.containsKey(combination)) {
 			combinations.get(combination).add(drawNumber);
 			return true;
@@ -89,7 +89,8 @@ public class DiceRoller {
 	 * @param drawNumber
 	 * @return
 	 */
-	public boolean addNonExsistingCombination(String combination, int drawNumber) {
+	private boolean addNonExsistingCombination(String combination,
+			int drawNumber) {
 		if (!combinations.containsKey(combination)) {
 			ArrayList<Integer> temp = new ArrayList<Integer>();
 			temp.add(drawNumber);
