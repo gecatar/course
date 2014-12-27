@@ -11,7 +11,7 @@ import java.util.LinkedList;
 public class PageBean {
 
 	private final LinkedList<Page> page;
-	private Page currentPage;
+	private int currentIndex;
 
 	/**
 	 * Create Page Bean.
@@ -20,12 +20,10 @@ public class PageBean {
 	 * @param pageSize
 	 */
 	public PageBean(Object[] object, int pageSize) {
+		currentIndex = -1;
 		page = new LinkedList<Page>();
 		if (object != null) {
-			int pages = object.length / pageSize;
-			if (object.length % pageSize > 0) {
-				pages++;
-			}
+			int pages = getNumberOfPages(object.length, pageSize);
 			for (int i = 0; i < pages; i++) {
 				Page temp = new Page();
 				for (int j = 0; j < pageSize; j++) {
@@ -34,44 +32,6 @@ public class PageBean {
 					}
 				}
 				page.add(temp);
-			}
-		}
-	}
-
-	/**
-	 * Return true if page bean has next page.
-	 * 
-	 * @return
-	 */
-	public boolean hasNext() {
-		if (currentPage == null) {
-			if (page.getFirst() != null)
-				;
-			return true;
-		} else {
-			if (currentPage != page.getLast()) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-	}
-
-	/**
-	 * Return true if page bean has previous page.
-	 * 
-	 * @return
-	 */
-	public boolean hasPrevious() {
-		if (currentPage == null) {
-			if (page.getLast() != null)
-				;
-			return true;
-		} else {
-			if (currentPage != page.getFirst()) {
-				return true;
-			} else {
-				return false;
 			}
 		}
 	}
@@ -89,26 +49,25 @@ public class PageBean {
 		return page;
 	}
 
+	public boolean hasNext() {
+		return containPage(currentIndex + 1);
+	}
+
+	public boolean hasPrevious() {
+		return containPage(currentIndex - 1);
+	}
+
 	/**
 	 * Allow user to get pages one by one.
 	 * 
 	 * @return pages starting from first page.
 	 */
 	public Page getNext() {
-		if (currentPage == null) {
-			currentPage = page.getFirst();
-			return currentPage;
-		} else {
-			int index = page.indexOf(currentPage);
-			index++;
-			if (index < page.size()) {
-				currentPage = page.get(index);
-				return currentPage;
-			} else {
-				index--;
-				return null;
-			}
+		if (containPage(currentIndex + 1)) {
+			currentIndex++;
+			return page.get(currentIndex);
 		}
+		throw new IndexOutOfBoundsException("There is no more pages!!!");
 	}
 
 	/**
@@ -117,19 +76,26 @@ public class PageBean {
 	 * @return
 	 */
 	public Page getPrevious() {
-		if (currentPage == null) {
-			currentPage = page.getLast();
-			return currentPage;
+		if (containPage(currentIndex - 1)) {
+			currentIndex--;
+			return page.get(currentIndex);
+		}
+		throw new IndexOutOfBoundsException("There is no more pages!!!");
+	}
+
+	private int getNumberOfPages(int elementCount, int pageSize) {
+		int pages = elementCount / pageSize;
+		if (elementCount % pageSize > 0) {
+			pages++;
+		}
+		return pages;
+	}
+
+	private boolean containPage(int index) {
+		if (index < page.size() && index >= 0) {
+			return true;
 		} else {
-			int index = page.indexOf(currentPage);
-			index--;
-			if (index < page.size() && index >= 0) {
-				currentPage = page.get(index);
-				return currentPage;
-			} else {
-				index++;
-				return null;
-			}
+			return false;
 		}
 	}
 

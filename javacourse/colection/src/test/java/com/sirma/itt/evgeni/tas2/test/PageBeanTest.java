@@ -2,7 +2,6 @@ package com.sirma.itt.evgeni.tas2.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.LinkedList;
@@ -54,18 +53,17 @@ public class PageBeanTest {
 	@Test
 	public void hasPreviousTest() {
 		pageBean = new PageBean(object, 3);
-		assertTrue(pageBean.hasPrevious());
-		pageBean.getPrevious();
-		pageBean.getPrevious();
-		pageBean.getPrevious();
-		pageBean.getPrevious();
 		assertFalse(pageBean.hasPrevious());
+		pageBean.getNext();
+		pageBean.getNext();
+		pageBean.getNext();
+		assertTrue(pageBean.hasPrevious());
 	}
 
 	/**
 	 * Test correct returning on previous page.
 	 */
-	@Test
+	@Test(expected = IndexOutOfBoundsException.class)
 	public void previosTest() {
 		pageBean = new PageBean(object, 3);
 		pages = pageBean.getPages();
@@ -76,13 +74,13 @@ public class PageBeanTest {
 		assertEquals(pages.get(2), pageBean.getPrevious());
 		assertEquals(pages.get(1), pageBean.getPrevious());
 		assertEquals(pages.get(0), pageBean.getPrevious());
-		assertNull(pageBean.getPrevious());
+		assertEquals(pages.get(0), pageBean.getPrevious());
 	}
 
 	/**
 	 * Test correct returning on next page.
 	 */
-	@Test
+	@Test(expected = IndexOutOfBoundsException.class)
 	public void nextTest() {
 		pageBean = new PageBean(object, 3);
 		pages = pageBean.getPages();
@@ -90,7 +88,7 @@ public class PageBeanTest {
 		assertEquals(pages.get(1), pageBean.getNext());
 		assertEquals(pages.get(2), pageBean.getNext());
 		assertEquals(pages.get(3), pageBean.getNext());
-		assertNull(pageBean.getNext());
+		assertEquals(pages.get(3), pageBean.getNext());
 	}
 
 }
