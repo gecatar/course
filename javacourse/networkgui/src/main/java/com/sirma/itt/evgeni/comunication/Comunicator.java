@@ -20,7 +20,7 @@ public abstract class Comunicator {
 	public abstract void receiveMessage(String message,
 			DataTransferer transferer);
 
-	public abstract void sendMessage();
+	public abstract void sendMessage(String message);
 
 	public synchronized void closeConector() {
 		if (conector != null) {

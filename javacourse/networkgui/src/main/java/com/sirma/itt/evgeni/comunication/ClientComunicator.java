@@ -38,7 +38,7 @@ public class ClientComunicator extends Comunicator {
 	}
 
 	@Override
-	public void sendMessage() {
+	public void sendMessage(String message) {
 
 	}
 
