@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 
 public class ComunicatorView extends JFrame implements ActionListener {
 
+	protected JPanel panel = new JPanel();
 	protected JTextField ipAdress = new JTextField(15);
 	protected JTextField port = new JTextField(4);
 	protected JLabel conectionStatus = new JLabel();

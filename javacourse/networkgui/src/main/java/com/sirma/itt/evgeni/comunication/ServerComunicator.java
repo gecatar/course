@@ -36,4 +36,9 @@ public class ServerComunicator extends Comunicator {
 	public void receiveMessage(String message, DataTransferer transferer) {
 
 	}
+
+	@Override
+	public void sendMessage() {
+
+	}
 }
