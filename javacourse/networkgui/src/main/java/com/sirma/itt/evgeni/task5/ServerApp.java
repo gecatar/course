@@ -13,6 +13,7 @@ public class ServerApp implements ComunicatorListener, ComunicatorViewListener {
 	public ServerApp() {
 		comunicator = new ReverserServer(this);
 		comunicatorView = new ComunicatorView(this);
+		comunicatorView.setTitle("Reverser server app...");
 	}
 
 	@Override
@@ -26,10 +27,6 @@ public class ServerApp implements ComunicatorListener, ComunicatorViewListener {
 	}
 
 	@Override
-	public void sendMessage() {
-	}
-
-	@Override
 	public void displayMessage(String message) {
 		comunicatorView.displayMessage(message);
 	}
@@ -37,6 +34,10 @@ public class ServerApp implements ComunicatorListener, ComunicatorViewListener {
 	@Override
 	public void conectionStatusChange(boolean conected) {
 		comunicatorView.setConectionStatus(conected);
+	}
+
+	@Override
+	public void sendMessage() {
 	}
 
 	public static void main(String[] args) {

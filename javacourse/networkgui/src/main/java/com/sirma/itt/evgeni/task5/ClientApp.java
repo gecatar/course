@@ -11,7 +11,9 @@ public class ClientApp implements ComunicatorListener, ComunicatorViewListener {
 	ComunicatorView comunicatorView;
 
 	public ClientApp() {
+		comunicator = new ReverserClient(this);
 		comunicatorView = new ReverserView(this);
+		comunicatorView.setTitle("Reverse client app...");
 	}
 
 	@Override
@@ -40,7 +42,7 @@ public class ClientApp implements ComunicatorListener, ComunicatorViewListener {
 	}
 
 	public static void main(String[] args) {
-
+		new ClientApp();
 	}
 
 }

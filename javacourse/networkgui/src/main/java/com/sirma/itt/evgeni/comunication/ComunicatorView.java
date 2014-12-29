@@ -24,7 +24,6 @@ public class ComunicatorView extends JFrame implements ActionListener {
 
 	public ComunicatorView(ComunicatorViewListener listener) {
 		this.listener = listener;
-		JPanel panel = new JPanel();
 		add(panel);
 		JLabel ipLabel = new JLabel("IP");
 		ipLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
