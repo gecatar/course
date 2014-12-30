@@ -22,26 +22,19 @@ public class Cacher {
 	}
 
 	/**
-	 * Add element in Deque. Deque is used for accessing first and last element.
-	 * 
-	 * @param key
-	 *            represent object in map.
-	 * @param obj
-	 *            that will be added in map whit specified key.
+	 * Add element in Dequeue. Dequeue is used for accessing first and last
+	 * element.
 	 */
-	public void addElement(int key, Object obj) {
+	public void addElement(int key, Object object) {
 		if (count < capacity) {
-			putInNotFullList(key, obj);
+			putInNotFullList(key, object);
 		} else {
-			putInFullList(key, obj);
+			putInFullList(key, object);
 		}
 	}
 
 	/**
 	 * Return object by specified key and put its key on first position.
-	 * 
-	 * @param key
-	 * @return
 	 */
 	public Object getObject(int key) {
 		if (objectMap.containsKey(key)) {
@@ -53,11 +46,8 @@ public class Cacher {
 
 	/**
 	 * Make passed key on first position in list.
-	 * 
-	 * @param key
-	 * @return
 	 */
-	public boolean makeKeyFirst(int key) {
+	private boolean makeKeyFirst(int key) {
 		if (lruCache.contains(key)) {
 			lruCache.remove(key);
 			lruCache.addFirst(key);
@@ -68,20 +58,15 @@ public class Cacher {
 
 	/**
 	 * Put elements when list is full.
-	 * 
-	 * @param key
-	 *            represent key for object.
-	 * @param obj
-	 *            will be added in map.
 	 */
-	void putInFullList(int key, Object obj) {
+	private void putInFullList(int key, Object object) {
 		if (objectMap.containsKey(key)) {
 			makeKeyFirst(key);
 		} else {
 			int lastKey = lruCache.getLast();
 			objectMap.remove(lastKey);
 			lruCache.remove(lastKey);
-			objectMap.put(key, obj);
+			objectMap.put(key, object);
 			lruCache.addFirst(key);
 		}
 
@@ -89,24 +74,19 @@ public class Cacher {
 
 	/**
 	 * Put element when list is not full.
-	 * 
-	 * @param key
-	 * @param obj
 	 */
-	void putInNotFullList(int key, Object obj) {
+	private void putInNotFullList(int key, Object object) {
 		if (objectMap.containsKey(key)) {
 			makeKeyFirst(key);
 		} else {
 			count++;
-			objectMap.put(key, obj);
+			objectMap.put(key, object);
 			lruCache.addFirst(key);
 		}
 	}
 
 	/**
 	 * Print all elements.
-	 * 
-	 * @return elements represented as string.
 	 */
 	@Override
 	public String toString() {
