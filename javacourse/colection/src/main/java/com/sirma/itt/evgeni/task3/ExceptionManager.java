@@ -15,11 +15,10 @@ import java.util.Set;
  */
 public class ExceptionManager {
 
-	final String SEPARATOR = new String("|");
-	static Map<String, String> exceptions = new HashMap<String, String>();
-	String message = new String();
-
-	public ExceptionManager() {
+	private static final String SEPARATOR = new String("|");
+	private static Map<String, String> exceptions = new HashMap<String, String>();
+	private String message = new String();
+	static {
 		exceptions.put("INVID", "Invalid UID");
 		exceptions.put("INVPC", "Invalid Post Code");
 		exceptions.put("INVDC", "Invalid Debit Card Number");
