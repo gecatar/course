@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Store exception log. Save different type error using codes or strings. Allow
@@ -15,6 +17,8 @@ import java.util.Set;
  */
 public class ExceptionManager {
 
+	private static final Logger LOGGER = Logger
+			.getLogger(ExceptionManager.class.getName());
 	private static final String SEPARATOR = new String("|");
 	private static Map<String, String> exceptions = new HashMap<String, String>();
 	private String message = new String();
@@ -90,7 +94,7 @@ public class ExceptionManager {
 			message += exceptions.get(key);
 			message += SEPARATOR;
 		} else {
-			System.out.println("Error code is not recognised!!!");
+			LOGGER.log(Level.INFO, "Error code not suported!!!");
 		}
 	}
 }
