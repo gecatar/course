@@ -51,7 +51,7 @@ public class FileReverser {
 	 *            the text that will be reversed.
 	 * @return reversed text.
 	 */
-	public String reverseText(String text) {
+	private String reverseText(String text) {
 		return new StringBuilder().append(text).reverse().toString();
 	}
 
@@ -67,7 +67,7 @@ public class FileReverser {
 	 * @return
 	 * @throws
 	 */
-	public boolean saveText(File file, String text) throws IOException {
+	private boolean saveText(File file, String text) throws IOException {
 		try (OutputStreamWriter osw = new OutputStreamWriter(
 				new BufferedOutputStream(new FileOutputStream(file)))) {
 			osw.write(text);
@@ -84,7 +84,7 @@ public class FileReverser {
 	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */
-	public String getText(File file) throws IOException {
+	private String getText(File file) throws IOException {
 		StringBuilder stringBuilder = new StringBuilder();
 		try (InputStreamReader inputReader = new InputStreamReader(
 				new BufferedInputStream(new FileInputStream(file)))) {

@@ -1,6 +1,6 @@
 package com.sirma.itt.evgeni.task3.test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,10 +19,11 @@ public class ReverseFileTest {
 	 * Check correct storing on data to file.
 	 */
 	@Test
-	public void saveTextTest() throws IOException, URISyntaxException {
+	public void reverseFileTest() throws IOException, URISyntaxException {
 		String text = "123456";
 		File file = new File(getClass().getResource("/test.txt").toURI());
 		fileReverser.reverseFile(file.getPath());
-		assertEquals(text.getBytes(), Files.readAllBytes(file.toPath()));
+		assertArrayEquals(text.getBytes(), Files.readAllBytes(file.toPath()));
+
 	}
 }
