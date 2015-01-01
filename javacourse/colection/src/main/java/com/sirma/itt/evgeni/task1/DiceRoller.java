@@ -54,7 +54,7 @@ public class DiceRoller {
 	/**
 	 * Create string whit two values of dices.
 	 */
-	public String getCombinationString(int firstDice, int secondDice) {
+	private String getCombinationString(int firstDice, int secondDice) {
 		return String.valueOf(firstDice) + " " + secondDice;
 	}
 
