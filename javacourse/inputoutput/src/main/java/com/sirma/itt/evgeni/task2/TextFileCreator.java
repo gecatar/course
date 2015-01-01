@@ -1,7 +1,6 @@
 package com.sirma.itt.evgeni.task2;
 
 import java.io.BufferedOutputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -28,10 +27,6 @@ public class TextFileCreator {
 
 	/**
 	 * Save user input to file. Saving stop when '.' is entered.
-	 * 
-	 * @param path
-	 * @return
-	 * @throws FileNotFoundException
 	 */
 	public boolean createFile(String path) {
 		try (OutputStreamWriter osw = new OutputStreamWriter(

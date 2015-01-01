@@ -1,11 +1,13 @@
 package com.sirma.itt.evgeni.task2.test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertFalse;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -43,14 +45,12 @@ public class TextFileCreatorTest {
 
 	/**
 	 * Save data to file and check its content.
-	 * 
-	 * @throws IOException
-	 * @throws URISyntaxException
 	 */
 	@Test
 	public void createFileTestSecond() throws IOException, URISyntaxException {
 		File file = new File(getClass().getResource("/test.txt").toURI());
 		creator.createFile(file.getPath());
-		// assertEquals("45678910", reverser.getText(file));
+		assertArrayEquals("45678910".getBytes(),
+				Files.readAllBytes(file.toPath()));
 	}
 }
