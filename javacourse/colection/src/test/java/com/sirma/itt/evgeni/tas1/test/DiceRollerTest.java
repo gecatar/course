@@ -1,6 +1,7 @@
 package com.sirma.itt.evgeni.tas1.test;
 
-import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,21 +17,13 @@ public class DiceRollerTest {
 	}
 
 	/**
-	 * Check behavior when adding existing combination.
+	 * Test saving existing and non existing combination.
 	 */
 	@Test
-	public void addExistingCombinationTest() {
-		diceRoller.clearRecords();
-		diceRoller.saveCombination(1, 2, 0);
-		Assert.assertTrue(diceRoller.saveCombination(1, 2, 1));
-	}
-
-	/**
-	 * Check behavior when adding non existing combination.
-	 */
-	@Test
-	public void addNonExsistingCombinationTest() {
-		diceRoller.clearRecords();
-		Assert.assertTrue(diceRoller.saveCombination(1, 2, 0));
+	public void saveCombinationTest() {
+		diceRoller.saveCombination(1, 1, 1);
+		assertEquals("Dices:1 1 Drawns:1", diceRoller.toString());
+		diceRoller.saveCombination(1, 1, 3);
+		assertEquals("Dices:1 1 Drawns:1 3", diceRoller.toString());
 	}
 }

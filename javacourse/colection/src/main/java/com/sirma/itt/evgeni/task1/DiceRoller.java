@@ -41,27 +41,18 @@ public class DiceRoller {
 
 	/**
 	 * Save combination in record base.
-	 * 
-	 * @param firstDice
-	 * @param secondDice
-	 * @param drawNumber
-	 * @return
 	 */
-	public boolean saveCombination(int firstDice, int secondDice, int drawNumber) {
+	public void saveCombination(int firstDice, int secondDice, int drawNumber) {
 		String combination = getCombinationString(firstDice, secondDice);
 		if (combinations.containsKey(combination)) {
-			return addExsistingCombination(combination, drawNumber);
+			addExsistingCombination(combination, drawNumber);
 		} else {
-			return addNonExsistingCombination(combination, drawNumber);
+			addNonExsistingCombination(combination, drawNumber);
 		}
 	}
 
 	/**
 	 * Create string whit two values of dices.
-	 * 
-	 * @param firstDice
-	 * @param secondDice
-	 * @return
 	 */
 	public String getCombinationString(int firstDice, int secondDice) {
 		return String.valueOf(firstDice) + " " + secondDice;
@@ -69,35 +60,18 @@ public class DiceRoller {
 
 	/**
 	 * Add existing combination.
-	 * 
-	 * @param combination
-	 * @param drawNumber
-	 * @return
 	 */
-	private boolean addExsistingCombination(String combination, int drawNumber) {
-		if (combinations.containsKey(combination)) {
-			combinations.get(combination).add(drawNumber);
-			return true;
-		}
-		return false;
+	private void addExsistingCombination(String combination, int drawNumber) {
+		combinations.get(combination).add(drawNumber);
 	}
 
 	/**
 	 * Add non existing combination.
-	 * 
-	 * @param combination
-	 * @param drawNumber
-	 * @return
 	 */
-	private boolean addNonExsistingCombination(String combination,
-			int drawNumber) {
-		if (!combinations.containsKey(combination)) {
-			ArrayList<Integer> temp = new ArrayList<Integer>();
-			temp.add(drawNumber);
-			combinations.put(combination, temp);
-			return true;
-		}
-		return false;
+	private void addNonExsistingCombination(String combination, int drawNumber) {
+		ArrayList<Integer> temp = new ArrayList<Integer>();
+		temp.add(drawNumber);
+		combinations.put(combination, temp);
 	}
 
 	/**
