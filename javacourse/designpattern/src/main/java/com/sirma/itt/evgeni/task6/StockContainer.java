@@ -66,6 +66,7 @@ public class StockContainer implements Container {
 	public String toString() {
 		Set<String> keys = items.keySet();
 		StringBuilder stb = new StringBuilder();
+		stb.append("Stock container");
 		for (String key : keys) {
 			stb.append("Description:");
 			stb.append(key);

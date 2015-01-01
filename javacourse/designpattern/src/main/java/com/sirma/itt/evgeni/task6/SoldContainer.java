@@ -60,6 +60,7 @@ public class SoldContainer implements Container {
 	public String toString() {
 		Set<String> keys = items.keySet();
 		StringBuilder stb = new StringBuilder();
+		stb.append("Sold container:\n");
 		for (String key : keys) {
 			stb.append("Description:");
 			stb.append(key);

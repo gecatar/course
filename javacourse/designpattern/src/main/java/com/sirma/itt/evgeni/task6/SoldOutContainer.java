@@ -53,6 +53,7 @@ public class SoldOutContainer implements Container {
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("Soldout container\n");
 		for (String item : soldOutItems) {
 			stringBuilder.append("Description:").append(item).append("\n");
 		}
