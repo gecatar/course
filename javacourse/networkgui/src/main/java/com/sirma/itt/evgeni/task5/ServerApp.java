@@ -37,7 +37,8 @@ public class ServerApp implements ComunicatorListener, ComunicatorViewListener {
 	}
 
 	@Override
-	public void sendMessage() {
+	public void sendMessage(String message) {
+
 	}
 
 	public static void main(String[] args) {

@@ -38,7 +38,7 @@ public class InfoClientApp implements ComunicatorListener,
 	}
 
 	@Override
-	public void sendMessage() {
+	public void sendMessage(String message) {
 
 	}
 

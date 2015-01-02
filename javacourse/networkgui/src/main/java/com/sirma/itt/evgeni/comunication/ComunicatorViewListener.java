@@ -6,5 +6,5 @@ public interface ComunicatorViewListener {
 
 	public void stopConection();
 
-	public void sendMessage();
+	public void sendMessage(String message);
 }

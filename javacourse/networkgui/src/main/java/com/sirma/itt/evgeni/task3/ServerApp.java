@@ -27,11 +27,6 @@ public class ServerApp implements ComunicatorListener, ComunicatorViewListener {
 	}
 
 	@Override
-	public void sendMessage() {
-
-	}
-
-	@Override
 	public void displayMessage(String message) {
 		comunicatorView.displayMessage(message);
 	}
@@ -39,6 +34,11 @@ public class ServerApp implements ComunicatorListener, ComunicatorViewListener {
 	@Override
 	public void conectionStatusChange(boolean conected) {
 		comunicatorView.setConectionStatus(conected);
+	}
+
+	@Override
+	public void sendMessage(String message) {
+
 	}
 
 	public static void main(String[] args) {
