@@ -23,7 +23,8 @@ public class SoldOutContainerTest {
 	public void addSoldOutItemTtest() {
 		soldOutContainer = new SoldOutContainer();
 		soldOutContainer.update('u', "test", 25, null);
-		assertEquals("Description:test", soldOutContainer.toString());
+		assertEquals("Soldout container:\nDescription:test",
+				soldOutContainer.toString());
 	}
 
 	/**

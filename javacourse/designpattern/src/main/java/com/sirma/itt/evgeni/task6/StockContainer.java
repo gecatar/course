@@ -12,7 +12,7 @@ import java.util.Set;
  */
 public class StockContainer implements Container {
 
-	Map<String, Integer> items = new HashMap<String, Integer>();
+	private Map<String, Integer> items = new HashMap<String, Integer>();
 
 	/**
 	 * Update information about item.
@@ -29,9 +29,6 @@ public class StockContainer implements Container {
 
 	/**
 	 * Add quantity to store.
-	 * 
-	 * @param description
-	 * @param quantity
 	 */
 	private void addQuantity(String description, int quantity) {
 		if (items.containsKey(description)) {
@@ -43,14 +40,11 @@ public class StockContainer implements Container {
 
 	/**
 	 * Remove quantity from store. Notify observers if quantity is not enough.
-	 * 
-	 * @param description
-	 * @param quantity
 	 */
 	private void removeQuantity(String description, int quantity, Observable obs) {
 		if (items.containsKey(description)) {
 			int unAvaibleQuantity = quantity - items.get(description);
-			if (unAvaibleQuantity > 0) {
+			if (unAvaibleQuantity >= 0) {
 				obs.notifyAll('u', description, unAvaibleQuantity);
 				items.put(description, 0);
 			} else {
@@ -66,7 +60,7 @@ public class StockContainer implements Container {
 	public String toString() {
 		Set<String> keys = items.keySet();
 		StringBuilder stb = new StringBuilder();
-		stb.append("Stock container");
+		stb.append("Stock container:").append("\n");
 		for (String key : keys) {
 			stb.append("Description:");
 			stb.append(key);

@@ -27,8 +27,6 @@ public class SoldOutContainer implements Container {
 
 	/**
 	 * Remove sold out item.
-	 * 
-	 * @param description
 	 */
 	private void removeSoldOutItem(String description) {
 		if (soldOutItems.contains(description)) {
@@ -38,8 +36,6 @@ public class SoldOutContainer implements Container {
 
 	/**
 	 * Add sold out item.
-	 * 
-	 * @param description
 	 */
 	private void addSoldOutItem(String description) {
 		if (!soldOutItems.contains(description)) {
@@ -53,7 +49,7 @@ public class SoldOutContainer implements Container {
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("Soldout container\n");
+		stringBuilder.append("Soldout container:").append("\n");
 		for (String item : soldOutItems) {
 			stringBuilder.append("Description:").append(item).append("\n");
 		}

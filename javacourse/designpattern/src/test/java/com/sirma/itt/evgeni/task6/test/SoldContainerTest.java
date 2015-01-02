@@ -23,7 +23,8 @@ public class SoldContainerTest {
 	public void registerSaleTtest() {
 		soldContainer = new SoldContainer();
 		soldContainer.update('s', "test", 10, null);
-		assertEquals("Description:test Quantity:10", soldContainer.toString());
+		assertEquals("Sold container:\nDescription:test Quantity:10",
+				soldContainer.toString());
 	}
 
 	/**
@@ -34,7 +35,8 @@ public class SoldContainerTest {
 		soldContainer = new SoldContainer();
 		soldContainer.update('s', "test", 10, null);
 		soldContainer.update('u', "test", 5, null);
-		assertEquals("Description:test Quantity:5", soldContainer.toString());
+		assertEquals("Sold container:\nDescription:test Quantity:5",
+				soldContainer.toString());
 	}
 
 }

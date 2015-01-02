@@ -29,9 +29,6 @@ public class SoldContainer implements Container {
 
 	/**
 	 * Roll back quantity.
-	 * 
-	 * @param description
-	 * @param quantity
 	 */
 	private void rollbackSale(String description, int quantity) {
 		registerSale(description, quantity * -1);
@@ -39,9 +36,6 @@ public class SoldContainer implements Container {
 
 	/**
 	 * Register sold quantity.
-	 * 
-	 * @param description
-	 * @param quantity
 	 */
 	private void registerSale(String description, int quantity) {
 		if (items.containsKey(description)) {
@@ -60,7 +54,7 @@ public class SoldContainer implements Container {
 	public String toString() {
 		Set<String> keys = items.keySet();
 		StringBuilder stb = new StringBuilder();
-		stb.append("Sold container:\n");
+		stb.append("Sold container:").append("\n");
 		for (String key : keys) {
 			stb.append("Description:");
 			stb.append(key);

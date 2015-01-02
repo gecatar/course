@@ -26,6 +26,7 @@ public class TraderRunner {
 			System.out.println("Choose operation:");
 			System.out.println("1)Buy Stock.");
 			System.out.println("2)Sell Stock.");
+			System.out.println("3)Print observers.");
 			int choise = ConsoleReader.readInt();
 			if (choise == 1) {
 				System.out.println("Enter description:");
@@ -41,7 +42,9 @@ public class TraderRunner {
 				int quantity = ConsoleReader.readInt();
 				trader.sellItem(description, quantity);
 			}
-			System.out.println(trader.toString());
+			if (choise == 3) {
+				System.out.println(trader);
+			}
 		}
 
 	}

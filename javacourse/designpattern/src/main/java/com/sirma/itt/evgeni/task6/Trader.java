@@ -64,8 +64,8 @@ public class Trader implements Observable {
 	public String toString() {
 		StringBuilder stb = new StringBuilder();
 		for (Container container : containers) {
-			stb.append(container.toString());
+			stb.append(container.toString()).append("\n");
 		}
-		return stb.toString();
+		return stb.toString().trim();
 	}
 }
