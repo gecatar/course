@@ -31,7 +31,7 @@ public class ReverserView extends ComunicatorView implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		if (e.getSource().getClass() == JTextField.class) {
 			if (true) {
-
+				listener.sendMessage("test 123 :");
 			}
 
 		}

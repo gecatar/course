@@ -6,6 +6,8 @@ import com.sirma.itt.evgeni.comunication.DataTransferer;
 
 public class ReverserClient extends ClientComunicator {
 
+	private DataTransferer dataTransferer;
+
 	public ReverserClient(ComunicatorListener comunicatorListener) {
 		super(comunicatorListener);
 	}
@@ -13,6 +15,7 @@ public class ReverserClient extends ClientComunicator {
 	@Override
 	public void addUserSession(DataTransferer dataTransferer) {
 		comunicatorListener.conectionStatusChange(true);
+		this.dataTransferer = dataTransferer;
 		dataTransferer.start();
 	}
 
@@ -20,6 +23,18 @@ public class ReverserClient extends ClientComunicator {
 	public void closeUsersession(DataTransferer dataTransferer) {
 		comunicatorListener.conectionStatusChange(false);
 		closeConector();
+	}
+
+	@Override
+	public void receiveMessage(String message, DataTransferer transferer) {
+		comunicatorListener.displayMessage("Reversed message:" + message);
+	}
+
+	@Override
+	public void sendMessage(String message) {
+		if (dataTransferer != null) {
+			dataTransferer.sendData(message);
+		}
 	}
 
 }

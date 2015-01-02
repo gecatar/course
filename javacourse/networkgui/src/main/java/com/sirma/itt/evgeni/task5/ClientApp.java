@@ -38,7 +38,7 @@ public class ClientApp implements ComunicatorListener, ComunicatorViewListener {
 
 	@Override
 	public void sendMessage(String message) {
-
+		comunicator.sendMessage(message);
 	}
 
 	public static void main(String[] args) {

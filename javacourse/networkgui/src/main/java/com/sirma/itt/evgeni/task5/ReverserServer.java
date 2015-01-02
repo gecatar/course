@@ -30,6 +30,15 @@ public class ReverserServer extends ServerComunicator {
 		}
 	}
 
+	private String reverseMessage(String message) {
+		return new StringBuilder(message).reverse().toString();
+	}
+
+	@Override
+	public void receiveMessage(String message, DataTransferer transferer) {
+		transferer.sendData(reverseMessage(message));
+	}
+
 	@Override
 	public void stopConection() {
 		super.stopConection();
