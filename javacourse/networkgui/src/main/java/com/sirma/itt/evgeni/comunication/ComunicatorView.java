@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -46,8 +47,9 @@ public class ComunicatorView extends JFrame implements ActionListener {
 		stopConection.setAlignmentX(Component.CENTER_ALIGNMENT);
 		stopConection.setName("stop");
 		stopConection.addActionListener(this);
-		textArea.setAlignmentX(Component.CENTER_ALIGNMENT);
-		textArea.setMaximumSize(new Dimension(150, 200));
+		JScrollPane scrollPane = new JScrollPane(textArea);
+		scrollPane.setAlignmentX(Component.CENTER_ALIGNMENT);
+		scrollPane.setMaximumSize(new Dimension(150, 200));
 		panel.add(ipLabel);
 		panel.add(ipAdress);
 		panel.add(portLabel);
@@ -55,7 +57,7 @@ public class ComunicatorView extends JFrame implements ActionListener {
 		panel.add(conectionStatus);
 		panel.add(startConection);
 		panel.add(stopConection);
-		panel.add(textArea);
+		panel.add(scrollPane);
 		// --------------------------------------
 		setSize(new Dimension(300, 450));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -64,7 +66,7 @@ public class ComunicatorView extends JFrame implements ActionListener {
 	}
 
 	public void displayMessage(String message) {
-		textArea.setText(message + "\n" + textArea.getText());
+		textArea.setText(textArea.getText() + "\n" + message);
 	}
 
 	/**

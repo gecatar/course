@@ -10,10 +10,12 @@ import javax.swing.JTextField;
 
 import com.sirma.itt.evgeni.comunication.ComunicatorView;
 import com.sirma.itt.evgeni.comunication.ComunicatorViewListener;
+import com.sirma.itt.evgeni.comunication.MessageLogger;
 
 public class ReverserView extends ComunicatorView implements KeyListener {
 
-	JTextField reverseField = new JTextField();
+	private final JTextField reverseField = new JTextField();
+	private final MessageLogger messageLogger = new MessageLogger();
 
 	public ReverserView(ComunicatorViewListener listener) {
 		super(listener);
@@ -31,13 +33,15 @@ public class ReverserView extends ComunicatorView implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		if (e.getSource().getClass() == JTextField.class) {
 			if (e.getKeyCode() == KeyEvent.VK_UP) {
-				listener.sendMessage("up 123 :");
+				reverseField.setText(messageLogger.getNextMessage());
 			}
 			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-				listener.sendMessage("down 123 :");
+				reverseField.setText(messageLogger.getPreviousMessage());
 			}
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-				listener.sendMessage("enter 123 :");
+				listener.sendMessage(reverseField.getText());
+				messageLogger.logMessage(reverseField.getText());
+				reverseField.setText("");
 			}
 
 		}

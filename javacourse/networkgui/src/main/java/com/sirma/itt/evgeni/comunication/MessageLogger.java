@@ -8,15 +8,33 @@ public class MessageLogger {
 	private int currentIndex = -1;
 
 	public void logMessage(String message) {
-		messages.add(message);
-		currentIndex = message.length() - 1;
+		if (!messages.contains(message)) {
+			messages.add(message);
+			currentIndex = messages.size();
+		}
 	}
 
 	public String getNextMessage() {
-		return "";
+		if (containIndex(currentIndex - 1)) {
+			currentIndex--;
+			return messages.get(currentIndex);
+		} else {
+			currentIndex = -1;
+			return "";
+		}
 	}
 
 	public String getPreviousMessage() {
-		return "";
+		if (containIndex(currentIndex + 1)) {
+			currentIndex++;
+			return messages.get(currentIndex);
+		} else {
+			currentIndex = messages.size();
+			return "";
+		}
+	}
+
+	private boolean containIndex(int index) {
+		return (index >= 0 && index < messages.size());
 	}
 }
