@@ -14,8 +14,8 @@ import com.sirma.itt.evgeni.comunication.Window;
  */
 public class ServerApp implements UILIstener, ComunicatorListener {
 
-	Comunicator comunicator;
-	ConectionPanel conectionPanel;
+	private Comunicator comunicator;
+	private ConectionPanel conectionPanel;
 
 	public ServerApp() {
 		comunicator = new Server(this);
@@ -39,39 +39,28 @@ public class ServerApp implements UILIstener, ComunicatorListener {
 	 */
 	@Override
 	public void stopConection() {
-		// TODO Auto-generated method stub interface
 		comunicator.stopConection();
 
 	}
 
 	@Override
 	public void setConectionStatus(String conectionCondition) {
-		// TODO Auto-generated method stub server
-
 	}
 
 	@Override
 	public void showMesage(String name, String text) {
-		// TODO Auto-generated method stub server
-
 	}
 
 	@Override
 	public void addUser(String name) {
-		// TODO Auto-generated method stub server
-
 	}
 
 	@Override
 	public void removeUser(String name) {
-		// TODO Auto-generated method stub server
-
 	}
 
 	@Override
 	public void sendMessage(String receiver, String text) {
-		// TODO Auto-generated method stub interface
-
 	}
 
 	/**
@@ -81,7 +70,6 @@ public class ServerApp implements UILIstener, ComunicatorListener {
 	 */
 	// Runner------------------------------
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		new ServerApp();
 	}
 	// -------------------------------------

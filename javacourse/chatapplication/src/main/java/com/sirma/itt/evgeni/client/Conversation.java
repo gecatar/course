@@ -19,7 +19,7 @@ import javax.swing.JTextField;
  * @author Evgeni Stefanov
  * 
  */
-public class Conversation extends JScrollPane implements ActionListener {
+public class Conversation extends JPanel implements ActionListener {
 
 	private final JTextArea textArea;
 	private final JTextField textField;
@@ -35,21 +35,18 @@ public class Conversation extends JScrollPane implements ActionListener {
 	public Conversation(UserActionListener userActionListener, String name) {
 		this.userActionListener = userActionListener;
 		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		verticalScrollBar = this.getVerticalScrollBar();
-		this.setAutoscrolls(true);
-		JPanel panel = new JPanel();
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setName(name);
 		textArea = new JTextArea();
 		textArea.setAlignmentX(Component.CENTER_ALIGNMENT);
+		JScrollPane scrollPane = new JScrollPane(textArea);
 		textField = new JTextField();
 		textField.setMaximumSize(new Dimension(250, 170));
-		textField.setAlignmentX(Component.CENTER_ALIGNMENT);
+		textField.setAlignmentX(Component.BOTTOM_ALIGNMENT);
 		textField.addActionListener(this);
 		textArea.setEditable(false);
-		panel.add(textArea);
-		panel.add(textField);
-		setViewportView(panel);
+		add(scrollPane);
+		add(textField);
 	}
 
 	/**
@@ -84,6 +81,7 @@ public class Conversation extends JScrollPane implements ActionListener {
 	/**
 	 * Detect when user send new message.
 	 */
+	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		userActionListener.sendMessage(getName(), textField.getText());
 		writeMesage("You", textField.getText());
