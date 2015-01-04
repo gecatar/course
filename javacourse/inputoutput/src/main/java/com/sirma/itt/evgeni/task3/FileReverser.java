@@ -67,11 +67,10 @@ public class FileReverser {
 	 * @return
 	 * @throws
 	 */
-	private boolean saveText(File file, String text) throws IOException {
+	private void saveText(File file, String text) throws IOException {
 		try (OutputStreamWriter osw = new OutputStreamWriter(
 				new BufferedOutputStream(new FileOutputStream(file)))) {
 			osw.write(text);
-			return true;
 		}
 	}
 
