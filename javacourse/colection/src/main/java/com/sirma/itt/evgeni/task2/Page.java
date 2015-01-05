@@ -1,6 +1,6 @@
 package com.sirma.itt.evgeni.task2;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Store list of objects.
@@ -10,16 +10,11 @@ import java.util.ArrayList;
  */
 public class Page {
 
-	String title;
-	ArrayList<Object> element = new ArrayList<Object>();
+	private String title;
+	private List<?> elements;
 
-	/**
-	 * Add element to page.
-	 * 
-	 * @param obj
-	 */
-	public void addElement(Object obj) {
-		element.add(obj);
+	public Page(List<?> elements) {
+		this.elements = elements;
 	}
 
 	/**
@@ -28,8 +23,8 @@ public class Page {
 	@Override
 	public String toString() {
 		StringBuilder stb = new StringBuilder();
-		for (int i = 0; i < element.size(); i++) {
-			stb.append("Element " + i + ":" + element.get(i) + " ");
+		for (int i = 0; i < elements.size(); i++) {
+			stb.append("Element " + i + ":" + elements.get(i) + " ");
 		}
 		return stb.toString();
 	}

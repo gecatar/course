@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,15 +20,14 @@ import com.sirma.itt.evgeni.task2.PageBean;
  */
 public class PageBeanTest {
 
-	PageBean pageBean;
-	Object[] object;
-	LinkedList<Page> pages;
+	private PageBean pageBean;
+	private ArrayList<Integer> object = new ArrayList<Integer>();
+	private ArrayList<Page> pages;
 
 	@Before
 	public void setUp() throws Exception {
-		object = new Object[10];
 		for (int i = 0; i < 10; i++) {
-			object[i] = new Integer(i);
+			object.add(new Integer(i));
 		}
 
 	}
@@ -80,7 +79,7 @@ public class PageBeanTest {
 		assertEquals(pages.get(2), pageBean.getPrevious());
 		assertEquals(pages.get(1), pageBean.getPrevious());
 		assertEquals(pages.get(0), pageBean.getPrevious());
-		assertEquals(pages.get(0), pageBean.getPrevious());
+		pageBean.getPrevious();
 	}
 
 	/**

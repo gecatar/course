@@ -1,6 +1,6 @@
 package com.sirma.itt.evgeni.task2;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 /**
  * Create Pages that store objects. Print their content.
@@ -10,25 +10,24 @@ import java.util.LinkedList;
  */
 public class PageBean {
 
-	private final LinkedList<Page> page;
+	private final ArrayList<Page> page;
 	private int currentIndex;
 
 	/**
 	 * Create Page Bean.
 	 */
-	public PageBean(Object[] object, int pageSize) {
+	public PageBean(ArrayList<?> object, int pageSize) {
 		currentIndex = -1;
-		page = new LinkedList<Page>();
+		page = new ArrayList<Page>();
 		if (object != null) {
-			int pages = getNumberOfPages(object.length, pageSize);
+			int pages = getNumberOfPages(object.size(), pageSize);
 			for (int i = 0; i < pages; i++) {
-				Page temp = new Page();
-				for (int j = 0; j < pageSize; j++) {
-					if (i * pageSize + j < object.length) {
-						temp.addElement(object[i * pageSize + j]);
-					}
+				int fromIndex = i * pageSize;
+				int toIndex = i * pageSize + pageSize;
+				if (toIndex > object.size()) {
+					toIndex = object.size();
 				}
-				page.add(temp);
+				page.add(new Page(object.subList(fromIndex, toIndex)));
 			}
 		}
 	}
@@ -36,7 +35,7 @@ public class PageBean {
 	/**
 	 * Create collection of pages.
 	 */
-	public LinkedList<Page> getPages() {
+	public ArrayList<Page> getPages() {
 		return page;
 	}
 
@@ -98,6 +97,9 @@ public class PageBean {
 		return containPage(currentIndex - 1);
 	}
 
+	/**
+	 * Return number of pages.
+	 */
 	private int getNumberOfPages(int elementCount, int pageSize) {
 		int pages = elementCount / pageSize;
 		if (elementCount % pageSize > 0) {
@@ -106,14 +108,16 @@ public class PageBean {
 		return pages;
 	}
 
+	/**
+	 * Return true if contain page.
+	 */
 	private boolean containPage(int index) {
-		if (index < page.size() && index >= 0) {
-			return true;
-		} else {
-			return false;
-		}
+		return (index < page.size() && index >= 0);
 	}
 
+	/**
+	 * Print all elements.
+	 */
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
