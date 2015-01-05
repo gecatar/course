@@ -21,7 +21,7 @@ public class ExceptionManager {
 			.getLogger(ExceptionManager.class.getName());
 	private static final String SEPARATOR = new String("|");
 	private static Map<String, String> exceptions = new HashMap<String, String>();
-	private String message = new String();
+	private String message = "";
 	static {
 		exceptions.put("INVID", "Invalid UID");
 		exceptions.put("INVPC", "Invalid Post Code");
@@ -31,13 +31,14 @@ public class ExceptionManager {
 	/**
 	 * Split main string into Array whit strings containing all errors saved to
 	 * the moment of invocation.
-	 * 
-	 * @return List containing all saved errors.
 	 */
 	public List<String> getMesages(String msg) {
 		return Arrays.asList(msg.split("\\" + SEPARATOR));
 	}
 
+	/**
+	 * Return message.
+	 */
 	public String getMesage() {
 		return message;
 	}
@@ -52,9 +53,6 @@ public class ExceptionManager {
 	/**
 	 * Add message to string whit all messages. Separated whit constant
 	 * separator.
-	 * 
-	 * @param mess
-	 *            message that will be added.
 	 */
 	public void addExceptionMesage(String mess) {
 		if (exceptions.containsValue(mess)) {
@@ -65,11 +63,6 @@ public class ExceptionManager {
 
 	/**
 	 * Add key and description to Map of exception.
-	 * 
-	 * @param key
-	 *            that will be added.
-	 * @param description
-	 *            tath will be added.
 	 */
 	public void addExceptionAndDescription(String key, String description) {
 		exceptions.put(key, description);
@@ -77,8 +70,6 @@ public class ExceptionManager {
 
 	/**
 	 * List all keys.
-	 * 
-	 * @return Set containing all keys.
 	 */
 	public Set<String> getKeys() {
 		return exceptions.keySet();
@@ -86,8 +77,6 @@ public class ExceptionManager {
 
 	/**
 	 * Add exception whit key. Message is extracted from Map.
-	 * 
-	 * @param key
 	 */
 	public void addExceptionUsingCode(String key) {
 		if (exceptions.containsKey(key)) {
