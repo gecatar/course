@@ -23,7 +23,7 @@ public class SerializerReadTest {
 	 */
 	@Test()
 	public void getObjectTest() throws URISyntaxException {
-		File file = new File(getClass().getResource("/createtest.txt").toURI());
+		File file = new File(getClass().getResource("/testserial.txt").toURI());
 		serializer.saveObject(data, file.getPath());
 		assertNotNull(serializer.getObject(file.getPath()));
 	}
