@@ -48,6 +48,7 @@ public class ComunicatorView extends JFrame implements ActionListener {
 		stopConection.setName("stop");
 		stopConection.addActionListener(this);
 		JScrollPane scrollPane = new JScrollPane(textArea);
+		scrollPane.setMaximumSize(new Dimension(300,400));
 		scrollPane.setAlignmentX(Component.CENTER_ALIGNMENT);
 		scrollPane.setMaximumSize(new Dimension(150, 200));
 		panel.add(ipLabel);

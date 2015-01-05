@@ -28,9 +28,6 @@ public class Conversation extends JPanel implements ActionListener {
 
 	/**
 	 * Create new conversation.
-	 * 
-	 * @param userActionListener
-	 * @param name
 	 */
 	public Conversation(UserActionListener userActionListener, String name) {
 		this.userActionListener = userActionListener;
@@ -41,8 +38,8 @@ public class Conversation extends JPanel implements ActionListener {
 		textArea.setAlignmentX(Component.CENTER_ALIGNMENT);
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		textField = new JTextField();
-		textField.setMaximumSize(new Dimension(250, 170));
-		textField.setAlignmentX(Component.BOTTOM_ALIGNMENT);
+		textField.setAlignmentX(CENTER_ALIGNMENT);
+		textField.setMaximumSize(new Dimension(250, 50));
 		textField.addActionListener(this);
 		textArea.setEditable(false);
 		add(scrollPane);
@@ -50,11 +47,7 @@ public class Conversation extends JPanel implements ActionListener {
 	}
 
 	/**
-	 * Create mesage.
-	 * 
-	 * @param name
-	 * @param text
-	 * @return
+	 * Create message.
 	 */
 	public String createMessage(String name, String text) {
 		StringBuilder stringBuilder = new StringBuilder();
@@ -70,9 +63,6 @@ public class Conversation extends JPanel implements ActionListener {
 
 	/**
 	 * Write message to text area.
-	 * 
-	 * @param name
-	 * @param text
 	 */
 	public void writeMesage(String name, String text) {
 		textArea.setText(textArea.getText() + createMessage(name, text));

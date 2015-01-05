@@ -9,6 +9,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import com.sirma.itt.evgeni.comunication.UILIstener;
@@ -21,9 +23,10 @@ import com.sirma.itt.evgeni.comunication.UILIstener;
  */
 public class ConectionPanel extends JPanel implements ActionListener {
 
-	UILIstener uiListener;
-	JTextField ipAdress = new JTextField(15);
-	JTextField port = new JTextField(4);
+	private UILIstener uiListener;
+	private JTextField ipAdress = new JTextField(15);
+	private JTextField port = new JTextField(4);
+	private JTextArea textArea = new JTextArea();
 
 	/**
 	 * Create connection user interface.
@@ -51,6 +54,8 @@ public class ConectionPanel extends JPanel implements ActionListener {
 		port.setAlignmentX(Component.CENTER_ALIGNMENT);
 		startConection.setAlignmentX(Component.CENTER_ALIGNMENT);
 		stopConection.setAlignmentX(Component.CENTER_ALIGNMENT);
+		JScrollPane scrollPane = new JScrollPane(textArea);
+		scrollPane.setMaximumSize(new Dimension(200, 250));
 		// -----------------------------------------------
 		add(ipAdress);
 		add(port);
@@ -62,11 +67,13 @@ public class ConectionPanel extends JPanel implements ActionListener {
 		add(port);
 		add(startConection);
 		add(stopConection);
+		add(scrollPane);
 	}
 
 	/**
 	 * Detect when user request connection or disconnection.
 	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().getClass() == JButton.class) {
 			if (((JButton) e.getSource()).getName().equals("StartConection")) {
