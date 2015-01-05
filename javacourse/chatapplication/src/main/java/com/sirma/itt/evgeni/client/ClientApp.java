@@ -31,7 +31,6 @@ public class ClientApp implements UILIstener, ComunicatorListener {
 	@Override
 	public void setConectionStatus(String conectionCondition) {
 		viewPanell.setConectionStatus(conectionCondition);
-
 	}
 
 	/**

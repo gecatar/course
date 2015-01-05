@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.logging.Level;
 
 import com.sirma.itt.evgeni.comunication.Comunicator;
+import com.sirma.itt.evgeni.comunication.ComunicatorLogger;
 import com.sirma.itt.evgeni.comunication.Conector;
 import com.sirma.itt.evgeni.comunication.DataTransferator;
 
@@ -36,8 +38,9 @@ public class ClientConector extends Conector {
 			comunicator.addUserSession(new DataTransferator(comunicator,
 					socket, ost, ist));
 		} catch (IOException e) {
-			e.printStackTrace();
 			comunicator.closeConectorSession();
+			ComunicatorLogger.getlogger().log(Level.INFO,
+					"Error when conecting.", e);
 		}
 	}
 

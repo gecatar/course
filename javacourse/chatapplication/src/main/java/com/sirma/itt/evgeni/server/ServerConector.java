@@ -5,8 +5,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.logging.Level;
 
 import com.sirma.itt.evgeni.comunication.Comunicator;
+import com.sirma.itt.evgeni.comunication.ComunicatorLogger;
 import com.sirma.itt.evgeni.comunication.Conector;
 import com.sirma.itt.evgeni.comunication.DataTransferator;
 
@@ -33,7 +35,8 @@ public class ServerConector extends Conector {
 						socket, ost, ist));
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			ComunicatorLogger.getlogger().log(Level.INFO,
+					"Error whe waiting users.", e);
 		} finally {
 			comunicator.closeConectorSession();
 		}

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.logging.Level;
 
 /**
  * Transfer messages between two DataTranferators.
@@ -28,8 +29,6 @@ public class DataTransferator extends Thread {
 
 	/**
 	 * Send message.
-	 * 
-	 * @param mesage
 	 */
 	public void sendData(Mesage mesage) {
 		try {
@@ -37,15 +36,13 @@ public class DataTransferator extends Thread {
 			ost.flush();
 		} catch (IOException e) {
 			comunicator.closeUserSession(this);
+			ComunicatorLogger.getlogger().log(Level.INFO,
+					"User lost conection.", e);
 		}
 	}
 
 	/**
 	 * Read messages from input stream.
-	 * 
-	 * @return
-	 * @throws ClassNotFoundException
-	 * @throws IOException
 	 */
 	public Mesage readMessage() throws ClassNotFoundException, IOException {
 		return (Mesage) ist.readObject();
@@ -61,6 +58,8 @@ public class DataTransferator extends Thread {
 				comunicator.processMesage(readMessage(), this);
 			}
 		} catch (IOException | ClassNotFoundException e) {
+			ComunicatorLogger.getlogger().log(Level.INFO,
+					"Error when reading.", e);
 		} finally {
 			comunicator.closeUserSession(this);
 		}
@@ -75,7 +74,8 @@ public class DataTransferator extends Thread {
 				socket.close();
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			ComunicatorLogger.getlogger().log(Level.INFO,
+					"Closing socket error.", e);
 		}
 	}
 }

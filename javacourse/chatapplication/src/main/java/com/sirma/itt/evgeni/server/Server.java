@@ -238,7 +238,6 @@ public class Server implements Comunicator {
 
 	@Override
 	public void sendMesage(String receiver, String text) {
-		// TODO Auto-generated method stub
 
 	}
 
