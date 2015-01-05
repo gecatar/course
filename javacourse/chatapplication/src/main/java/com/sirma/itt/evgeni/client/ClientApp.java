@@ -1,6 +1,5 @@
 package com.sirma.itt.evgeni.client;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -96,10 +95,9 @@ public class ClientApp implements UILIstener, ComunicatorListener {
 	// Runner--------------------------------
 	public static void main(String[] args) {
 		try {
-			File file = new File("log.txt");
-			FileHandler handler = new FileHandler(file.getPath(), true);
+			FileHandler handler = new FileHandler("%h/ClientLog.txt", true);
 			LOGGER.getLogger("").addHandler(handler);
-			LOGGER.log(Level.SEVERE, "File created:" + file.getAbsolutePath());
+			LOGGER.log(Level.SEVERE, "Log file created!!!");
 		} catch (SecurityException | IOException e) {
 			LOGGER.log(Level.SEVERE, "Cant create log file", e);
 		}
