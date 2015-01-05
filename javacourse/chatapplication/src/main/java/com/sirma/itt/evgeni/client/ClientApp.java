@@ -21,6 +21,17 @@ public class ClientApp implements UILIstener, ComunicatorListener {
 
 	private static final Logger LOGGER = Logger.getLogger(ClientApp.class
 			.getName());
+	static {
+		try {
+			FileHandler handler;
+			handler = new FileHandler("%h/ClientLog.txt", true);
+			LOGGER.getLogger("").addHandler(handler);
+			LOGGER.log(Level.SEVERE, "Log file created!!!");
+		} catch (SecurityException | IOException e) {
+			LOGGER.log(Level.SEVERE, "Log file is not created!!!", e);
+		}
+
+	}
 	private final Comunicator comunicator;
 	private final ViewPanell viewPanell;
 
@@ -94,13 +105,6 @@ public class ClientApp implements UILIstener, ComunicatorListener {
 	 */
 	// Runner--------------------------------
 	public static void main(String[] args) {
-		try {
-			FileHandler handler = new FileHandler("%h/ClientLog.txt", true);
-			LOGGER.getLogger("").addHandler(handler);
-			LOGGER.log(Level.SEVERE, "Log file created!!!");
-		} catch (SecurityException | IOException e) {
-			LOGGER.log(Level.SEVERE, "Cant create log file", e);
-		}
 		new ClientApp();
 	}
 	// --------------------------------------

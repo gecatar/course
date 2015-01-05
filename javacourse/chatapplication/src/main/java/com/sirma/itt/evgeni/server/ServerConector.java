@@ -29,6 +29,7 @@ public class ServerConector extends Conector {
 			setAutoclosable(serverSocket);
 			while (true) {
 				Socket socket = serverSocket.accept();
+				LOGGER.log(Level.INFO, "New User connected");
 				ObjectOutputStream ost = new ObjectOutputStream(
 						socket.getOutputStream());
 				ObjectInputStream ist = new ObjectInputStream(
