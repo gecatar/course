@@ -25,11 +25,6 @@ public class Serializer {
 
 	/**
 	 * Read objects from passed file.
-	 * 
-	 * @param path
-	 *            the path to file which will be read from.
-	 * @return extracted object from file.
-	 * @throws IOException
 	 */
 	public DataClass getObject(String path) {
 		try (ObjectInputStream objectStream = new ObjectInputStream(
@@ -43,11 +38,6 @@ public class Serializer {
 
 	/**
 	 * Save object to file.
-	 * 
-	 * @param dataClass
-	 *            the object that will be saved in file.
-	 * @param path
-	 *            the path to file.
 	 */
 	public boolean saveObject(DataClass dataClass, String path) {
 		try (ObjectOutputStream outputStream = new ObjectOutputStream(

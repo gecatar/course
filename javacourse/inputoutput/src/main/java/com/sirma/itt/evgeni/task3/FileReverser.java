@@ -4,7 +4,6 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -26,12 +25,7 @@ public class FileReverser {
 			.getName());
 
 	/**
-	 * @throws FileNotFoundException
-	 *             Reverse content of given file.
-	 * 
-	 * @param path
-	 *            the path of file.
-	 * @throws
+	 * Reverse file.
 	 */
 	public boolean reverseFile(String path) {
 		try {
@@ -46,10 +40,6 @@ public class FileReverser {
 
 	/**
 	 * Reverse given text.
-	 * 
-	 * @param text
-	 *            the text that will be reversed.
-	 * @return reversed text.
 	 */
 	private String reverseText(String text) {
 		return new StringBuilder().append(text).reverse().toString();
@@ -57,15 +47,6 @@ public class FileReverser {
 
 	/**
 	 * Save text to file.
-	 * 
-	 * @throws IOException
-	 * @throws FileNotFoundException
-	 *             Save text to file.
-	 * 
-	 * @param text
-	 * @param path
-	 * @return
-	 * @throws
 	 */
 	private void saveText(File file, String text) throws IOException {
 		try (OutputStreamWriter osw = new OutputStreamWriter(
@@ -76,12 +57,6 @@ public class FileReverser {
 
 	/**
 	 * Extract text from file.
-	 * 
-	 * @param path
-	 *            the path to file that will be readed from.
-	 * @return test as String.
-	 * @throws FileNotFoundException
-	 * @throws IOException
 	 */
 	private String getText(File file) throws IOException {
 		StringBuilder stringBuilder = new StringBuilder();
