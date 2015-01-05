@@ -20,10 +20,12 @@ public class ReverseFileTest {
 	 */
 	@Test
 	public void reverseFileTest() throws IOException, URISyntaxException {
-		String text = "123456";
-		File file = new File(getClass().getResource("/test.txt").toURI());
+		File file = new File(getClass().getResource("/reversertest.txt")
+				.toURI());
+		byte[] fileBytes = Files.readAllBytes(file.toPath());
 		fileReverser.reverseFile(file.getPath());
-		assertArrayEquals(text.getBytes(), Files.readAllBytes(file.toPath()));
+		fileReverser.reverseFile(file.getPath());
+		assertArrayEquals(fileBytes, Files.readAllBytes(file.toPath()));
 
 	}
 }

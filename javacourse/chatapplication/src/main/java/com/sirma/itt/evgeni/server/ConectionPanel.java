@@ -70,6 +70,10 @@ public class ConectionPanel extends JPanel implements ActionListener {
 		add(scrollPane);
 	}
 
+	public void displayMessage(String message) {
+		textArea.setText(textArea.getText() + "\n" + message);
+	}
+
 	/**
 	 * Detect when user request connection or disconnection.
 	 */

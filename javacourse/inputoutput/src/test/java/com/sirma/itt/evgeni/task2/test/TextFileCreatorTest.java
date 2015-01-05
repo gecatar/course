@@ -48,7 +48,7 @@ public class TextFileCreatorTest {
 	 */
 	@Test
 	public void createFileTestSecond() throws IOException, URISyntaxException {
-		File file = new File(getClass().getResource("/test.txt").toURI());
+		File file = new File(getClass().getResource("/createtest.txt").toURI());
 		creator.createFile(file.getPath());
 		assertArrayEquals("45678910".getBytes(),
 				Files.readAllBytes(file.toPath()));
