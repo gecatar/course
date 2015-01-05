@@ -26,7 +26,6 @@ public class ServerApp implements UILIstener, ComunicatorListener {
 			FileHandler handler;
 			handler = new FileHandler("%h/ServerLog.txt", true);
 			LOGGER.getLogger("").addHandler(handler);
-			LOGGER.log(Level.SEVERE, "Log file created!!!");
 		} catch (SecurityException | IOException e) {
 			LOGGER.log(Level.SEVERE, "Log file is not created!!!", e);
 		}
@@ -62,23 +61,28 @@ public class ServerApp implements UILIstener, ComunicatorListener {
 	}
 
 	@Override
-	public void setConectionStatus(String conectionCondition) {
-	}
-
-	@Override
-	public void showMesage(String name, String text) {
-	}
-
-	@Override
 	public void addUser(String name) {
+		conectionPanel.displayMessage("User conecteed:" + name);
 	}
 
 	@Override
 	public void removeUser(String name) {
+		conectionPanel.displayMessage("User leave:" + name);
+	}
+
+	@Override
+	public void setConectionStatus(String conectionCondition) {
+		conectionPanel.displayMessage(conectionCondition);
 	}
 
 	@Override
 	public void sendMessage(String receiver, String text) {
+
+	}
+
+	@Override
+	public void showMesage(String name, String text) {
+
 	}
 
 	/**

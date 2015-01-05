@@ -30,8 +30,6 @@ public class ConectionPanel extends JPanel implements ActionListener {
 
 	/**
 	 * Create connection user interface.
-	 * 
-	 * @param userListener
 	 */
 	public ConectionPanel(UILIstener uiListener) {
 		this.uiListener = uiListener;
@@ -70,8 +68,11 @@ public class ConectionPanel extends JPanel implements ActionListener {
 		add(scrollPane);
 	}
 
+	/**
+	 * Display message.
+	 */
 	public void displayMessage(String message) {
-		textArea.setText(textArea.getText() + "\n" + message);
+		textArea.setText(message + "\n" + textArea.getText());
 	}
 
 	/**

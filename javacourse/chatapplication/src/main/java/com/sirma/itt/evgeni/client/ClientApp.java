@@ -26,7 +26,6 @@ public class ClientApp implements UILIstener, ComunicatorListener {
 			FileHandler handler;
 			handler = new FileHandler("%h/ClientLog.txt", true);
 			LOGGER.getLogger("").addHandler(handler);
-			LOGGER.log(Level.SEVERE, "Log file created!!!");
 		} catch (SecurityException | IOException e) {
 			LOGGER.log(Level.SEVERE, "Log file is not created!!!", e);
 		}

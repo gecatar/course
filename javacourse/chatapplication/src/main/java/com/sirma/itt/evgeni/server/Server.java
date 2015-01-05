@@ -22,7 +22,6 @@ public class Server implements Comunicator {
 
 	private final ComunicatorListener comunicatorListener;
 	private Conector conector;
-	private String name;
 
 	private final Map<String, DataTransferator> users = new ConcurrentHashMap<String, DataTransferator>();
 
@@ -31,31 +30,29 @@ public class Server implements Comunicator {
 	}
 
 	/**
-	 * Create new thread Conector and wait for incoming connection.
+	 * Create new thread Connector and wait for incoming connection.
 	 */
 	@Override
 	public void startConection(String ipAdress, int port) {
 		if (conector == null) {
+			comunicatorListener.setConectionStatus("Waiting for clients!!!");
 			conector = new ServerConector(this, ipAdress, port);
 			conector.start();
 		}
 	}
 
 	/**
-	 * Stop execution on Conector and close all DataTransferators.
+	 * Stop execution on Connector and close all DataTransferators.
 	 */
 	@Override
 	public void stopConection() {
-		if (conector != null) {
-			conector.stopConector();
-		}
-		conector = null;
-		// ----------------------------
+		comunicatorListener
+				.setConectionStatus("Close all incoming conection!!!");
+		closeConectorSession();
 		for (Entry<String, DataTransferator> user : users.entrySet()) {
 			user.getValue().closeSocket();
 		}
 		users.clear();
-		// ----------------------------
 	}
 
 	/**
@@ -64,7 +61,6 @@ public class Server implements Comunicator {
 	@Override
 	public void addUserSession(DataTransferator transferator) {
 		transferator.start();
-
 	}
 
 	/**
@@ -77,25 +73,13 @@ public class Server implements Comunicator {
 			String name = getUserName(transferator);
 			removeUserFromMap(name);
 			notifyForUserLeaving(name);
+			comunicatorListener.removeUser(name);
 		}
 	}
 
 	/**
-	 * Check is user in conversation list.
-	 * 
-	 * @param transferator
-	 * @return
-	 */
-	public boolean isUserInMap(DataTransferator transferator) {
-		if (users.containsValue(transferator)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * Close Conector. That mean that no more incoming connection are available.
+	 * Close Connector. That mean that no more incoming connection are
+	 * available.
 	 */
 	@Override
 	public void closeConectorSession() {
@@ -105,11 +89,17 @@ public class Server implements Comunicator {
 		}
 	}
 
+	/**
+	 * Add data transferrer.
+	 */
 	public void addDataTransferator(DataTransferator transferator) {
 		transferator.start();
 	}
 
-	public boolean sendMesageToUser(String sender, String receiver, String text) {
+	/**
+	 * Send message to specified user.
+	 */
+	private boolean sendMesageToUser(String sender, String receiver, String text) {
 		if (users.containsKey(receiver)) {
 			users.get(receiver).sendData(new Mesage(sender, receiver, text));
 			return true;
@@ -119,12 +109,8 @@ public class Server implements Comunicator {
 
 	/**
 	 * Remove user from users list.
-	 * 
-	 * @param name
-	 *            the name of user that will be removed.
-	 * @return true if operation is successful.
 	 */
-	public boolean removeUserFromMap(String name) {
+	private boolean removeUserFromMap(String name) {
 		if (users.containsKey(name)) {
 			users.remove(name);
 			return true;
@@ -134,14 +120,11 @@ public class Server implements Comunicator {
 
 	/**
 	 * Add user to list whit registered users.
-	 * 
-	 * @param name
-	 * @param transferator
-	 * @return
 	 */
-	public boolean addUserInMap(String name, DataTransferator transferator) {
+	private boolean addUserInMap(String name, DataTransferator transferator) {
 		if (!users.containsKey(name)) {
 			users.put(name, transferator);
+			comunicatorListener.addUser(name);
 			return true;
 		}
 		return false;
@@ -149,33 +132,31 @@ public class Server implements Comunicator {
 
 	/**
 	 * Notify registered users for new users registered.
-	 * 
-	 * @param name
 	 */
-	public void notifyForNewUser(String name) {
-		Mesage mesage = new Mesage(name, MesageCommand.USER_CONECTED);
-		for (Entry<String, DataTransferator> user : users.entrySet()) {
-			user.getValue().sendData(mesage);
-		}
+	private void notifyForNewUser(String name) {
+		Mesage message = new Mesage(name, MesageCommand.USER_CONECTED);
+		sendMessageToAll(message);
 	}
 
 	/**
 	 * Notify registered users for leaving users.
-	 * 
-	 * @param name
 	 */
-	public void notifyForUserLeaving(String name) {
-		Set<String> keys = users.keySet();
-		Mesage mesage = new Mesage(name, MesageCommand.USER_DISCONECTED);
-		for (String key : keys) {
-			users.get(key).sendData(mesage);
+	private void notifyForUserLeaving(String name) {
+		Mesage message = new Mesage(name, MesageCommand.USER_DISCONECTED);
+		sendMessageToAll(message);
+	}
+
+	/**
+	 * Send message to all users.
+	 */
+	private void sendMessageToAll(Mesage message) {
+		for (Entry<String, DataTransferator> user : users.entrySet()) {
+			user.getValue().sendData(message);
 		}
 	}
 
 	/**
 	 * Send all registered users at moment of registering on user.
-	 * 
-	 * @param transferator
 	 */
 	private void sendUsersList(DataTransferator transferator) {
 		Set<String> keys = users.keySet();
@@ -186,10 +167,6 @@ public class Server implements Comunicator {
 
 	/**
 	 * Save user in list of registered users.
-	 * 
-	 * @param name
-	 *            the name of user that will be added.
-	 * @param transferator
 	 */
 	private void registerUser(String name, DataTransferator transferator) {
 		if (addUserInMap(name, transferator)) {
@@ -203,20 +180,15 @@ public class Server implements Comunicator {
 
 	/**
 	 * Notify user for invalid user name.
-	 * 
-	 * @param transferator
 	 */
-	public void notifyForBadName(DataTransferator transferator) {
+	private void notifyForBadName(DataTransferator transferator) {
 		transferator.sendData(new Mesage(MesageCommand.INVALID_USER_NAME));
 	}
 
 	/**
 	 * Return name of user.
-	 * 
-	 * @param transferator
-	 * @return return empty string if user is not registered.
 	 */
-	public String getUserName(DataTransferator transferator) {
+	private String getUserName(DataTransferator transferator) {
 		for (Entry<String, DataTransferator> user : users.entrySet()) {
 			if (user.getValue() == transferator) {
 				return user.getKey();
@@ -225,6 +197,20 @@ public class Server implements Comunicator {
 		return "";
 	}
 
+	/**
+	 * Check is user in conversation list.
+	 */
+	private boolean isUserInMap(DataTransferator transferator) {
+		if (users.containsValue(transferator)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Redirect message.
+	 */
 	@Override
 	public void processMesage(Mesage mesage, DataTransferator transferator) {
 		if (mesage.commandID == MesageCommand.USER_LOG_IN) {
@@ -233,17 +219,22 @@ public class Server implements Comunicator {
 		if (mesage.commandID == MesageCommand.TEXT_MESAGE) {
 			sendMesageToUser(mesage.sender, mesage.receiver, mesage.text);
 		}
+	}
+
+	/**
+	 * Set communicator name.
+	 */
+	@Override
+	public void setName(String name) {
 
 	}
 
+	/**
+	 * Send message.
+	 */
 	@Override
 	public void sendMesage(String receiver, String text) {
 
-	}
-
-	@Override
-	public void setName(String name) {
-		this.name = name;
 	}
 
 }
