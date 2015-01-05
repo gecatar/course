@@ -44,7 +44,7 @@ public class DataTransferator extends Thread {
 	}
 
 	/**
-	 * Read messages from input stream.
+	 * Read messages from input stream.dfdr.
 	 */
 	public Mesage readMessage() throws ClassNotFoundException, IOException {
 		return (Mesage) ist.readObject();
