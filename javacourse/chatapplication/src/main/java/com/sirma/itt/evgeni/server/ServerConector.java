@@ -6,14 +6,16 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.sirma.itt.evgeni.comunication.Comunicator;
-import com.sirma.itt.evgeni.comunication.ComunicatorLogger;
 import com.sirma.itt.evgeni.comunication.Conector;
 import com.sirma.itt.evgeni.comunication.DataTransferator;
 
 public class ServerConector extends Conector {
 
+	private static final Logger LOGGER = Logger.getLogger(ServerConector.class
+			.getName());
 	ServerSocket serverSocket;
 
 	public ServerConector(Comunicator comunicator, String ipAdress, int port) {
@@ -35,8 +37,7 @@ public class ServerConector extends Conector {
 						socket, ost, ist));
 			}
 		} catch (IOException e) {
-			ComunicatorLogger.getlogger().log(Level.INFO,
-					"Error whe waiting users.", e);
+			LOGGER.log(Level.INFO, "Error when waiting users.", e);
 		} finally {
 			comunicator.closeConectorSession();
 		}

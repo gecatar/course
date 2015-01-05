@@ -5,9 +5,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.sirma.itt.evgeni.comunication.Comunicator;
-import com.sirma.itt.evgeni.comunication.ComunicatorLogger;
 import com.sirma.itt.evgeni.comunication.Conector;
 import com.sirma.itt.evgeni.comunication.DataTransferator;
 
@@ -19,6 +19,9 @@ import com.sirma.itt.evgeni.comunication.DataTransferator;
  */
 public class ClientConector extends Conector {
 
+	private static final Logger LOGGER = Logger.getLogger(ClientConector.class
+			.getName());
+
 	public ClientConector(Comunicator comunicator, String ipAdress, int port) {
 		super(comunicator, ipAdress, port);
 	}
@@ -29,6 +32,7 @@ public class ClientConector extends Conector {
 	@Override
 	public void run() {
 		try {
+			LOGGER.log(Level.SEVERE, "test");
 			Socket socket = new Socket(ipAdress, port);
 			setAutoclosable(socket);
 			ObjectOutputStream ost = new ObjectOutputStream(
@@ -39,8 +43,7 @@ public class ClientConector extends Conector {
 					socket, ost, ist));
 		} catch (IOException e) {
 			comunicator.closeConectorSession();
-			ComunicatorLogger.getlogger().log(Level.INFO,
-					"Error when conecting.", e);
+			LOGGER.log(Level.SEVERE, "Error when conecting.", e);
 		}
 	}
 

@@ -1,5 +1,7 @@
 package com.sirma.itt.evgeni.server;
 
+import java.util.logging.Logger;
+
 import com.sirma.itt.evgeni.comunication.Comunicator;
 import com.sirma.itt.evgeni.comunication.ComunicatorListener;
 import com.sirma.itt.evgeni.comunication.ConectorShutdownHook;
@@ -14,6 +16,8 @@ import com.sirma.itt.evgeni.comunication.Window;
  */
 public class ServerApp implements UILIstener, ComunicatorListener {
 
+	private static final Logger LOGGER = Logger.getLogger(ServerApp.class
+			.getName());
 	private Comunicator comunicator;
 	private ConectionPanel conectionPanel;
 

@@ -1,5 +1,11 @@
 package com.sirma.itt.evgeni.client;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import com.sirma.itt.evgeni.comunication.Comunicator;
 import com.sirma.itt.evgeni.comunication.ComunicatorListener;
 import com.sirma.itt.evgeni.comunication.ConectorShutdownHook;
@@ -14,6 +20,8 @@ import com.sirma.itt.evgeni.comunication.Window;
  */
 public class ClientApp implements UILIstener, ComunicatorListener {
 
+	private static final Logger LOGGER = Logger.getLogger(ClientApp.class
+			.getName());
 	private final Comunicator comunicator;
 	private final ViewPanell viewPanell;
 
@@ -84,11 +92,17 @@ public class ClientApp implements UILIstener, ComunicatorListener {
 
 	/**
 	 * Start application.
-	 * 
-	 * @param args
 	 */
 	// Runner--------------------------------
 	public static void main(String[] args) {
+		try {
+			File file = new File("log.txt");
+			FileHandler handler = new FileHandler(file.getPath(), true);
+			LOGGER.getLogger("").addHandler(handler);
+			LOGGER.log(Level.SEVERE, "File created:" + file.getAbsolutePath());
+		} catch (SecurityException | IOException e) {
+			LOGGER.log(Level.SEVERE, "Cant create log file", e);
+		}
 		new ClientApp();
 	}
 	// --------------------------------------
