@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.math.BigDecimal;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -17,6 +16,7 @@ public class CalculatorView extends JFrame implements ActionListener {
 	private Display display;
 	private UIListener uiListener;
 	private boolean clearDisplay;
+	private boolean exceptionTrigered;
 
 	public CalculatorView(UIListener uiListener) {
 
@@ -83,9 +83,13 @@ public class CalculatorView extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 
-	public void displayResults(BigDecimal result) {
-		display.setText(String.valueOf(result));
+	public void displayResults(String result) {
+		display.setText(result);
 		clearDisplay = true;
+	}
+
+	public void trigerException() {
+		exceptionTrigered = true;
 	}
 
 	public String getNumber() {
@@ -98,7 +102,7 @@ public class CalculatorView extends JFrame implements ActionListener {
 			char symbol = ((JButton) e.getSource()).getName().charAt(0);
 			if (symbol == '+' || symbol == '-' || symbol == '*'
 					|| symbol == '/') {
-				if (display.getText().length() > 0) {
+				if (display.getText().length() > 0 && !exceptionTrigered) {
 					uiListener.operationPresset(display.getText(), symbol);
 					clearDisplay = true;
 				}
@@ -113,9 +117,10 @@ public class CalculatorView extends JFrame implements ActionListener {
 				display.setText("");
 			}
 			if ((symbol >= '0' && symbol <= '9') || symbol == '.') {
-				if (clearDisplay == true) {
+				if (clearDisplay == true || exceptionTrigered) {
 					display.setText("");
 					clearDisplay = false;
+					exceptionTrigered = false;
 				}
 				display.addSymbol(symbol);
 			}

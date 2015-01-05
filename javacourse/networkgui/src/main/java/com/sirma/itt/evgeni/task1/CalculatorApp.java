@@ -24,7 +24,13 @@ public class CalculatorApp implements UIListener {
 		if (firstNumberDefined) {
 			Operation temp = new Operation(firstNumber, new BigDecimal(number),
 					nextOperation);
-			calculatorView.displayResults(calculator.calculate(temp));
+			try {
+				calculatorView.displayResults(calculator.calculate(temp)
+						.toString());
+			} catch (ArithmeticException e) {
+				calculatorView.displayResults("Aritmetical eception!!!");
+				calculatorView.trigerException();
+			}
 			firstNumberDefined = false;
 		}
 	}
@@ -40,8 +46,15 @@ public class CalculatorApp implements UIListener {
 		} else {
 			Operation temp = new Operation(firstNumber, new BigDecimal(number),
 					nextOperation);
-			calculatorView.displayResults(calculator.calculate(temp));
-			firstNumberDefined = false;
+			try {
+				firstNumber = calculator.calculate(temp);
+				calculatorView.displayResults(firstNumber.toString());
+			} catch (ArithmeticException e) {
+				firstNumberDefined = false;
+				calculatorView.displayResults("Aritmetical eception!!!");
+				calculatorView.trigerException();
+			}
+
 		}
 	}
 
