@@ -21,10 +21,11 @@ public class ServerApp implements UILIstener, ComunicatorListener {
 
 	private static final Logger LOGGER = Logger.getLogger(ServerApp.class
 			.getName());
+	private static final String HANDLERPATH = "%h/ServerLog.txt";
 	static {
 		try {
 			FileHandler handler;
-			handler = new FileHandler("%h/ServerLog.txt", true);
+			handler = new FileHandler(HANDLERPATH, true);
 			LOGGER.getLogger("").addHandler(handler);
 		} catch (SecurityException | IOException e) {
 			LOGGER.log(Level.SEVERE, "Log file is not created!!!", e);
