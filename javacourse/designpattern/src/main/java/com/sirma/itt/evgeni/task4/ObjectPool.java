@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Store object in pool. User can acquire and release objects.
+ * 
  * @author Evgeni Stefanov
  *
  */
@@ -19,12 +20,14 @@ public class ObjectPool {
 
 	/**
 	 * Release objects.
-	 * @param testClass object that will be released.
+	 * 
+	 * @param testClass
+	 *            object that will be released.
 	 */
 	public boolean release(Object object) {
 		for (Holder holder : pool) {
 			if (holder.getObject() == object) {
-				holder.inUse = false;
+				holder.setInUse(false);
 				return true;
 			}
 		}
@@ -33,19 +36,20 @@ public class ObjectPool {
 
 	/**
 	 * Provide user whit object.
+	 * 
 	 * @return acquired object.
 	 */
 	public Object aquire() {
 
 		for (Holder holder : pool) {
-			if (!holder.inUse) {
-				holder.inUse = true;
+			if (!holder.isInUse()) {
+				holder.setInUse(true);
 				return holder.getObject();
 			}
 		}
 		if (pool.size() < count) {
 			Holder temp = new Holder(new Object());
-			temp.inUse = true;
+			temp.setInUse(true);
 			pool.add(temp);
 			return temp.getObject();
 		}
