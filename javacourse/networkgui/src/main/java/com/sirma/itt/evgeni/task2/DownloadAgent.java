@@ -98,7 +98,9 @@ public class DownloadAgent extends Thread {
 			progressUpdater.setDownloadStatus(false);
 			return false;
 		} finally {
-			transferator.close();
+			if (transferator != null) {
+				transferator.close();
+			}
 		}
 
 	}
