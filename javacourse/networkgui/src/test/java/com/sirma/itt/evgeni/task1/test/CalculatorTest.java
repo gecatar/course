@@ -16,7 +16,7 @@ import com.sirma.itt.evgeni.task1.Operation;
  */
 public class CalculatorTest {
 
-	Calculator calculator = new Calculator();
+	Calculator calculator = new Calculator(20);
 
 	/**
 	 * Check for expected exception.

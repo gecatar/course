@@ -114,6 +114,7 @@ public class CalculatorView extends JFrame implements ActionListener {
 				display.removeSymbol();
 			}
 			if (symbol == 'D') {
+				uiListener.clearPreset();
 				display.setText("");
 			}
 			if ((symbol >= '0' && symbol <= '9') || symbol == '.') {

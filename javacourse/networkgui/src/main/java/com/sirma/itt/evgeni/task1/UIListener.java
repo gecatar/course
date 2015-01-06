@@ -5,4 +5,6 @@ public interface UIListener {
 	public void operationPresset(String number, char operation);
 
 	public void calculatePresset(String number);
+
+	public void clearPreset();
 }

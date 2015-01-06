@@ -11,13 +11,19 @@ import java.math.RoundingMode;
  */
 public class Calculator {
 
+	private int divisionPrecision;
+
+	public Calculator(int divisionPrecision) {
+		this.divisionPrecision = divisionPrecision;
+	}
+
 	public BigDecimal calculate(Operation operation) {
 		if (operation.operation == '*') {
 			return operation.firstNumber.multiply(operation.secondNumber);
 		}
 		if (operation.operation == '/') {
-			return operation.firstNumber.divide(operation.secondNumber, 20,
-					RoundingMode.CEILING);
+			return operation.firstNumber.divide(operation.secondNumber,
+					divisionPrecision, RoundingMode.CEILING);
 		}
 		if (operation.operation == '+') {
 			return operation.firstNumber.add(operation.secondNumber);

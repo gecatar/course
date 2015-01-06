@@ -10,7 +10,8 @@ import java.math.BigDecimal;
  */
 public class CalculatorApp implements UIListener {
 
-	private Calculator calculator = new Calculator();
+	private static final int DIVISIONPRECISION = 4;
+	private Calculator calculator = new Calculator(DIVISIONPRECISION);
 	private CalculatorView calculatorView = new CalculatorView(this);
 	private BigDecimal firstNumber;
 	private boolean firstNumberDefined;
@@ -48,6 +49,7 @@ public class CalculatorApp implements UIListener {
 					nextOperation);
 			try {
 				firstNumber = calculator.calculate(temp);
+				nextOperation = operation;
 				calculatorView.displayResults(firstNumber.toString());
 			} catch (ArithmeticException e) {
 				firstNumberDefined = false;
@@ -59,9 +61,15 @@ public class CalculatorApp implements UIListener {
 	}
 
 	/**
+	 * When clear button is preset.
+	 */
+	@Override
+	public void clearPreset() {
+		firstNumberDefined = false;
+	}
+
+	/**
 	 * Set first number.
-	 * 
-	 * @param firstNumber
 	 */
 	private void setFirstNumber(String firstNumber) {
 		if (firstNumber != null) {
@@ -70,6 +78,9 @@ public class CalculatorApp implements UIListener {
 		}
 	}
 
+	/**
+	 * Print all elements.
+	 */
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
@@ -82,8 +93,6 @@ public class CalculatorApp implements UIListener {
 
 	/**
 	 * Calculator runner.
-	 * 
-	 * @param args
 	 */
 	public static void main(String[] args) {
 		new CalculatorApp();
