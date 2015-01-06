@@ -4,8 +4,9 @@ import java.util.ArrayDeque;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 /**
  * Store object for defined time. If objects are not used they are deleted from
@@ -32,7 +33,6 @@ public class TimeOutTable {
 	 * Release thread that call function for deleting unused item.
 	 */
 	private void releaseRemover() {
-
 		if (table.size() > 0) {
 			synchronized (this) {
 				notifyAll();
@@ -49,7 +49,7 @@ public class TimeOutTable {
 				try {
 					wait();
 				} catch (InterruptedException e) {
-					LOGGER.log(Level.SEVERE, "Thread interupted", e);
+					LOGGER.log(Level.INFO, "Thread interupted", e);
 				}
 			}
 		}

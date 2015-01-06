@@ -19,9 +19,12 @@ public class TimeOutRunner {
 
 		int choise = 0;
 		while (choise != 9) {
+			System.out.println("1)Add element");
+			System.out.println("2)Remove element");
+			System.out.println("3)Get element");
 			choise = ConsoleReader.readInt();
 			if (choise == 1) {
-				System.out.println("adding element...");
+				System.out.println("Adding element...");
 				System.out.println("enter description:");
 				String temp = ConsoleReader.readString();
 				timeOutTest.put(temp, new Object());
