@@ -22,8 +22,8 @@ import com.sirma.itt.evgeni.util.TransferObject;
  */
 public class DownloadAgent extends Thread {
 
-	DownloadProgressListener progressUpdater;
-	String url;
+	private DownloadProgressListener progressUpdater;
+	private String url;
 
 	public DownloadAgent(DownloadProgressListener progressUpdater, String url) {
 		this.progressUpdater = progressUpdater;
@@ -32,10 +32,8 @@ public class DownloadAgent extends Thread {
 
 	/**
 	 * Prompt user to enter location on file.
-	 * 
-	 * @return
 	 */
-	public File getFile() {
+	private File getFile() {
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.showSaveDialog(fileChooser);
 		return fileChooser.getSelectedFile();
@@ -43,40 +41,30 @@ public class DownloadAgent extends Thread {
 
 	/**
 	 * Get input stream.
-	 * 
-	 * @param conection
-	 * @return
-	 * @throws IOException
 	 */
-	public InputStream getInputStream(URLConnection conection)
+	private InputStream getInputStream(URLConnection conection)
 			throws IOException {
 		return conection.getInputStream();
 	}
 
 	/**
-	 * Get conection.
-	 * 
-	 * @param url
-	 * @return
-	 * @throws IOException
+	 * Get connection.
 	 */
-	public URLConnection getConection(String url) throws IOException {
+	private URLConnection getConection(String url) throws IOException {
 		return new URL(url).openConnection();
 	}
 
 	/**
 	 * Get output stream.
-	 * 
-	 * @param file
-	 * @return
-	 * @throws FileNotFoundException
 	 */
-	public OutputStream getOutputStream(File file) throws FileNotFoundException {
+	private OutputStream getOutputStream(File file)
+			throws FileNotFoundException {
 		return new BufferedOutputStream(new FileOutputStream(file));
 	}
 
 	/**
 	 * Entry point for starting downloads.
+	 * http://danutzayy.files.wordpress.com/2010/04/wallpaper-1080p-3.jpg
 	 */
 	@Override
 	public void run() {
@@ -85,9 +73,6 @@ public class DownloadAgent extends Thread {
 
 	/**
 	 * Download file.
-	 * 
-	 * @param res
-	 * @return
 	 */
 	public boolean downloadFile(String res) {
 		TransferObject transferator = null;
@@ -107,9 +92,10 @@ public class DownloadAgent extends Thread {
 				progressUpdater.setProgress(percentProgress);
 				progressUpdater.setDownloadedSize(downloaded);
 			}
+			progressUpdater.setDownloadStatus(true);
 			return true;
 		} catch (IOException e) {
-			progressUpdater.setDownloadError(e.getMessage());
+			progressUpdater.setDownloadStatus(false);
 			return false;
 		} finally {
 			transferator.close();

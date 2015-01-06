@@ -21,10 +21,6 @@ import javax.swing.JTextField;
 public class DownloadApp extends JFrame implements ActionListener,
 		DownloadProgressListener {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private final JProgressBar downloadProgress = new JProgressBar();
 	private final JTextField textField = new JTextField(20);
 	private final JButton downloadFile = new JButton("Start Download");
@@ -32,8 +28,11 @@ public class DownloadApp extends JFrame implements ActionListener,
 	private final JLabel percentValue = new JLabel("Progress in percent...");
 	private final JLabel size = new JLabel("Size");
 	private final JLabel downloadded = new JLabel("Downloaded size");
+	private final JLabel downloadStatus = new JLabel("Status:");
+	private boolean downloadReady = true;
 
 	public DownloadApp() {
+		setTitle("Ready for download!!!");
 		setSize(new Dimension(400, 500));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -45,6 +44,7 @@ public class DownloadApp extends JFrame implements ActionListener,
 		panel.add(percentValue);
 		panel.add(size);
 		panel.add(downloadded);
+		panel.add(downloadStatus);
 		// ------------------------------
 		downloadProgress.setAlignmentX(CENTER_ALIGNMENT);
 		downloadProgress.setMinimum(0);
@@ -62,6 +62,8 @@ public class DownloadApp extends JFrame implements ActionListener,
 		size.setMaximumSize(new Dimension(200, 30));
 		downloadded.setAlignmentX(CENTER_ALIGNMENT);
 		downloadded.setMaximumSize(new Dimension(200, 30));
+		downloadStatus.setAlignmentX(CENTER_ALIGNMENT);
+		downloadStatus.setMaximumSize(new Dimension(200, 30));
 		setVisible(true);
 	}
 
@@ -70,7 +72,10 @@ public class DownloadApp extends JFrame implements ActionListener,
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == downloadFile) {
+		if (e.getSource() == downloadFile && downloadReady) {
+			downloadReady = false;
+			setTitle("Download file .....");
+			downloadStatus.setText("Status:");
 			downloadProgress.setVisible(true);
 			new DownloadAgent(this, textField.getText()).start();
 		}
@@ -97,7 +102,6 @@ public class DownloadApp extends JFrame implements ActionListener,
 	 */
 	@Override
 	public void setDownloadedSize(long downloadedSize) {
-		// TODO Auto-generated method stub
 		downloadded.setText(String.valueOf(downloadedSize));
 	}
 
@@ -105,9 +109,14 @@ public class DownloadApp extends JFrame implements ActionListener,
 	 * Display what error are occurred during download.
 	 */
 	@Override
-	public void setDownloadError(String error) {
-		// TODO Auto-generated method stub
-
+	public void setDownloadStatus(boolean compleeted) {
+		downloadReady = true;
+		setTitle("Ready for download!!!");
+		if (compleeted) {
+			downloadStatus.setText("Download compleeted!!!");
+		} else {
+			downloadStatus.setText("Download error!!!");
+		}
 	}
 
 	// Runner-------------------------------------------
