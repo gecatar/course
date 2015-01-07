@@ -49,7 +49,7 @@ public class TimeOutTable {
 				try {
 					wait();
 				} catch (InterruptedException e) {
-					LOGGER.log(Level.INFO, "Thread interupted", e);
+					LOGGER.log(Level.ERROR, "Thread interupted", e);
 				}
 			}
 		}
@@ -62,7 +62,7 @@ public class TimeOutTable {
 		for (String key : unUsed) {
 			table.remove(key);
 			unUsed.remove(key);
-			LOGGER.log(Level.INFO, "Removing object" + key);
+			LOGGER.log(Level.DEBUG, "Removing object" + key);
 		}
 		ArrayDeque<String> temp = unUsed;
 		unUsed = used;
@@ -172,7 +172,7 @@ public class TimeOutTable {
 					sleep(interval);
 					table.removeUnused();
 				} catch (InterruptedException e) {
-					e.printStackTrace();
+					LOGGER.log(Level.ERROR, "Thread interupted", e);
 				}
 			}
 		}
