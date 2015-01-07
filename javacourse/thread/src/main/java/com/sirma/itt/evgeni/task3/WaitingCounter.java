@@ -1,7 +1,7 @@
 package com.sirma.itt.evgeni.task3;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 /**
  * Sleeping counter thread.
@@ -9,28 +9,24 @@ import java.util.logging.Logger;
  * @author GecaTM
  *
  */
-public class SleepingCounterSecond extends Thread {
+public class WaitingCounter extends Thread {
 
-	private static final Logger LOGGER = Logger
-			.getLogger(SleepingCounterSecond.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(WaitingCounter.class
+			.getName());
 	private int count;
 	private int sleepInterval;
 	private static boolean stop;
 
 	/**
 	 * Get value on count.
-	 * 
-	 * @param count
 	 */
-	public SleepingCounterSecond(int count, int sleepInterval) {
+	public WaitingCounter(int count, int sleepInterval) {
 		this.count = count;
 		this.sleepInterval = sleepInterval;
 	}
 
 	/**
 	 * Tell on threads to stop execution.
-	 * 
-	 * @param stop
 	 */
 	public void setStop(boolean stop) {
 		this.stop = stop;
@@ -38,8 +34,6 @@ public class SleepingCounterSecond extends Thread {
 
 	/**
 	 * Get count.
-	 * 
-	 * @return
 	 */
 	public int getcount() {
 		return count;
@@ -59,11 +53,13 @@ public class SleepingCounterSecond extends Thread {
 	public void run() {
 		while (!stop && count > 0) {
 			try {
-				wait(sleepInterval);
+				synchronized (this) {
+					wait(sleepInterval);
+				}
 				decrmentCount();
 				LOGGER.log(Level.INFO, this.getName() + " - Count is:" + count);
 			} catch (InterruptedException e) {
-				LOGGER.log(Level.SEVERE, "Trhead interupted.", e);
+				LOGGER.log(Level.ERROR, "Trhead interupted.", e);
 			}
 		}
 		stop = true;

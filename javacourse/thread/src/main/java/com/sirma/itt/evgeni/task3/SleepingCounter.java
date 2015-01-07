@@ -1,7 +1,7 @@
 package com.sirma.itt.evgeni.task3;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 public class SleepingCounter extends Thread {
 
@@ -23,8 +23,6 @@ public class SleepingCounter extends Thread {
 
 	/**
 	 * Tell on threads to stop execution.
-	 * 
-	 * @param stop
 	 */
 	public void setStop(boolean stop) {
 		this.stop = stop;
@@ -32,8 +30,6 @@ public class SleepingCounter extends Thread {
 
 	/**
 	 * Get count.
-	 * 
-	 * @return
 	 */
 	public int getcount() {
 		return count;
@@ -54,7 +50,7 @@ public class SleepingCounter extends Thread {
 				decrmentCount();
 				LOGGER.log(Level.INFO, this.getName() + " - Count is:" + count);
 			} catch (InterruptedException e) {
-				LOGGER.log(Level.SEVERE, "Trhead interupted.", e);
+				LOGGER.log(Level.ERROR, "Trhead interupted.", e);
 			}
 		}
 		stop = true;

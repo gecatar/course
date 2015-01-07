@@ -1,8 +1,9 @@
 package com.sirma.itt.evgeni.task5;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 /**
  * Save strings in massive. Execute two operations. Add element and remove
@@ -38,7 +39,7 @@ public class Holder {
 			try {
 				wait();
 			} catch (InterruptedException e) {
-				LOGGER.log(Level.SEVERE, "Thread interupted", e);
+				LOGGER.log(Level.ERROR, "Thread interupted", e);
 			}
 			addElement(string);
 		}
@@ -57,7 +58,7 @@ public class Holder {
 			try {
 				wait();
 			} catch (InterruptedException e) {
-				LOGGER.log(Level.SEVERE, "Thread interupted", e);
+				LOGGER.log(Level.ERROR, "Thread interupted", e);
 			}
 			remove();
 		}
