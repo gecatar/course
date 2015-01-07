@@ -1,7 +1,7 @@
 package com.sirma.itt.evgeni.task6;
 
 import java.util.ArrayDeque;
-import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -19,7 +19,7 @@ public class TimeOutTable {
 
 	private static final Logger LOGGER = Logger.getLogger(TimeOutTable.class
 			.getName());
-	private final Map<String, Object> table = new HashMap<String, Object>();
+	private final Map<String, Object> table = new Hashtable<String, Object>();
 	private ArrayDeque<String> used = new ArrayDeque<String>();
 	private ArrayDeque<String> unUsed = new ArrayDeque<String>();
 	private final Remover remover;
@@ -71,9 +71,6 @@ public class TimeOutTable {
 
 	/**
 	 * Remove object from list.
-	 * 
-	 * @param key
-	 *            that represent object from map.
 	 */
 	public void remove(String key) {
 		if (unUsed.contains(key)) {
@@ -89,11 +86,6 @@ public class TimeOutTable {
 
 	/**
 	 * Add object in map by specified key.
-	 * 
-	 * @param key
-	 *            represent object in map.
-	 * @param object
-	 *            that will be addet to map.
 	 */
 	public void put(String key, Object object) {
 		table.put(key, object);
@@ -103,10 +95,6 @@ public class TimeOutTable {
 
 	/**
 	 * Get object from map.
-	 * 
-	 * @param key
-	 *            represent object in map
-	 * @return object extracted from map.
 	 */
 	public Object get(String key) {
 		if (unUsed.contains(key)) {
@@ -148,8 +136,6 @@ public class TimeOutTable {
 
 		/**
 		 * Allow thread to be stooped safely.
-		 * 
-		 * @param stop
 		 */
 		public void setStop(boolean stop) {
 			this.stop = stop;
