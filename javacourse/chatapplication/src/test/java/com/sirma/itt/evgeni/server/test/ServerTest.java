@@ -43,9 +43,6 @@ public class ServerTest {
 				.thenReturn(true);
 		server.processMesage(new Mesage("test", MesageCommand.USER_LOG_IN),
 				transferator);
-
-		Mockito.verify(transferator.sendData(Mockito.any(Mesage.class)),
-				Mockito.atLeast(1));
 		assertTrue(transferator.sendData(null));
 		server.closeUserSession(transferator);
 	}

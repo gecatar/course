@@ -135,7 +135,7 @@ public class UserManager {
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("Users:");
+		stringBuilder.append("Users:").append("\n");
 		for (String key : users.keySet()) {
 			stringBuilder.append(key).append("\n");
 		}
