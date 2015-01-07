@@ -33,13 +33,15 @@ public class DataTransferator extends Thread {
 	/**
 	 * Send message.
 	 */
-	public void sendData(Mesage mesage) {
+	public boolean sendData(Mesage mesage) {
 		try {
 			ost.writeObject(mesage);
 			ost.flush();
+			return true;
 		} catch (IOException e) {
 			comunicator.closeUserSession(this);
 			LOGGER.log(Level.INFO, "User lost conection.", e);
+			return false;
 		}
 	}
 

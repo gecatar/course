@@ -1,8 +1,6 @@
 package com.sirma.itt.evgeni.server;
 
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.sirma.itt.evgeni.comunication.Comunicator;
@@ -21,6 +19,7 @@ import com.sirma.itt.evgeni.comunication.MesageCommand;
 public class Server implements Comunicator {
 
 	private final ComunicatorListener comunicatorListener;
+	private final UserManager userManager = new UserManager();
 	private Conector conector;
 
 	private final Map<String, DataTransferator> users = new ConcurrentHashMap<String, DataTransferator>();
@@ -49,10 +48,7 @@ public class Server implements Comunicator {
 		comunicatorListener
 				.setConectionStatus("Close all incoming conection!!!");
 		closeConectorSession();
-		for (Entry<String, DataTransferator> user : users.entrySet()) {
-			user.getValue().closeSocket();
-		}
-		users.clear();
+		userManager.removeUsersSessions();
 	}
 
 	/**
@@ -68,13 +64,7 @@ public class Server implements Comunicator {
 	 */
 	@Override
 	public void closeUserSession(DataTransferator transferator) {
-		transferator.closeSocket();
-		if (isUserInMap(transferator)) {
-			String name = getUserName(transferator);
-			removeUserFromMap(name);
-			notifyForUserLeaving(name);
-			comunicatorListener.removeUser(name);
-		}
+		userManager.removeUser(transferator);
 	}
 
 	/**
@@ -97,127 +87,16 @@ public class Server implements Comunicator {
 	}
 
 	/**
-	 * Send message to specified user.
-	 */
-	private boolean sendMesageToUser(String sender, String receiver, String text) {
-		if (users.containsKey(receiver)) {
-			users.get(receiver).sendData(new Mesage(sender, receiver, text));
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Remove user from users list.
-	 */
-	private boolean removeUserFromMap(String name) {
-		if (users.containsKey(name)) {
-			users.remove(name);
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Add user to list whit registered users.
-	 */
-	private boolean addUserInMap(String name, DataTransferator transferator) {
-		if (!users.containsKey(name)) {
-			users.put(name, transferator);
-			comunicatorListener.addUser(name);
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Notify registered users for new users registered.
-	 */
-	private void notifyForNewUser(String name) {
-		Mesage message = new Mesage(name, MesageCommand.USER_CONECTED);
-		sendMessageToAll(message);
-	}
-
-	/**
-	 * Notify registered users for leaving users.
-	 */
-	private void notifyForUserLeaving(String name) {
-		Mesage message = new Mesage(name, MesageCommand.USER_DISCONECTED);
-		sendMessageToAll(message);
-	}
-
-	/**
-	 * Send message to all users.
-	 */
-	private void sendMessageToAll(Mesage message) {
-		for (Entry<String, DataTransferator> user : users.entrySet()) {
-			user.getValue().sendData(message);
-		}
-	}
-
-	/**
-	 * Send all registered users at moment of registering on user.
-	 */
-	private void sendUsersList(DataTransferator transferator) {
-		Set<String> keys = users.keySet();
-		for (String key : keys) {
-			transferator.sendData(new Mesage(key, MesageCommand.USER_CONECTED));
-		}
-	}
-
-	/**
-	 * Save user in list of registered users.
-	 */
-	private void registerUser(String name, DataTransferator transferator) {
-		if (addUserInMap(name, transferator)) {
-			sendUsersList(transferator);
-			notifyForNewUser(name);
-		} else {
-			notifyForBadName(transferator);
-			transferator.closeSocket();
-		}
-	}
-
-	/**
-	 * Notify user for invalid user name.
-	 */
-	private void notifyForBadName(DataTransferator transferator) {
-		transferator.sendData(new Mesage(MesageCommand.INVALID_USER_NAME));
-	}
-
-	/**
-	 * Return name of user.
-	 */
-	private String getUserName(DataTransferator transferator) {
-		for (Entry<String, DataTransferator> user : users.entrySet()) {
-			if (user.getValue() == transferator) {
-				return user.getKey();
-			}
-		}
-		return "";
-	}
-
-	/**
-	 * Check is user in conversation list.
-	 */
-	private boolean isUserInMap(DataTransferator transferator) {
-		if (users.containsValue(transferator)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	/**
 	 * Redirect message.
 	 */
 	@Override
 	public void processMesage(Mesage mesage, DataTransferator transferator) {
 		if (mesage.commandID == MesageCommand.USER_LOG_IN) {
-			registerUser(mesage.sender, transferator);
+			userManager.registerUser(mesage.sender, transferator);
 		}
 		if (mesage.commandID == MesageCommand.TEXT_MESAGE) {
-			sendMesageToUser(mesage.sender, mesage.receiver, mesage.text);
+			userManager.sendMesageToUser(mesage.sender, mesage.receiver,
+					mesage.text);
 		}
 	}
 
