@@ -67,9 +67,7 @@ public class Mail {
 		private Mail mail = new Mail();
 
 		/**
-		 * Set from field
-		 * 
-		 * @param from
+		 * Builder constructor.
 		 */
 		public Builder(String from) {
 			mail.from = from;
@@ -77,27 +75,21 @@ public class Mail {
 
 		/**
 		 * Set subject field.
-		 * 
-		 * @param subject
-		 * @return
 		 */
-		public Builder subject(String subject) {
+		public Builder setSubject(String subject) {
 			mail.subject = subject;
 			return this;
 		}
 
-		public Builder atachment(ArrayList<Object> atachment) {
+		public Builder setAtachment(ArrayList<Object> atachment) {
 			mail.atachment = atachment;
 			return this;
 		}
 
 		/**
 		 * Set content field.
-		 * 
-		 * @param content
-		 * @return
 		 */
-		public Builder content(String content) {
+		public Builder setContent(String content) {
 			mail.content = content;
 			return this;
 		}
@@ -105,29 +97,16 @@ public class Mail {
 		/**
 		 * Set to field.
 		 */
-		public Builder to(String to) {
+		public Builder setTo(String to) {
 			mail.to = to;
 			return this;
 		}
 
 		/**
 		 * Return Mail object.
-		 * 
-		 * @return
 		 */
 		public Mail build() {
 			return mail;
 		}
 	}
-
-	/**
-	 * Allow field to be mandatory.
-	 * 
-	 * @author GecaTM
-	 *
-	 */
-	public interface To {
-		public Builder to(String subject);
-	}
-
 }

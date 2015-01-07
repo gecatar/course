@@ -17,7 +17,8 @@ public class MailBuilderTest {
 	@Test
 	public void MailBuilderTest() {
 
-		Mail mail = Mail.from("test1").to("test2").subject("test3").build();
+		Mail mail = Mail.from("test1").setTo("test2").setSubject("test3")
+				.build();
 		assertEquals("test1", mail.getFrom());
 		assertEquals("test2", mail.getTo());
 		assertEquals("test3", mail.getSubject());
