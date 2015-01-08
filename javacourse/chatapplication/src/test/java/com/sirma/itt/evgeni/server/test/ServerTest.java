@@ -2,8 +2,6 @@ package com.sirma.itt.evgeni.server.test;
 
 import static org.junit.Assert.assertTrue;
 
-import java.io.ObjectOutputStream;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,8 +24,6 @@ public class ServerTest {
 	Comunicator server;
 	@Mock
 	DataTransferator transferator;
-	@Mock
-	ObjectOutputStream ost;
 
 	@Before
 	public void setUp() throws Exception {

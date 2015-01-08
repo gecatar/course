@@ -36,14 +36,6 @@ public class Client implements Comunicator {
 	}
 
 	/**
-	 * Send message to server.
-	 */
-	@Override
-	public void sendMesage(String receiver, String text) {
-		transferator.sendData(new Mesage(this.name, receiver, text));
-	}
-
-	/**
 	 * Stop connection.
 	 */
 	@Override
@@ -53,13 +45,6 @@ public class Client implements Comunicator {
 			conector = null;
 		}
 		closeUserSession(transferator);
-	}
-
-	/**
-	 * Send user details to server.
-	 */
-	public void sendUserData() {
-		transferator.sendData(new Mesage(name, MesageCommand.USER_LOG_IN));
 	}
 
 	/**
@@ -83,26 +68,18 @@ public class Client implements Comunicator {
 	}
 
 	/**
-	 * Set DataTransferator.
-	 * 
-	 * @param transferator
+	 * Send message to server.
 	 */
-	public void addDataTransferator(DataTransferator transferator) {
-		this.transferator = transferator;
+	@Override
+	public void sendMesage(String receiver, String text) {
+		transferator.sendData(new Mesage(this.name, receiver, text));
 	}
 
 	/**
-	 * Delete DataTransferator.
-	 * 
-	 * @param dataTransferator
+	 * Set DataTransferator.
 	 */
-	public synchronized void removeDataTransferator(
-			DataTransferator dataTransferator) {
-		if (dataTransferator != null) {
-			comunicatorListener.setConectionStatus("Disconected...");
-			dataTransferator.closeSocket();
-		}
-		transferator = null;
+	public void addDataTransferator(DataTransferator transferator) {
+		this.transferator = transferator;
 	}
 
 	/**
@@ -135,6 +112,25 @@ public class Client implements Comunicator {
 			conector = null;
 		}
 		comunicatorListener.setConectionStatus("Error when Conecting...");
+	}
+
+	/**
+	 * Send user details to server.
+	 */
+	private void sendUserData() {
+		transferator.sendData(new Mesage(name, MesageCommand.USER_LOG_IN));
+	}
+
+	/**
+	 * Delete DataTransferator.
+	 */
+	private synchronized void removeDataTransferator(
+			DataTransferator dataTransferator) {
+		if (dataTransferator != null) {
+			comunicatorListener.setConectionStatus("Disconected...");
+			dataTransferator.closeSocket();
+		}
+		transferator = null;
 	}
 
 	/**
