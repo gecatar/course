@@ -29,7 +29,7 @@ public class ClassAnalyzerTest {
 	}
 
 	/**
-	 * Check for reading Declared Fields.
+	 * Check reading Declared Fields.
 	 */
 	@Test
 	public void listDeclaredFieldTest() {
