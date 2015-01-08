@@ -1,8 +1,5 @@
 package com.sirma.itt.evgeni.server;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-
 import com.sirma.itt.evgeni.comunication.Comunicator;
 import com.sirma.itt.evgeni.comunication.ComunicatorListener;
 import com.sirma.itt.evgeni.comunication.Conector;
@@ -21,8 +18,6 @@ public class Server implements Comunicator {
 	private final ComunicatorListener comunicatorListener;
 	private final UserManager userManager = new UserManager();
 	private Conector conector;
-
-	private final Map<String, DataTransferator> users = new ConcurrentHashMap<String, DataTransferator>();
 
 	public Server(ComunicatorListener comunicatorListener) {
 		this.comunicatorListener = comunicatorListener;

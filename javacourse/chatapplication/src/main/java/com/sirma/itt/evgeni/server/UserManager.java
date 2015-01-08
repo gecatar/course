@@ -34,6 +34,7 @@ public class UserManager {
 		if (isUserInMap(transferator)) {
 			String name = getUserName(transferator);
 			users.remove(name);
+			transferator.closeSocket();
 			notifyForUserLeaving(name);
 		}
 	}
@@ -47,6 +48,16 @@ public class UserManager {
 					new Mesage(sender, receiver, text));
 		}
 		return false;
+	}
+
+	/**
+	 * Close all user sessions.
+	 */
+	public void removeUsersSessions() {
+		for (Entry<String, DataTransferator> user : users.entrySet()) {
+			user.getValue().closeSocket();
+		}
+		users.clear();
 	}
 
 	/**
@@ -101,16 +112,6 @@ public class UserManager {
 		if (!users.containsKey(name)) {
 			users.put(name, transferator);
 		}
-	}
-
-	/**
-	 * Close all user sessions.
-	 */
-	public void removeUsersSessions() {
-		for (Entry<String, DataTransferator> user : users.entrySet()) {
-			user.getValue().closeSocket();
-		}
-		users.clear();
 	}
 
 	/**
