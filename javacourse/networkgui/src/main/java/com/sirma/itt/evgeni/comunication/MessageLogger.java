@@ -2,11 +2,20 @@ package com.sirma.itt.evgeni.comunication;
 
 import java.util.ArrayList;
 
+/**
+ * Log messages.
+ * 
+ * @author root
+ *
+ */
 public class MessageLogger {
 
 	private final ArrayList<String> messages = new ArrayList<String>();
 	private int currentIndex = -1;
 
+	/**
+	 * Save messages.
+	 */
 	public void logMessage(String message) {
 		if (!messages.contains(message)) {
 			messages.add(message);
@@ -14,6 +23,9 @@ public class MessageLogger {
 		}
 	}
 
+	/**
+	 * Return saved messages.
+	 */
 	public String getNextMessage() {
 		if (containIndex(currentIndex - 1)) {
 			currentIndex--;
@@ -24,6 +36,9 @@ public class MessageLogger {
 		}
 	}
 
+	/**
+	 * Return saved messages.
+	 */
 	public String getPreviousMessage() {
 		if (containIndex(currentIndex + 1)) {
 			currentIndex++;
@@ -34,6 +49,16 @@ public class MessageLogger {
 		}
 	}
 
+	/**
+	 * Return true if passed index is available.
+	 */
+	private boolean containIndex(int index) {
+		return (index >= 0 && index < messages.size());
+	}
+
+	/**
+	 * Print all messages.
+	 */
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
@@ -42,9 +67,5 @@ public class MessageLogger {
 			stringBuilder.append(message).append("\n");
 		}
 		return stringBuilder.toString().trim();
-	}
-
-	private boolean containIndex(int index) {
-		return (index >= 0 && index < messages.size());
 	}
 }
