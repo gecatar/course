@@ -34,7 +34,7 @@ public class ClassAnalyzer {
 				stringBuilder.append("public ");
 			}
 			if (Modifier.isProtected(method.getModifiers())) {
-				stringBuilder.append("prptected ");
+				stringBuilder.append("protected ");
 			}
 			stringBuilder.append(method.getName()).append("\n");
 		}
@@ -57,7 +57,7 @@ public class ClassAnalyzer {
 				stringBuilder.append(field.get(object)).append("\n");
 			} catch (IllegalArgumentException | IllegalAccessException e) {
 				stringBuilder.append("Unable to read value.").append("\n");
-				LOGGER.log(Level.SEVERE, "Unable to read whit reflection,e");
+				LOGGER.log(Level.SEVERE, "Unable to read whit reflection", e);
 			}
 		}
 		return stringBuilder.toString().trim();

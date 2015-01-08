@@ -30,19 +30,12 @@ public class FileReverser {
 	public boolean reverseFile(String path) {
 		try {
 			File file = new File(path);
-			saveText(file, reverseText(getText(file)));
+			saveText(file, getText(file).reverse().toString());
 			return true;
 		} catch (IOException e) {
 			LOGGER.log(Level.SEVERE, "Error when reversing text file!!!", e);
 			return false;
 		}
-	}
-
-	/**
-	 * Reverse given text.
-	 */
-	private String reverseText(String text) {
-		return new StringBuilder().append(text).reverse().toString();
 	}
 
 	/**
@@ -58,7 +51,7 @@ public class FileReverser {
 	/**
 	 * Extract text from file.
 	 */
-	private String getText(File file) throws IOException {
+	private StringBuilder getText(File file) throws IOException {
 		StringBuilder stringBuilder = new StringBuilder();
 		try (InputStreamReader inputReader = new InputStreamReader(
 				new BufferedInputStream(new FileInputStream(file)))) {
@@ -69,6 +62,6 @@ public class FileReverser {
 				readed = inputReader.read(buffer);
 			}
 		}
-		return stringBuilder.toString();
+		return stringBuilder;
 	}
 }

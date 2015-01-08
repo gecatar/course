@@ -17,8 +17,8 @@ public class TransferObject implements AutoCloseable {
 	private static final Logger LOGGER = Logger.getLogger(TransferObject.class
 			.getName());
 
-	InputStream ist = null;
-	OutputStream ost = null;
+	private InputStream ist = null;
+	private OutputStream ost = null;
 
 	public TransferObject(InputStream ist, OutputStream ost) {
 		this.ist = ist;
