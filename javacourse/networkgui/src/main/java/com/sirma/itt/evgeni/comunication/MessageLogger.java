@@ -34,6 +34,16 @@ public class MessageLogger {
 		}
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("Messages:").append("\n");
+		for (String message : messages) {
+			stringBuilder.append(message).append("\n");
+		}
+		return stringBuilder.toString().trim();
+	}
+
 	private boolean containIndex(int index) {
 		return (index >= 0 && index < messages.size());
 	}
