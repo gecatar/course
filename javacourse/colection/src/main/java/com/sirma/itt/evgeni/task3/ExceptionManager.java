@@ -37,17 +37,15 @@ public class ExceptionManager {
 	}
 
 	/**
-	 * Return message.
+	 * Add exception whit key. Message is extracted from Map.
 	 */
-	public String getMesage() {
-		return message;
-	}
-
-	/**
-	 * Clear saved errors.
-	 */
-	public void clearLog() {
-		message = "";
+	public void addExceptionUsingCode(String key) {
+		if (exceptions.containsKey(key)) {
+			message += exceptions.get(key);
+			message += SEPARATOR;
+		} else {
+			LOGGER.log(Level.INFO, "Error code not suported!!!");
+		}
 	}
 
 	/**
@@ -62,6 +60,13 @@ public class ExceptionManager {
 	}
 
 	/**
+	 * Clear saved errors.
+	 */
+	public void clearLog() {
+		message = "";
+	}
+
+	/**
 	 * Add key and description to Map of exception.
 	 */
 	public void addExceptionAndDescription(String key, String description) {
@@ -69,21 +74,16 @@ public class ExceptionManager {
 	}
 
 	/**
+	 * Return message.
+	 */
+	public String getMesage() {
+		return message;
+	}
+
+	/**
 	 * List all keys.
 	 */
 	public Set<String> getKeys() {
 		return exceptions.keySet();
-	}
-
-	/**
-	 * Add exception whit key. Message is extracted from Map.
-	 */
-	public void addExceptionUsingCode(String key) {
-		if (exceptions.containsKey(key)) {
-			message += exceptions.get(key);
-			message += SEPARATOR;
-		} else {
-			LOGGER.log(Level.INFO, "Error code not suported!!!");
-		}
 	}
 }

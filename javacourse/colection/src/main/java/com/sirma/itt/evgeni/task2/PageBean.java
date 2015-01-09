@@ -33,7 +33,7 @@ public class PageBean {
 	}
 
 	/**
-	 * Create collection of pages.
+	 * Return collection of pages.
 	 */
 	public ArrayList<Page> getPages() {
 		return page;

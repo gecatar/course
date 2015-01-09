@@ -10,7 +10,6 @@ import java.util.List;
  */
 public class Page {
 
-	private String title;
 	private List<?> elements;
 
 	public Page(List<?> elements) {
