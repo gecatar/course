@@ -44,7 +44,7 @@ public class ExceptionManager {
 			message += exceptions.get(key);
 			message += SEPARATOR;
 		} else {
-			LOGGER.log(Level.INFO, "Error code not suported!!!");
+			LOGGER.log(Level.SEVERE, "Error code not supported!!!");
 		}
 	}
 

@@ -1,8 +1,9 @@
 package com.sirma.itt.evgeni.task4.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.sirma.itt.evgeni.task4.ObjectPool;
@@ -10,11 +11,6 @@ import com.sirma.itt.evgeni.task4.ObjectPool;
 public class ObjectPoolTest {
 
 	ObjectPool pool;
-	
-	@Before
-	public void setUp() throws Exception {
-		
-	}
 
 	/**
 	 * Check acquire.
@@ -30,7 +26,7 @@ public class ObjectPoolTest {
 		testClass[0] = pool.aquire();
 		assertNull(testClass[0]);
 	}
-	
+
 	/**
 	 * Check release.
 	 */
