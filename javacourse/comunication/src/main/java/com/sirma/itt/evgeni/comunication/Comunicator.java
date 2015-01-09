@@ -1,21 +1,24 @@
 package com.sirma.itt.evgeni.comunication;
 
-public interface Comunicator {
+public abstract class Comunicator {
 
-	public void startConection(String ip, int port);
+	private Conector conector;
 
-	public void stopConection();
+	public void startConection(String ip, int port) {
+		conector.startConection(ip, port);
+	}
 
-	public void addUserSession(DataTransferator transferator);
+	public void stopConection() {
+		conector.stopConection();
+	}
 
-	public void closeUserSession(DataTransferator transferator);
+	public abstract void processMesage(Mesage mesage,
+			DataTransferator dataTransferator);
 
-	public void closeConectorSession();
+	public abstract void closeSession(DataTransferator dataTransferator);
 
-	public void setName(String name);
+	public void close() {
 
-	public void processMesage(Mesage mesage, DataTransferator transferator);
-
-	public void sendMesage(String name, String text);
+	}
 
 }

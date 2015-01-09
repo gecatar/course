@@ -36,7 +36,7 @@ public class DataTransferator extends Thread {
 			ost.writeObject(mesage);
 			ost.flush();
 		} catch (IOException e) {
-			comunicator.closeUserSession(this);
+			comunicator.closeSession(this);
 		}
 	}
 
@@ -52,7 +52,7 @@ public class DataTransferator extends Thread {
 			}
 		} catch (IOException | ClassNotFoundException e) {
 		} finally {
-			comunicator.closeUserSession(this);
+			comunicator.closeSession(this);
 		}
 	}
 

@@ -2,7 +2,7 @@ package com.sirma.itt.evgeni.comunication;
 
 public class ConectorShutdownHook extends Thread {
 
-	Comunicator comunicator;
+	private Comunicator comunicator;
 
 	public ConectorShutdownHook(Comunicator comunicator) {
 		this.comunicator = comunicator;
@@ -10,7 +10,6 @@ public class ConectorShutdownHook extends Thread {
 
 	@Override
 	public void run() {
-		comunicator.stopConection();
-		System.out.println("Conector stopped....!!!@#@!#!@#!@#@!");
+		comunicator.close();
 	}
 }
