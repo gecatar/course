@@ -9,8 +9,8 @@ public class SyncThreadRunner {
 	 */
 	public static void main(String[] args) {
 
-		SyncCount firstCount = new SyncCount(5, true);
-		SyncCount secondCount = new SyncCount(5, false);
+		SyncCount firstCount = new SyncCount(5);
+		SyncCount secondCount = new SyncCount(5);
 
 		firstCount.start();
 		secondCount.start();
