@@ -16,6 +16,14 @@ public class CommandInvoker {
 	 */
 	Map<Character, Command> commands = new HashMap<Character, Command>();
 
+	public CommandInvoker(Calculator calculator) {
+		addOperation('-', new DeductCommand(calculator));
+		addOperation('+', new SumCommand(calculator));
+		addOperation('*', new MultiplyCommand(calculator));
+		addOperation('/', new DivisionCommand(calculator));
+		addOperation('^', new PowCommand(calculator));
+	}
+
 	/**
 	 * Add operations.
 	 */

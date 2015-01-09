@@ -17,14 +17,8 @@ public class CalculatorRunner {
 	 */
 	public static void main(String[] args) {
 
-		CommandInvoker invoker = new CommandInvoker();
 		Calculator calculator = new Calculator();
-
-		invoker.addOperation('-', new DeductCommand(calculator));
-		invoker.addOperation('+', new SumCommand(calculator));
-		invoker.addOperation('*', new MultiplyCommand(calculator));
-		invoker.addOperation('/', new DivisionCommand(calculator));
-		invoker.addOperation('^', new PowCommand(calculator));
+		CommandInvoker invoker = new CommandInvoker(calculator);
 
 		while (true) {
 			System.out.println("Enter first number:");

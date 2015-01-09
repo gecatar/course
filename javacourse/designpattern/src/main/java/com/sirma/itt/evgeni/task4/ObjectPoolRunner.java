@@ -3,7 +3,7 @@ package com.sirma.itt.evgeni.task4;
 import com.sirma.itt.evgeni.util.ConsoleReader;
 
 /**
- * Acquire objects from object pool. User define size of pool.
+ * Acquire objects from object pool. User define size of pool. Successfully
  * 
  * @author Evgeni Stefanov
  * 
@@ -24,16 +24,16 @@ public class ObjectPoolRunner {
 			if (choise == 1) {
 				object = pool.aquire();
 				if (object != null) {
-					System.out.println("Operation sucsesofol!!!");
+					System.out.println("Operation successfully!!!");
 				} else {
 					System.out.println("There is no free objects");
 				}
 			}
 			if (choise == 2) {
 				if (pool.release(object)) {
-					System.out.println("Operation is sucsesofol");
+					System.out.println("Operation is successfully");
 				} else {
-					System.out.println("Operation is not sucsesofol");
+					System.out.println("Operation is not successfully");
 				}
 			}
 
