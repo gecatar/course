@@ -1,7 +1,7 @@
 package com.sirma.itt.evgeni.task4;
 
 /**
- * Store elements for future using. If object is released inUse is false.
+ * Store elements for future using.
  * 
  * @author Evgeni Stefanov
  *
@@ -13,21 +13,20 @@ public class Holder {
 
 	/**
 	 * Create new holder.
-	 * 
-	 * @param object
 	 */
 	public Holder(Object object) {
 		this.object = object;
 	}
 
+	/**
+	 * Set in use.
+	 */
 	public void setInUse(boolean inUse) {
 		this.inUse = inUse;
 	}
 
 	/**
 	 * Say is object in use.
-	 * 
-	 * @return true if object is in use.
 	 */
 	public boolean isInUse() {
 		return inUse;
@@ -35,8 +34,6 @@ public class Holder {
 
 	/**
 	 * Return acquired object.
-	 * 
-	 * @return instance to stored object.
 	 */
 	public Object getObject() {
 		return object;

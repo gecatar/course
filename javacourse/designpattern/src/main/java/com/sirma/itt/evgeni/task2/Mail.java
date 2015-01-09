@@ -49,9 +49,6 @@ public class Mail {
 
 	/**
 	 * Create new Builder and set from field.
-	 * 
-	 * @param from
-	 * @return
 	 */
 	public static To from(String from) {
 		return new Builder(from);

@@ -3,7 +3,7 @@ package com.sirma.itt.evgeni.task2;
 import com.sirma.itt.evgeni.util.ConsoleReader;
 
 /**
- * Implement fluent interface in java. MailBuilder create object for us.
+ * Implement fluent interface in java. MailBuilder create object.
  * 
  * @author Evgeni Stefanov
  * 

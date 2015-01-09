@@ -12,7 +12,7 @@ import java.util.Set;
  */
 public class SoldContainer implements Container {
 
-	Map<String, Integer> items = new HashMap<String, Integer>();
+	private final Map<String, Integer> items = new HashMap<String, Integer>();
 
 	/**
 	 * If quantity is zero add item in list.

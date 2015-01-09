@@ -19,13 +19,13 @@ public class AbstractfactoryRunner {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		Factory factory = FactoryProducer.getFactory("integer");
+		Command command = factory.createInstance("multiply");
 		System.out.println("Create multiply command and make calculation.");
 		System.out.println("Enter first number:");
 		int firstNumber = ConsoleReader.readInt();
 		System.out.println("Enter second number:");
 		int secondNumber = ConsoleReader.readInt();
-		Factory factory = FactoryProducer.getFactory("integer");
-		Command command = factory.createInstance("multiply");
 		System.out.println("Result is:"
 				+ command.calculate(firstNumber, secondNumber));
 	}

@@ -19,10 +19,6 @@ public class CalculatorProxy {
 
 	/**
 	 * Call real method.
-	 * 
-	 * @param firstNumber
-	 * @param pow
-	 * @return
 	 */
 	public int pow(int firstNumber, int pow) {
 		return calculator.pow(firstNumber, pow);
@@ -30,10 +26,6 @@ public class CalculatorProxy {
 
 	/**
 	 * Call real method.
-	 * 
-	 * @param firstNumber
-	 * @param secondNumber
-	 * @return
 	 */
 	public int divisor(int firstNumber, int secondNumber) {
 		if (user.equals("User")) {
@@ -44,10 +36,6 @@ public class CalculatorProxy {
 
 	/**
 	 * Call real method.
-	 * 
-	 * @param firstNumber
-	 * @param secondNumber
-	 * @return
 	 */
 	public int sum(int firstNumber, int secondNumber) {
 		return calculator.sum(firstNumber, secondNumber);
@@ -55,9 +43,6 @@ public class CalculatorProxy {
 
 	/**
 	 * Call real method.
-	 * 
-	 * @param firstNumber
-	 * @return
 	 */
 	public int decrement(int firstNumber) {
 		return calculator.decrement(firstNumber);

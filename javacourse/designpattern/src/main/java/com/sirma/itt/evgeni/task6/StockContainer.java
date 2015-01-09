@@ -12,7 +12,7 @@ import java.util.Set;
  */
 public class StockContainer implements Container {
 
-	private Map<String, Integer> items = new HashMap<String, Integer>();
+	private final Map<String, Integer> items = new HashMap<String, Integer>();
 
 	/**
 	 * Update information about item.
@@ -50,6 +50,8 @@ public class StockContainer implements Container {
 			} else {
 				addQuantity(description, quantity * -1);
 			}
+		} else {
+			obs.notifyAll('u', description, quantity);
 		}
 	}
 

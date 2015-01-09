@@ -1,7 +1,7 @@
 package com.sirma.itt.evgeni.factory;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 import com.sirma.itt.evgeni.commands.Command;
 import com.sirma.itt.evgeni.commands.DeductIntegerCommand;
@@ -50,7 +50,7 @@ public class IntegerFactory implements Factory {
 		try {
 			return (Command) Class.forName(type).newInstance();
 		} catch (ReflectiveOperationException e) {
-			LOGGER.log(Level.SEVERE, "Error when creating object.", e);
+			LOGGER.log(Level.ERROR, "Error when creating object.", e);
 			return null;
 		}
 	}

@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class SoldOutContainer implements Container {
 
-	private ArrayList<String> soldOutItems = new ArrayList<String>();
+	private final ArrayList<String> soldOutItems = new ArrayList<String>();
 
 	/**
 	 * Update container.

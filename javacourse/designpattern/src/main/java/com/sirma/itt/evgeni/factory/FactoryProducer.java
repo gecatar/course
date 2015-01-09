@@ -8,6 +8,9 @@ package com.sirma.itt.evgeni.factory;
  */
 public class FactoryProducer {
 
+	/**
+	 * Create factory's.
+	 */
 	public static Factory getFactory(String type) {
 
 		if (type.equalsIgnoreCase("integer")) {

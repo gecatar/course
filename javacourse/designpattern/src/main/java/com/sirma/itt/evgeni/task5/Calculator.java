@@ -10,10 +10,6 @@ public class Calculator {
 
 	/**
 	 * Excecute pow operation.
-	 * 
-	 * @param firstNumber
-	 * @param pow
-	 * @return
 	 */
 	public int pow(int firstNumber, int pow) {
 		return (int) Math.pow(firstNumber, pow);
@@ -21,10 +17,6 @@ public class Calculator {
 
 	/**
 	 * Divide two numbers.
-	 * 
-	 * @param firstNumber
-	 * @param secondNumber
-	 * @return
 	 */
 	public int divisor(int firstNumber, int secondNumber) {
 		return firstNumber / secondNumber;
@@ -32,10 +24,6 @@ public class Calculator {
 
 	/**
 	 * Sum two numbers.
-	 * 
-	 * @param firstNumber
-	 * @param secondNumber
-	 * @return
 	 */
 	public int sum(int firstNumber, int secondNumber) {
 		return firstNumber + secondNumber;
@@ -43,9 +31,6 @@ public class Calculator {
 
 	/**
 	 * Decrement one number.
-	 * 
-	 * @param firstNumber
-	 * @return
 	 */
 	public int decrement(int firstNumber) {
 		firstNumber--;

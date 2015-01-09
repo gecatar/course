@@ -10,19 +10,15 @@ import java.util.ArrayList;
  */
 public class ObjectPool {
 
-	ArrayList<Holder> pool;
-	int count;
+	private final ArrayList<Holder> pool = new ArrayList<Holder>();
+	private int count;
 
 	public ObjectPool(int count) {
 		this.count = count;
-		pool = new ArrayList<Holder>();
 	}
 
 	/**
 	 * Release objects.
-	 * 
-	 * @param testClass
-	 *            object that will be released.
 	 */
 	public boolean release(Object object) {
 		for (Holder holder : pool) {
@@ -36,11 +32,8 @@ public class ObjectPool {
 
 	/**
 	 * Provide user whit object.
-	 * 
-	 * @return acquired object.
 	 */
 	public Object aquire() {
-
 		for (Holder holder : pool) {
 			if (!holder.isInUse()) {
 				holder.setInUse(true);
@@ -53,8 +46,6 @@ public class ObjectPool {
 			pool.add(temp);
 			return temp.getObject();
 		}
-
 		return null;
 	}
-
 }
