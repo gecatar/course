@@ -11,14 +11,14 @@ import java.net.Socket;
  * @author Evgeni Stefanov
  * 
  */
-public class DataTransferator extends Thread {
+public class DataTransferer extends Thread {
 
 	private final Comunicator comunicator;
 	private final Socket socket;
 	private final ObjectOutputStream ost;
 	private final ObjectInputStream ist;
 
-	public DataTransferator(Comunicator comunicator, Socket socket,
+	public DataTransferer(Comunicator comunicator, Socket socket,
 			ObjectOutputStream ost, ObjectInputStream ist) {
 		this.comunicator = comunicator;
 		this.socket = socket;
@@ -28,8 +28,6 @@ public class DataTransferator extends Thread {
 
 	/**
 	 * Send message.
-	 * 
-	 * @param mesage
 	 */
 	public void sendData(Mesage mesage) {
 		try {

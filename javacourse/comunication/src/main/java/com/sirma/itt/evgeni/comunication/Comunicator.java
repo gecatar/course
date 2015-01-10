@@ -13,9 +13,9 @@ public abstract class Comunicator {
 	}
 
 	public abstract void processMesage(Mesage mesage,
-			DataTransferator dataTransferator);
+			DataTransferer dataTransferer);
 
-	public abstract void closeSession(DataTransferator dataTransferator);
+	public abstract void closeSession(DataTransferer dataTransferer);
 
 	public void close() {
 

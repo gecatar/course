@@ -1,6 +1,6 @@
 package com.sirma.itt.evgeni.comunication;
 
-public abstract class Conector extends Thread {
+public abstract class Conector {
 
 	protected Comunicator comunicator;
 	private boolean conecting;
@@ -9,18 +9,22 @@ public abstract class Conector extends Thread {
 		this.comunicator = comunicator;
 	}
 
-	public void startConection(String ip, int port) {
+	public boolean startConection(String ip, int port) {
 		if (!conecting) {
 			conecting = true;
 			new AssynchConectionRunner(this, ip, port).start();
+			return true;
 		}
+		return false;
 	}
 
-	public void stopConection() {
+	public boolean stopConection() {
 		if (conecting) {
 			conecting = false;
 			disconect();
+			return true;
 		}
+		return false;
 	}
 
 	protected abstract void connect(String ip, int port);
