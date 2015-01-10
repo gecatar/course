@@ -2,7 +2,7 @@ package com.sirma.itt.evgeni.comunication;
 
 public interface ComunicatorListener {
 
-	public void setConectionStatus(String conectionCondition);
+	public void setConectionStatus(MesageCommand status);
 
 	public void showMesage(String name, String text);
 
