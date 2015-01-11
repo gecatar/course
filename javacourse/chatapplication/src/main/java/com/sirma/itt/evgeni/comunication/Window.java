@@ -19,4 +19,8 @@ public class Window extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
+	
+	public void setListener(){
+		
+	}
 }

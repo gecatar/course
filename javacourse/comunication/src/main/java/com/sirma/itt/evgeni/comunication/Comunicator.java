@@ -3,6 +3,11 @@ package com.sirma.itt.evgeni.comunication;
 public abstract class Comunicator {
 
 	private Conector conector;
+	protected ComunicatorListener listener;
+
+	public void setListener(ComunicatorListener listener) {
+		this.listener = listener;
+	}
 
 	public void startConection(String ip, int port) {
 		conector.startConection(ip, port);
