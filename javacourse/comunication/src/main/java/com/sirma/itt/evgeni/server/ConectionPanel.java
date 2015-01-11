@@ -2,7 +2,6 @@ package com.sirma.itt.evgeni.server;
 
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
@@ -13,17 +12,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import com.sirma.itt.evgeni.comunication.UILIstener;
-
 /**
  * Manage user connection request.
  * 
  * @author Evgeni Stefanov
  * 
  */
-public class ConectionPanel extends JPanel implements ActionListener {
+public class ConectionPanel extends JPanel {
 
-	private UILIstener uiListener;
+	private ActionListener listener;
 	private JTextField ipAdress = new JTextField(15);
 	private JTextField port = new JTextField(4);
 	private JTextArea textArea = new JTextArea();
@@ -31,17 +28,17 @@ public class ConectionPanel extends JPanel implements ActionListener {
 	/**
 	 * Create connection user interface.
 	 */
-	public ConectionPanel(UILIstener uiListener) {
-		this.uiListener = uiListener;
+	public ConectionPanel(ActionListener listener) {
+		this.listener = listener;
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		ipAdress.setText("localhost");
 		port.setText("1300");
 		JButton startConection = new JButton("Conect");
 		startConection.setName("StartConection");
-		startConection.addActionListener(this);
+		startConection.addActionListener(listener);
 		JButton stopConection = new JButton("Disconect");
 		stopConection.setName("StopConection");
-		stopConection.addActionListener(this);
+		stopConection.addActionListener(listener);
 		JLabel ipLabel = new JLabel("IP Adress");
 		ipLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		ipAdress.setMaximumSize(new Dimension(150, 20));
@@ -75,20 +72,12 @@ public class ConectionPanel extends JPanel implements ActionListener {
 		textArea.setText(message + "\n" + textArea.getText());
 	}
 
-	/**
-	 * Detect when user request connection or disconnection.
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource().getClass() == JButton.class) {
-			if (((JButton) e.getSource()).getName().equals("StartConection")) {
-				uiListener.startConection("server", ipAdress.getText(),
-						Integer.parseInt(port.getText()));
-			}
-			if (((JButton) e.getSource()).getName().equals("StopConection")) {
-				uiListener.stopConection();
-			}
-		}
+	public String getIP() {
+		return ipAdress.getText();
+	}
+
+	public int getPort() {
+		return Integer.parseInt(port.getText());
 	}
 
 }

@@ -29,6 +29,7 @@ public class ClientWindow extends Window implements ActionListener,
 		mainPannel.add("Users", userList);
 		mainPannel.setVisible(true);
 		add(mainPannel);
+		setVisible(true);
 	}
 
 	@Override

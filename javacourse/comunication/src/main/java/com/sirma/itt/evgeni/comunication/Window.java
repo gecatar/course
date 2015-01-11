@@ -12,7 +12,6 @@ public class Window extends JFrame {
 	public Window() {
 		setSize(WINDOW_DIMENSION);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setVisible(true);
 	}
 
 	public void setListener(UILIstener listener) {
