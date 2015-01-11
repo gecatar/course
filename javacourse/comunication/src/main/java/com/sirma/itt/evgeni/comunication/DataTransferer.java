@@ -5,6 +5,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
 /**
  * Transfer messages between two DataTranferators.
  * 
@@ -13,6 +16,8 @@ import java.net.Socket;
  */
 public class DataTransferer extends Thread {
 
+	private static final Logger LOGGER = Logger.getLogger(DataTransferer.class
+			.getName());
 	private final Comunicator comunicator;
 	private final Socket socket;
 	private final ObjectOutputStream ost;
@@ -35,6 +40,7 @@ public class DataTransferer extends Thread {
 			ost.flush();
 		} catch (IOException e) {
 			comunicator.closeSession(this);
+			LOGGER.log(Level.ERROR, "Error when sending message", e);
 		}
 	}
 
@@ -49,6 +55,7 @@ public class DataTransferer extends Thread {
 				comunicator.processMesage(mesage, this);
 			}
 		} catch (IOException | ClassNotFoundException e) {
+			LOGGER.log(Level.ERROR, "Error while reading message.", e);
 		} finally {
 			comunicator.closeSession(this);
 		}
@@ -57,13 +64,13 @@ public class DataTransferer extends Thread {
 	/**
 	 * Close socket.
 	 */
-	public void closeSocket() {
+	public synchronized void closeSocket() {
 		try {
 			if (socket != null) {
 				socket.close();
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.ERROR, "Error when closing socket.", e);
 		}
 	}
 }

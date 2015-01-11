@@ -17,12 +17,16 @@ public abstract class Comunicator {
 		conector.stopConection();
 	}
 
-	public abstract void openSession(DataTransferer dataTransferer);
+	public void openSession(DataTransferer dataTransferer) {
+		dataTransferer.start();
+	}
 
 	public abstract void processMesage(Mesage mesage,
 			DataTransferer dataTransferer);
 
-	public abstract void closeSession(DataTransferer dataTransferer);
+	public void closeSession(DataTransferer dataTransferer) {
+		dataTransferer.closeSocket();
+	}
 
 	public void close() {
 

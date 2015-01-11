@@ -12,7 +12,7 @@ public class ClientComunicator extends Comunicator {
 
 	@Override
 	public void openSession(DataTransferer dataTransferer) {
-
+		super.openSession(dataTransferer);
 	}
 
 	@Override
@@ -22,6 +22,6 @@ public class ClientComunicator extends Comunicator {
 
 	@Override
 	public void closeSession(DataTransferer dataTransferer) {
-
+		super.closeSession(dataTransferer);
 	}
 }

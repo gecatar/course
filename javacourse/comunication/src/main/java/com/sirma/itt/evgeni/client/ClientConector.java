@@ -26,15 +26,12 @@ public class ClientConector extends Conector {
 	protected void connect(String ip, int port) {
 		try {
 			socket = new Socket(ip, port);
-			ObjectOutputStream ost = new ObjectOutputStream(
-					socket.getOutputStream());
-			ObjectInputStream ist = new ObjectInputStream(
-					socket.getInputStream());
 			comunicator.openSession(new DataTransferer(comunicator, socket,
-					ost, ist));
+					new ObjectOutputStream(socket.getOutputStream()),
+					new ObjectInputStream(socket.getInputStream())));
 		} catch (IOException e) {
-			LOGGER.log(Level.ERROR, "Error when conecting.", e);
 			disconect();
+			LOGGER.log(Level.ERROR, "Error when conecting.", e);
 		}
 	}
 
@@ -47,6 +44,7 @@ public class ClientConector extends Conector {
 			} catch (IOException e) {
 				LOGGER.log(Level.ERROR, "Error when closing socket.", e);
 			}
+			socket = null;
 		}
 	}
 }
