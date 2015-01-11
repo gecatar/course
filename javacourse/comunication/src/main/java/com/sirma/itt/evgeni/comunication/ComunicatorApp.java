@@ -6,7 +6,10 @@ public class ComunicatorApp implements ComunicatorListener, UILIstener {
 	private Window window;
 
 	public ComunicatorApp(Comunicator comunicator, Window window) {
+		this.comunicator = comunicator;
+		this.window = window;
 		comunicator.setListener(this);
+		window.setListener(this);
 	}
 
 	@Override
@@ -30,8 +33,8 @@ public class ComunicatorApp implements ComunicatorListener, UILIstener {
 	}
 
 	@Override
-	public void startConection(String nickname, String ip, String port) {
-		comunicator.startConection(ip, Integer.parseInt(port));
+	public void startConection(String nickname, String ip, int port) {
+		comunicator.startConection(ip, port);
 	}
 
 	@Override

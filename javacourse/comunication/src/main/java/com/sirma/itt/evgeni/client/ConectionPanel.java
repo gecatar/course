@@ -71,6 +71,19 @@ public class ConectionPanel extends JPanel {
 		add(stopConection);
 	}
 
+	@Override
+	public String getName() {
+		return nickname.getText();
+	}
+
+	public String getIP() {
+		return ipAdress.getText();
+	}
+
+	public int getPort() {
+		return Integer.parseInt(port.getText());
+	}
+
 	public void setConectionStatus(String conectionCondition) {
 		conectionStatus.setText(conectionCondition);
 	}

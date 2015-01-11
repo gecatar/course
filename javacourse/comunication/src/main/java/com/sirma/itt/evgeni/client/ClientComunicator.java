@@ -6,6 +6,10 @@ import com.sirma.itt.evgeni.comunication.Mesage;
 
 public class ClientComunicator extends Comunicator {
 
+	public ClientComunicator() {
+		conector = new ClientConector(this);
+	}
+
 	@Override
 	public void openSession(DataTransferer dataTransferer) {
 

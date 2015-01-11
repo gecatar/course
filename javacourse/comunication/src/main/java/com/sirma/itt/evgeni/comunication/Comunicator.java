@@ -2,7 +2,7 @@ package com.sirma.itt.evgeni.comunication;
 
 public abstract class Comunicator {
 
-	private Conector conector;
+	protected Conector conector;
 	protected ComunicatorListener listener;
 
 	public void setListener(ComunicatorListener listener) {

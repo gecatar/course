@@ -35,11 +35,11 @@ public class ClientWindow extends Window implements ActionListener,
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().getClass() == JButton.class) {
 			if (((JButton) e.getSource()).getName().equals("StartConection")) {
-				// userListener.startConection(nickname.getText(),
-				// ipAdress.getText(), port.getText());
+				listener.startConection(conectionPanel.getName(),
+						conectionPanel.getIP(), conectionPanel.getPort());
 			}
 			if (((JButton) e.getSource()).getName().equals("StopConection")) {
-				// userListener.stopConection();
+				listener.stopConection();
 			}
 		}
 	}

@@ -83,7 +83,7 @@ public class ConectionPanel extends JPanel implements ActionListener {
 		if (e.getSource().getClass() == JButton.class) {
 			if (((JButton) e.getSource()).getName().equals("StartConection")) {
 				uiListener.startConection("server", ipAdress.getText(),
-						port.getText());
+						Integer.parseInt(port.getText()));
 			}
 			if (((JButton) e.getSource()).getName().equals("StopConection")) {
 				uiListener.stopConection();
