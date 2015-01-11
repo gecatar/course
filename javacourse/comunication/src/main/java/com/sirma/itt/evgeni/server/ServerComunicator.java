@@ -8,7 +8,7 @@ public class ServerComunicator extends Comunicator {
 
 	@Override
 	public void openSession(DataTransferer dataTransferer) {
-
+		this.openSession(dataTransferer);
 	}
 
 	@Override
@@ -18,6 +18,6 @@ public class ServerComunicator extends Comunicator {
 
 	@Override
 	public void closeSession(DataTransferer dataTransferer) {
-
+		this.closeSession(dataTransferer);
 	}
 }
