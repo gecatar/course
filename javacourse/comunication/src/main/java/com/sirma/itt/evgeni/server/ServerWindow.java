@@ -6,5 +6,6 @@ public class ServerWindow extends Window {
 
 	public ServerWindow() {
 		setTitle("Server");
+		add(new ConectionPanel(listener));
 	}
 }

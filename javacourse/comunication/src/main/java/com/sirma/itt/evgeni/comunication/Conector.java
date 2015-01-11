@@ -29,6 +29,8 @@ public abstract class Conector {
 
 	protected abstract void connect(String ip, int port);
 
-	protected abstract void disconect();
+	protected void disconect() {
+		conecting = false;
+	}
 
 }

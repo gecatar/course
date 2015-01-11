@@ -17,6 +17,8 @@ public abstract class Comunicator {
 		conector.stopConection();
 	}
 
+	public abstract void openSession(DataTransferer dataTransferer);
+
 	public abstract void processMesage(Mesage mesage,
 			DataTransferer dataTransferer);
 

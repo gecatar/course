@@ -7,15 +7,17 @@ import com.sirma.itt.evgeni.comunication.Mesage;
 public class ServerComunicator extends Comunicator {
 
 	@Override
+	public void openSession(DataTransferer dataTransferer) {
+
+	}
+
+	@Override
 	public void processMesage(Mesage mesage, DataTransferer dataTransferer) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void closeSession(DataTransferer dataTransferer) {
-		// TODO Auto-generated method stub
 
 	}
-
 }

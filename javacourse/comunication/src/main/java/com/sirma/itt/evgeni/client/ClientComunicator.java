@@ -7,6 +7,11 @@ import com.sirma.itt.evgeni.comunication.Mesage;
 public class ClientComunicator extends Comunicator {
 
 	@Override
+	public void openSession(DataTransferer dataTransferer) {
+
+	}
+
+	@Override
 	public void processMesage(Mesage mesage, DataTransferer dataTransferer) {
 
 	}
@@ -15,5 +20,4 @@ public class ClientComunicator extends Comunicator {
 	public void closeSession(DataTransferer dataTransferer) {
 
 	}
-
 }
