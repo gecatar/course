@@ -6,10 +6,11 @@ import javax.swing.JFrame;
 
 public class Window extends JFrame {
 
+	private static final Dimension WINDOW_DIMENSION = new Dimension(400, 500);
 	protected UILIstener listener;
 
 	public Window() {
-		setSize(new Dimension(400, 500));
+		setSize(WINDOW_DIMENSION);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}

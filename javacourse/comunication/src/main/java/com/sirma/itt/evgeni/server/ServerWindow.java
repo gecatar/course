@@ -5,6 +5,6 @@ import com.sirma.itt.evgeni.comunication.Window;
 public class ServerWindow extends Window {
 
 	public ServerWindow() {
-
+		setTitle("Server");
 	}
 }
