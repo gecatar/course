@@ -17,6 +17,7 @@ public class ClientComunicator extends Comunicator {
 	public void openSession(DataTransferer dataTransferer) {
 		super.openSession(dataTransferer);
 		listener.setConectionStatus(MesageCommand.USER_CONECTED);
+		sendUserData(dataTransferer);
 	}
 
 	@Override
