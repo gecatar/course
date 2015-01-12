@@ -20,18 +20,17 @@ public class ClientWindow extends Window {
 
 	public ClientWindow(ComunicatorApp listener) {
 		super(listener);
-		setTitle("Client");
+		setTitle(bundle.getString("client_title"));
 		mainPannel = new JTabbedPane();
-		conectionPanel = new ConectionPanel(listener);
+		conectionPanel = new ConectionPanel(listener, bundle);
 		conversationPanel = new ConversationPanel(listener);
 		userList = new UserList(this);
-		mainPannel.add("Conection", conectionPanel);
-		mainPannel.add("Messages", conversationPanel);
-		mainPannel.add("Users", userList);
+		mainPannel.add(bundle.getString("conection_tab"), conectionPanel);
+		mainPannel.add(bundle.getString("messages_tab"), conversationPanel);
+		mainPannel.add(bundle.getString("user_tab"), userList);
 		mainPannel.setVisible(true);
 		add(mainPannel);
 		setVisible(true);
-		bundle.getObject("conect_button");
 	}
 
 	@Override

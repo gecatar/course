@@ -3,6 +3,7 @@ package com.sirma.itt.evgeni.client;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -28,28 +29,31 @@ public class ConectionPanel extends JPanel {
 	/**
 	 * Create connection user interface.
 	 */
-	public ConectionPanel(ActionListener listener) {
+	public ConectionPanel(ActionListener listener, ResourceBundle bundle) {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		conectionStatus.setText("Conection Status:Not Connected");
 		ipAdress.setText("localhost");
 		port.setText("1300");
 		nickname.setText("User");
-		JButton startConection = new JButton("Conect");
+		JButton startConection = new JButton(
+				bundle.getString("conect_button_name"));
 		startConection.setName(ComponentID.CONECT_BUTTON_ID);
 		startConection.addActionListener(listener);
-		JButton stopConection = new JButton("Disconect");
+		JButton stopConection = new JButton(
+				bundle.getString("disconect_button_name"));
 		stopConection.setName(ComponentID.DISCONECT_BUTTON_ID);
 		stopConection.addActionListener(listener);
 		conectionStatus.setAlignmentX(Component.CENTER_ALIGNMENT);
-		JLabel ipLabel = new JLabel("IP Adress");
+		JLabel ipLabel = new JLabel(bundle.getString("ip_label_name"));
 		ipLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		ipAdress.setMaximumSize(new Dimension(150, 20));
 		ipAdress.setAlignmentX(Component.CENTER_ALIGNMENT);
-		JLabel portLabel = new JLabel("Port");
+		JLabel portLabel = new JLabel(bundle.getString("port_label_name"));
 		portLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		port.setMaximumSize(new Dimension(80, 20));
 		port.setAlignmentX(Component.CENTER_ALIGNMENT);
-		JLabel nicknameLabel = new JLabel("Nickname");
+		JLabel nicknameLabel = new JLabel(
+				bundle.getString("nickname_label_name"));
 		nicknameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		nickname.setText("User");
 		nickname.setMaximumSize(new Dimension(150, 20));
