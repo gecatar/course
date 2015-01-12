@@ -18,6 +18,7 @@ public class ClientApp extends ComunicatorApp {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().getClass() == JButton.class) {
 			if (((JButton) e.getSource()).getName().equals("StartConection")) {
+				comunicator.setName(window.getName());
 				comunicator.startConection(window.getIPField(),
 						window.getPort());
 			}

@@ -42,4 +42,8 @@ public class ClientComunicator extends Comunicator {
 		listener.setConectionStatus(MesageCommand.USER_DISCONECTED);
 	}
 
+	private void sendUserData(DataTransferer transferer) {
+		transferer.sendData(new Mesage(name, MesageCommand.USER_LOG_IN));
+	}
+
 }

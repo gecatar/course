@@ -36,7 +36,7 @@ public class ServerWindow extends Window {
 
 	@Override
 	public int getPort() {
-		return 7005;
+		return 1300;
 	}
 
 	@Override

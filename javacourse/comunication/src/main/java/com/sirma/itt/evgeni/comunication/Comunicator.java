@@ -4,6 +4,7 @@ public abstract class Comunicator {
 
 	protected Conector conector;
 	protected ComunicatorListener listener;
+	protected String name;
 
 	public Comunicator(ComunicatorListener listener) {
 		this.listener = listener;
@@ -26,6 +27,10 @@ public abstract class Comunicator {
 
 	public void closeSession(DataTransferer dataTransferer) {
 		dataTransferer.closeSocket();
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public void close() {

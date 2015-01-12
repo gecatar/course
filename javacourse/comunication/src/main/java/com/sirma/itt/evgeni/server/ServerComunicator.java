@@ -30,6 +30,7 @@ public class ServerComunicator extends Comunicator {
 	public void processMesage(Mesage mesage, DataTransferer dataTransferer) {
 		if (mesage.commandID == MesageCommand.USER_LOG_IN) {
 			userManager.registerUser(mesage.sender, dataTransferer);
+			LOGGER.log(Level.INFO, mesage.sender + " - enter");
 		}
 		if (mesage.commandID == MesageCommand.TEXT_MESAGE) {
 			userManager.sendMesageToUser(mesage.sender, mesage.receiver,
