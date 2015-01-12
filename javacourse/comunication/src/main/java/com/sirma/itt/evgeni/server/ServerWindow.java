@@ -1,14 +1,13 @@
 package com.sirma.itt.evgeni.server;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
 import com.sirma.itt.evgeni.comunication.ComunicatorApp;
 import com.sirma.itt.evgeni.comunication.MesageCommand;
 import com.sirma.itt.evgeni.comunication.Window;
 
-public class ServerWindow extends Window implements ActionListener {
+public class ServerWindow extends Window {
 
 	private ConectionPanel conectionPanel;
 
@@ -32,12 +31,12 @@ public class ServerWindow extends Window implements ActionListener {
 
 	@Override
 	public String getIPField() {
-		return null;
+		return "localhost";
 	}
 
 	@Override
 	public int getPort() {
-		return 0;
+		return 7005;
 	}
 
 	@Override
@@ -67,31 +66,26 @@ public class ServerWindow extends Window implements ActionListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 }

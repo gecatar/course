@@ -48,7 +48,12 @@ public class ClientWindow extends Window {
 
 	@Override
 	public void setConectionStatus(MesageCommand status) {
-
+		if (status == MesageCommand.USER_CONECTED) {
+			conectionPanel.setConectionStatus("conected");
+		}
+		if (status == MesageCommand.USER_DISCONECTED) {
+			conectionPanel.setConectionStatus("Disconected");
+		}
 	}
 
 	@Override
