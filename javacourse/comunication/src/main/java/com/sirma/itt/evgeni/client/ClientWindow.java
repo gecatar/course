@@ -16,10 +16,14 @@ public class ClientWindow extends Window {
 	private ConectionPanel conectionPanel;
 	private ConversationPanel conversationPanel;
 	private UserList userList;
-	private ResourceBundle bundle = ResourceBundle.getBundle("test");
+	private String USER_CONECTED_MESSAGE;
+	private String USER_DISCONECTED_MESSAGE;
+	private String USERNAME_BISY_MESSAGE;
+	private ResourceBundle bundle;
 
 	public ClientWindow(ComunicatorApp listener) {
 		super(listener);
+		bundle = ResourceBundle.getBundle("test");
 		setTitle(bundle.getString("client_title"));
 		mainPannel = new JTabbedPane();
 		conectionPanel = new ConectionPanel(listener, bundle);
@@ -52,11 +56,11 @@ public class ClientWindow extends Window {
 	public void setConectionStatus(MesageCommand status) {
 		if (status == MesageCommand.USER_CONECTED) {
 			mainPannel.setSelectedComponent(conectionPanel);
-			conectionPanel.setConectionStatus("conected");
+			conectionPanel.setConectionStatus(USER_CONECTED_MESSAGE);
 		}
 		if (status == MesageCommand.USER_DISCONECTED) {
 			mainPannel.setSelectedComponent(conectionPanel);
-			conectionPanel.setConectionStatus("Disconected");
+			conectionPanel.setConectionStatus(USER_DISCONECTED_MESSAGE);
 		}
 	}
 
