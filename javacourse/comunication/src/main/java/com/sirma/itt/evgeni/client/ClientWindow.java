@@ -5,9 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JButton;
 import javax.swing.JTabbedPane;
-import javax.swing.JTextField;
 
 import com.sirma.itt.evgeni.comunication.Window;
 
@@ -34,19 +32,23 @@ public class ClientWindow extends Window implements ActionListener,
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource().getClass() == JButton.class) {
-			if (((JButton) e.getSource()).getName().equals("StartConection")) {
-				listener.startConection(conectionPanel.getName(),
-						conectionPanel.getIP(), conectionPanel.getPort());
-			}
-			if (((JButton) e.getSource()).getName().equals("StopConection")) {
-				listener.stopConection();
-			}
-		}
-		if (e.getSource().getClass() == JTextField.class) {
+	public String getName() {
+		return null;
+	}
 
-		}
+	@Override
+	public String getIPField() {
+		return null;
+	}
+
+	@Override
+	public int getPort() {
+		return 0;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
 	}
 
 	@Override

@@ -8,14 +8,8 @@ import java.awt.event.MouseListener;
 public class ComunicatorApp implements ComunicatorListener, ActionListener,
 		MouseListener {
 
-	private Comunicator comunicator;
-	private Window window;
-
-	public ComunicatorApp(Comunicator comunicator, Window window) {
-		this.comunicator = comunicator;
-		this.window = window;
-		comunicator.setListener(this);
-	}
+	protected Comunicator comunicator;
+	protected Window window;
 
 	@Override
 	public void setConectionStatus(MesageCommand status) {
