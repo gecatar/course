@@ -22,7 +22,7 @@ public class ConversationPanel extends JTabbedPane {
 		setVisible(true);
 	}
 
-	public String getTextFieldText(String name) {
+	public String getMessageText(String name) {
 		return conversations.get(name).getTextFieldText();
 	}
 
@@ -52,13 +52,13 @@ public class ConversationPanel extends JTabbedPane {
 	/**
 	 * Display message. If conversation doesn't exist first its created.
 	 */
-	public void displayMessage(String name, String message) {
+	public void showMessage(String name, String message) {
 		if (conversations.containsKey(name)) {
 			conversations.get(name).writeMesage(name, message);
 			selectConversation(name);
 		} else {
 			addConversation(name);
-			displayMessage(name, message);
+			showMessage(name, message);
 		}
 	}
 }

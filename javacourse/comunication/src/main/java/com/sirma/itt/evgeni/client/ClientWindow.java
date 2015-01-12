@@ -33,17 +33,17 @@ public class ClientWindow extends Window {
 
 	@Override
 	public String getName() {
-		return "user";
+		return conectionPanel.getName();
 	}
 
 	@Override
 	public String getIPField() {
-		return "localhost";
+		return conectionPanel.getIP();
 	}
 
 	@Override
 	public int getPort() {
-		return 7005;
+		return conectionPanel.getPort();
 	}
 
 	@Override
@@ -58,22 +58,22 @@ public class ClientWindow extends Window {
 
 	@Override
 	public void showMesage(String name, String text) {
-
+		conversationPanel.showMessage(name, text);
 	}
 
 	@Override
 	public void addUser(String name) {
-
+		userList.addUser(name);
 	}
 
 	@Override
 	public void removeUser(String name) {
-
+		userList.removeUser(name);
 	}
 
 	@Override
 	public String getMessageText(String name) {
-		return null;
+		return conversationPanel.getMessageText(name);
 	}
 
 	@Override
