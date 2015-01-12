@@ -49,15 +49,18 @@ public class ClientWindow extends Window {
 	@Override
 	public void setConectionStatus(MesageCommand status) {
 		if (status == MesageCommand.USER_CONECTED) {
+			mainPannel.setSelectedComponent(conectionPanel);
 			conectionPanel.setConectionStatus("conected");
 		}
 		if (status == MesageCommand.USER_DISCONECTED) {
+			mainPannel.setSelectedComponent(conectionPanel);
 			conectionPanel.setConectionStatus("Disconected");
 		}
 	}
 
 	@Override
 	public void showMesage(String name, String text) {
+		mainPannel.setSelectedComponent(conversationPanel);
 		conversationPanel.showMessage(name, text);
 	}
 
@@ -84,6 +87,7 @@ public class ClientWindow extends Window {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getClickCount() == 2) {
+			mainPannel.setSelectedComponent(conversationPanel);
 			conversationPanel.selectConversation(userList.getSelectedName());
 		}
 	}

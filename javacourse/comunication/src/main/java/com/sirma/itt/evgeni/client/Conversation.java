@@ -38,6 +38,7 @@ public class Conversation extends JPanel implements ActionListener {
 		textArea.setAlignmentX(Component.CENTER_ALIGNMENT);
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		textField = new JTextField();
+		textField.setName(name);
 		textField.setAlignmentX(CENTER_ALIGNMENT);
 		textField.setMaximumSize(new Dimension(250, 50));
 		textField.addActionListener(this);
@@ -76,7 +77,8 @@ public class Conversation extends JPanel implements ActionListener {
 	 * Detect when user send new message.
 	 */
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
+		listener.actionPerformed(e);
 		writeMesage("You", textField.getText());
 		textField.setText("");
 

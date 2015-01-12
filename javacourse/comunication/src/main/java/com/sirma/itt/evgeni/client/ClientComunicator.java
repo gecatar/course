@@ -31,7 +31,6 @@ public class ClientComunicator extends Comunicator {
 		if (mesage.commandID == MesageCommand.TEXT_MESAGE) {
 			listener.showMesage(mesage.sender, mesage.text);
 		}
-
 		if (mesage.commandID == MesageCommand.USER_CONECTED) {
 			listener.addUser(mesage.sender);
 		}
@@ -54,7 +53,8 @@ public class ClientComunicator extends Comunicator {
 	}
 
 	private void sendUserData(DataTransferer transferer) {
-		transferer.sendData(new Mesage(name, MesageCommand.USER_LOG_IN));
+		if (dataTransferer != null) {
+			transferer.sendData(new Mesage(name, MesageCommand.USER_LOG_IN));
+		}
 	}
-
 }
