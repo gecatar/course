@@ -26,4 +26,8 @@ public class UserList extends JList<String> {
 			listModel.removeElement(name);
 		}
 	}
+
+	public String getSelectedName() {
+		return listModel.getElementAt(getSelectedIndex());
+	}
 }
