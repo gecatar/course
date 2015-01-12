@@ -83,7 +83,10 @@ public class ClientWindow extends Window {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-
+		if (e.getClickCount() == 2) {
+			// userListener.userSelected(listModel
+			// .getElementAt(getSelectedIndex()));
+		}
 	}
 
 	@Override
