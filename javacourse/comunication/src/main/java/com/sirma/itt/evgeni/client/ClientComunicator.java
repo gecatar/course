@@ -8,6 +8,8 @@ import com.sirma.itt.evgeni.comunication.MesageCommand;
 
 public class ClientComunicator extends Comunicator {
 
+	private DataTransferer dataTransferer;
+
 	public ClientComunicator(ComunicatorListener listener) {
 		super(listener);
 		conector = new ClientConector(this);
@@ -16,6 +18,7 @@ public class ClientComunicator extends Comunicator {
 	@Override
 	public void openSession(DataTransferer dataTransferer) {
 		super.openSession(dataTransferer);
+		this.dataTransferer = dataTransferer;
 		listener.setConectionStatus(MesageCommand.USER_CONECTED);
 		sendUserData(dataTransferer);
 	}
@@ -41,6 +44,13 @@ public class ClientComunicator extends Comunicator {
 	public void closeSession(DataTransferer dataTransferer) {
 		super.closeSession(dataTransferer);
 		listener.setConectionStatus(MesageCommand.USER_DISCONECTED);
+	}
+
+	@Override
+	public void sendMessage(String receiver, String text) {
+		if (dataTransferer != null) {
+			dataTransferer.sendData(new Mesage(this.name, receiver, text));
+		}
 	}
 
 	private void sendUserData(DataTransferer transferer) {

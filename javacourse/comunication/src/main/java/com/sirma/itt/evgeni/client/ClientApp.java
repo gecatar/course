@@ -28,7 +28,7 @@ public class ClientApp extends ComunicatorApp {
 		}
 		if (e.getSource().getClass() == JTextField.class) {
 			JTextField temp = (JTextField) e.getSource();
-			window.showMesage(temp.getName(),
+			comunicator.sendMessage(temp.getName(),
 					window.getMessageText(temp.getName()));
 		}
 	}

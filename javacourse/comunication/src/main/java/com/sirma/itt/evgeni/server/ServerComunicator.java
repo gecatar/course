@@ -44,4 +44,10 @@ public class ServerComunicator extends Comunicator {
 		userManager.removeUser(dataTransferer);
 		LOGGER.log(Level.INFO, "Session closed.");
 	}
+
+	@Override
+	public void sendMessage(String name, String text) {
+		// TODO Auto-generated method stub
+
+	}
 }

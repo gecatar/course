@@ -29,6 +29,8 @@ public abstract class Comunicator {
 		dataTransferer.closeSocket();
 	}
 
+	public abstract void sendMessage(String name, String text);
+
 	public void setName(String name) {
 		this.name = name;
 	}
