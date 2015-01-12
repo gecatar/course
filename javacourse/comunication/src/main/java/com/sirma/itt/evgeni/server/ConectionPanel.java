@@ -12,6 +12,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import com.sirma.itt.evgeni.comunication.ComponentID;
+
 /**
  * Manage user connection request.
  * 
@@ -34,10 +36,10 @@ public class ConectionPanel extends JPanel {
 		ipAdress.setText("localhost");
 		port.setText("1300");
 		JButton startConection = new JButton("Conect");
-		startConection.setName("StartConection");
+		startConection.setName(ComponentID.CONECT_BUTTON_ID);
 		startConection.addActionListener(listener);
 		JButton stopConection = new JButton("Disconect");
-		stopConection.setName("StopConection");
+		stopConection.setName(ComponentID.DISCONECT_BUTTON_ID);
 		stopConection.addActionListener(listener);
 		JLabel ipLabel = new JLabel("IP Adress");
 		ipLabel.setAlignmentX(Component.CENTER_ALIGNMENT);

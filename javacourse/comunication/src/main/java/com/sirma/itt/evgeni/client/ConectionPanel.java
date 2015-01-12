@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.sirma.itt.evgeni.comunication.ComponentID;
+
 /**
  * Manage user connection request.
  * 
@@ -33,10 +35,10 @@ public class ConectionPanel extends JPanel {
 		port.setText("1300");
 		nickname.setText("User");
 		JButton startConection = new JButton("Conect");
-		startConection.setName("StartConection");
+		startConection.setName(ComponentID.CONECT_BUTTON_ID);
 		startConection.addActionListener(listener);
 		JButton stopConection = new JButton("Disconect");
-		stopConection.setName("StopConection");
+		stopConection.setName(ComponentID.DISCONECT_BUTTON_ID);
 		stopConection.addActionListener(listener);
 		conectionStatus.setAlignmentX(Component.CENTER_ALIGNMENT);
 		JLabel ipLabel = new JLabel("IP Adress");
