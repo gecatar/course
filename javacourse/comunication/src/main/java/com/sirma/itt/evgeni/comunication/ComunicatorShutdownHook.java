@@ -1,10 +1,10 @@
 package com.sirma.itt.evgeni.comunication;
 
-public class ConectorShutdownHook extends Thread {
+public class ComunicatorShutdownHook extends Thread {
 
 	private Comunicator comunicator;
 
-	public ConectorShutdownHook(Comunicator comunicator) {
+	public ComunicatorShutdownHook(Comunicator comunicator) {
 		this.comunicator = comunicator;
 	}
 
