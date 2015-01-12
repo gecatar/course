@@ -5,7 +5,7 @@ public abstract class Comunicator {
 	protected Conector conector;
 	protected ComunicatorListener listener;
 
-	public void setListener(ComunicatorListener listener) {
+	public Comunicator(ComunicatorListener listener) {
 		this.listener = listener;
 	}
 

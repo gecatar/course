@@ -5,30 +5,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class ComunicatorApp implements ComunicatorListener, ActionListener,
-		MouseListener {
+public class ComunicatorApp implements ActionListener, MouseListener {
 
 	protected Comunicator comunicator;
 	protected Window window;
-
-	@Override
-	public void setConectionStatus(MesageCommand status) {
-	}
-
-	@Override
-	public void showMesage(String name, String text) {
-
-	}
-
-	@Override
-	public void addUser(String name) {
-
-	}
-
-	@Override
-	public void removeUser(String name) {
-
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {

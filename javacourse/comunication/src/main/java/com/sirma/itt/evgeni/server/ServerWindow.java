@@ -2,16 +2,18 @@ package com.sirma.itt.evgeni.server;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 
-import javax.swing.JButton;
-
+import com.sirma.itt.evgeni.comunication.ComunicatorApp;
+import com.sirma.itt.evgeni.comunication.MesageCommand;
 import com.sirma.itt.evgeni.comunication.Window;
 
 public class ServerWindow extends Window implements ActionListener {
 
 	private ConectionPanel conectionPanel;
 
-	public ServerWindow() {
+	public ServerWindow(ComunicatorApp listener) {
+		super(listener);
 		setTitle("Server");
 		conectionPanel = new ConectionPanel(this);
 		add(conectionPanel);
@@ -20,32 +22,76 @@ public class ServerWindow extends Window implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource().getClass() == JButton.class) {
-			if (((JButton) e.getSource()).getName().equals("StartConection")) {
-				listener.startConection("server", conectionPanel.getIP(),
-						conectionPanel.getPort());
-			}
-			if (((JButton) e.getSource()).getName().equals("StopConection")) {
-				listener.stopConection();
-			}
-		}
+
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public String getIPField() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public int getPort() {
-		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void setConectionStatus(MesageCommand status) {
+
+	}
+
+	@Override
+	public void showMesage(String name, String text) {
+
+	}
+
+	@Override
+	public void addUser(String name) {
+
+	}
+
+	@Override
+	public void removeUser(String name) {
+
+	}
+
+	@Override
+	public String getMessageText(String name) {
+		return null;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 }

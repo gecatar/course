@@ -10,8 +10,8 @@ import com.sirma.itt.evgeni.comunication.ComunicatorApp;
 public class ClientApp extends ComunicatorApp {
 
 	public ClientApp() {
-		comunicator = new ClientComunicator();
-		window = new ClientWindow();
+		window = new ClientWindow(this);
+		comunicator = new ClientComunicator(window);
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class ClientApp extends ComunicatorApp {
 		}
 		if (e.getSource().getClass() == JTextField.class) {
 			JTextField temp = (JTextField) e.getSource();
-			window.displayMessage(temp.getName(),
+			window.showMesage(temp.getName(),
 					window.getMessageText(temp.getName()));
 		}
 	}
