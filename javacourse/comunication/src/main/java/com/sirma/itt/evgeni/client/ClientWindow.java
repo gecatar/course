@@ -2,6 +2,7 @@ package com.sirma.itt.evgeni.client;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
+import java.util.ResourceBundle;
 
 import javax.swing.JTabbedPane;
 
@@ -15,6 +16,7 @@ public class ClientWindow extends Window {
 	private ConectionPanel conectionPanel;
 	private ConversationPanel conversationPanel;
 	private UserList userList;
+	private ResourceBundle bundle = ResourceBundle.getBundle("test");
 
 	public ClientWindow(ComunicatorApp listener) {
 		super(listener);
@@ -29,6 +31,7 @@ public class ClientWindow extends Window {
 		mainPannel.setVisible(true);
 		add(mainPannel);
 		setVisible(true);
+		bundle.getObject("conect_button");
 	}
 
 	@Override
