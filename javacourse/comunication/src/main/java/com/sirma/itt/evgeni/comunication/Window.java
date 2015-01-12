@@ -17,4 +17,8 @@ public class Window extends JFrame {
 	public void setListener(UILIstener listener) {
 		this.listener = listener;
 	}
+
+	public void setConectionStatus(MesageCommand status) {
+
+	}
 }

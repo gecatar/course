@@ -61,6 +61,10 @@ public class Conversation extends JPanel implements ActionListener {
 		return stringBuilder.toString();
 	}
 
+	public String getTextFieldText() {
+		return textField.getText();
+	}
+
 	/**
 	 * Write message to text area.
 	 */
@@ -73,7 +77,6 @@ public class Conversation extends JPanel implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// userActionListener.sendMessage(getName(), textField.getText());
 		writeMesage("You", textField.getText());
 		textField.setText("");
 

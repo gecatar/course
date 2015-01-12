@@ -1,6 +1,12 @@
 package com.sirma.itt.evgeni.comunication;
 
-public class ComunicatorApp implements ComunicatorListener, UILIstener {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+public class ComunicatorApp implements ComunicatorListener, ActionListener,
+		MouseListener {
 
 	private Comunicator comunicator;
 	private Window window;
@@ -9,12 +15,10 @@ public class ComunicatorApp implements ComunicatorListener, UILIstener {
 		this.comunicator = comunicator;
 		this.window = window;
 		comunicator.setListener(this);
-		window.setListener(this);
 	}
 
 	@Override
 	public void setConectionStatus(MesageCommand status) {
-
 	}
 
 	@Override
@@ -33,17 +37,32 @@ public class ComunicatorApp implements ComunicatorListener, UILIstener {
 	}
 
 	@Override
-	public void startConection(String nickname, String ip, int port) {
-		comunicator.startConection(ip, port);
+	public void actionPerformed(ActionEvent arg0) {
+
 	}
 
 	@Override
-	public void stopConection() {
-		comunicator.stopConection();
+	public void mouseClicked(MouseEvent arg0) {
+
 	}
 
 	@Override
-	public void sendMessage(String name, String message) {
+	public void mouseEntered(MouseEvent arg0) {
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
 
 	}
 

@@ -22,6 +22,10 @@ public class ConversationPanel extends JTabbedPane {
 		setVisible(true);
 	}
 
+	public String getTextFieldText(String name) {
+		return conversations.get(name).getTextFieldText();
+	}
+
 	/**
 	 * Add new Conversation.
 	 */

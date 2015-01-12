@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 
 import com.sirma.itt.evgeni.comunication.Window;
 
@@ -42,6 +43,9 @@ public class ClientWindow extends Window implements ActionListener,
 			if (((JButton) e.getSource()).getName().equals("StopConection")) {
 				listener.stopConection();
 			}
+		}
+		if (e.getSource().getClass() == JTextField.class) {
+
 		}
 	}
 
