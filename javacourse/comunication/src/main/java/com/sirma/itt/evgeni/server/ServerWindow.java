@@ -14,7 +14,7 @@ public class ServerWindow extends Window {
 	public ServerWindow(ComunicatorApp listener) {
 		super(listener);
 		setTitle("Server");
-		conectionPanel = new ConectionPanel(this);
+		conectionPanel = new ConectionPanel(listener);
 		add(conectionPanel);
 		setVisible(true);
 	}

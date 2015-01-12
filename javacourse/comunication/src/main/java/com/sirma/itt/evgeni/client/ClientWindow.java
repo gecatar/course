@@ -33,17 +33,17 @@ public class ClientWindow extends Window {
 
 	@Override
 	public String getName() {
-		return null;
+		return "user";
 	}
 
 	@Override
 	public String getIPField() {
-		return null;
+		return "localhost";
 	}
 
 	@Override
 	public int getPort() {
-		return 0;
+		return 7005;
 	}
 
 	@Override
