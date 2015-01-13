@@ -2,7 +2,6 @@ package com.sirma.itt.evgeni.comunication;
 
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
@@ -14,16 +13,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class ComunicatorView extends JFrame implements ActionListener {
+public class ComunicatorView extends JFrame implements ComunicatorListener {
 
 	protected JPanel panel = new JPanel();
 	protected JTextField ipAdress = new JTextField(15);
 	protected JTextField port = new JTextField(4);
 	protected JLabel conectionStatus = new JLabel();
 	protected JTextArea textArea = new JTextArea();
-	protected ComunicatorViewListener listener;
+	protected ActionListener listener;
 
-	public ComunicatorView(ComunicatorViewListener listener) {
+	public ComunicatorView(ActionListener listener) {
 		this.listener = listener;
 		add(panel);
 		JLabel ipLabel = new JLabel("IP");
@@ -42,13 +41,13 @@ public class ComunicatorView extends JFrame implements ActionListener {
 		JButton startConection = new JButton("Start conection");
 		startConection.setAlignmentX(Component.CENTER_ALIGNMENT);
 		startConection.setName("start");
-		startConection.addActionListener(this);
+		startConection.addActionListener(listener);
 		JButton stopConection = new JButton("Stop conection");
 		stopConection.setAlignmentX(Component.CENTER_ALIGNMENT);
 		stopConection.setName("stop");
-		stopConection.addActionListener(this);
+		stopConection.addActionListener(listener);
 		JScrollPane scrollPane = new JScrollPane(textArea);
-		scrollPane.setMaximumSize(new Dimension(300,400));
+		scrollPane.setMaximumSize(new Dimension(300, 400));
 		scrollPane.setAlignmentX(Component.CENTER_ALIGNMENT);
 		scrollPane.setMaximumSize(new Dimension(150, 200));
 		panel.add(ipLabel);
@@ -66,34 +65,28 @@ public class ComunicatorView extends JFrame implements ActionListener {
 		// --------------------------------------
 	}
 
+	public String getIP() {
+		return ipAdress.getText();
+	}
+
+	public int getPort() {
+		return Integer.parseInt(port.getText());
+	}
+
+	@Override
 	public void displayMessage(String message) {
 		textArea.setText(textArea.getText() + "\n" + message);
 	}
 
 	/**
 	 * Change connection status.
-	 * 
-	 * @param conected
 	 */
+	@Override
 	public void setConectionStatus(boolean conected) {
 		if (conected) {
 			conectionStatus.setText("Conected...");
 		} else {
 			conectionStatus.setText("Not conected...");
-		}
-	}
-
-	/**
-	 * When UI Button is pressed.
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (((JButton) e.getSource()).getName().equals("start")) {
-			listener.startConection(ipAdress.getText(),
-					Integer.parseInt(port.getText()));
-		}
-		if (((JButton) e.getSource()).getName().equals("stop")) {
-			listener.stopConection();
 		}
 	}
 }

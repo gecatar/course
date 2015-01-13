@@ -4,5 +4,5 @@ public interface ComunicatorListener {
 
 	public void displayMessage(String message);
 
-	public void conectionStatusChange(boolean conected);
+	public void setConectionStatus(boolean conected);
 }

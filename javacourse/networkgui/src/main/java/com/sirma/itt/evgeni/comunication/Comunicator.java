@@ -1,5 +1,6 @@
 package com.sirma.itt.evgeni.comunication;
 
+
 public abstract class Comunicator {
 
 	protected ComunicatorListener comunicatorListener;

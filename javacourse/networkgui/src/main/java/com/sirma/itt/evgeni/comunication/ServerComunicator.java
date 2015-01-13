@@ -1,5 +1,6 @@
 package com.sirma.itt.evgeni.comunication;
 
+
 public class ServerComunicator extends Comunicator {
 
 	public ServerComunicator(ComunicatorListener comunicatorListener) {

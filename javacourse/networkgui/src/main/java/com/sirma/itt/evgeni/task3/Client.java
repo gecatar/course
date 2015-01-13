@@ -19,7 +19,7 @@ public class Client extends ClientComunicator {
 	public void receiveMessage(String message, DataTransferer transferer) {
 		comunicatorListener.displayMessage(message);
 		stopConection();
-		comunicatorListener.conectionStatusChange(false);
+		comunicatorListener.setConectionStatus(false);
 	}
 
 }

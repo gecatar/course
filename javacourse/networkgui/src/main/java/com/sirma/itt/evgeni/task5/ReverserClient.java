@@ -14,14 +14,14 @@ public class ReverserClient extends ClientComunicator {
 
 	@Override
 	public void addUserSession(DataTransferer dataTransferer) {
-		comunicatorListener.conectionStatusChange(true);
+		comunicatorListener.setConectionStatus(true);
 		this.dataTransferer = dataTransferer;
 		dataTransferer.start();
 	}
 
 	@Override
 	public void closeUsersession(DataTransferer dataTransferer) {
-		comunicatorListener.conectionStatusChange(false);
+		comunicatorListener.setConectionStatus(false);
 		closeConector();
 	}
 

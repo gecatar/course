@@ -1,5 +1,6 @@
 package com.sirma.itt.evgeni.comunication;
 
+
 public class ClientComunicator extends Comunicator {
 
 	public ClientComunicator(ComunicatorListener comunicatorListener) {
@@ -41,5 +42,4 @@ public class ClientComunicator extends Comunicator {
 	public void sendMessage(String message) {
 
 	}
-
 }

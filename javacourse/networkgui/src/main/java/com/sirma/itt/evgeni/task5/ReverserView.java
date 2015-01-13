@@ -2,6 +2,7 @@ package com.sirma.itt.evgeni.task5;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -9,7 +10,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import com.sirma.itt.evgeni.comunication.ComunicatorView;
-import com.sirma.itt.evgeni.comunication.ComunicatorViewListener;
 import com.sirma.itt.evgeni.comunication.MessageLogger;
 
 public class ReverserView extends ComunicatorView implements KeyListener {
@@ -17,7 +17,7 @@ public class ReverserView extends ComunicatorView implements KeyListener {
 	private final JTextField reverseField = new JTextField();
 	private final MessageLogger messageLogger = new MessageLogger();
 
-	public ReverserView(ComunicatorViewListener listener) {
+	public ReverserView(ActionListener listener) {
 		super(listener);
 		JLabel revesreLabel = new JLabel("Enter message");
 		revesreLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -39,7 +39,7 @@ public class ReverserView extends ComunicatorView implements KeyListener {
 				reverseField.setText(messageLogger.getPreviousMessage());
 			}
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-				listener.sendMessage(reverseField.getText());
+				// listener.sendMessage(reverseField.getText());
 				messageLogger.logMessage(reverseField.getText());
 				reverseField.setText("");
 			}
