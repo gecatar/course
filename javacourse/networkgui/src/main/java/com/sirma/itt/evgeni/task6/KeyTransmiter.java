@@ -10,8 +10,7 @@ public class KeyTransmiter {
 
 	public static final int BASIC_SIZE = 8;
 	public static final int EXTENDED_SIZE = 32;
-	public static final int DOUBLE_SIZE = 40;
-	DatagramTransmiter basicDatagramTransmiter;
+	private DatagramTransmiter basicDatagramTransmiter;
 	DatagramTransmiter extendedDatagramTransmiter;
 
 	public KeyTransmiter(DatagramTransmiter basicDatagramTransmiter,
@@ -30,9 +29,6 @@ public class KeyTransmiter {
 			sendPackage(data, basicDatagramTransmiter);
 		}
 		if (data.length == EXTENDED_SIZE) {
-			sendPackage(data, extendedDatagramTransmiter);
-		}
-		if (data.length == DOUBLE_SIZE) {
 			sendPackage(data, extendedDatagramTransmiter);
 		}
 	}

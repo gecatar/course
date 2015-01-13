@@ -25,7 +25,6 @@ public class KeyReceiver extends Thread {
 			try (MulticastSocket multicastSocket = new MulticastSocket(port)) {
 				multicastSocket.joinGroup(InetAddress.getByName(ip));
 				while (true) {
-					System.out.println("start receiving");
 					byte[] data = new byte[dataGramSize];
 					DatagramPacket packet = new DatagramPacket(data,
 							data.length);
