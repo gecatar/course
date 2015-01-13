@@ -17,6 +17,9 @@ public class Calculator {
 		this.divisionPrecision = divisionPrecision;
 	}
 
+	/**
+	 * Calculate two big integer numbers.
+	 */
 	public BigDecimal calculate(Operation operation) {
 		if (operation.operation == '*') {
 			return operation.firstNumber.multiply(operation.secondNumber);

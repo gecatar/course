@@ -11,6 +11,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * Display and contain UI components. Send messages for user inputs.
+ * 
+ * @author GecaTM
+ *
+ */
 public class CalculatorView extends JFrame implements ActionListener {
 
 	private Display display;
@@ -83,19 +89,31 @@ public class CalculatorView extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 
+	/**
+	 * Display result.
+	 */
 	public void displayResults(String result) {
 		display.setText(result);
 		clearDisplay = true;
 	}
 
+	/**
+	 * Trigger exception flag.
+	 */
 	public void trigerException() {
 		exceptionTrigered = true;
 	}
 
+	/**
+	 * Get number displayed at moment of invocation.
+	 */
 	public String getNumber() {
 		return display.getText();
 	}
 
+	/**
+	 * When UI components are preset.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().getClass() == JButton.class) {

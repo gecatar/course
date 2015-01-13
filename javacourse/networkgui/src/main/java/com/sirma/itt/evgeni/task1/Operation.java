@@ -2,6 +2,12 @@ package com.sirma.itt.evgeni.task1;
 
 import java.math.BigDecimal;
 
+/**
+ * Contain two numbers and operation.
+ * 
+ * @author GecaTM
+ *
+ */
 public class Operation {
 
 	public BigDecimal firstNumber;
@@ -15,6 +21,9 @@ public class Operation {
 		this.operation = operation;
 	}
 
+	/**
+	 * Print numbers and operation.
+	 */
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
