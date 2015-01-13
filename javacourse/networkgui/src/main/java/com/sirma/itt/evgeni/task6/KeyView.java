@@ -13,6 +13,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+/**
+ * Contain UI components.
+ * 
+ * @author GecaTM
+ *
+ */
 public class KeyView extends JFrame {
 
 	protected JPanel panel = new JPanel();
@@ -73,6 +79,11 @@ public class KeyView extends JFrame {
 		// --------------------------------------
 	}
 
+	/**
+	 * Display key.
+	 * 
+	 * @param key
+	 */
 	public void displayKey(String key) {
 		textArea.setText(textArea.getText() + "\n" + key);
 	}

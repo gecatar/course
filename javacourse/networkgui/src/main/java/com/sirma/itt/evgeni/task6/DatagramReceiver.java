@@ -5,6 +5,9 @@ import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
 /**
  * Receive data gram packages.
  * 
@@ -13,6 +16,8 @@ import java.net.MulticastSocket;
  */
 public class DatagramReceiver extends Thread {
 
+	private static final Logger LOGGER = Logger
+			.getLogger(DatagramReceiver.class.getName());
 	private final String ip;
 	private final int port;
 	private final int dataGramSize;
@@ -37,7 +42,7 @@ public class DatagramReceiver extends Thread {
 				System.out.println("data gram received!!!");
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.ERROR, "Error when receiving data.", e);
 		}
 	}
 }

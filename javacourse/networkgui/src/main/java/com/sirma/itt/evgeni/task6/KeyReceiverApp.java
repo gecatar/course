@@ -5,6 +5,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+/**
+ * Receive keys.
+ * 
+ * @author GecaTM
+ *
+ */
 public class KeyReceiverApp implements ActionListener {
 
 	private KeyView view;
@@ -14,6 +20,9 @@ public class KeyReceiverApp implements ActionListener {
 		view = new KeyView(this);
 	}
 
+	/**
+	 * When button is pressed.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() instanceof JButton) {

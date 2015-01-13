@@ -11,6 +11,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * Contain UI components.
+ * 
+ * @author GecaTM
+ *
+ */
 public class KeyTransmiterView extends JFrame {
 
 	protected JPanel panel = new JPanel();

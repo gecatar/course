@@ -6,8 +6,19 @@ import java.net.UnknownHostException;
 
 import javax.swing.JButton;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
+/**
+ * Transmit keys.
+ * 
+ * @author GecaTM
+ *
+ */
 public class KeyTransmiterApp implements ActionListener {
 
+	private static final Logger LOGGER = Logger
+			.getLogger(KeyTransmiterApp.class.getName());
 	private KeyTransmiterView view;
 	private KeyTransmiter transmiter;
 
@@ -15,6 +26,9 @@ public class KeyTransmiterApp implements ActionListener {
 		view = new KeyTransmiterView(this);
 	}
 
+	/**
+	 * Start transmitter.
+	 */
 	private void startTransmiter() {
 		try {
 			DatagramTransmiter firstDatagramTransmiter = new DatagramTransmiter(
@@ -28,22 +42,31 @@ public class KeyTransmiterApp implements ActionListener {
 			transmiter = new KeyTransmiter(firstDatagramTransmiter,
 					secondDatagramTransmiter);
 		} catch (UnknownHostException e) {
-
+			LOGGER.log(Level.ERROR, "Error when creating transmiter.", e);
 		}
 	}
 
+	/**
+	 * Send small package.
+	 */
 	private void sendSmallPackage() {
 		if (transmiter != null) {
 			transmiter.send(new byte[8]);
 		}
 	}
 
+	/**
+	 * Send big package.
+	 */
 	private void sendBigPackage() {
 		if (transmiter != null) {
 			transmiter.send(new byte[32]);
 		}
 	}
 
+	/**
+	 * When button is pressed.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() instanceof JButton) {

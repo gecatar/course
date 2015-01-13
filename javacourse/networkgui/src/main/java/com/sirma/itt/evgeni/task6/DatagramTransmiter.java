@@ -6,6 +6,9 @@ import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.UnknownHostException;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
 /**
  * Send data whit multicast socket.
  * 
@@ -14,6 +17,8 @@ import java.net.UnknownHostException;
  */
 public class DatagramTransmiter {
 
+	private static final Logger LOGGER = Logger
+			.getLogger(DatagramTransmiter.class.getName());
 	private MulticastSocket multicastSocked;
 	private final InetAddress ip;
 	private final int port;
@@ -31,7 +36,7 @@ public class DatagramTransmiter {
 			multicastSocked = new MulticastSocket(port);
 			return true;
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.ERROR, "Error when conecting.", e);
 			return false;
 		}
 	}
@@ -47,7 +52,7 @@ public class DatagramTransmiter {
 					.send(new DatagramPacket(data, data.length, ip, port));
 			return true;
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.ERROR, "Error when sending data.", e);
 			return false;
 		}
 	}

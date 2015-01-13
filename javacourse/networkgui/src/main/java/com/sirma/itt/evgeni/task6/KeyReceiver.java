@@ -5,8 +5,13 @@ import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
 public class KeyReceiver extends Thread {
 
+	private static final Logger LOGGER = Logger.getLogger(KeyReceiver.class
+			.getName());
 	private KeyView view;
 	private String ip;
 	private int port;
@@ -37,7 +42,7 @@ public class KeyReceiver extends Thread {
 					view.displayKey(stringBuilder.toString());
 				}
 			} catch (IOException e) {
-				e.printStackTrace();
+				LOGGER.log(Level.ERROR, "Error when receiving data.", e);
 			}
 		}
 	}
