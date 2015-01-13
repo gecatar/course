@@ -29,6 +29,12 @@ public class KeyReceiver extends Thread {
 					DatagramPacket packet = new DatagramPacket(data,
 							data.length);
 					multicastSocket.receive(packet);
+					StringBuilder stringBuilder = new StringBuilder();
+					stringBuilder.append("Key:");
+					for (byte value : packet.getData()) {
+						stringBuilder.append(value);
+					}
+					view.displayKey(stringBuilder.toString());
 				}
 			} catch (IOException e) {
 			}

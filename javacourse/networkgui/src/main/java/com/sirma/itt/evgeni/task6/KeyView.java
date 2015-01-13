@@ -73,4 +73,8 @@ public class KeyView extends JFrame {
 		// --------------------------------------
 	}
 
+	public void displayKey(String key) {
+		textArea.setText(textArea.getText() + "\n" + key);
+	}
+
 }
