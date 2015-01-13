@@ -17,4 +17,8 @@ public class KeyReceiverApp implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 	}
+
+	public static void main(String[] args) {
+		new KeyReceiverApp();
+	}
 }
