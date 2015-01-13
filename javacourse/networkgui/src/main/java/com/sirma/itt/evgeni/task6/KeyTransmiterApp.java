@@ -17,11 +17,16 @@ public class KeyTransmiterApp implements ActionListener {
 
 	private void startTransmiter() {
 		try {
-			transmiter = new KeyTransmiter(new DatagramTransmiter(
+			DatagramTransmiter firstDatagramTransmiter = new DatagramTransmiter(
 					view.ipAdress.getText(), Integer.parseInt(view.port
-							.getText())), new DatagramTransmiter(
+							.getText()));
+			DatagramTransmiter secondDatagramTransmiter = new DatagramTransmiter(
 					view.ipAdressSecond.getText(),
-					Integer.parseInt(view.portSecond.getText())));
+					Integer.parseInt(view.portSecond.getText()));
+			firstDatagramTransmiter.conect();
+			secondDatagramTransmiter.conect();
+			transmiter = new KeyTransmiter(firstDatagramTransmiter,
+					secondDatagramTransmiter);
 		} catch (UnknownHostException e) {
 
 		}
