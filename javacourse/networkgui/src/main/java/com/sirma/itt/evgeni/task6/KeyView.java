@@ -18,6 +18,7 @@ public class KeyView extends JFrame {
 	protected JPanel panel = new JPanel();
 	protected JTextField ipAdress = new JTextField(15);
 	protected JTextField port = new JTextField(4);
+	protected JTextField datagramSize = new JTextField(4);
 	protected JLabel conectionStatus = new JLabel();
 	protected JTextArea textArea = new JTextArea();
 	protected ActionListener listener;
@@ -27,7 +28,7 @@ public class KeyView extends JFrame {
 		add(panel);
 		JLabel ipLabel = new JLabel("IP");
 		ipLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		ipAdress.setText("localhost");
+		ipAdress.setText("228.5.6.7");
 		ipAdress.setAlignmentX(Component.CENTER_ALIGNMENT);
 		ipAdress.setMaximumSize(new Dimension(150, 20));
 		JLabel portLabel = new JLabel("Port");
@@ -35,14 +36,19 @@ public class KeyView extends JFrame {
 		port.setText("7005");
 		port.setAlignmentX(Component.CENTER_ALIGNMENT);
 		port.setMaximumSize(new Dimension(150, 20));
+		JLabel datagramSizeLabel = new JLabel("Key size");
+		datagramSizeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		datagramSize.setText("8");
+		datagramSize.setAlignmentX(Component.CENTER_ALIGNMENT);
+		datagramSize.setMaximumSize(new Dimension(150, 20));
 		conectionStatus.setAlignmentX(Component.CENTER_ALIGNMENT);
 		conectionStatus.setText("Result:");
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		JButton startConection = new JButton("Start conection");
+		JButton startConection = new JButton("Start receiving");
 		startConection.setAlignmentX(Component.CENTER_ALIGNMENT);
 		startConection.setName("start");
 		startConection.addActionListener(listener);
-		JButton stopConection = new JButton("Stop conection");
+		JButton stopConection = new JButton("Stop receiving");
 		stopConection.setAlignmentX(Component.CENTER_ALIGNMENT);
 		stopConection.setName("stop");
 		stopConection.addActionListener(listener);
@@ -54,6 +60,8 @@ public class KeyView extends JFrame {
 		panel.add(ipAdress);
 		panel.add(portLabel);
 		panel.add(port);
+		panel.add(datagramSizeLabel);
+		panel.add(datagramSize);
 		panel.add(conectionStatus);
 		panel.add(startConection);
 		panel.add(stopConection);
