@@ -33,7 +33,7 @@ public class KeyTransmiter {
 			sendPackage(data, extendedDatagramTransmiter);
 		}
 		if (data.length == DOUBLE_SIZE) {
-			// sendPackage(dataGramPacket, extendedDatagramTransmiter);
+			sendPackage(data, extendedDatagramTransmiter);
 		}
 	}
 

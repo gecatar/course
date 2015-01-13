@@ -20,11 +20,12 @@ public class KeyReceiver extends Thread {
 	}
 
 	@Override
-	public void start() {
+	public void run() {
 		while (true) {
 			try (MulticastSocket multicastSocket = new MulticastSocket(port)) {
 				multicastSocket.joinGroup(InetAddress.getByName(ip));
 				while (true) {
+					System.out.println("start receiving");
 					byte[] data = new byte[dataGramSize];
 					DatagramPacket packet = new DatagramPacket(data,
 							data.length);
@@ -37,6 +38,7 @@ public class KeyReceiver extends Thread {
 					view.displayKey(stringBuilder.toString());
 				}
 			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
 	}
