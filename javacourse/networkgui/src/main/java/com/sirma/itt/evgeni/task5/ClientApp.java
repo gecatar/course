@@ -2,6 +2,12 @@ package com.sirma.itt.evgeni.task5;
 
 import com.sirma.itt.evgeni.comunication.ComunicatorApp;
 
+/**
+ * Create connection and read message.
+ * 
+ * @author GecaTM
+ *
+ */
 public class ClientApp extends ComunicatorApp {
 
 	public ClientApp() {

@@ -3,6 +3,12 @@ package com.sirma.itt.evgeni.task5;
 import com.sirma.itt.evgeni.comunication.ComunicatorApp;
 import com.sirma.itt.evgeni.comunication.ComunicatorView;
 
+/**
+ * Receive and reverse messages.
+ * 
+ * @author GecaTM
+ *
+ */
 public class ServerApp extends ComunicatorApp {
 
 	public ServerApp() {

@@ -6,6 +6,12 @@ import com.sirma.itt.evgeni.comunication.ComunicatorListener;
 import com.sirma.itt.evgeni.comunication.DataTransferer;
 import com.sirma.itt.evgeni.comunication.ServerComunicator;
 
+/**
+ * Receive and reverse messages.
+ * 
+ * @author GecaTM
+ *
+ */
 public class ReverserServer extends ServerComunicator {
 
 	private ArrayList<DataTransferer> users = new ArrayList<DataTransferer>();
@@ -14,6 +20,9 @@ public class ReverserServer extends ServerComunicator {
 		super(comunicatorListener);
 	}
 
+	/**
+	 * Add user session.
+	 */
 	@Override
 	public void addUserSession(DataTransferer dataTransferer) {
 		users.add(dataTransferer);
@@ -21,6 +30,9 @@ public class ReverserServer extends ServerComunicator {
 		comunicatorListener.displayMessage("New user conected to server.");
 	}
 
+	/**
+	 * Close user session.
+	 */
 	@Override
 	public void closeUsersession(DataTransferer dataTransferer) {
 		if (users.contains(dataTransferer)) {
@@ -30,15 +42,24 @@ public class ReverserServer extends ServerComunicator {
 		}
 	}
 
+	/**
+	 * Reverse message.
+	 */
 	private String reverseMessage(String message) {
 		return new StringBuilder(message).reverse().toString();
 	}
 
+	/**
+	 * Receive messages.
+	 */
 	@Override
 	public void receiveMessage(String message, DataTransferer transferer) {
 		transferer.sendData(reverseMessage(message));
 	}
 
+	/**
+	 * Stop conection.
+	 */
 	@Override
 	public void stopConection() {
 		super.stopConection();

@@ -12,6 +12,12 @@ import javax.swing.JTextField;
 import com.sirma.itt.evgeni.comunication.ComunicatorView;
 import com.sirma.itt.evgeni.comunication.MessageLogger;
 
+/**
+ * Display UI components.
+ * 
+ * @author GecaTM
+ *
+ */
 public class ReverserView extends ComunicatorView implements KeyListener {
 
 	private final JTextField reverseField = new JTextField();
@@ -29,6 +35,9 @@ public class ReverserView extends ComunicatorView implements KeyListener {
 		panel.add(reverseField);
 	}
 
+	/**
+	 * Action listener.
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getSource().getClass() == JTextField.class) {
