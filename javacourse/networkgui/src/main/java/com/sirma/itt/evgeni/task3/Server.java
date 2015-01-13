@@ -7,6 +7,12 @@ import com.sirma.itt.evgeni.comunication.ComunicatorListener;
 import com.sirma.itt.evgeni.comunication.DataTransferer;
 import com.sirma.itt.evgeni.comunication.ServerComunicator;
 
+/**
+ * Create incoming connections and send data.
+ * 
+ * @author GecaTM
+ *
+ */
 public class Server extends ServerComunicator {
 
 	private final DateFormat dateFormat = new SimpleDateFormat(
@@ -16,6 +22,9 @@ public class Server extends ServerComunicator {
 		super(comunicatorListener);
 	}
 
+	/**
+	 * Add user session.
+	 */
 	@Override
 	public void addUserSession(DataTransferer dataTransferer) {
 		dataTransferer.sendData("<Hello>"

@@ -3,6 +3,12 @@ package com.sirma.itt.evgeni.task4;
 import com.sirma.itt.evgeni.comunication.ComunicatorApp;
 import com.sirma.itt.evgeni.comunication.ComunicatorView;
 
+/**
+ * Read information about clients.
+ * 
+ * @author GecaTM
+ *
+ */
 public class InfoClientApp extends ComunicatorApp {
 
 	public InfoClientApp() {

@@ -3,6 +3,12 @@ package com.sirma.itt.evgeni.task3;
 import com.sirma.itt.evgeni.comunication.ComunicatorApp;
 import com.sirma.itt.evgeni.comunication.ComunicatorView;
 
+/**
+ * Create connection whit server.
+ * 
+ * @author GecaTM
+ *
+ */
 public class ClientApp extends ComunicatorApp {
 
 	public ClientApp() {
