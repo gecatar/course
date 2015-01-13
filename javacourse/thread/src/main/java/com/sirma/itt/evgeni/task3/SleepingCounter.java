@@ -9,7 +9,7 @@ public class SleepingCounter extends Thread {
 			.getName());
 	private int count;
 	private int sleepInterval;
-	private static boolean stop;
+	private boolean stop;
 
 	/**
 	 * Set value on count and sleep interval.
@@ -22,13 +22,6 @@ public class SleepingCounter extends Thread {
 	}
 
 	/**
-	 * Tell on threads to stop execution.
-	 */
-	public void setStop(boolean stop) {
-		this.stop = stop;
-	}
-
-	/**
 	 * Get count.
 	 */
 	public int getcount() {
@@ -38,7 +31,7 @@ public class SleepingCounter extends Thread {
 	/**
 	 * Decrement count.
 	 */
-	public void decrmentCount() {
+	private void decrmentCount() {
 		count--;
 	}
 

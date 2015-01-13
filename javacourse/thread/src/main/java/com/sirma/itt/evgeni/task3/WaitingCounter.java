@@ -15,7 +15,7 @@ public class WaitingCounter extends Thread {
 			.getName());
 	private int count;
 	private int sleepInterval;
-	private static boolean stop;
+	private boolean stop;
 
 	/**
 	 * Get value on count.
@@ -23,13 +23,6 @@ public class WaitingCounter extends Thread {
 	public WaitingCounter(int count, int sleepInterval) {
 		this.count = count;
 		this.sleepInterval = sleepInterval;
-	}
-
-	/**
-	 * Tell on threads to stop execution.
-	 */
-	public void setStop(boolean stop) {
-		this.stop = stop;
 	}
 
 	/**
