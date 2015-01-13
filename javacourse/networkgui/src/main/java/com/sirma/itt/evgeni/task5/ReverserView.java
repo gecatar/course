@@ -2,6 +2,7 @@ package com.sirma.itt.evgeni.task5;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -35,6 +36,11 @@ public class ReverserView extends ComunicatorView implements KeyListener {
 		panel.add(reverseField);
 	}
 
+	@Override
+	public String getText() {
+		return reverseField.getText();
+	}
+
 	/**
 	 * Action listener.
 	 */
@@ -48,7 +54,8 @@ public class ReverserView extends ComunicatorView implements KeyListener {
 				reverseField.setText(messageLogger.getPreviousMessage());
 			}
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-				// listener.sendMessage(reverseField.getText());
+				listener.actionPerformed(new ActionEvent(reverseField, 0,
+						"send message"));
 				messageLogger.logMessage(reverseField.getText());
 				reverseField.setText("");
 			}

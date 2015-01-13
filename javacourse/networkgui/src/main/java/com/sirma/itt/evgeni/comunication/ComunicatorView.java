@@ -65,14 +65,27 @@ public class ComunicatorView extends JFrame implements ComunicatorListener {
 		// --------------------------------------
 	}
 
+	/**
+	 * Return IP address as string.
+	 */
 	public String getIP() {
 		return ipAdress.getText();
 	}
 
+	/**
+	 * Return port as integer value.
+	 */
 	public int getPort() {
 		return Integer.parseInt(port.getText());
 	}
 
+	public String getText() {
+		return null;
+	}
+
+	/**
+	 * Display message.
+	 */
 	@Override
 	public void displayMessage(String message) {
 		textArea.setText(textArea.getText() + "\n" + message);

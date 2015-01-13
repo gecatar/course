@@ -54,5 +54,4 @@ public class ReverserClient extends ClientComunicator {
 			dataTransferer.sendData(message);
 		}
 	}
-
 }
