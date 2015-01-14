@@ -41,7 +41,7 @@ public class KeyTransmiterView extends JFrame {
 		port.setMaximumSize(new Dimension(150, 20));
 		JLabel ipLabelSecond = new JLabel("IP 32 bit channel");
 		ipLabelSecond.setAlignmentX(Component.CENTER_ALIGNMENT);
-		ipAdressSecond.setText("228.5.6.7");
+		ipAdressSecond.setText("228.5.6.8");
 		ipAdressSecond.setAlignmentX(Component.CENTER_ALIGNMENT);
 		ipAdressSecond.setMaximumSize(new Dimension(150, 20));
 		JLabel portLabelSecond = new JLabel("Port");
@@ -56,7 +56,7 @@ public class KeyTransmiterView extends JFrame {
 		sendSmallKey.addActionListener(listener);
 		JButton sendBigKey = new JButton("Send 32 bit key");
 		sendBigKey.setAlignmentX(Component.CENTER_ALIGNMENT);
-		sendBigKey.setName("32BIt");
+		sendBigKey.setName("32BIT");
 		sendBigKey.addActionListener(listener);
 		JButton startTransmiter = new JButton("Start transmiter");
 		startTransmiter.setAlignmentX(Component.CENTER_ALIGNMENT);
