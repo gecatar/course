@@ -8,9 +8,9 @@ package com.sirma.itt.evgeni.task7;
  */
 public class Trader extends Thread {
 
-	Store store;
-	String description;
-	int quantity;
+	protected Store store;
+	protected String description;
+	protected int quantity;
 
 	public Trader(Store store, String description, int quantity) {
 		this.store = store;
