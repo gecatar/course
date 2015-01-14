@@ -37,7 +37,7 @@ public class Counter extends Thread {
 	 * @return
 	 */
 	public int getcount() {
-		return countTo;
+		return currentCount;
 	}
 
 	/**
