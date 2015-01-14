@@ -11,7 +11,7 @@ public interface UIListener {
 	/**
 	 * When operation button is pressed.
 	 */
-	public void operationPresset(String number, char operation);
+	public void operationPressed(String number, char operation);
 
 	/**
 	 * When equal button is pressed.

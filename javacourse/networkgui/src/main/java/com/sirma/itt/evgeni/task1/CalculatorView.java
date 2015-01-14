@@ -121,7 +121,7 @@ public class CalculatorView extends JFrame implements ActionListener {
 			if (symbol == '+' || symbol == '-' || symbol == '*'
 					|| symbol == '/') {
 				if (display.getText().length() > 0 && !exceptionTrigered) {
-					uiListener.operationPresset(display.getText(), symbol);
+					uiListener.operationPressed(display.getText(), symbol);
 					clearDisplay = true;
 				}
 			}

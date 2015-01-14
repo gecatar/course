@@ -40,7 +40,7 @@ public class CalculatorApp implements UIListener {
 	 * Called when UI buttons are pressed.
 	 */
 	@Override
-	public void operationPresset(String number, char operation) {
+	public void operationPressed(String number, char operation) {
 		if (!firstNumberDefined) {
 			setFirstNumber(number);
 			nextOperation = operation;
