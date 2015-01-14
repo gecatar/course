@@ -58,7 +58,7 @@ public class ReverserServer extends ServerComunicator {
 	}
 
 	/**
-	 * Stop conection.
+	 * Stop connection.
 	 */
 	@Override
 	public void stopConection() {
