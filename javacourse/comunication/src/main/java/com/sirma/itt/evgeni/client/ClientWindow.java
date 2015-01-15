@@ -10,6 +10,12 @@ import com.sirma.itt.evgeni.comunication.ComunicatorApp;
 import com.sirma.itt.evgeni.comunication.MesageCommand;
 import com.sirma.itt.evgeni.comunication.Window;
 
+/**
+ * Client interface.
+ * 
+ * @author GecaTM
+ *
+ */
 public class ClientWindow extends Window {
 
 	private JTabbedPane mainPannel;
@@ -52,6 +58,9 @@ public class ClientWindow extends Window {
 		return conectionPanel.getPort();
 	}
 
+	/**
+	 * Change connection status.
+	 */
 	@Override
 	public void setConectionStatus(MesageCommand status) {
 		if (status == MesageCommand.USER_CONECTED) {
@@ -64,27 +73,42 @@ public class ClientWindow extends Window {
 		}
 	}
 
+	/**
+	 * Show message.
+	 */
 	@Override
 	public void showMesage(String name, String text) {
 		mainPannel.setSelectedComponent(conversationPanel);
 		conversationPanel.showMessage(name, text);
 	}
 
+	/**
+	 * Add user.
+	 */
 	@Override
 	public void addUser(String name) {
 		userList.addUser(name);
 	}
 
+	/**
+	 * Remove user.
+	 */
 	@Override
 	public void removeUser(String name) {
 		userList.removeUser(name);
 	}
 
+	/**
+	 * Get message box text.
+	 */
 	@Override
 	public String getMessageText(String name) {
 		return conversationPanel.getMessageText(name);
 	}
 
+	/**
+	 * When user is selected.
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getClickCount() == 2) {

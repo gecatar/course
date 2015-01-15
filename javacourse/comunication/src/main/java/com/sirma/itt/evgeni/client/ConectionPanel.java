@@ -90,6 +90,9 @@ public class ConectionPanel extends JPanel {
 		return Integer.parseInt(port.getText());
 	}
 
+	/**
+	 * Display connection status.
+	 */
 	public void setConectionStatus(String conectionCondition) {
 		conectionStatus.setText(conectionCondition);
 	}

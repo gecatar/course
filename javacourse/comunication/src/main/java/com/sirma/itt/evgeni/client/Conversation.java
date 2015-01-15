@@ -25,6 +25,7 @@ import com.sirma.itt.evgeni.comunication.MessageLogger;
  */
 public class Conversation extends JPanel implements ActionListener, KeyListener {
 
+	private static final String newLine = System.getProperty("line.separator");
 	private final JTextArea textArea;
 	private final JTextField textField;
 	private final MessageLogger messageLogger;
@@ -65,7 +66,7 @@ public class Conversation extends JPanel implements ActionListener, KeyListener 
 		stringBuilder.append(name);
 		stringBuilder.append(">");
 		stringBuilder.append(text);
-		stringBuilder.append("\n");
+		stringBuilder.append(newLine);
 		return stringBuilder.toString();
 	}
 
