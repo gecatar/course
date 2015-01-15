@@ -12,6 +12,12 @@ import com.sirma.itt.evgeni.comunication.Comunicator;
 import com.sirma.itt.evgeni.comunication.Conector;
 import com.sirma.itt.evgeni.comunication.DataTransferer;
 
+/**
+ * Create connection whit server.
+ * 
+ * @author GecaTM
+ *
+ */
 public class ClientConector extends Conector {
 
 	private static final Logger LOGGER = Logger.getLogger(ClientConector.class
@@ -22,6 +28,9 @@ public class ClientConector extends Conector {
 		super(comunicator);
 	}
 
+	/**
+	 * Open connection.
+	 */
 	@Override
 	protected void connect(String ip, int port) {
 		try {
@@ -35,6 +44,9 @@ public class ClientConector extends Conector {
 		}
 	}
 
+	/**
+	 * Close connection.
+	 */
 	@Override
 	protected synchronized void disconect() {
 		super.disconect();
