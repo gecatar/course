@@ -103,8 +103,6 @@ public class Conversation extends JPanel implements ActionListener, KeyListener 
 				textField.setText(messageLogger.getPreviousMessage());
 			}
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-				listener.actionPerformed(new ActionEvent(textField, 0,
-						"send message"));
 				messageLogger.logMessage(textField.getText());
 				textField.setText("");
 			}
