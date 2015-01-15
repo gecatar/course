@@ -4,6 +4,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -13,16 +15,19 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import com.sirma.itt.evgeni.comunication.MessageLogger;
+
 /**
  * Manage sending and receiving messages.
  * 
  * @author Evgeni Stefanov
  * 
  */
-public class Conversation extends JPanel implements ActionListener {
+public class Conversation extends JPanel implements ActionListener, KeyListener {
 
 	private final JTextArea textArea;
 	private final JTextField textField;
+	private final MessageLogger messageLogger;
 	private final DateFormat dateFormat;
 	private final ActionListener listener;
 
@@ -31,9 +36,9 @@ public class Conversation extends JPanel implements ActionListener {
 	 */
 	public Conversation(ActionListener listener, String name) {
 		this.listener = listener;
+		setName(name);
 		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		setName(name);
 		textArea = new JTextArea();
 		textArea.setAlignmentX(Component.CENTER_ALIGNMENT);
 		JScrollPane scrollPane = new JScrollPane(textArea);
@@ -43,6 +48,7 @@ public class Conversation extends JPanel implements ActionListener {
 		textField.setMaximumSize(new Dimension(250, 50));
 		textField.addActionListener(this);
 		textArea.setEditable(false);
+		messageLogger = new MessageLogger();
 		add(scrollPane);
 		add(textField);
 	}
@@ -81,6 +87,38 @@ public class Conversation extends JPanel implements ActionListener {
 		listener.actionPerformed(e);
 		writeMesage("You", textField.getText());
 		textField.setText("");
+
+	}
+
+	/**
+	 * Action listener.
+	 */
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if (e.getSource().getClass() == JTextField.class) {
+			if (e.getKeyCode() == KeyEvent.VK_UP) {
+				textField.setText(messageLogger.getNextMessage());
+			}
+			if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+				textField.setText(messageLogger.getPreviousMessage());
+			}
+			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+				listener.actionPerformed(new ActionEvent(textField, 0,
+						"send message"));
+				messageLogger.logMessage(textField.getText());
+				textField.setText("");
+			}
+
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
 
 	}
 }
