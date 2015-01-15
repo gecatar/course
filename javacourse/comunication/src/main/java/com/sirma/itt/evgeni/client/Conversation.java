@@ -47,6 +47,7 @@ public class Conversation extends JPanel implements ActionListener, KeyListener 
 		textField.setAlignmentX(CENTER_ALIGNMENT);
 		textField.setMaximumSize(new Dimension(250, 50));
 		textField.addActionListener(this);
+		textField.addKeyListener(this);
 		textArea.setEditable(false);
 		messageLogger = new MessageLogger();
 		add(scrollPane);
@@ -104,7 +105,6 @@ public class Conversation extends JPanel implements ActionListener, KeyListener 
 			}
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 				messageLogger.logMessage(textField.getText());
-				textField.setText("");
 			}
 
 		}
