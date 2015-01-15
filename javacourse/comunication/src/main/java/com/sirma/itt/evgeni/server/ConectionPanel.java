@@ -22,10 +22,11 @@ import com.sirma.itt.evgeni.comunication.ComponentID;
  */
 public class ConectionPanel extends JPanel {
 
-	private ActionListener listener;
-	private JTextField ipAdress = new JTextField(15);
-	private JTextField port = new JTextField(4);
-	private JTextArea textArea = new JTextArea();
+	private static final String newLine = System.getProperty("line.separator");
+	private final JTextField ipAdress = new JTextField(15);
+	private final JTextField port = new JTextField(4);
+	private final JTextArea textArea = new JTextArea();
+	private final ActionListener listener;
 
 	/**
 	 * Create connection user interface.
@@ -71,7 +72,7 @@ public class ConectionPanel extends JPanel {
 	 * Display message.
 	 */
 	public void displayMessage(String message) {
-		textArea.setText(message + "\n" + textArea.getText());
+		textArea.setText(message + newLine + textArea.getText());
 	}
 
 	public String getIP() {

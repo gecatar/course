@@ -9,6 +9,12 @@ import com.sirma.itt.evgeni.comunication.DataTransferer;
 import com.sirma.itt.evgeni.comunication.Mesage;
 import com.sirma.itt.evgeni.comunication.MesageCommand;
 
+/**
+ * Create connection whit clients and redirect messages.
+ * 
+ * @author GecaTM
+ *
+ */
 public class ServerComunicator extends Comunicator {
 
 	private static final Logger LOGGER = Logger
@@ -20,12 +26,18 @@ public class ServerComunicator extends Comunicator {
 		conector = new ServerConector(this);
 	}
 
+	/**
+	 * Open new user session.
+	 */
 	@Override
 	public void openSession(DataTransferer dataTransferer) {
 		super.openSession(dataTransferer);
 		LOGGER.log(Level.INFO, "New session opened.");
 	}
 
+	/**
+	 * Process message.
+	 */
 	@Override
 	public void processMesage(Mesage mesage, DataTransferer dataTransferer) {
 		if (mesage.commandID == MesageCommand.USER_LOG_IN) {
@@ -38,6 +50,9 @@ public class ServerComunicator extends Comunicator {
 		}
 	}
 
+	/**
+	 * Close user session.
+	 */
 	@Override
 	public void closeSession(DataTransferer dataTransferer) {
 		super.closeSession(dataTransferer);
@@ -45,9 +60,11 @@ public class ServerComunicator extends Comunicator {
 		LOGGER.log(Level.INFO, "Session closed.");
 	}
 
+	/**
+	 * Send message.
+	 */
 	@Override
 	public void sendMessage(String name, String text) {
-		// TODO Auto-generated method stub
 
 	}
 }

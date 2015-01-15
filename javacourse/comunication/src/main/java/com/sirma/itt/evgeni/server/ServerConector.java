@@ -13,16 +13,25 @@ import com.sirma.itt.evgeni.comunication.Comunicator;
 import com.sirma.itt.evgeni.comunication.Conector;
 import com.sirma.itt.evgeni.comunication.DataTransferer;
 
+/**
+ * Receive incoming connection from users.
+ * 
+ * @author GecaTM
+ *
+ */
 public class ServerConector extends Conector {
 
 	private static final Logger LOGGER = Logger.getLogger(ServerConector.class
 			.getName());
-	ServerSocket serverSocket;
+	private ServerSocket serverSocket;
 
 	public ServerConector(Comunicator comunicator) {
 		super(comunicator);
 	}
 
+	/**
+	 * Start receiving incoming connections.
+	 */
 	@Override
 	protected void connect(String ip, int port) {
 		try {
@@ -34,7 +43,6 @@ public class ServerConector extends Conector {
 						new ObjectInputStream(socket.getInputStream())));
 			}
 		} catch (IOException e) {
-			disconect();
 			LOGGER.log(Level.ERROR, "Error when waiting users.", e);
 		} finally {
 			disconect();

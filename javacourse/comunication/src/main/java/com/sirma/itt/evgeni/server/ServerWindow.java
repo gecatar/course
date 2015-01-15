@@ -7,6 +7,12 @@ import com.sirma.itt.evgeni.comunication.ComunicatorApp;
 import com.sirma.itt.evgeni.comunication.MesageCommand;
 import com.sirma.itt.evgeni.comunication.Window;
 
+/**
+ * Display server UI.
+ * 
+ * @author GecaTM
+ *
+ */
 public class ServerWindow extends Window {
 
 	private ConectionPanel conectionPanel;
@@ -19,24 +25,20 @@ public class ServerWindow extends Window {
 		setVisible(true);
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-
-	}
-
-	@Override
-	public String getName() {
-		return null;
-	}
-
+	/**
+	 * Return displayed IP.
+	 */
 	@Override
 	public String getIPField() {
-		return "localhost";
+		return conectionPanel.getIP();
 	}
 
+	/**
+	 * Return displayed port.
+	 */
 	@Override
 	public int getPort() {
-		return 1300;
+		return conectionPanel.getPort();
 	}
 
 	@Override
@@ -65,6 +67,11 @@ public class ServerWindow extends Window {
 	}
 
 	@Override
+	public String getName() {
+		return null;
+	}
+
+	@Override
 	public void mouseClicked(MouseEvent e) {
 
 	}
@@ -86,6 +93,11 @@ public class ServerWindow extends Window {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
 
 	}
 }
