@@ -6,6 +6,12 @@ import com.sirma.itt.evgeni.comunication.DataTransferer;
 import com.sirma.itt.evgeni.comunication.Mesage;
 import com.sirma.itt.evgeni.comunication.MesageCommand;
 
+/**
+ * Receive and send messages.
+ * 
+ * @author GecaTM
+ *
+ */
 public class ClientComunicator extends Comunicator {
 
 	private DataTransferer dataTransferer;
@@ -15,6 +21,9 @@ public class ClientComunicator extends Comunicator {
 		conector = new ClientConector(this);
 	}
 
+	/**
+	 * Open session.
+	 */
 	@Override
 	public void openSession(DataTransferer dataTransferer) {
 		super.openSession(dataTransferer);
@@ -23,6 +32,9 @@ public class ClientComunicator extends Comunicator {
 		sendUserData(dataTransferer);
 	}
 
+	/**
+	 * Process message.
+	 */
 	@Override
 	public void processMesage(Mesage mesage, DataTransferer dataTransferer) {
 		if (mesage.commandID == MesageCommand.INVALID_USER_NAME) {
@@ -39,12 +51,18 @@ public class ClientComunicator extends Comunicator {
 		}
 	}
 
+	/**
+	 * Close session.
+	 */
 	@Override
 	public void closeSession(DataTransferer dataTransferer) {
 		super.closeSession(dataTransferer);
 		listener.setConectionStatus(MesageCommand.USER_DISCONECTED);
 	}
 
+	/**
+	 * Send message.
+	 */
 	@Override
 	public void sendMessage(String receiver, String text) {
 		if (dataTransferer != null) {
@@ -52,6 +70,9 @@ public class ClientComunicator extends Comunicator {
 		}
 	}
 
+	/**
+	 * Send user data.
+	 */
 	private void sendUserData(DataTransferer transferer) {
 		if (dataTransferer != null) {
 			transferer.sendData(new Mesage(name, MesageCommand.USER_LOG_IN));
