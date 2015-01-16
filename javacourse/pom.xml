@@ -26,6 +26,8 @@
 		<module>networkgui</module>
 		<module>chatapplication</module>
 		<module>comunication</module>
+		<module>chatclient</module>
+		<module>chatserver</module>
 	</modules>
 	<dependencies>
 		<dependency>
