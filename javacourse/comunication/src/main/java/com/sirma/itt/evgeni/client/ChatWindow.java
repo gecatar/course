@@ -1,8 +1,12 @@
 package com.sirma.itt.evgeni.client;
 
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import com.sirma.itt.evgeni.comunication.ComunicatorApp;
 import com.sirma.itt.evgeni.comunication.MesageCommand;
@@ -13,7 +17,12 @@ public class ChatWindow extends Window {
 	public ChatWindow(ComunicatorApp listener) {
 		super(listener);
 		GridBagConstraints gridBagConstraints = new GridBagConstraints();
-
+		JPanel panel = new JPanel(new GridBagLayout());
+		add(panel);
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 0;
+		panel.add(new JLabel("IP"), gridBagConstraints);
+		setVisible(true);
 	}
 
 	@Override
