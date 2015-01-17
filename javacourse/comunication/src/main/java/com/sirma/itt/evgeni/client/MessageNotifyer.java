@@ -6,8 +6,8 @@ import com.sirma.itt.evgeni.comunication.Window;
 
 public class MessageNotifyer {
 
-	private final ArrayList<String> notificationList = new ArrayList<String>();
 	private final Window window;
+	private ArrayList<String> notificationList = new ArrayList<String>();
 
 	public MessageNotifyer(Window window) {
 		this.window = window;
@@ -16,15 +16,15 @@ public class MessageNotifyer {
 	public void addNotification(String name) {
 		if (!notificationList.contains(name)) {
 			notificationList.add(name);
-			window.setTitle(getNotificationText());
 		}
+		window.setTitle(getNotificationText());
 	}
 
 	public void removeNotification(String name) {
 		if (notificationList.contains(name)) {
 			notificationList.remove(name);
-			window.setTitle(getNotificationText());
 		}
+		window.setTitle(getNotificationText());
 	}
 
 	private String getNotificationText() {

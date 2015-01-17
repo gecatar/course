@@ -35,11 +35,11 @@ public class ClientWindow extends Window {
 		USER_CONECTED_MESSAGE = bundle.getString("user_conected_message");
 		USER_DISCONECTED_MESSAGE = bundle.getString("user_disconected_message");
 		USERNAME_BISY_MESSAGE = bundle.getString("username_bisy_message");
+		notifyer = new MessageNotifyer(this);
 		mainPannel = new JTabbedPane();
 		conectionPanel = new ConectionPanel(listener, bundle);
-		conversationPanel = new ConversationPanel(listener);
+		conversationPanel = new ConversationPanel(listener, notifyer);
 		userList = new UserList(this);
-		notifyer = new MessageNotifyer(this);
 		mainPannel.add(bundle.getString("conection_tab_name"), conectionPanel);
 		mainPannel
 				.add(bundle.getString("messages_tab_name"), conversationPanel);

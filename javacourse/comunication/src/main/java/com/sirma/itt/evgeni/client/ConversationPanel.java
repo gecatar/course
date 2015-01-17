@@ -15,10 +15,12 @@ import javax.swing.JTabbedPane;
 public class ConversationPanel extends JTabbedPane {
 
 	private final Map<String, Conversation> conversations = new HashMap<String, Conversation>();
-	private ActionListener listener;
+	private final ActionListener listener;
+	private final MessageNotifyer notifyer;
 
-	public ConversationPanel(ActionListener listener) {
+	public ConversationPanel(ActionListener listener, MessageNotifyer notifyer) {
 		this.listener = listener;
+		this.notifyer = notifyer;
 		setVisible(true);
 	}
 
@@ -31,7 +33,8 @@ public class ConversationPanel extends JTabbedPane {
 	 */
 	private void addConversation(String name) {
 		if (!conversations.containsKey(name)) {
-			Conversation conversation = new Conversation(listener, name);
+			Conversation conversation = new Conversation(listener, name,
+					notifyer);
 			conversations.put(name, conversation);
 			addTab(name, conversation);
 		}
