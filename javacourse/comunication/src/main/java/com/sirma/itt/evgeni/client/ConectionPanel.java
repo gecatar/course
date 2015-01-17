@@ -56,7 +56,11 @@ public class ConectionPanel extends JPanel {
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 0;
 		gridBagConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
+		add(conectionStatusLabel, gridBagConstraints);
+		gridBagConstraints.gridx++;
+		gridBagConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
 		add(conectionStatus, gridBagConstraints);
+		gridBagConstraints.gridx--;
 		gridBagConstraints.gridy++;
 		gridBagConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
 		add(ipLabel, gridBagConstraints);
