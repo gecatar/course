@@ -75,6 +75,10 @@ public class ClientWindow extends Window {
 			mainPannel.setSelectedComponent(conectionPanel);
 			conectionPanel.setConectionStatus(USER_DISCONECTED_MESSAGE);
 		}
+		if (status == MesageCommand.INVALID_USER_NAME) {
+			mainPannel.setSelectedComponent(conectionPanel);
+			conectionPanel.setConectionStatus(USERNAME_BISY_MESSAGE);
+		}
 	}
 
 	/**
