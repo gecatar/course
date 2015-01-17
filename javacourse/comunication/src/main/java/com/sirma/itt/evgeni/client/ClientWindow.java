@@ -31,13 +31,17 @@ public class ClientWindow extends Window {
 		super(listener);
 		bundle = ResourceBundle.getBundle("test");
 		setTitle(bundle.getString("client_title"));
+		USER_CONECTED_MESSAGE = bundle.getString("user_conected_message");
+		USER_DISCONECTED_MESSAGE = bundle.getString("user_disconected_message");
+		USERNAME_BISY_MESSAGE = bundle.getString("username_bisy_message");
 		mainPannel = new JTabbedPane();
 		conectionPanel = new ConectionPanel(listener, bundle);
 		conversationPanel = new ConversationPanel(listener);
 		userList = new UserList(this);
-		mainPannel.add(bundle.getString("conection_tab"), conectionPanel);
-		mainPannel.add(bundle.getString("messages_tab"), conversationPanel);
-		mainPannel.add(bundle.getString("user_tab"), userList);
+		mainPannel.add(bundle.getString("conection_tab_name"), conectionPanel);
+		mainPannel
+				.add(bundle.getString("messages_tab_name"), conversationPanel);
+		mainPannel.add(bundle.getString("user_tab_name"), userList);
 		mainPannel.setVisible(true);
 		add(mainPannel);
 		setVisible(true);

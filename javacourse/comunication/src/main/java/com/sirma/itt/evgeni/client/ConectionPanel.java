@@ -31,7 +31,7 @@ public class ConectionPanel extends JPanel {
 	 */
 	public ConectionPanel(ActionListener listener, ResourceBundle bundle) {
 		setLayout(new GridBagLayout());
-		conectionStatus.setText("Conection status:");
+		conectionStatus.setText(bundle.getString("user_disconected_message"));
 		ipAdress.setText("localhost");
 		port.setText("1300");
 		nickname.setText("User");
@@ -43,6 +43,8 @@ public class ConectionPanel extends JPanel {
 				bundle.getString("disconect_button_name"));
 		stopConection.setName(ComponentID.DISCONECT_BUTTON_ID);
 		stopConection.addActionListener(listener);
+		JLabel conectionStatusLabel = new JLabel(
+				bundle.getString("conection_status_name"));
 		JLabel ipLabel = new JLabel(bundle.getString("ip_label_name"));
 		JLabel portLabel = new JLabel(bundle.getString("port_label_name"));
 		JLabel nicknameLabel = new JLabel(
