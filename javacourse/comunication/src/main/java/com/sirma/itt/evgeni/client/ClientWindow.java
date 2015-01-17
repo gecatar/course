@@ -22,6 +22,7 @@ public class ClientWindow extends Window {
 	private ConectionPanel conectionPanel;
 	private ConversationPanel conversationPanel;
 	private UserList userList;
+	private MessageNotifyer notifyer;
 	private String USER_CONECTED_MESSAGE;
 	private String USER_DISCONECTED_MESSAGE;
 	private String USERNAME_BISY_MESSAGE;
@@ -38,6 +39,7 @@ public class ClientWindow extends Window {
 		conectionPanel = new ConectionPanel(listener, bundle);
 		conversationPanel = new ConversationPanel(listener);
 		userList = new UserList(this);
+		notifyer = new MessageNotifyer(this);
 		mainPannel.add(bundle.getString("conection_tab_name"), conectionPanel);
 		mainPannel
 				.add(bundle.getString("messages_tab_name"), conversationPanel);
@@ -88,6 +90,7 @@ public class ClientWindow extends Window {
 	public void showMesage(String name, String text) {
 		mainPannel.setSelectedComponent(conversationPanel);
 		conversationPanel.showMessage(name, text);
+		notifyer.addNotification(name);
 	}
 
 	/**

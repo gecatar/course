@@ -13,22 +13,27 @@ public class MessageNotifyer {
 		this.window = window;
 	}
 
-	public void showNotification(String name) {
-		if (addNotification(name)) {
-			StringBuilder stringBuilder = new StringBuilder();
-			stringBuilder.append("You have:").append(notificationList.size());
-			stringBuilder.append(" new messages...");
-			for (String user : notificationList) {
-				stringBuilder.append("->").append(user);
-			}
+	public void addNotification(String name) {
+		if (!notificationList.contains(name)) {
+			notificationList.add(name);
+			window.setTitle(getNotificationText());
 		}
 	}
 
-	private boolean addNotification(String name) {
-		if (!notificationList.contains(name)) {
-			notificationList.add(name);
-			return true;
+	public void removeNotification(String name) {
+		if (notificationList.contains(name)) {
+			notificationList.remove(name);
+			window.setTitle(getNotificationText());
 		}
-		return false;
+	}
+
+	private String getNotificationText() {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("You have:").append(notificationList.size());
+		stringBuilder.append(" new messages...");
+		for (String user : notificationList) {
+			stringBuilder.append("->").append(user);
+		}
+		return stringBuilder.toString();
 	}
 }
