@@ -20,10 +20,6 @@ public class ConversationPanel extends JTabbedPane {
 		this.window = window;
 	}
 
-	public String getMessageText(String name) {
-		return conversations.get(name).getTextFieldText();
-	}
-
 	/**
 	 * Add new Conversation.
 	 */
