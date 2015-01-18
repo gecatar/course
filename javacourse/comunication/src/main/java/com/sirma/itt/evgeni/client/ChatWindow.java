@@ -9,6 +9,7 @@ import com.sirma.itt.evgeni.comunication.Window;
 
 public class ChatWindow extends Window {
 
+	private final ClientApp listener;
 	private final JTabbedPane tabbedPane = new JTabbedPane();
 	private final ConectionPanel conectionPanel;
 	private final ConversationPanel conversationPanel;
@@ -20,8 +21,11 @@ public class ChatWindow extends Window {
 	private String USERNAME_BISY_MESSAGE;
 
 	public ChatWindow(ClientApp listener) {
-		super(listener);
+		this.listener = listener;
 		bundle = ResourceBundle.getBundle("test");
+		USER_CONECTED_MESSAGE = bundle.getString("user_conected_message");
+		USER_DISCONECTED_MESSAGE = bundle.getString("user_disconected_message");
+		USERNAME_BISY_MESSAGE = bundle.getString("username_bisy_message");
 		conectionPanel = new ConectionPanel(listener, bundle);
 		conversationPanel = new ConversationPanel(this);
 		userList = new UserList(this);
@@ -42,9 +46,27 @@ public class ChatWindow extends Window {
 		notifyer.removeNotification(name);
 	}
 
+	public void sendMessage(String receiver, String text) {
+		listener.sendMessage(receiver, text);
+	}
+
+	/**
+	 * Change connection status.
+	 */
 	@Override
 	public void setConectionStatus(MesageCommand status) {
-
+		if (status == MesageCommand.USER_CONECTED) {
+			tabbedPane.setSelectedComponent(conectionPanel);
+			conectionPanel.setConectionStatus(USER_CONECTED_MESSAGE);
+		}
+		if (status == MesageCommand.USER_DISCONECTED) {
+			tabbedPane.setSelectedComponent(conectionPanel);
+			conectionPanel.setConectionStatus(USER_DISCONECTED_MESSAGE);
+		}
+		if (status == MesageCommand.INVALID_USER_NAME) {
+			tabbedPane.setSelectedComponent(conectionPanel);
+			conectionPanel.setConectionStatus(USERNAME_BISY_MESSAGE);
+		}
 	}
 
 	@Override
@@ -54,12 +76,12 @@ public class ChatWindow extends Window {
 
 	@Override
 	public void addUser(String name) {
-
+		userList.addUser(name);
 	}
 
 	@Override
 	public void removeUser(String name) {
-
+		userList.removeUser(name);
 	}
 
 	@Override

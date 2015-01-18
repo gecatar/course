@@ -8,7 +8,7 @@ public abstract class Window extends JFrame implements ComunicatorListener {
 
 	private static final Dimension WINDOW_DIMENSION = new Dimension(400, 500);
 
-	public Window(ComunicatorApp listener) {
+	public Window() {
 		setSize(WINDOW_DIMENSION);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
