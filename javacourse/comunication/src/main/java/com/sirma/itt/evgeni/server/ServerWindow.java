@@ -43,7 +43,12 @@ public class ServerWindow extends Window {
 
 	@Override
 	public void setConectionStatus(MesageCommand status) {
-
+		if (status == MesageCommand.USER_LOG_IN) {
+			conectionPanel.displayMessage("User logged on server");
+		}
+		if (status == MesageCommand.USER_LOG_OUT) {
+			conectionPanel.displayMessage("User logged off from server");
+		}
 	}
 
 	@Override
