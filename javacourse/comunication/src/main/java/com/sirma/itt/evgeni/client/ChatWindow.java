@@ -1,27 +1,37 @@
 package com.sirma.itt.evgeni.client;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ResourceBundle;
 
 import javax.swing.JTabbedPane;
 
-import com.sirma.itt.evgeni.comunication.ComunicatorApp;
 import com.sirma.itt.evgeni.comunication.MesageCommand;
 import com.sirma.itt.evgeni.comunication.Window;
 
-public class ChatWindow extends Window {
+public class ChatWindow extends Window implements ActionListener, MouseListener {
 
 	private final JTabbedPane tabbedPane = new JTabbedPane();
+	private final ConectionPanel conectionPanel;
+	private final ConversationPanel conversationPanel;
+	private final UserList userList;
 	private final MessageNotifyer notifyer;
-	private ConectionPanel conectionPanel;
-	private ConversationPanel conversationPanel;
-	private UserList userList;
+	private ResourceBundle bundle;
+	private String USER_CONECTED_MESSAGE;
+	private String USER_DISCONECTED_MESSAGE;
+	private String USERNAME_BISY_MESSAGE;
 
-	public ChatWindow(ComunicatorApp listener) {
+	public ChatWindow(ClientApp listener) {
 		super(listener);
-		conectionPanel = new ConectionPanel(this, null);
+		bundle = ResourceBundle.getBundle("test");
+		conectionPanel = new ConectionPanel(listener, bundle);
+		conversationPanel = new ConversationPanel(this);
+		userList = new UserList(this);
 		notifyer = new MessageNotifyer(this);
 		add(tabbedPane);
+		setVisible(true);
 	}
 
 	@Override
@@ -55,6 +65,21 @@ public class ChatWindow extends Window {
 	}
 
 	@Override
+	public String getName() {
+		return conectionPanel.getName();
+	}
+
+	@Override
+	public String getIPField() {
+		return conectionPanel.getIP();
+	}
+
+	@Override
+	public int getPort() {
+		return conectionPanel.getPort();
+	}
+
+	@Override
 	public void mouseEntered(MouseEvent arg0) {
 
 	}
@@ -73,25 +98,4 @@ public class ChatWindow extends Window {
 	public void mouseReleased(MouseEvent arg0) {
 
 	}
-
-	@Override
-	public String getName() {
-		return null;
-	}
-
-	@Override
-	public String getIPField() {
-		return null;
-	}
-
-	@Override
-	public int getPort() {
-		return 0;
-	}
-
-	@Override
-	public String getMessageText(String name) {
-		return null;
-	}
-
 }

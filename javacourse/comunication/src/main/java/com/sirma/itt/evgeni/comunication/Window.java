@@ -1,13 +1,10 @@
 package com.sirma.itt.evgeni.comunication;
 
 import java.awt.Dimension;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 
-public abstract class Window extends JFrame implements ComunicatorListener,
-		ActionListener, MouseListener {
+public abstract class Window extends JFrame implements ComunicatorListener {
 
 	private static final Dimension WINDOW_DIMENSION = new Dimension(400, 500);
 
@@ -22,6 +19,4 @@ public abstract class Window extends JFrame implements ComunicatorListener,
 	public abstract String getIPField();
 
 	public abstract int getPort();
-
-	public abstract String getMessageText(String name);
 }
