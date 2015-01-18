@@ -86,7 +86,7 @@ public class Conversation extends JPanel implements ActionListener, KeyListener 
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		window.sendMessage(getName(), getTextFieldText());
 		writeMesage("You", textField.getText());
 		textField.setText("");
 	}

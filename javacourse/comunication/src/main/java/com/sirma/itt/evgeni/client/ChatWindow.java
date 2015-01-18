@@ -15,10 +15,10 @@ public class ChatWindow extends Window {
 	private final ConversationPanel conversationPanel;
 	private final UserList userList;
 	private final MessageNotifyer notifyer;
-	private ResourceBundle bundle;
-	private String USER_CONECTED_MESSAGE;
-	private String USER_DISCONECTED_MESSAGE;
-	private String USERNAME_BISY_MESSAGE;
+	private final ResourceBundle bundle;
+	private final String USER_CONECTED_MESSAGE;
+	private final String USER_DISCONECTED_MESSAGE;
+	private final String USERNAME_BISY_MESSAGE;
 
 	public ChatWindow(ClientApp listener) {
 		this.listener = listener;
@@ -39,6 +39,7 @@ public class ChatWindow extends Window {
 	}
 
 	public void showConversation(String name) {
+		tabbedPane.setSelectedComponent(conversationPanel);
 		conversationPanel.selectConversation(name);
 	}
 
@@ -72,6 +73,8 @@ public class ChatWindow extends Window {
 	@Override
 	public void showMesage(String name, String text) {
 		notifyer.addNotification(name);
+		tabbedPane.setSelectedComponent(conversationPanel);
+		conversationPanel.showMessage(name, text);
 	}
 
 	@Override
