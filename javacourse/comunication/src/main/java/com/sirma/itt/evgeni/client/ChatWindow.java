@@ -35,7 +35,7 @@ public class ChatWindow extends Window {
 	}
 
 	public void showConversation(String name) {
-		notifyer.addNotification(name);
+		conversationPanel.selectConversation(name);
 	}
 
 	public void clearNotification(String name) {
@@ -49,7 +49,7 @@ public class ChatWindow extends Window {
 
 	@Override
 	public void showMesage(String name, String text) {
-
+		notifyer.addNotification(name);
 	}
 
 	@Override
