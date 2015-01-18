@@ -26,8 +26,20 @@ public class ChatWindow extends Window {
 		conversationPanel = new ConversationPanel(this);
 		userList = new UserList(this);
 		notifyer = new MessageNotifyer(this);
+		tabbedPane.add(bundle.getString("conection_tab_name"), conectionPanel);
+		tabbedPane
+				.add(bundle.getString("messages_tab_name"), conversationPanel);
+		tabbedPane.add(bundle.getString("user_tab_name"), userList);
 		add(tabbedPane);
 		setVisible(true);
+	}
+
+	public void showConversation(String name) {
+		notifyer.addNotification(name);
+	}
+
+	public void clearNotification(String name) {
+		notifyer.removeNotification(name);
 	}
 
 	@Override
@@ -37,10 +49,6 @@ public class ChatWindow extends Window {
 
 	@Override
 	public void showMesage(String name, String text) {
-
-	}
-
-	public void showConversation(String name) {
 
 	}
 
