@@ -43,27 +43,23 @@ public class ServerWindow extends Window {
 
 	@Override
 	public void setConectionStatus(MesageCommand status) {
-		if (status == MesageCommand.USER_LOG_IN) {
-			conectionPanel.displayMessage("User logged on server");
+		if (status == MesageCommand.USER_CONECTED) {
+			conectionPanel.displayMessage("Waiting for clients...");
 		}
 		if (status == MesageCommand.USER_LOG_OUT) {
-			conectionPanel.displayMessage("User logged off from server");
+			conectionPanel.displayMessage("Close connection...");
 		}
-	}
-
-	@Override
-	public void showMesage(String name, String text) {
-
 	}
 
 	@Override
 	public void addUser(String name) {
-
+		conectionPanel.displayMessage("User:" + name + " logged on server");
 	}
 
 	@Override
 	public void removeUser(String name) {
-
+		conectionPanel.displayMessage("User:" + name
+				+ " logged off from server");
 	}
 
 	@Override
@@ -74,6 +70,11 @@ public class ServerWindow extends Window {
 	@Override
 	public String getName() {
 		return null;
+	}
+
+	@Override
+	public void showMesage(String name, String text) {
+
 	}
 
 	@Override
