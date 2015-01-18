@@ -1,5 +1,6 @@
 package com.sirma.itt.evgeni.client;
 
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.DefaultListModel;
@@ -11,14 +12,16 @@ import javax.swing.JList;
  * @author GecaTM
  *
  */
-public class UserList extends JList<String> {
+public class UserList extends JList<String> implements MouseListener {
 
-	private DefaultListModel<String> listModel;
+	private final DefaultListModel<String> listModel;
+	private final ChatWindow window;
 
-	public UserList(MouseListener mouseListener) {
+	public UserList(ChatWindow window) {
 		listModel = new DefaultListModel<String>();
+		this.window = window;
 		setModel(listModel);
-		addMouseListener(mouseListener);
+		addMouseListener(this);
 	}
 
 	/**
@@ -39,12 +42,30 @@ public class UserList extends JList<String> {
 		}
 	}
 
-	/**
-	 * Get selected name.
-	 * 
-	 * @return
-	 */
-	public String getSelectedName() {
-		return listModel.getElementAt(getSelectedIndex());
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if (e.getClickCount() == 2) {
+			window.showConversation(listModel.getElementAt(getSelectedIndex()));
+		}
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+
 	}
 }

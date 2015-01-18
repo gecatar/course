@@ -30,13 +30,13 @@ public class Conversation extends JPanel implements ActionListener, KeyListener 
 	private final JTextField textField;
 	private final MessageLogger messageLogger;
 	private final DateFormat dateFormat;
-	private final ActionListener listener;
+	private final ChatWindow window;
 
 	/**
 	 * Create new conversation.
 	 */
-	public Conversation(ActionListener listener, String name) {
-		this.listener = listener;
+	public Conversation(ChatWindow window, String name) {
+		this.window = window;
 		setName(name);
 		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -86,7 +86,6 @@ public class Conversation extends JPanel implements ActionListener, KeyListener 
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		listener.actionPerformed(e);
 		writeMesage("You", textField.getText());
 		textField.setText("");
 	}

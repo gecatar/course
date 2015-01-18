@@ -1,9 +1,5 @@
 package com.sirma.itt.evgeni.client;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ResourceBundle;
 
 import javax.swing.JTabbedPane;
@@ -11,7 +7,7 @@ import javax.swing.JTabbedPane;
 import com.sirma.itt.evgeni.comunication.MesageCommand;
 import com.sirma.itt.evgeni.comunication.Window;
 
-public class ChatWindow extends Window implements ActionListener, MouseListener {
+public class ChatWindow extends Window {
 
 	private final JTabbedPane tabbedPane = new JTabbedPane();
 	private final ConectionPanel conectionPanel;
@@ -44,6 +40,10 @@ public class ChatWindow extends Window implements ActionListener, MouseListener 
 
 	}
 
+	public void showConversation(String name) {
+
+	}
+
 	@Override
 	public void addUser(String name) {
 
@@ -51,16 +51,6 @@ public class ChatWindow extends Window implements ActionListener, MouseListener 
 
 	@Override
 	public void removeUser(String name) {
-
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent arg0) {
 
 	}
 
@@ -77,25 +67,5 @@ public class ChatWindow extends Window implements ActionListener, MouseListener 
 	@Override
 	public int getPort() {
 		return conectionPanel.getPort();
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-
-	}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {
-
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-
 	}
 }

@@ -1,6 +1,5 @@
 package com.sirma.itt.evgeni.client;
 
-import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,10 +14,10 @@ import javax.swing.JTabbedPane;
 public class ConversationPanel extends JTabbedPane {
 
 	private final Map<String, Conversation> conversations = new HashMap<String, Conversation>();
-	private final ActionListener listener;
+	private final ChatWindow window;
 
-	public ConversationPanel(ActionListener listener) {
-		this.listener = listener;
+	public ConversationPanel(ChatWindow window) {
+		this.window = window;
 	}
 
 	public String getMessageText(String name) {
@@ -30,7 +29,7 @@ public class ConversationPanel extends JTabbedPane {
 	 */
 	private void addConversation(String name) {
 		if (!conversations.containsKey(name)) {
-			Conversation conversation = new Conversation(listener, name);
+			Conversation conversation = new Conversation(window, name);
 			conversations.put(name, conversation);
 			addTab(name, conversation);
 		}
