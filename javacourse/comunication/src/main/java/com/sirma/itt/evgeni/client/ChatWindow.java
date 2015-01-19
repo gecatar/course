@@ -31,7 +31,9 @@ public class ChatWindow extends Window {
 		USERNAME_BISY_MESSAGE = bundle.getString("username_bisy_message");
 		JMenuBar conversationBar = new JMenuBar();
 		JMenu conversationMenu = new JMenu("Conversations");
+		JMenuItem closeActiveConversation = new JMenuItem("Close active");
 		JMenuItem closeAllConversation = new JMenuItem("Close all");
+		conversationMenu.add(closeActiveConversation);
 		conversationMenu.add(closeAllConversation);
 		conversationBar.add(conversationMenu);
 		setJMenuBar(conversationBar);
