@@ -12,6 +12,12 @@ import javax.swing.JTabbedPane;
 import com.sirma.itt.evgeni.comunication.MesageCommand;
 import com.sirma.itt.evgeni.comunication.Window;
 
+/**
+ * Display all UI components.
+ * 
+ * @author GecaTM
+ *
+ */
 public class ChatWindow extends Window implements ActionListener {
 
 	private final ClientApp listener;
@@ -25,9 +31,12 @@ public class ChatWindow extends Window implements ActionListener {
 	private final String USER_DISCONECTED_MESSAGE;
 	private final String USERNAME_BISY_MESSAGE;
 
+	/**
+	 * Create window.
+	 */
 	public ChatWindow(ClientApp listener) {
 		this.listener = listener;
-		bundle = ResourceBundle.getBundle("test");
+		bundle = ResourceBundle.getBundle("EN_LANG");
 		USER_CONECTED_MESSAGE = bundle.getString("user_conected_message");
 		USER_DISCONECTED_MESSAGE = bundle.getString("user_disconected_message");
 		USERNAME_BISY_MESSAGE = bundle.getString("username_bisy_message");
