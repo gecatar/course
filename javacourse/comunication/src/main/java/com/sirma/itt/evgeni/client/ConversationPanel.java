@@ -1,5 +1,6 @@
 package com.sirma.itt.evgeni.client;
 
+import java.awt.Component;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,13 +61,16 @@ public class ConversationPanel extends JTabbedPane {
 	 * Close active conversation.
 	 */
 	public void closeActiveConversation() {
-		removeTabAt(getSelectedIndex());
+		Component temp = getComponent(getSelectedIndex());
+		conversations.remove(temp.getName());
+		remove(temp);
 	}
 
 	/**
 	 * Close all conversations.
 	 */
 	public void closeAllConversation() {
+		conversations.clear();
 		removeAll();
 	}
 }
