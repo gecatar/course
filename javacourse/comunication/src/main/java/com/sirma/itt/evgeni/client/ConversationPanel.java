@@ -55,4 +55,18 @@ public class ConversationPanel extends JTabbedPane {
 			showMessage(name, message);
 		}
 	}
+
+	/**
+	 * Close active conversation.
+	 */
+	public void closeActiveConversation() {
+		removeTabAt(getSelectedIndex());
+	}
+
+	/**
+	 * Close all conversations.
+	 */
+	public void closeAllConversation() {
+		removeAll();
+	}
 }

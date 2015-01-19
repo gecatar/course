@@ -34,8 +34,10 @@ public class ChatWindow extends Window implements ActionListener {
 		JMenuBar conversationBar = new JMenuBar();
 		JMenu conversationMenu = new JMenu("Conversations");
 		JMenuItem closeActiveConversation = new JMenuItem("Close active");
+		closeActiveConversation.setName("close_active");
 		closeActiveConversation.addActionListener(this);
 		JMenuItem closeAllConversation = new JMenuItem("Close all");
+		closeAllConversation.setName("close_all");
 		closeAllConversation.addActionListener(this);
 		conversationMenu.add(closeActiveConversation);
 		conversationMenu.add(closeAllConversation);
@@ -102,9 +104,20 @@ public class ChatWindow extends Window implements ActionListener {
 		userList.removeUser(name);
 	}
 
+	/**
+	 * When menu items are clicked.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		if (e.getSource() instanceof JMenuItem) {
+			JMenuItem temp = (JMenuItem) e.getSource();
+			if (temp.getName().equals("close_active")) {
+				conversationPanel.closeActiveConversation();
+			}
+			if (temp.getName().equals("close_all")) {
+				conversationPanel.closeAllConversation();
+			}
+		}
 	}
 
 	@Override
