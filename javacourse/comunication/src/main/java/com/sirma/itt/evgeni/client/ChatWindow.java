@@ -1,5 +1,7 @@
 package com.sirma.itt.evgeni.client;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
 import javax.swing.JMenu;
@@ -10,7 +12,7 @@ import javax.swing.JTabbedPane;
 import com.sirma.itt.evgeni.comunication.MesageCommand;
 import com.sirma.itt.evgeni.comunication.Window;
 
-public class ChatWindow extends Window {
+public class ChatWindow extends Window implements ActionListener {
 
 	private final ClientApp listener;
 	private final JTabbedPane tabbedPane = new JTabbedPane();
@@ -32,7 +34,9 @@ public class ChatWindow extends Window {
 		JMenuBar conversationBar = new JMenuBar();
 		JMenu conversationMenu = new JMenu("Conversations");
 		JMenuItem closeActiveConversation = new JMenuItem("Close active");
+		closeActiveConversation.addActionListener(this);
 		JMenuItem closeAllConversation = new JMenuItem("Close all");
+		closeAllConversation.addActionListener(this);
 		conversationMenu.add(closeActiveConversation);
 		conversationMenu.add(closeAllConversation);
 		conversationBar.add(conversationMenu);
@@ -96,6 +100,11 @@ public class ChatWindow extends Window {
 	@Override
 	public void removeUser(String name) {
 		userList.removeUser(name);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
 	}
 
 	@Override
