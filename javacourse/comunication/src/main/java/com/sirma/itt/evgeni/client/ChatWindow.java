@@ -36,7 +36,7 @@ public class ChatWindow extends Window implements ActionListener {
 	 */
 	public ChatWindow(ClientApp listener) {
 		this.listener = listener;
-		bundle = ResourceBundle.getBundle("BG_LANG");
+		bundle = ResourceBundle.getBundle("EN_LANG");
 		USER_CONECTED_MESSAGE = bundle.getString("user_conected_message");
 		USER_DISCONECTED_MESSAGE = bundle.getString("user_disconected_message");
 		USERNAME_BISY_MESSAGE = bundle.getString("username_bisy_message");
