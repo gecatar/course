@@ -2,6 +2,9 @@ package com.sirma.itt.evgeni.client;
 
 import java.util.ResourceBundle;
 
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JTabbedPane;
 
 import com.sirma.itt.evgeni.comunication.MesageCommand;
@@ -26,6 +29,12 @@ public class ChatWindow extends Window {
 		USER_CONECTED_MESSAGE = bundle.getString("user_conected_message");
 		USER_DISCONECTED_MESSAGE = bundle.getString("user_disconected_message");
 		USERNAME_BISY_MESSAGE = bundle.getString("username_bisy_message");
+		JMenuBar conversationBar = new JMenuBar();
+		JMenu conversationMenu = new JMenu("Conversations");
+		JMenuItem closeAllConversation = new JMenuItem("Close all");
+		conversationMenu.add(closeAllConversation);
+		conversationBar.add(conversationMenu);
+		setJMenuBar(conversationBar);
 		conectionPanel = new ConectionPanel(listener, bundle);
 		conversationPanel = new ConversationPanel(this);
 		userList = new UserList(this);
