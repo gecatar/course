@@ -32,11 +32,14 @@ public class ChatWindow extends Window implements ActionListener {
 		USER_DISCONECTED_MESSAGE = bundle.getString("user_disconected_message");
 		USERNAME_BISY_MESSAGE = bundle.getString("username_bisy_message");
 		JMenuBar conversationBar = new JMenuBar();
-		JMenu conversationMenu = new JMenu("Conversations");
-		JMenuItem closeActiveConversation = new JMenuItem("Close active");
+		JMenu conversationMenu = new JMenu(
+				bundle.getString("conversation_menu_name"));
+		JMenuItem closeActiveConversation = new JMenuItem(
+				bundle.getString("close_active_menu_name"));
 		closeActiveConversation.setName("close_active");
 		closeActiveConversation.addActionListener(this);
-		JMenuItem closeAllConversation = new JMenuItem("Close all");
+		JMenuItem closeAllConversation = new JMenuItem(
+				bundle.getString("close_all_menu_name"));
 		closeAllConversation.setName("close_all");
 		closeAllConversation.addActionListener(this);
 		conversationMenu.add(closeActiveConversation);
@@ -55,15 +58,39 @@ public class ChatWindow extends Window implements ActionListener {
 		setVisible(true);
 	}
 
+	@Override
+	public String getName() {
+		return conectionPanel.getName();
+	}
+
+	@Override
+	public String getIPField() {
+		return conectionPanel.getIP();
+	}
+
+	@Override
+	public int getPort() {
+		return conectionPanel.getPort();
+	}
+
+	/**
+	 * Show conversation.
+	 */
 	public void showConversation(String name) {
 		tabbedPane.setSelectedComponent(conversationPanel);
 		conversationPanel.selectConversation(name);
 	}
 
+	/**
+	 * Clear notification.
+	 */
 	public void clearNotification(String name) {
 		notifyer.removeNotification(name);
 	}
 
+	/**
+	 * Send message.
+	 */
 	public void sendMessage(String receiver, String text) {
 		listener.sendMessage(receiver, text);
 	}
@@ -87,6 +114,9 @@ public class ChatWindow extends Window implements ActionListener {
 		}
 	}
 
+	/**
+	 * Show message.
+	 */
 	@Override
 	public void showMesage(String name, String text) {
 		notifyer.addNotification(name);
@@ -94,11 +124,17 @@ public class ChatWindow extends Window implements ActionListener {
 		conversationPanel.showMessage(name, text);
 	}
 
+	/**
+	 * Add user.
+	 */
 	@Override
 	public void addUser(String name) {
 		userList.addUser(name);
 	}
 
+	/**
+	 * Remove user.
+	 */
 	@Override
 	public void removeUser(String name) {
 		userList.removeUser(name);
@@ -118,20 +154,5 @@ public class ChatWindow extends Window implements ActionListener {
 				conversationPanel.closeAllConversation();
 			}
 		}
-	}
-
-	@Override
-	public String getName() {
-		return conectionPanel.getName();
-	}
-
-	@Override
-	public String getIPField() {
-		return conectionPanel.getIP();
-	}
-
-	@Override
-	public int getPort() {
-		return conectionPanel.getPort();
 	}
 }
