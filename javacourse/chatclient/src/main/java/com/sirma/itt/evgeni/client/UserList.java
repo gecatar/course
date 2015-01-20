@@ -43,6 +43,16 @@ public class UserList extends JList<String> implements MouseListener {
 	}
 
 	@Override
+	public String toString() {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("User List:");
+		for (Object name : listModel.toArray()) {
+			stringBuilder.append("->").append(name);
+		}
+		return stringBuilder.toString();
+	}
+
+	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getClickCount() == 2) {
 			window.showConversation(listModel.getElementAt(getSelectedIndex()));
