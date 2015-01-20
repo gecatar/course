@@ -45,14 +45,20 @@ public class DataTransferer extends Thread {
 	}
 
 	/**
+	 * Read messages from input stream.dfdr.
+	 */
+	public Mesage readMessage() throws ClassNotFoundException, IOException {
+		return (Mesage) ist.readObject();
+	}
+
+	/**
 	 * Entry point for receiving messages.
 	 */
 	@Override
 	public void run() {
 		try {
 			while (true) {
-				Mesage mesage = (Mesage) ist.readObject();
-				comunicator.processMesage(mesage, this);
+				comunicator.processMesage(readMessage(), this);
 			}
 		} catch (IOException | ClassNotFoundException e) {
 			LOGGER.log(Level.ERROR, "Error while reading message.", e);
