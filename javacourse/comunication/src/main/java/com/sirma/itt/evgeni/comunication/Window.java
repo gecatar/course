@@ -4,6 +4,12 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+/**
+ * Contain all UI components.
+ * 
+ * @author GecaTM
+ *
+ */
 public abstract class Window extends JFrame implements ComunicatorListener {
 
 	private static final Dimension WINDOW_DIMENSION = new Dimension(400, 500);

@@ -19,8 +19,8 @@ public class MessageLogger {
 	public void logMessage(String message) {
 		if (!messages.contains(message)) {
 			messages.add(message);
-			currentIndex = messages.size();
 		}
+		currentIndex = messages.size();
 	}
 
 	/**

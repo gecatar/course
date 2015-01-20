@@ -2,6 +2,12 @@ package com.sirma.itt.evgeni.comunication;
 
 import java.io.Serializable;
 
+/**
+ * Message object for communication between communicators.
+ * 
+ * @author GecaTM
+ *
+ */
 public class Mesage implements Serializable {
 
 	public MesageCommand commandID;

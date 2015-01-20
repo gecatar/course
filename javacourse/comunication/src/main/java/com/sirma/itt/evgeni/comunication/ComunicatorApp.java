@@ -2,16 +2,23 @@ package com.sirma.itt.evgeni.comunication;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 
-public class ComunicatorApp implements ActionListener, MouseListener {
+/**
+ * Manage starting and stooping connections.
+ * 
+ * @author GecaTM
+ *
+ */
+public class ComunicatorApp implements ActionListener {
 
 	protected Comunicator comunicator;
 	protected Window window;
 
+	/**
+	 * When UI buttons are pressed.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().getClass() == JButton.class) {
@@ -27,30 +34,4 @@ public class ComunicatorApp implements ActionListener, MouseListener {
 			}
 		}
 	}
-
-	@Override
-	public void mouseClicked(MouseEvent arg0) {
-
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-
-	}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {
-
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-
-	}
-
 }
