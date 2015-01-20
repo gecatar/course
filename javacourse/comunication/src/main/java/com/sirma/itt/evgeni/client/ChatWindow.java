@@ -30,6 +30,7 @@ public class ChatWindow extends Window implements ActionListener {
 	private final String USER_CONECTED_MESSAGE;
 	private final String USER_DISCONECTED_MESSAGE;
 	private final String USERNAME_BISY_MESSAGE;
+	private final String CONECTING_MESSAGE;
 
 	/**
 	 * Create window.
@@ -40,6 +41,7 @@ public class ChatWindow extends Window implements ActionListener {
 		USER_CONECTED_MESSAGE = bundle.getString("user_conected_message");
 		USER_DISCONECTED_MESSAGE = bundle.getString("user_disconected_message");
 		USERNAME_BISY_MESSAGE = bundle.getString("username_bisy_message");
+		CONECTING_MESSAGE = bundle.getString("comunicator_conecting_message");
 		JMenuBar conversationBar = new JMenuBar();
 		JMenu conversationMenu = new JMenu(
 				bundle.getString("conversation_menu_name"));
@@ -113,7 +115,7 @@ public class ChatWindow extends Window implements ActionListener {
 			tabbedPane.setSelectedComponent(conectionPanel);
 			conectionPanel.setConectionStatus(USER_CONECTED_MESSAGE);
 		}
-		if (status == MesageCommand.USER_DISCONECTED) {
+		if (status == MesageCommand.COMUNICATOR_DISCONECTED) {
 			tabbedPane.setSelectedComponent(conectionPanel);
 			conectionPanel.setConectionStatus(USER_DISCONECTED_MESSAGE);
 		}

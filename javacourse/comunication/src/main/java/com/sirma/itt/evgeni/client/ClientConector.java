@@ -39,7 +39,7 @@ public class ClientConector extends Conector {
 					new ObjectOutputStream(socket.getOutputStream()),
 					new ObjectInputStream(socket.getInputStream())));
 		} catch (IOException e) {
-			disconect();
+			comunicator.stopConection();
 			LOGGER.log(Level.ERROR, "Error when conecting.", e);
 		}
 	}
