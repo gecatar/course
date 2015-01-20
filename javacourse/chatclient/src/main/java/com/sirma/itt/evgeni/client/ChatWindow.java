@@ -62,7 +62,8 @@ public class ChatWindow extends Window implements ActionListener {
 		conectionPanel = new ConectionPanel(listener, bundle);
 		conversationPanel = new ConversationPanel(this);
 		userList = new UserList(this);
-		notifyer = new MessageNotifyer(this);
+		notifyer = new MessageNotifyer(bundle.getString("you_have_message"),
+				bundle.getString("message_message"));
 		tabbedPane.add(bundle.getString("conection_tab_name"), conectionPanel);
 		tabbedPane
 				.add(bundle.getString("messages_tab_name"), conversationPanel);
@@ -99,6 +100,7 @@ public class ChatWindow extends Window implements ActionListener {
 	 */
 	public void clearNotification(String name) {
 		notifyer.removeNotification(name);
+		setTitle(notifyer.getNotificationText());
 	}
 
 	/**
@@ -137,6 +139,7 @@ public class ChatWindow extends Window implements ActionListener {
 	@Override
 	public void showMesage(String name, String text) {
 		notifyer.addNotification(name);
+		setTitle(notifyer.getNotificationText());
 		tabbedPane.setSelectedComponent(conversationPanel);
 		conversationPanel.showMessage(name, text);
 	}
