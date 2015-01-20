@@ -1,0 +1,19 @@
+#names
+client_title=Client
+conect_button_name=CONECT
+disconect_button_name=DISCONECT
+ip_label_name=IP
+port_label_name=Port
+nickname_label_name=Nickname
+conection_tab_name=Connection
+messages_tab_name=Messages
+user_tab_name=Users
+conection_status_name=Connection Status:
+conversation_menu_name=Conversations
+close_active_menu_name=Close active
+close_all_menu_name=Close all
+#messages
+user_conected_message=Connected
+user_disconected_message=Not connected
+username_bisy_message=User name not free
+comunicator_conecting_message=Connecting
