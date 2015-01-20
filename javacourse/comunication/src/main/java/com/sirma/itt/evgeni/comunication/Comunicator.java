@@ -11,11 +11,15 @@ public abstract class Comunicator {
 	}
 
 	public void startConection(String ip, int port) {
-		conector.startConection(ip, port);
+		if (conector.startConection(ip, port)) {
+			listener.setConectionStatus(MesageCommand.COMUNICATOR_CONECTING);
+		}
 	}
 
 	public void stopConection() {
-		conector.stopConection();
+		if (conector.stopConection()) {
+			listener.setConectionStatus(MesageCommand.COMUNICATOR_DISCONECTED);
+		}
 	}
 
 	public void openSession(DataTransferer dataTransferer) {
