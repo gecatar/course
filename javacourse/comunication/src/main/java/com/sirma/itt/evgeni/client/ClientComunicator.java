@@ -57,7 +57,7 @@ public class ClientComunicator extends Comunicator {
 	@Override
 	public void closeSession(DataTransferer dataTransferer) {
 		super.closeSession(dataTransferer);
-		listener.setConectionStatus(MesageCommand.USER_DISCONECTED);
+		stopConection();
 	}
 
 	/**
