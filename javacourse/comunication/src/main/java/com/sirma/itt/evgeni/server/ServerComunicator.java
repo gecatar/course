@@ -58,8 +58,13 @@ public class ServerComunicator extends Comunicator {
 	public void closeSession(DataTransferer dataTransferer) {
 		super.closeSession(dataTransferer);
 		userManager.removeUser(dataTransferer);
-		listener.removeUser(" !@#@!");
+		listener.removeUser(userManager.getUserName(dataTransferer));
 		LOGGER.log(Level.INFO, "Session closed.");
+	}
+
+	@Override
+	public void close() {
+		userManager.removeUsersSessions();
 	}
 
 	/**

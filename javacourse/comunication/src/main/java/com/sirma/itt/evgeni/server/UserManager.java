@@ -59,6 +59,18 @@ public class UserManager {
 	}
 
 	/**
+	 * Return name of user.
+	 */
+	public String getUserName(DataTransferer transferator) {
+		for (Entry<String, DataTransferer> user : users.entrySet()) {
+			if (user.getValue() == transferator) {
+				return user.getKey();
+			}
+		}
+		return "";
+	}
+
+	/**
 	 * Notify registered users for new users registered.
 	 */
 	private void notifyForNewUser(String name) {
@@ -89,18 +101,6 @@ public class UserManager {
 	 */
 	private boolean isUserInMap(DataTransferer transferator) {
 		return (users.containsValue(transferator));
-	}
-
-	/**
-	 * Return name of user.
-	 */
-	private String getUserName(DataTransferer transferator) {
-		for (Entry<String, DataTransferer> user : users.entrySet()) {
-			if (user.getValue() == transferator) {
-				return user.getKey();
-			}
-		}
-		return "";
 	}
 
 	/**

@@ -39,10 +39,10 @@ public class ServerWindow extends Window {
 
 	@Override
 	public void setConectionStatus(MesageCommand status) {
-		if (status == MesageCommand.USER_CONECTED) {
+		if (status == MesageCommand.COMUNICATOR_CONECTING) {
 			conectionPanel.displayMessage("Waiting for clients...");
 		}
-		if (status == MesageCommand.USER_LOG_OUT) {
+		if (status == MesageCommand.COMUNICATOR_DISCONECTED) {
 			conectionPanel.displayMessage("Close connection...");
 		}
 	}

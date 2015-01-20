@@ -19,6 +19,7 @@ public abstract class Comunicator {
 	public void stopConection() {
 		if (conector.stopConection()) {
 			listener.setConectionStatus(MesageCommand.COMUNICATOR_DISCONECTED);
+			close();
 		}
 	}
 

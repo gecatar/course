@@ -115,6 +115,10 @@ public class ChatWindow extends Window implements ActionListener {
 			tabbedPane.setSelectedComponent(conectionPanel);
 			conectionPanel.setConectionStatus(USER_CONECTED_MESSAGE);
 		}
+		if (status == MesageCommand.COMUNICATOR_CONECTING) {
+			tabbedPane.setSelectedComponent(conectionPanel);
+			conectionPanel.setConectionStatus(CONECTING_MESSAGE);
+		}
 		if (status == MesageCommand.COMUNICATOR_DISCONECTED) {
 			tabbedPane.setSelectedComponent(conectionPanel);
 			conectionPanel.setConectionStatus(USER_DISCONECTED_MESSAGE);
