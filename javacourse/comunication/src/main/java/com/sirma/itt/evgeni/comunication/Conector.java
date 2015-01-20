@@ -12,7 +12,7 @@ public abstract class Conector {
 	public boolean startConection(String ip, int port) {
 		if (!conecting) {
 			conecting = true;
-			new AssynchConectionRunner(this, ip, port).start();
+			new AsynchConectionRunner(this, ip, port).start();
 			return true;
 		}
 		return false;
