@@ -9,6 +9,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JTabbedPane;
 
+import com.sirma.itt.evgeni.comunication.ComponentID;
 import com.sirma.itt.evgeni.comunication.MesageCommand;
 import com.sirma.itt.evgeni.comunication.Window;
 
@@ -48,11 +49,11 @@ public class ChatWindow extends Window implements ActionListener {
 				bundle.getString("conversation_menu_name"));
 		JMenuItem closeActiveConversation = new JMenuItem(
 				bundle.getString("close_active_menu_name"));
-		closeActiveConversation.setName("close_active");
+		closeActiveConversation.setName(ComponentID.CLOSE_ACTIVE_MENU_ITEM);
 		closeActiveConversation.addActionListener(this);
 		JMenuItem closeAllConversation = new JMenuItem(
 				bundle.getString("close_all_menu_name"));
-		closeAllConversation.setName("close_all");
+		closeAllConversation.setName(ComponentID.CLOSE_ALL_MENU_ITEM);
 		closeAllConversation.addActionListener(this);
 		conversationMenu.add(closeActiveConversation);
 		conversationMenu.add(closeAllConversation);
@@ -163,10 +164,10 @@ public class ChatWindow extends Window implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() instanceof JMenuItem) {
 			JMenuItem temp = (JMenuItem) e.getSource();
-			if (temp.getName().equals("close_active")) {
+			if (temp.getName().equals(ComponentID.CLOSE_ACTIVE_MENU_ITEM)) {
 				conversationPanel.closeActiveConversation();
 			}
-			if (temp.getName().equals("close_all")) {
+			if (temp.getName().equals(ComponentID.CLOSE_ALL_MENU_ITEM)) {
 				conversationPanel.closeAllConversation();
 			}
 		}
