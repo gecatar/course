@@ -22,7 +22,7 @@ public class Mesage implements Serializable {
 		commandID = MesageCommand.TEXT_MESAGE;
 	}
 
-	public Mesage(MesageCommand commandIP) {
+	public Mesage(MesageCommand commandID) {
 		this.commandID = commandID;
 	}
 
