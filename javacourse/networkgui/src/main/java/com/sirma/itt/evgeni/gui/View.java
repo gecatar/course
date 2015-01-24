@@ -15,6 +15,8 @@ import com.sirma.itt.evgeni.util.ConsoleReader;
 
 public class View extends JFrame implements ActionListener{
 
+	private final JDialog connectDialog = new JDialog(this);
+	
 	public View(UserList userList, ConversationPanel panel) {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(new Dimension(600, 300));
@@ -68,7 +70,7 @@ public class View extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JDialog connectDialog = new JDialog(this);
+		
 		connectDialog.add(new UserList());
 		connectDialog.setVisible(true);
 	}
