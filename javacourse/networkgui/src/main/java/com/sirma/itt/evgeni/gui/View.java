@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -67,6 +68,8 @@ public class View extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		JDialog connectDialog = new JDialog(this);
+		connectDialog.add(new UserList());
+		connectDialog.setVisible(true);
 	}
 }
