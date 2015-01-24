@@ -1,8 +1,12 @@
 package com.sirma.itt.evgeni.gui;
 
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -13,10 +17,11 @@ import javax.swing.JSplitPane;
 
 import com.sirma.itt.evgeni.util.ConsoleReader;
 
-public class View extends JFrame implements ActionListener{
+public class View extends JFrame implements ActionListener {
 
-	private final JDialog connectDialog = new JDialog(this);
-	
+	private final ConectionDialog connectDialog = new ConectionDialog();
+	private JSplitPane splitPane = new JSplitPane();
+
 	public View(UserList userList, ConversationPanel panel) {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(new Dimension(600, 300));
@@ -27,7 +32,7 @@ public class View extends JFrame implements ActionListener{
 		fileMenu.add(connectItem);
 		menuBar.add(fileMenu);
 		setJMenuBar(menuBar);
-		JSplitPane splitPane = new JSplitPane();
+
 		splitPane.setLeftComponent(userList);
 		splitPane.setRightComponent(panel);
 		splitPane.setDividerSize(3);
@@ -69,9 +74,13 @@ public class View extends JFrame implements ActionListener{
 	}
 
 	@Override
+	public void paint(Graphics arg0) {
+		splitPane.setDividerLocation(0.2D);
+		super.paint(arg0);
+	}
+
+	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		connectDialog.add(new UserList());
 		connectDialog.setVisible(true);
 	}
 }

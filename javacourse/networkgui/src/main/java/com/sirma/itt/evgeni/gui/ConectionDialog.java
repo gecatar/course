@@ -7,6 +7,7 @@ import java.awt.Insets;
 import java.util.ResourceBundle;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -18,7 +19,7 @@ import javax.swing.JTextField;
  * @author Evgeni Stefanov
  * 
  */
-public class ConectionDialog extends JPanel {
+public class ConectionDialog extends JDialog {
 
 	private JTextField ipAdress = new JTextField(15);
 	private JTextField port = new JTextField(4);
