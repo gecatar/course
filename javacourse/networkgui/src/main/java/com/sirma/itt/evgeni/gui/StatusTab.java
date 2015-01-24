@@ -48,7 +48,7 @@ public class StatusTab extends JSplitPane implements ActionListener,
 		messageLogger = new MessageLogger();
 		setTopComponent(scrollPane);
 		setBottomComponent(textField);
-		setDividerLocation((int) (height * 0.7));
+		setDividerLocation((int) (300 * 0.7));
 	}
 
 	/**

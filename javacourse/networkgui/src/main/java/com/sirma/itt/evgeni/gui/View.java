@@ -3,6 +3,8 @@ package com.sirma.itt.evgeni.gui;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JSplitPane;
 
 import com.sirma.itt.evgeni.util.ConsoleReader;
@@ -12,6 +14,10 @@ public class View extends JFrame {
 	public View(UserList userList, ConversationPanel panel) {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(new Dimension(600, 300));
+		JMenuBar menuBar = new JMenuBar();
+		JMenu fileMenu = new JMenu("File");
+		menuBar.add(fileMenu);
+		setJMenuBar(menuBar);
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setLeftComponent(userList);
 		splitPane.setRightComponent(panel);
