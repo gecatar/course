@@ -16,6 +16,10 @@ public class ConversationPanel extends JTabbedPane {
 
 	private final Map<String, Conversation> conversations = new HashMap<String, Conversation>();
 
+	public ConversationPanel(){
+		addTab("Status", new StatusTab(getHeight()));
+	}
+	
 	/**
 	 * Add new Conversation.
 	 */
