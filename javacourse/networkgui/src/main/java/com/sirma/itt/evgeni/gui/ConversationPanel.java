@@ -21,7 +21,7 @@ public class ConversationPanel extends JTabbedPane {
 	 */
 	private void addConversation(String name) {
 		if (!conversations.containsKey(name)) {
-			Conversation conversation = new Conversation(name, getWidth());
+			Conversation conversation = new Conversation(name, getHeight());
 			conversations.put(name, conversation);
 			addTab(name, conversation);
 		}

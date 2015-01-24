@@ -34,7 +34,7 @@ public class Conversation extends JSplitPane implements ActionListener,
 	/**
 	 * Create new conversation.
 	 */
-	public Conversation(String name, int width) {
+	public Conversation(String name, int height) {
 		setName(name);
 		setOrientation(VERTICAL_SPLIT);
 		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -50,7 +50,7 @@ public class Conversation extends JSplitPane implements ActionListener,
 		messageLogger = new MessageLogger();
 		setTopComponent(scrollPane);
 		setBottomComponent(textField);
-		setDividerLocation((int) (width * 0.7));
+		setDividerLocation((int) (height * 0.7));
 	}
 
 	/**

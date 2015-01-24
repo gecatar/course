@@ -11,10 +11,11 @@ public class View extends JFrame {
 
 	public View(UserList userList, ConversationPanel panel) {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(new Dimension(400, 500));
+		setSize(new Dimension(600, 300));
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setLeftComponent(userList);
 		splitPane.setRightComponent(panel);
+		splitPane.setDividerSize(3);
 		add(splitPane);
 		setVisible(true);
 		splitPane.setDividerLocation(0.3d);
