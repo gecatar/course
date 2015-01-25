@@ -41,7 +41,6 @@ public class View extends JFrame implements ActionListener {
 		menuBar.add(fileMenu);
 		menuBar.add(conversationMenu);
 		setJMenuBar(menuBar);
-
 		splitPane.setLeftComponent(userList);
 		splitPane.setRightComponent(panel);
 		splitPane.setDividerSize(3);
@@ -90,6 +89,7 @@ public class View extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		connectDialog.setLocationRelativeTo(this);
 		connectDialog.setVisible(true);
 	}
 }
