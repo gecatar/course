@@ -30,6 +30,7 @@ public class Conversation extends JSplitPane implements ActionListener,
 			"yyyy/MM/dd HH:mm:ss");
 	private static final String newLine = System.getProperty("line.separator");
 	private final MessageLogger messageLogger = new MessageLogger();
+	private final MessageNotifyer messageNotifyer;
 	private final JTextArea textArea = new JTextArea();
 	private final JTextField textField = new JTextField();
 	private final Double dividerLocation = 0.85D;
@@ -38,8 +39,9 @@ public class Conversation extends JSplitPane implements ActionListener,
 	/**
 	 * Create new conversation.
 	 */
-	public Conversation(String name) {
+	public Conversation(String name, MessageNotifyer messageNotifyer) {
 		setName(name);
+		this.messageNotifyer = messageNotifyer;
 		setOrientation(VERTICAL_SPLIT);
 		textArea.setName(name);
 		textArea.addMouseListener(this);
@@ -87,10 +89,6 @@ public class Conversation extends JSplitPane implements ActionListener,
 		textArea.setText(textArea.getText() + createMessage(name, text));
 	}
 
-	public void showViewedMessage() {
-
-	}
-
 	/**
 	 * Detect when user send new message.
 	 */
@@ -125,7 +123,8 @@ public class Conversation extends JSplitPane implements ActionListener,
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent arg0) {
+	public void mouseEntered(MouseEvent mouseEvent) {
+		messageNotifyer.removeNotification(this.getName());
 	}
 
 	@Override
