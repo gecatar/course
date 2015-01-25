@@ -4,6 +4,8 @@ import java.awt.Component;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
 
 /**
@@ -14,12 +16,14 @@ import javax.swing.JTabbedPane;
  */
 public class ConversationPanel extends JTabbedPane {
 
+	private static final Icon checkedIcon = new ImageIcon(
+			ConversationPanel.class.getResource("/mail-check-icon.png"));
 	private final Map<String, Conversation> conversations = new HashMap<String, Conversation>();
 
-	public ConversationPanel(){
+	public ConversationPanel() {
 		addTab("Status", new StatusTab(getHeight()));
 	}
-	
+
 	/**
 	 * Add new Conversation.
 	 */
@@ -27,7 +31,7 @@ public class ConversationPanel extends JTabbedPane {
 		if (!conversations.containsKey(name)) {
 			Conversation conversation = new Conversation(name);
 			conversations.put(name, conversation);
-			addTab(name, conversation);
+			addTab(name, checkedIcon, conversation);
 		}
 	}
 
