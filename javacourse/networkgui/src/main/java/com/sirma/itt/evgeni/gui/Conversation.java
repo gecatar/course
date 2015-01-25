@@ -53,6 +53,10 @@ public class Conversation extends JSplitPane implements ActionListener,
 		setBottomComponent(textField);
 	}
 
+	public boolean isConected() {
+		return conected;
+	}
+
 	public void setConected(boolean conected) {
 		this.conected = conected;
 	}

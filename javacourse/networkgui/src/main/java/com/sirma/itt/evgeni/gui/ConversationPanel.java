@@ -34,11 +34,23 @@ public class ConversationPanel extends JTabbedPane {
 		if (conversations.containsKey(name)) {
 			Conversation conversation = conversations.get(name);
 			conversation.setConected(conected);
-			if (conected) {
-				// setIconAt(indexOfComponent(conversation), userOnlineIcon);
-			} else {
-				// setIconAt(indexOfComponent(conversation), userOflineIcon);
-			}
+			// if(messageNotifier).....ConversationPanel.
+			setStatus(conversation, conected);
+		}
+	}
+
+	public void setStatus(Conversation conversation, boolean conected) {
+		if (conected) {
+			setIconAt(indexOfComponent(conversation), userOnlineIcon);
+		} else {
+			setIconAt(indexOfComponent(conversation), userOflineIcon);
+		}
+	}
+
+	public void clearNotification(String name) {
+		if (conversations.containsKey(name)) {
+			Conversation conversation = conversations.get(name);
+			setStatus(conversation, conversation.isConected());
 		}
 	}
 
