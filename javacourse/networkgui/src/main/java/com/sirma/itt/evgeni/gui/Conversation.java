@@ -28,9 +28,10 @@ public class Conversation extends JSplitPane implements ActionListener,
 
 	private static final DateFormat dateFormat  = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	private static final String newLine = System.getProperty("line.separator");
-	private final JTextArea textArea;
-	private final JTextField textField;
-	private final MessageLogger messageLogger;
+	private final MessageLogger messageLogger = new MessageLogger();
+	private final JTextArea textArea = new JTextArea();
+	private final JTextField textField = new JTextField();
+	private final Double dividerLocation = 0.9D;
 
 	/**
 	 * Create new conversation.
@@ -38,18 +39,15 @@ public class Conversation extends JSplitPane implements ActionListener,
 	public Conversation(String name) {
 		setName(name);
 		setOrientation(VERTICAL_SPLIT);
-		textArea = new JTextArea();
 		textArea.setName(name);
 		textArea.addMouseListener(this);
-		JScrollPane scrollPane = new JScrollPane(textArea);
-		textField = new JTextField();
+		JScrollPane scrollTextArea = new JScrollPane(textArea);
 		textField.setName(name);
 		textField.addActionListener(this);
 		textField.addKeyListener(this);
 		textField.addMouseListener(this);
 		textArea.setEditable(false);
-		messageLogger = new MessageLogger();
-		setTopComponent(scrollPane);
+		setTopComponent(scrollTextArea);
 		setBottomComponent(textField);
 	}
 
@@ -106,7 +104,7 @@ public class Conversation extends JSplitPane implements ActionListener,
 	
 	@Override
 	public void paint(Graphics g) {
-		setDividerLocation(0.4D);
+		setDividerLocation(dividerLocation);
 		super.paint(g);
 	}
 
