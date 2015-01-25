@@ -26,20 +26,20 @@ import com.sirma.itt.evgeni.comunication.MessageLogger;
 public class Conversation extends JSplitPane implements ActionListener,
 		KeyListener, MouseListener {
 
+	private static final DateFormat dateFormat  = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	private static final String newLine = System.getProperty("line.separator");
 	private final JTextArea textArea;
 	private final JTextField textField;
 	private final MessageLogger messageLogger;
-	private final DateFormat dateFormat;
 
 	/**
 	 * Create new conversation.
 	 */
-	public Conversation(String name, int height) {
+	public Conversation(String name) {
 		setName(name);
 		setOrientation(VERTICAL_SPLIT);
-		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		textArea = new JTextArea();
+		textArea.setName(name);
 		textArea.addMouseListener(this);
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		textField = new JTextField();
@@ -51,7 +51,6 @@ public class Conversation extends JSplitPane implements ActionListener,
 		messageLogger = new MessageLogger();
 		setTopComponent(scrollPane);
 		setBottomComponent(textField);
-		setDividerLocation((int) (height * 0.7));
 	}
 
 	/**
