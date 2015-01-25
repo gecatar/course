@@ -20,7 +20,8 @@ import com.sirma.itt.evgeni.util.ConsoleReader;
 public class View extends JFrame implements ActionListener {
 
 	private final ConectionDialog connectDialog = new ConectionDialog();
-	private JSplitPane splitPane = new JSplitPane();
+	private final JSplitPane splitPane = new JSplitPane();
+	private final Double dividerLocation = 0.3D;
 
 	public View(UserList userList, ConversationPanel panel) {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -38,7 +39,7 @@ public class View extends JFrame implements ActionListener {
 		splitPane.setDividerSize(3);
 		add(splitPane);
 		setVisible(true);
-		splitPane.setDividerLocation(0.3d);
+		splitPane.setDividerLocation(dividerLocation);
 	}
 
 	public static void main(String[] args) {

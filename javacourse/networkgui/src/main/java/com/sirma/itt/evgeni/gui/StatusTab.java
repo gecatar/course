@@ -31,6 +31,7 @@ public class StatusTab extends JSplitPane implements ActionListener,
 	private final JTextField textField;
 	private final MessageLogger messageLogger;
 	private final DateFormat dateFormat;
+	private final Double dividerLocation = 0.85D;
 
 	/**
 	 * Create new conversation.
@@ -49,7 +50,6 @@ public class StatusTab extends JSplitPane implements ActionListener,
 		messageLogger = new MessageLogger();
 		setTopComponent(scrollPane);
 		setBottomComponent(textField);
-		setDividerLocation((int) (300 * 0.7));
 	}
 
 	/**
@@ -105,7 +105,7 @@ public class StatusTab extends JSplitPane implements ActionListener,
 	
 	@Override
 	public void paint(Graphics arg0) {
-		setDividerLocation(0.8D);
+		setDividerLocation(dividerLocation);
 		super.paint(arg0);
 	}
 
