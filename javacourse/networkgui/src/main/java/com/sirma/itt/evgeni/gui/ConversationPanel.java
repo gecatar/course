@@ -25,43 +25,31 @@ public class ConversationPanel extends JTabbedPane {
 	private static final Icon newMessageIcon = new ImageIcon(
 			ConversationPanel.class.getResource("/mail-icon.png"));
 	private final Map<String, Conversation> conversations = new HashMap<String, Conversation>();
+	private final MessageNotifyer messageNotifyer = new MessageNotifyer("", "");
 
 	public ConversationPanel() {
-		addTab("Status", new StatusTab(getHeight()));
+		addTab("Status", new StatusTab());
 	}
 
 	public void updateUserStatus(String name, boolean conected) {
 		if (conversations.containsKey(name)) {
 			Conversation conversation = conversations.get(name);
 			conversation.setConected(conected);
-			// if(messageNotifier).....ConversationPanel.
-			setStatus(conversation, conected);
-		}
-	}
-
-	public void setStatus(Conversation conversation, boolean conected) {
-		if (conected) {
-			setIconAt(indexOfComponent(conversation), userOnlineIcon);
-		} else {
-			setIconAt(indexOfComponent(conversation), userOflineIcon);
-		}
-	}
-
-	public void clearNotification(String name) {
-		if (conversations.containsKey(name)) {
-			Conversation conversation = conversations.get(name);
-			setStatus(conversation, conversation.isConected());
+			if (!messageNotifyer.hasNotifications(name)) {
+				setConversationStatus(conversation, conected);
+			}
 		}
 	}
 
 	/**
-	 * Add new Conversation.
+	 * Clear notifications.
+	 * 
+	 * @param name
 	 */
-	private void addConversation(String name) {
-		if (!conversations.containsKey(name)) {
-			Conversation conversation = new Conversation(name);
-			conversations.put(name, conversation);
-			addTab(name, conversation);
+	public void clearNotification(String name) {
+		if (conversations.containsKey(name)) {
+			Conversation conversation = conversations.get(name);
+			setConversationStatus(conversation, conversation.isConected());
 		}
 	}
 
@@ -106,5 +94,31 @@ public class ConversationPanel extends JTabbedPane {
 	public void closeAllConversation() {
 		conversations.clear();
 		removeAll();
+	}
+
+	/**
+	 * Set status.
+	 * 
+	 * @param conversation
+	 * @param conected
+	 */
+	private void setConversationStatus(Conversation conversation,
+			boolean conected) {
+		if (conected) {
+			setIconAt(indexOfComponent(conversation), userOnlineIcon);
+		} else {
+			setIconAt(indexOfComponent(conversation), userOflineIcon);
+		}
+	}
+
+	/**
+	 * Add new Conversation.
+	 */
+	private void addConversation(String name) {
+		if (!conversations.containsKey(name)) {
+			Conversation conversation = new Conversation(name);
+			conversations.put(name, conversation);
+			addTab(name, conversation);
+		}
 	}
 }

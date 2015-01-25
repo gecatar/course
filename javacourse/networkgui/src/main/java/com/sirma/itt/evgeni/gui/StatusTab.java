@@ -36,7 +36,7 @@ public class StatusTab extends JSplitPane implements ActionListener,
 	/**
 	 * Create new conversation.
 	 */
-	public StatusTab(int height) {
+	public StatusTab() {
 		setOrientation(VERTICAL_SPLIT);
 		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		textArea = new JTextArea();
@@ -102,13 +102,12 @@ public class StatusTab extends JSplitPane implements ActionListener,
 			}
 		}
 	}
-	
+
 	@Override
 	public void paint(Graphics arg0) {
 		setDividerLocation(dividerLocation);
 		super.paint(arg0);
 	}
-
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
