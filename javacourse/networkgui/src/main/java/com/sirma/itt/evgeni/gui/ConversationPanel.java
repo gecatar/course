@@ -30,6 +30,18 @@ public class ConversationPanel extends JTabbedPane {
 		addTab("Status", new StatusTab(getHeight()));
 	}
 
+	public void updateUserStatus(String name, boolean conected) {
+		if (conversations.containsKey(name)) {
+			Conversation conversation = conversations.get(name);
+			conversation.setConected(conected);
+			if (conected) {
+				// setIconAt(indexOfComponent(conversation), userOnlineIcon);
+			} else {
+				// setIconAt(indexOfComponent(conversation), userOflineIcon);
+			}
+		}
+	}
+
 	/**
 	 * Add new Conversation.
 	 */
@@ -37,7 +49,7 @@ public class ConversationPanel extends JTabbedPane {
 		if (!conversations.containsKey(name)) {
 			Conversation conversation = new Conversation(name);
 			conversations.put(name, conversation);
-			addTab(name, userOnlineIcon, conversation);
+			addTab(name, conversation);
 		}
 	}
 

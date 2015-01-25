@@ -33,6 +33,7 @@ public class Conversation extends JSplitPane implements ActionListener,
 	private final JTextArea textArea = new JTextArea();
 	private final JTextField textField = new JTextField();
 	private final Double dividerLocation = 0.85D;
+	private boolean conected = false;
 
 	/**
 	 * Create new conversation.
@@ -50,6 +51,10 @@ public class Conversation extends JSplitPane implements ActionListener,
 		textArea.setEditable(false);
 		setTopComponent(scrollTextArea);
 		setBottomComponent(textField);
+	}
+
+	public void setConected(boolean conected) {
+		this.conected = conected;
 	}
 
 	/**
@@ -87,9 +92,11 @@ public class Conversation extends JSplitPane implements ActionListener,
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		messageLogger.logMessage(textField.getText());
-		writeMesage("You", textField.getText());
-		textField.setText("");
+		if (conected) {
+			messageLogger.logMessage(textField.getText());
+			writeMesage("You", textField.getText());
+			textField.setText("");
+		}
 	}
 
 	/**

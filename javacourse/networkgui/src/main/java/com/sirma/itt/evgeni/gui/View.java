@@ -57,6 +57,7 @@ public class View extends JFrame implements ActionListener {
 			System.out.println("3)Add conversation:");
 			System.out.println("4)Close active conversation:");
 			System.out.println("5)Show message:");
+			System.out.println("6)Change status:");
 			choise = ConsoleReader.readInt();
 			if (choise == 1) {
 				System.out.println("Enter name:");
@@ -80,6 +81,16 @@ public class View extends JFrame implements ActionListener {
 				System.out.println("Enter text:");
 				String text = ConsoleReader.readString();
 				conversationPanel.showMessage(name, text);
+			}
+			if (choise == 6) {
+				System.out.println("Enter name:");
+				String name = ConsoleReader.readString();
+				choise = ConsoleReader.readInt();
+				if (choise == 1) {
+					conversationPanel.updateUserStatus(name, true);
+				} else {
+					conversationPanel.updateUserStatus(name, false);
+				}
 			}
 		}
 	}
