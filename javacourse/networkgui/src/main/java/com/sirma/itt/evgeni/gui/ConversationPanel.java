@@ -16,8 +16,10 @@ import javax.swing.JTabbedPane;
  */
 public class ConversationPanel extends JTabbedPane {
 
-	private static final Icon checkedIcon = new ImageIcon(
+	private static final Icon checkedMessageIcon = new ImageIcon(
 			ConversationPanel.class.getResource("/mail-check-icon.png"));
+	private static final Icon newMessageIcon = new ImageIcon(
+			ConversationPanel.class.getResource("/mail-icon.png"));
 	private final Map<String, Conversation> conversations = new HashMap<String, Conversation>();
 
 	public ConversationPanel() {
@@ -31,7 +33,7 @@ public class ConversationPanel extends JTabbedPane {
 		if (!conversations.containsKey(name)) {
 			Conversation conversation = new Conversation(name);
 			conversations.put(name, conversation);
-			addTab(name, checkedIcon, conversation);
+			addTab(name, checkedMessageIcon, conversation);
 		}
 	}
 
@@ -53,6 +55,7 @@ public class ConversationPanel extends JTabbedPane {
 	public void showMessage(String name, String message) {
 		if (conversations.containsKey(name)) {
 			conversations.get(name).writeMesage(name, message);
+			setIconAt(indexOfComponent(conversations.get(name)), newMessageIcon);
 			showConversation(name);
 		} else {
 			addConversation(name);
