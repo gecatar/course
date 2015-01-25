@@ -128,6 +128,13 @@ public class ConversationPanel extends JTabbedPane implements ActionListener,
 	}
 
 	@Override
+	public void mouseEntered(MouseEvent mouseEvent) {
+		Component component = (Component) mouseEvent.getSource();
+		messageNotifyer.removeNotification(component.getName());
+		clearNotification(component.getName());
+	}
+
+	@Override
 	public void actionPerformed(ActionEvent arg0) {
 
 	}
@@ -135,12 +142,6 @@ public class ConversationPanel extends JTabbedPane implements ActionListener,
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent mouseEvent) {
-		Component component = (Component) mouseEvent.getSource();
-		messageNotifyer.removeNotification(component.getName());
 	}
 
 	@Override
