@@ -28,6 +28,7 @@ public class View extends JFrame implements ActionListener {
 		JMenuItem connectItem = new JMenuItem("Connect");
 		JMenuItem closeActiveItem = new JMenuItem("Connect");
 		JMenuItem closeAllItem = new JMenuItem("Connect");
+		closeActiveItem.setText("hewfjwehfk");
 		connectItem.addActionListener(this);
 		closeActiveItem.addActionListener(this);
 		closeAllItem.addActionListener(this);
