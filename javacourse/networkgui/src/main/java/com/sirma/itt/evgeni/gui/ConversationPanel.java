@@ -1,6 +1,10 @@
 package com.sirma.itt.evgeni.gui;
 
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,7 +18,8 @@ import javax.swing.JTabbedPane;
  * @author Evgeni Stefanov
  * 
  */
-public class ConversationPanel extends JTabbedPane {
+public class ConversationPanel extends JTabbedPane implements ActionListener,
+		MouseListener {
 
 	private static final Icon userOnlineIcon = new ImageIcon(
 			ConversationPanel.class.getResource("/user-green-icon.png"));
@@ -116,9 +121,40 @@ public class ConversationPanel extends JTabbedPane {
 	 */
 	private void addConversation(String name) {
 		if (!conversations.containsKey(name)) {
-			Conversation conversation = new Conversation(name, messageNotifyer);
+			Conversation conversation = new Conversation(name, this);
 			conversations.put(name, conversation);
 			addTab(name, conversation);
 		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent mouseEvent) {
+		Component component = (Component) mouseEvent.getSource();
+		messageNotifyer.removeNotification(component.getName());
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+
 	}
 }
