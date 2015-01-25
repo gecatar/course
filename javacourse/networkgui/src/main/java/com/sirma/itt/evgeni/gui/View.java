@@ -28,10 +28,18 @@ public class View extends JFrame implements ActionListener {
 		setSize(new Dimension(600, 300));
 		JMenuBar menuBar = new JMenuBar();
 		JMenu fileMenu = new JMenu("File");
+		JMenu conversationMenu = new JMenu("Conversation");
 		JMenuItem connectItem = new JMenuItem("Connect");
+		JMenuItem closeActiveItem = new JMenuItem("Connect");
+		JMenuItem closeAllItem = new JMenuItem("Connect");
 		connectItem.addActionListener(this);
+		closeActiveItem.addActionListener(this);
+		closeAllItem.addActionListener(this);
 		fileMenu.add(connectItem);
+		conversationMenu.add(closeActiveItem);
+		conversationMenu.add(closeAllItem);
 		menuBar.add(fileMenu);
+		menuBar.add(conversationMenu);
 		setJMenuBar(menuBar);
 
 		splitPane.setLeftComponent(userList);
@@ -65,7 +73,7 @@ public class View extends JFrame implements ActionListener {
 			if (choise == 3) {
 				System.out.println("Enter name:");
 				conversationPanel
-						.selectConversation(ConsoleReader.readString());
+						.showConversation(ConsoleReader.readString());
 			}
 			if (choise == 4) {
 				System.out.println("Enter name:");

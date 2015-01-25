@@ -34,12 +34,12 @@ public class ConversationPanel extends JTabbedPane {
 	/**
 	 * Select conversation.
 	 */
-	public void selectConversation(String name) {
+	public void showConversation(String name) {
 		if (!conversations.containsKey(name)) {
 			addConversation(name);
-			selectConversation(name);
+			showConversation(name);
 		} else {
-			setSelectedIndex(indexOfTab(name));
+			setSelectedComponent(conversations.get(name));
 		}
 	}
 
@@ -49,7 +49,7 @@ public class ConversationPanel extends JTabbedPane {
 	public void showMessage(String name, String message) {
 		if (conversations.containsKey(name)) {
 			conversations.get(name).writeMesage(name, message);
-			selectConversation(name);
+			showConversation(name);
 		} else {
 			addConversation(name);
 			showMessage(name, message);
