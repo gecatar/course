@@ -26,7 +26,8 @@ import com.sirma.itt.evgeni.comunication.MessageLogger;
 public class Conversation extends JSplitPane implements ActionListener,
 		KeyListener, MouseListener {
 
-	private static final DateFormat dateFormat  = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	private static final DateFormat dateFormat = new SimpleDateFormat(
+			"yyyy/MM/dd HH:mm:ss");
 	private static final String newLine = System.getProperty("line.separator");
 	private final MessageLogger messageLogger = new MessageLogger();
 	private final JTextArea textArea = new JTextArea();
@@ -77,6 +78,10 @@ public class Conversation extends JSplitPane implements ActionListener,
 		textArea.setText(textArea.getText() + createMessage(name, text));
 	}
 
+	public void showViewedMessage() {
+
+	}
+
 	/**
 	 * Detect when user send new message.
 	 */
@@ -101,7 +106,7 @@ public class Conversation extends JSplitPane implements ActionListener,
 			}
 		}
 	}
-	
+
 	@Override
 	public void paint(Graphics g) {
 		setDividerLocation(dividerLocation);

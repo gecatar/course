@@ -1,14 +1,10 @@
 package com.sirma.itt.evgeni.gui;
 
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -71,8 +67,7 @@ public class View extends JFrame implements ActionListener {
 			}
 			if (choise == 3) {
 				System.out.println("Enter name:");
-				conversationPanel
-						.showConversation(ConsoleReader.readString());
+				conversationPanel.showConversation(ConsoleReader.readString());
 			}
 			if (choise == 4) {
 				System.out.println("Enter name:");
