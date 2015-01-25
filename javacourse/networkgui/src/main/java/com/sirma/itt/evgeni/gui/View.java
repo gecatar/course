@@ -85,7 +85,6 @@ public class View extends JFrame implements ActionListener {
 	@Override
 	public void paint(Graphics arg0) {
 		splitPane.setDividerLocation(0.2D);
-		
 		super.paint(arg0);
 	}
 

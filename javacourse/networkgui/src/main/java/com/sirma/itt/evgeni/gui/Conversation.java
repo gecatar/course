@@ -31,7 +31,7 @@ public class Conversation extends JSplitPane implements ActionListener,
 	private final MessageLogger messageLogger = new MessageLogger();
 	private final JTextArea textArea = new JTextArea();
 	private final JTextField textField = new JTextField();
-	private final Double dividerLocation = 0.9D;
+	private final Double dividerLocation = 0.85D;
 
 	/**
 	 * Create new conversation.

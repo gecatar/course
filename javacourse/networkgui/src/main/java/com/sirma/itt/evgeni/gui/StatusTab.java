@@ -31,7 +31,7 @@ public class StatusTab extends JSplitPane implements ActionListener,
 	private final JTextField textField;
 	private final MessageLogger messageLogger;
 	private final DateFormat dateFormat;
-	private final Double dividerLocation = 0.9D;
+	private final Double dividerLocation = 0.85D;
 
 	/**
 	 * Create new conversation.
