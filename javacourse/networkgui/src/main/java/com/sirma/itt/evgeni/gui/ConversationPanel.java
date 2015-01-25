@@ -16,6 +16,10 @@ import javax.swing.JTabbedPane;
  */
 public class ConversationPanel extends JTabbedPane {
 
+	private static final Icon userOnlineIcon = new ImageIcon(
+			ConversationPanel.class.getResource("/user-green-icon.png"));
+	private static final Icon userOflineIcon = new ImageIcon(
+			ConversationPanel.class.getResource("/user-red-icon.png"));
 	private static final Icon checkedMessageIcon = new ImageIcon(
 			ConversationPanel.class.getResource("/mail-check-icon.png"));
 	private static final Icon newMessageIcon = new ImageIcon(
@@ -33,7 +37,7 @@ public class ConversationPanel extends JTabbedPane {
 		if (!conversations.containsKey(name)) {
 			Conversation conversation = new Conversation(name);
 			conversations.put(name, conversation);
-			addTab(name, checkedMessageIcon, conversation);
+			addTab(name, userOnlineIcon, conversation);
 		}
 	}
 
