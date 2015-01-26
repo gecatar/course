@@ -192,7 +192,7 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 				} else {
 				}
 			}
-			if (choise == 6) {
+			if (choise == 7) {
 				System.out.println("Enter name:");
 				String name = ConsoleReader.readString();
 				view.showMessageReadedNotification(name);
