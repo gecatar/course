@@ -102,6 +102,9 @@ public class View extends JFrame implements ComunicatorListener,
 	public void showConversation(String name) {
 		if (!conversations.containsKey(name)) {
 			addConversation(name);
+			showConversation(name);
+		} else {
+			conversationPanel.setSelectedComponent(conversations.get(name));
 		}
 	}
 
@@ -110,9 +113,11 @@ public class View extends JFrame implements ComunicatorListener,
 	 * 
 	 * @param name
 	 */
-	private void clearNotification(String name) {
+	public void clearNotification(String name) {
 		if (conversations.containsKey(name)) {
 			Conversation conversation = conversations.get(name);
+			messageNotifyer.removeNotification(name);
+			conversationPanel.showConectionStatusIcon(conversation);
 		}
 	}
 
@@ -124,6 +129,7 @@ public class View extends JFrame implements ComunicatorListener,
 			Conversation conversation = new Conversation(name, this);
 			conversations.put(name, conversation);
 			conversationPanel.addTab(name, conversation);
+			conversationPanel.showConectionStatusIcon(conversation);
 		}
 	}
 
@@ -148,11 +154,11 @@ public class View extends JFrame implements ComunicatorListener,
 			choise = ConsoleReader.readInt();
 			if (choise == 1) {
 				System.out.println("Enter name:");
-				userList.addUser(ConsoleReader.readString());
+				view.addUser(ConsoleReader.readString());
 			}
 			if (choise == 2) {
 				System.out.println("Enter name:");
-				userList.removeUser(ConsoleReader.readString());
+				view.removeUser(ConsoleReader.readString());
 			}
 			if (choise == 3) {
 				System.out.println("Enter name:");
@@ -193,12 +199,14 @@ public class View extends JFrame implements ComunicatorListener,
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
+	public void mouseClicked(MouseEvent mouseEvent) {
+		if (mouseEvent.getSource() == userList) {
 
+		}
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent arg0) {
+	public void mouseEntered(MouseEvent mouseEvent) {
 
 	}
 

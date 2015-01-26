@@ -36,15 +36,15 @@ public class ConversationPanel extends JTabbedPane {
 	}
 
 	public void showOnlineIcon(Conversation conversation) {
-		setIconAt(indexOfTabComponent(conversation), userOnlineIcon);
+		setIconAt(indexOfComponent(conversation), userOnlineIcon);
 	}
 
 	public void showOfflineIcon(Conversation conversation) {
-		setIconAt(indexOfTabComponent(conversation), userOflineIcon);
+		setIconAt(indexOfComponent(conversation), userOflineIcon);
 	}
 
 	public void showCheckedMessageIcon(Conversation conversation) {
-		setIconAt(indexOfTabComponent(conversation), checkedMessageIcon);
+		setIconAt(indexOfComponent(conversation), checkedMessageIcon);
 	}
 
 	public void showNewMessageIcon(Conversation conversation) {

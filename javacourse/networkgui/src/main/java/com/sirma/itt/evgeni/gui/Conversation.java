@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -22,12 +24,13 @@ import com.sirma.itt.evgeni.comunication.MessageLogger;
  * 
  */
 public class Conversation extends JSplitPane implements ActionListener,
-		KeyListener {
+		KeyListener, MouseListener {
 
 	private static final DateFormat dateFormat = new SimpleDateFormat(
 			"yyyy/MM/dd HH:mm:ss");
 	private static final String newLine = System.getProperty("line.separator");
 	private final MessageLogger messageLogger = new MessageLogger();
+	private final View view;
 	private final JTextArea textArea = new JTextArea();
 	private final JTextField textField = new JTextField();
 	private final Double dividerLocation = 0.85D;
@@ -39,6 +42,7 @@ public class Conversation extends JSplitPane implements ActionListener,
 	public Conversation(String name, View view) {
 		setName(name);
 		setOrientation(VERTICAL_SPLIT);
+		this.view = view;
 		textArea.setName(name);
 		textArea.setEditable(false);
 		textArea.addMouseListener(view);
@@ -46,8 +50,8 @@ public class Conversation extends JSplitPane implements ActionListener,
 		textField.setName(name);
 		textField.addActionListener(this);
 		textField.addKeyListener(this);
-		textField.addActionListener(view);
-		textField.addMouseListener(view);
+		textField.addActionListener(this);
+		textField.addMouseListener(this);
 		setTopComponent(scrollTextArea);
 		setBottomComponent(textField);
 	}
@@ -126,6 +130,31 @@ public class Conversation extends JSplitPane implements ActionListener,
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
+
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		view.clearNotification(getName());
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
 
 	}
 }
