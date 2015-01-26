@@ -87,8 +87,9 @@ public class View extends JFrame implements ComunicatorListener,
 	@Override
 	public void showMesage(String name, String message) {
 		if (conversations.containsKey(name)) {
-			conversations.get(name).writeMesage(name, message);
-			showConversation(name);
+			Conversation conversation = conversations.get(name);
+			conversation.writeMesage(name, message);
+			conversationPanel.showNewMessageIcon(conversation);
 		} else {
 			addConversation(name);
 			showMesage(name, message);
@@ -101,9 +102,6 @@ public class View extends JFrame implements ComunicatorListener,
 	public void showConversation(String name) {
 		if (!conversations.containsKey(name)) {
 			addConversation(name);
-			showConversation(name);
-		} else {
-			conversationPanel.setSelectedComponent(conversations.get(name));
 		}
 	}
 

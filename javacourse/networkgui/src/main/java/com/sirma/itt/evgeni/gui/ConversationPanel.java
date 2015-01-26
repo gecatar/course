@@ -27,24 +27,28 @@ public class ConversationPanel extends JTabbedPane {
 		addTab("Status", new StatusTab());
 	}
 
-	public void showConectionStatusIcon() {
-
+	public void showConectionStatusIcon(Conversation conversation) {
+		if (conversation.isConected()) {
+			showOnlineIcon(conversation);
+		} else {
+			showOfflineIcon(conversation);
+		}
 	}
 
 	public void showOnlineIcon(Conversation conversation) {
-
+		setIconAt(indexOfTabComponent(conversation), userOnlineIcon);
 	}
 
 	public void showOfflineIcon(Conversation conversation) {
-
+		setIconAt(indexOfTabComponent(conversation), userOflineIcon);
 	}
 
 	public void showCheckedMessageIcon(Conversation conversation) {
-
+		setIconAt(indexOfTabComponent(conversation), checkedMessageIcon);
 	}
 
 	public void showNewMessageIcon(Conversation conversation) {
-
+		setIconAt(indexOfComponent(conversation), newMessageIcon);
 	}
 
 	/**
