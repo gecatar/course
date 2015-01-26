@@ -142,9 +142,7 @@ public class View extends JFrame implements ActionListener, MouseListener {
 				String name = ConsoleReader.readString();
 				choise = ConsoleReader.readInt();
 				if (choise == 1) {
-					conversationPanel.updateUserStatus(name, true);
 				} else {
-					conversationPanel.updateUserStatus(name, false);
 				}
 			}
 		}
