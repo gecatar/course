@@ -47,44 +47,6 @@ public class ConversationPanel extends JTabbedPane implements ActionListener,
 	}
 
 	/**
-	 * Clear notifications.
-	 * 
-	 * @param name
-	 */
-	public void clearNotification(String name) {
-		if (conversations.containsKey(name)) {
-			Conversation conversation = conversations.get(name);
-			setConversationStatus(conversation, conversation.isConected());
-		}
-	}
-
-	/**
-	 * Select conversation.
-	 */
-	public void showConversation(String name) {
-		if (!conversations.containsKey(name)) {
-			addConversation(name);
-			showConversation(name);
-		} else {
-			setSelectedComponent(conversations.get(name));
-		}
-	}
-
-	/**
-	 * Display message. If conversation doesn't exist first its created.
-	 */
-	public void showMessage(String name, String message) {
-		if (conversations.containsKey(name)) {
-			conversations.get(name).writeMesage(name, message);
-			setIconAt(indexOfComponent(conversations.get(name)), newMessageIcon);
-			showConversation(name);
-		} else {
-			addConversation(name);
-			showMessage(name, message);
-		}
-	}
-
-	/**
 	 * Close active conversation.
 	 */
 	public void closeActiveConversation() {
@@ -116,22 +78,10 @@ public class ConversationPanel extends JTabbedPane implements ActionListener,
 		}
 	}
 
-	/**
-	 * Add new Conversation.
-	 */
-	private void addConversation(String name) {
-		if (!conversations.containsKey(name)) {
-			Conversation conversation = new Conversation(name, this);
-			conversations.put(name, conversation);
-			addTab(name, conversation);
-		}
-	}
-
 	@Override
 	public void mouseEntered(MouseEvent mouseEvent) {
 		Component component = (Component) mouseEvent.getSource();
 		messageNotifyer.removeNotification(component.getName());
-		clearNotification(component.getName());
 	}
 
 	@Override

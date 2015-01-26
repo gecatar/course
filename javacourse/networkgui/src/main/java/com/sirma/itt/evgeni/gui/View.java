@@ -4,6 +4,10 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -13,9 +17,12 @@ import javax.swing.JSplitPane;
 
 import com.sirma.itt.evgeni.util.ConsoleReader;
 
-public class View extends JFrame implements ActionListener {
+public class View extends JFrame implements ActionListener, MouseListener {
 
+	private final Map<String, Conversation> conversations = new HashMap<String, Conversation>();
+	private final MessageNotifyer messageNotifyer = new MessageNotifyer("", "");
 	private final ConectionDialog connectDialog = new ConectionDialog();
+	private final ConversationPanel conversationPanel = new ConversationPanel();
 	private final JSplitPane splitPane = new JSplitPane();
 	private final Double dividerLocation = 0.3D;
 
@@ -46,6 +53,53 @@ public class View extends JFrame implements ActionListener {
 		splitPane.setDividerLocation(dividerLocation);
 	}
 
+	/**
+	 * Clear notifications.
+	 * 
+	 * @param name
+	 */
+	public void clearNotification(String name) {
+		if (conversations.containsKey(name)) {
+			Conversation conversation = conversations.get(name);
+		}
+	}
+
+	/**
+	 * Select conversation.
+	 */
+	public void showConversation(String name) {
+		if (!conversations.containsKey(name)) {
+			addConversation(name);
+			showConversation(name);
+		} else {
+			conversationPanel.setSelectedComponent(conversations.get(name));
+		}
+	}
+
+	/**
+	 * Display message. If conversation doesn't exist first its created.
+	 */
+	public void showMessage(String name, String message) {
+		if (conversations.containsKey(name)) {
+			conversations.get(name).writeMesage(name, message);
+			showConversation(name);
+		} else {
+			addConversation(name);
+			showMessage(name, message);
+		}
+	}
+
+	/**
+	 * Add new Conversation.
+	 */
+	private void addConversation(String name) {
+		if (!conversations.containsKey(name)) {
+			Conversation conversation = new Conversation(name, this);
+			conversations.put(name, conversation);
+			conversationPanel.addTab(name, conversation);
+		}
+	}
+
 	public static void main(String[] args) {
 		UserList userList = new UserList();
 		ConversationPanel conversationPanel = new ConversationPanel();
@@ -70,7 +124,7 @@ public class View extends JFrame implements ActionListener {
 			}
 			if (choise == 3) {
 				System.out.println("Enter name:");
-				conversationPanel.showConversation(ConsoleReader.readString());
+				view.showConversation(ConsoleReader.readString());
 			}
 			if (choise == 4) {
 				System.out.println("Enter name:");
@@ -81,7 +135,7 @@ public class View extends JFrame implements ActionListener {
 				String name = ConsoleReader.readString();
 				System.out.println("Enter text:");
 				String text = ConsoleReader.readString();
-				conversationPanel.showMessage(name, text);
+				view.showMessage(name, text);
 			}
 			if (choise == 6) {
 				System.out.println("Enter name:");
@@ -106,5 +160,30 @@ public class View extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		connectDialog.setLocationRelativeTo(this);
 		connectDialog.setVisible(true);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+
 	}
 }

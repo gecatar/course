@@ -36,18 +36,18 @@ public class Conversation extends JSplitPane implements ActionListener,
 	/**
 	 * Create new conversation.
 	 */
-	public Conversation(String name, ConversationPanel panel) {
+	public Conversation(String name, View view) {
 		setName(name);
 		setOrientation(VERTICAL_SPLIT);
 		textArea.setName(name);
 		textArea.setEditable(false);
-		textArea.addMouseListener(panel);
+		textArea.addMouseListener(view);
 		JScrollPane scrollTextArea = new JScrollPane(textArea);
 		textField.setName(name);
 		textField.addActionListener(this);
 		textField.addKeyListener(this);
-		textField.addActionListener(panel);
-		textField.addMouseListener(panel);
+		textField.addActionListener(view);
+		textField.addMouseListener(view);
 		setTopComponent(scrollTextArea);
 		setBottomComponent(textField);
 	}
