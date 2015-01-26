@@ -45,12 +45,11 @@ public class Conversation extends JSplitPane implements ActionListener,
 		this.view = view;
 		textArea.setName(name);
 		textArea.setEditable(false);
-		textArea.addMouseListener(view);
+		textArea.addMouseListener(this);
 		JScrollPane scrollTextArea = new JScrollPane(textArea);
 		textField.setName(name);
 		textField.addActionListener(this);
 		textField.addKeyListener(this);
-		textField.addActionListener(this);
 		textField.addMouseListener(this);
 		setTopComponent(scrollTextArea);
 		setBottomComponent(textField);

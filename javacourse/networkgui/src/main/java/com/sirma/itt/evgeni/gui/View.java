@@ -4,8 +4,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,8 +15,7 @@ import javax.swing.JSplitPane;
 
 import com.sirma.itt.evgeni.util.ConsoleReader;
 
-public class View extends JFrame implements ComunicatorListener,
-		ActionListener, MouseListener {
+public class View extends JFrame implements ComunicatorListener, ActionListener {
 
 	private final Map<String, Conversation> conversations = new HashMap<String, Conversation>();
 	private final MessageNotifyer messageNotifyer = new MessageNotifyer("", "");
@@ -196,32 +193,5 @@ public class View extends JFrame implements ComunicatorListener,
 	public void actionPerformed(ActionEvent e) {
 		connectDialog.setLocationRelativeTo(this);
 		connectDialog.setVisible(true);
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent mouseEvent) {
-		if (mouseEvent.getSource() == userList) {
-
-		}
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent mouseEvent) {
-
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-
-	}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {
-
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-
 	}
 }
