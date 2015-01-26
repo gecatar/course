@@ -135,6 +135,9 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 	private void addConversation(String name) {
 		if (!conversations.containsKey(name)) {
 			Conversation conversation = new Conversation(name, this);
+			if (userList.contains(name)) {
+				conversation.setConected(true);
+			}
 			conversations.put(name, conversation);
 			conversationPanel.addTab(name, conversation);
 			conversationPanel.showConectionStatusIcon(conversation);

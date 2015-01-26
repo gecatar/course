@@ -24,6 +24,10 @@ public class UserList extends JList<String> implements MouseListener {
 		setBorder(title);
 	}
 
+	public boolean contains(String name) {
+		return listModel.contains(name);
+	}
+
 	/**
 	 * Add use.
 	 */
