@@ -1,5 +1,6 @@
 package com.sirma.itt.evgeni.gui;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -147,6 +148,18 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 	@Override
 	public void setConectionStatus(MesageCommand status) {
 
+	}
+
+	/**
+	 * Close active conversation.
+	 */
+	public void closeActiveConversation() {
+		Component temp = conversationPanel.getComponent(conversationPanel
+				.getSelectedIndex());
+		if (conversations.containsValue(temp)) {
+			conversations.remove(temp.getName());
+			conversationPanel.remove(temp);
+		}
 	}
 
 	public static void main(String[] args) {
