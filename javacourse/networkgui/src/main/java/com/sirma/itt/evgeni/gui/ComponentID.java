@@ -8,8 +8,9 @@ package com.sirma.itt.evgeni.gui;
  */
 public class ComponentID {
 
-	public static final String CONECT_BUTTON_ID = "BUTTON_CONECT";
-	public static final String DISCONECT_BUTTON_ID = "BUTTON_DISCONECT";
-	public static final String CLOSE_ALL_MENU_ITEM = "MENU_ITEM_CLOSE_ALL";
-	public static final String CLOSE_ACTIVE_MENU_ITEM = "MENU_ITEM_CLOSE_ACTIVE";
+	public static final String CONECT_BUTTON_ID = "CONECT_BUTTON";
+	public static final String DISCONECT_BUTTON_ID = "DISCONECT_BUTTON";
+	public static final String FILE_MENU_ID = "FILE_MENU";
+	public static final String CONVERSATION_MENU_ID = "CONVERSATION_MENU";
+	public static final String CLOSE_ACTIVE_MENU_ITEM_ID = "MENU_ITEM_CLOSE_ACTIVE";
 }

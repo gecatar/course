@@ -21,28 +21,24 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 	private final Map<String, Conversation> conversations = new HashMap<String, Conversation>();
 	private final UserList userList = new UserList(this);
 	private final ConversationPanel conversationPanel = new ConversationPanel();
-	private final MessageNotifyer messageNotifyer = new MessageNotifyer(
-			"You have", "messages");
+	private final MessageNotifyer messageNotifyer = new MessageNotifyer();
 	private final ConectionDialog connectDialog = new ConectionDialog();
 	private final JSplitPane splitPane = new JSplitPane();
+	private final String defaultLanguegeId = "BG_LANG";
 	private final Double dividerLocation = 0.3D;
 
 	public View() {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(new Dimension(600, 300));
 		JMenuBar menuBar = new JMenuBar();
-		JMenu fileMenu = new JMenu("File");
-		JMenu conversationMenu = new JMenu("Conversation");
-		JMenuItem connectItem = new JMenuItem("Connect");
-		JMenuItem closeActiveItem = new JMenuItem("Connect");
-		JMenuItem closeAllItem = new JMenuItem("Connect");
-		closeActiveItem.setText("hewfjwehfk");
+		JMenu fileMenu = new JMenu();
+		JMenu conversationMenu = new JMenu();
+		JMenuItem connectItem = new JMenuItem();
+		JMenuItem closeActiveItem = new JMenuItem();
 		connectItem.addActionListener(this);
 		closeActiveItem.addActionListener(this);
-		closeAllItem.addActionListener(this);
 		fileMenu.add(connectItem);
 		conversationMenu.add(closeActiveItem);
-		conversationMenu.add(closeAllItem);
 		menuBar.add(fileMenu);
 		menuBar.add(conversationMenu);
 		setJMenuBar(menuBar);
@@ -50,6 +46,7 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		splitPane.setRightComponent(conversationPanel);
 		splitPane.setDividerSize(3);
 		add(splitPane);
+		setComponentsText(defaultLanguegeId);
 		setVisible(true);
 		splitPane.setDividerLocation(dividerLocation);
 	}
@@ -178,6 +175,10 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		}
 		connectDialog.setLocationRelativeTo(this);
 		connectDialog.setVisible(true);
+	}
+
+	private void setComponentsText(String languegeID) {
+
 	}
 
 	public static void main(String[] args) {

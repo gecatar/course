@@ -11,13 +11,8 @@ import java.util.ArrayList;
 public class MessageNotifyer {
 
 	private final ArrayList<String> notificationList = new ArrayList<String>();
-	private final String youHaveMessage;
-	private final String messageMessage;
-
-	public MessageNotifyer(String youHaveMessage, String messageMessage) {
-		this.youHaveMessage = youHaveMessage;
-		this.messageMessage = messageMessage;
-	}
+	private String youHaveMessage;
+	private String messageMessage;
 
 	public boolean hasNotifications(String name) {
 		return notificationList.contains(name);
