@@ -71,7 +71,7 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		userList.removeUser(name);
 		if (conversations.containsKey(name)) {
 			Conversation conversation = conversations.get(name);
-			conversation.setConected(true);
+			conversation.setConected(false);
 			if (!messageNotifyer.hasNotifications(name)) {
 				conversationPanel.showOfflineIcon(conversation);
 			}
@@ -90,6 +90,17 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		} else {
 			addConversation(name);
 			showMesage(name, message);
+		}
+	}
+
+	/**
+	 * Notify user that his message is seen.
+	 * 
+	 * @param name
+	 */
+	public void showMessageReadedNotification(String name) {
+		if (conversations.containsKey(name)) {
+			conversationPanel.showCheckedMessageIcon(conversations.get(name));
 		}
 	}
 
@@ -148,6 +159,7 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 			System.out.println("4)Close active conversation:");
 			System.out.println("5)Show message:");
 			System.out.println("6)Change status:");
+			System.out.println("7)Show seen notification:");
 			choise = ConsoleReader.readInt();
 			if (choise == 1) {
 				System.out.println("Enter name:");
@@ -179,6 +191,11 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 				if (choise == 1) {
 				} else {
 				}
+			}
+			if (choise == 6) {
+				System.out.println("Enter name:");
+				String name = ConsoleReader.readString();
+				view.showMessageReadedNotification(name);
 			}
 		}
 	}
