@@ -22,13 +22,14 @@ public class View extends JFrame implements ActionListener, MouseListener {
 	private final Map<String, Conversation> conversations = new HashMap<String, Conversation>();
 	private final MessageNotifyer messageNotifyer = new MessageNotifyer("", "");
 	private final ConectionDialog connectDialog = new ConectionDialog();
-	private final ConversationPanel conversationPanel = new ConversationPanel();
+	private final ConversationPanel conversationPanel;
 	private final JSplitPane splitPane = new JSplitPane();
 	private final Double dividerLocation = 0.3D;
 
 	public View(UserList userList, ConversationPanel panel) {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(new Dimension(600, 300));
+		conversationPanel = panel;
 		JMenuBar menuBar = new JMenuBar();
 		JMenu fileMenu = new JMenu("File");
 		JMenu conversationMenu = new JMenu("Conversation");
