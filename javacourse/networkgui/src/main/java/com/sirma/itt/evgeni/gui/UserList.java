@@ -16,9 +16,11 @@ import javax.swing.border.TitledBorder;
 public class UserList extends JList<String> implements MouseListener {
 
 	private final DefaultListModel<String> listModel = new DefaultListModel<String>();
+	private final View view;
 
-	public UserList() {
+	public UserList(View view) {
 		setModel(listModel);
+		this.view = view;
 		addMouseListener(this);
 		TitledBorder title = new TitledBorder("Users");
 		setBorder(title);
@@ -59,6 +61,7 @@ public class UserList extends JList<String> implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getClickCount() == 2) {
+			view.showConversation(getSelectedValue());
 		}
 	}
 

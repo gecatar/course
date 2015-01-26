@@ -19,19 +19,17 @@ import com.sirma.itt.evgeni.util.ConsoleReader;
 public class View extends JFrame implements ComunicatorListener, ActionListener {
 
 	private final Map<String, Conversation> conversations = new HashMap<String, Conversation>();
+	private final UserList userList = new UserList(this);
+	private final ConversationPanel conversationPanel = new ConversationPanel();
 	private final MessageNotifyer messageNotifyer = new MessageNotifyer(
 			"You have", "messages");
 	private final ConectionDialog connectDialog = new ConectionDialog();
-	private final ConversationPanel conversationPanel;
-	private final UserList userList;
 	private final JSplitPane splitPane = new JSplitPane();
 	private final Double dividerLocation = 0.3D;
 
-	public View(UserList userList, ConversationPanel panel) {
+	public View() {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(new Dimension(600, 300));
-		conversationPanel = panel;
-		this.userList = userList;
 		JMenuBar menuBar = new JMenuBar();
 		JMenu fileMenu = new JMenu("File");
 		JMenu conversationMenu = new JMenu("Conversation");
@@ -49,7 +47,7 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		menuBar.add(conversationMenu);
 		setJMenuBar(menuBar);
 		splitPane.setLeftComponent(userList);
-		splitPane.setRightComponent(panel);
+		splitPane.setRightComponent(conversationPanel);
 		splitPane.setDividerSize(3);
 		add(splitPane);
 		setVisible(true);
@@ -183,9 +181,7 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 	}
 
 	public static void main(String[] args) {
-		UserList userList = new UserList();
-		ConversationPanel conversationPanel = new ConversationPanel();
-		View view = new View(userList, conversationPanel);
+		View view = new View();
 		int choise = 0;
 		while (choise != 9) {
 			System.out.println("Enter choise:");
