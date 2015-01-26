@@ -90,6 +90,7 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 			conversation.writeMesage(name, message);
 			conversationPanel.showNewMessageIcon(conversation);
 			messageNotifyer.addNotification(name);
+			setTitle(messageNotifyer.getNotificationText());
 		} else {
 			addConversation(name);
 			showMesage(name, message);
@@ -127,8 +128,9 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 	public void clearNotification(String name) {
 		if (conversations.containsKey(name)) {
 			Conversation conversation = conversations.get(name);
-			messageNotifyer.removeNotification(name);
 			conversationPanel.showConectionStatusIcon(conversation);
+			messageNotifyer.removeNotification(name);
+			setTitle(messageNotifyer.getNotificationText());
 		}
 	}
 
