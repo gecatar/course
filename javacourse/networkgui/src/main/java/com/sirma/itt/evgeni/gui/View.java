@@ -24,6 +24,7 @@ public class View extends JFrame implements ComunicatorListener,
 	private final MessageNotifyer messageNotifyer = new MessageNotifyer("", "");
 	private final ConectionDialog connectDialog = new ConectionDialog();
 	private final ConversationPanel conversationPanel;
+	private final UserList userList;
 	private final JSplitPane splitPane = new JSplitPane();
 	private final Double dividerLocation = 0.3D;
 
@@ -31,6 +32,7 @@ public class View extends JFrame implements ComunicatorListener,
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(new Dimension(600, 300));
 		conversationPanel = panel;
+		this.userList = userList;
 		JMenuBar menuBar = new JMenuBar();
 		JMenu fileMenu = new JMenu("File");
 		JMenu conversationMenu = new JMenu("Conversation");
@@ -55,27 +57,15 @@ public class View extends JFrame implements ComunicatorListener,
 		splitPane.setDividerLocation(dividerLocation);
 	}
 
-	/**
-	 * Clear notifications.
-	 * 
-	 * @param name
-	 */
-	public void clearNotification(String name) {
-		if (conversations.containsKey(name)) {
-			Conversation conversation = conversations.get(name);
-		}
+	@Override
+	public void addUser(String name) {
+		userList.addUser(name);
+
 	}
 
-	/**
-	 * Select conversation.
-	 */
-	public void showConversation(String name) {
-		if (!conversations.containsKey(name)) {
-			addConversation(name);
-			showConversation(name);
-		} else {
-			conversationPanel.setSelectedComponent(conversations.get(name));
-		}
+	@Override
+	public void removeUser(String name) {
+
 	}
 
 	/**
@@ -93,6 +83,29 @@ public class View extends JFrame implements ComunicatorListener,
 	}
 
 	/**
+	 * Select conversation.
+	 */
+	public void showConversation(String name) {
+		if (!conversations.containsKey(name)) {
+			addConversation(name);
+			showConversation(name);
+		} else {
+			conversationPanel.setSelectedComponent(conversations.get(name));
+		}
+	}
+
+	/**
+	 * Clear notifications.
+	 * 
+	 * @param name
+	 */
+	private void clearNotification(String name) {
+		if (conversations.containsKey(name)) {
+			Conversation conversation = conversations.get(name);
+		}
+	}
+
+	/**
 	 * Add new Conversation.
 	 */
 	private void addConversation(String name) {
@@ -105,19 +118,6 @@ public class View extends JFrame implements ComunicatorListener,
 
 	@Override
 	public void setConectionStatus(MesageCommand status) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void addUser(String name) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void removeUser(String name) {
-		// TODO Auto-generated method stub
 
 	}
 
