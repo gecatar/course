@@ -60,7 +60,13 @@ public class View extends JFrame implements ComunicatorListener,
 	@Override
 	public void addUser(String name) {
 		userList.addUser(name);
-
+		if (conversations.containsKey(name)) {
+			Conversation conversation = conversations.get(name);
+			conversation.setConected(true);
+			if (!messageNotifyer.hasNotifications(name)) {
+				conversationPanel.setOnlineIcon(conversation);
+			}
+		}
 	}
 
 	@Override
