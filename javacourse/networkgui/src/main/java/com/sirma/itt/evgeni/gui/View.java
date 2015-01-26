@@ -19,7 +19,8 @@ import com.sirma.itt.evgeni.util.ConsoleReader;
 public class View extends JFrame implements ComunicatorListener, ActionListener {
 
 	private final Map<String, Conversation> conversations = new HashMap<String, Conversation>();
-	private final MessageNotifyer messageNotifyer = new MessageNotifyer("", "");
+	private final MessageNotifyer messageNotifyer = new MessageNotifyer(
+			"You have", "messages");
 	private final ConectionDialog connectDialog = new ConectionDialog();
 	private final ConversationPanel conversationPanel;
 	private final UserList userList;
@@ -88,6 +89,7 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 			Conversation conversation = conversations.get(name);
 			conversation.writeMesage(name, message);
 			conversationPanel.showNewMessageIcon(conversation);
+			messageNotifyer.addNotification(name);
 		} else {
 			addConversation(name);
 			showMesage(name, message);
@@ -162,6 +164,22 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		}
 	}
 
+	@Override
+	public void paint(Graphics arg0) {
+		splitPane.setDividerLocation(0.2D);
+		super.paint(arg0);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() instanceof JMenuItem) {
+			JMenuItem menuItem = (JMenuItem) e.getSource();
+
+		}
+		connectDialog.setLocationRelativeTo(this);
+		connectDialog.setVisible(true);
+	}
+
 	public static void main(String[] args) {
 		UserList userList = new UserList();
 		ConversationPanel conversationPanel = new ConversationPanel();
@@ -191,7 +209,7 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 			}
 			if (choise == 4) {
 				System.out.println("Enter name:");
-				conversationPanel.closeActiveConversation();
+				view.closeActiveConversation();
 			}
 			if (choise == 5) {
 				System.out.println("Enter name:");
@@ -214,17 +232,5 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 				view.showMessageReadedNotification(name);
 			}
 		}
-	}
-
-	@Override
-	public void paint(Graphics arg0) {
-		splitPane.setDividerLocation(0.2D);
-		super.paint(arg0);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		connectDialog.setLocationRelativeTo(this);
-		connectDialog.setVisible(true);
 	}
 }

@@ -1,7 +1,5 @@
 package com.sirma.itt.evgeni.gui;
 
-import java.awt.Component;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
@@ -49,20 +47,5 @@ public class ConversationPanel extends JTabbedPane {
 
 	public void showNewMessageIcon(Conversation conversation) {
 		setIconAt(indexOfComponent(conversation), newMessageIcon);
-	}
-
-	/**
-	 * Close active conversation.
-	 */
-	public void closeActiveConversation() {
-		Component temp = getComponent(getSelectedIndex());
-		remove(temp);
-	}
-
-	/**
-	 * Close all conversations.
-	 */
-	public void closeAllConversation() {
-		removeAll();
 	}
 }
