@@ -17,7 +17,8 @@ import javax.swing.JSplitPane;
 
 import com.sirma.itt.evgeni.util.ConsoleReader;
 
-public class View extends JFrame implements ActionListener, MouseListener {
+public class View extends JFrame implements ComunicatorListener,
+		ActionListener, MouseListener {
 
 	private final Map<String, Conversation> conversations = new HashMap<String, Conversation>();
 	private final MessageNotifyer messageNotifyer = new MessageNotifyer("", "");
@@ -80,13 +81,14 @@ public class View extends JFrame implements ActionListener, MouseListener {
 	/**
 	 * Display message. If conversation doesn't exist first its created.
 	 */
-	public void showMessage(String name, String message) {
+	@Override
+	public void showMesage(String name, String message) {
 		if (conversations.containsKey(name)) {
 			conversations.get(name).writeMesage(name, message);
 			showConversation(name);
 		} else {
 			addConversation(name);
-			showMessage(name, message);
+			showMesage(name, message);
 		}
 	}
 
@@ -99,6 +101,24 @@ public class View extends JFrame implements ActionListener, MouseListener {
 			conversations.put(name, conversation);
 			conversationPanel.addTab(name, conversation);
 		}
+	}
+
+	@Override
+	public void setConectionStatus(MesageCommand status) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void addUser(String name) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void removeUser(String name) {
+		// TODO Auto-generated method stub
+
 	}
 
 	public static void main(String[] args) {
@@ -136,7 +156,7 @@ public class View extends JFrame implements ActionListener, MouseListener {
 				String name = ConsoleReader.readString();
 				System.out.println("Enter text:");
 				String text = ConsoleReader.readString();
-				view.showMessage(name, text);
+				view.showMesage(name, text);
 			}
 			if (choise == 6) {
 				System.out.println("Enter name:");
