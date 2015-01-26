@@ -21,10 +21,6 @@ public class ConversationPanel extends JTabbedPane {
 	private static final Icon newMessageIcon = new ImageIcon(
 			ConversationPanel.class.getResource("/mail-icon.png"));
 
-	public ConversationPanel() {
-		addTab("Status", new StatusTab());
-	}
-
 	public void showConectionStatusIcon(Conversation conversation) {
 		if (conversation.isConected()) {
 			showOnlineIcon(conversation);

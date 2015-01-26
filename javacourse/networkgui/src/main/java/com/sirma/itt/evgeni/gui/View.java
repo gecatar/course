@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -23,32 +24,37 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 	private final ConversationPanel conversationPanel = new ConversationPanel();
 	private final MessageNotifyer messageNotifyer = new MessageNotifyer();
 	private final ConectionDialog connectDialog = new ConectionDialog();
+	private final JMenuBar menuBar = new JMenuBar();
 	private final JSplitPane splitPane = new JSplitPane();
 	private final String defaultLanguegeId = "BG_LANG";
+	private final Dimension defaultViewDimension = new Dimension(600, 300);
 	private final Double dividerLocation = 0.3D;
 
 	public View() {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(new Dimension(600, 300));
-		JMenuBar menuBar = new JMenuBar();
-		JMenu fileMenu = new JMenu();
-		JMenu conversationMenu = new JMenu();
-		JMenuItem connectItem = new JMenuItem();
-		JMenuItem closeActiveItem = new JMenuItem();
-		connectItem.addActionListener(this);
-		closeActiveItem.addActionListener(this);
-		fileMenu.add(connectItem);
-		conversationMenu.add(closeActiveItem);
-		menuBar.add(fileMenu);
-		menuBar.add(conversationMenu);
-		setJMenuBar(menuBar);
+		setSize(defaultViewDimension);
 		splitPane.setLeftComponent(userList);
 		splitPane.setRightComponent(conversationPanel);
 		splitPane.setDividerSize(3);
 		add(splitPane);
-		setComponentsText(defaultLanguegeId);
 		setVisible(true);
 		splitPane.setDividerLocation(dividerLocation);
+		ResourceBundle bundle = ResourceBundle.getBundle("BG_LANG");
+		setMenuBarItems(bundle);
+	}
+
+	private void setMenuBarItems(ResourceBundle bundle) {
+		JMenu fileMenu = new JMenu();
+		JMenuItem connectItem = new JMenuItem();
+		fileMenu.add(connectItem);
+		connectItem.addActionListener(this);
+		JMenu conversationMenu = new JMenu();
+		JMenuItem closeActiveItem = new JMenuItem();
+		closeActiveItem.addActionListener(this);
+		conversationMenu.add(closeActiveItem);
+		menuBar.add(fileMenu);
+		menuBar.add(conversationMenu);
+		setJMenuBar(menuBar);
 	}
 
 	@Override
@@ -175,10 +181,6 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		}
 		connectDialog.setLocationRelativeTo(this);
 		connectDialog.setVisible(true);
-	}
-
-	private void setComponentsText(String languegeID) {
-
 	}
 
 	public static void main(String[] args) {

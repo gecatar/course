@@ -5,7 +5,6 @@ import java.awt.event.MouseListener;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
-import javax.swing.border.TitledBorder;
 
 /**
  * List whit connected users.
@@ -22,8 +21,6 @@ public class UserList extends JList<String> implements MouseListener {
 		setModel(listModel);
 		this.view = view;
 		addMouseListener(this);
-		TitledBorder title = new TitledBorder("Users");
-		setBorder(title);
 	}
 
 	public boolean contains(String name) {
