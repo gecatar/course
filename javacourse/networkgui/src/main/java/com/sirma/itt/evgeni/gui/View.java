@@ -64,14 +64,21 @@ public class View extends JFrame implements ComunicatorListener,
 			Conversation conversation = conversations.get(name);
 			conversation.setConected(true);
 			if (!messageNotifyer.hasNotifications(name)) {
-				conversationPanel.setOnlineIcon(conversation);
+				conversationPanel.showOnlineIcon(conversation);
 			}
 		}
 	}
 
 	@Override
 	public void removeUser(String name) {
-
+		userList.removeUser(name);
+		if (conversations.containsKey(name)) {
+			Conversation conversation = conversations.get(name);
+			conversation.setConected(true);
+			if (!messageNotifyer.hasNotifications(name)) {
+				conversationPanel.showOfflineIcon(conversation);
+			}
+		}
 	}
 
 	/**

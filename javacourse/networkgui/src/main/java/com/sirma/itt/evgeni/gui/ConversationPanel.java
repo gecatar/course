@@ -27,19 +27,23 @@ public class ConversationPanel extends JTabbedPane {
 		addTab("Status", new StatusTab());
 	}
 
-	public void setOnlineIcon(Conversation conversation) {
+	public void showConectionStatusIcon() {
 
 	}
 
-	public void setOfflineIcon(Conversation conversation) {
+	public void showOnlineIcon(Conversation conversation) {
 
 	}
 
-	public void setCheckedMessageIcon(Conversation conversation) {
+	public void showOfflineIcon(Conversation conversation) {
 
 	}
 
-	public void setNewMessageIcon(Conversation conversation) {
+	public void showCheckedMessageIcon(Conversation conversation) {
+
+	}
+
+	public void showNewMessageIcon(Conversation conversation) {
 
 	}
 
