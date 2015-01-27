@@ -24,6 +24,7 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 	private final ConversationPanel conversationPanel = new ConversationPanel();
 	private final MessageNotifyer messageNotifyer = new MessageNotifyer();
 	private final ConectionDialog connectDialog = new ConectionDialog();
+	private final StatusTab statusTab = new StatusTab();
 	private final JMenuBar menuBar = new JMenuBar();
 	private final JSplitPane splitPane = new JSplitPane();
 	private final String defaultLanguegeId = "BG_LANG";
@@ -58,6 +59,7 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		menuBar.add(fileMenu);
 		menuBar.add(conversationMenu);
 		setJMenuBar(menuBar);
+		conversationPanel.setLocalDetails(bundle, statusTab);
 	}
 
 	@Override
