@@ -247,6 +247,7 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 			System.out.println("5)Show message:");
 			System.out.println("6)Change status:");
 			System.out.println("7)Show seen notification:");
+			System.out.println("8)Chancge conection Status:");
 			choise = ConsoleReader.readInt();
 			if (choise == 1) {
 				System.out.println("Enter name:");
@@ -283,6 +284,22 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 				System.out.println("Enter name:");
 				String name = ConsoleReader.readString();
 				view.showMessageReadedNotification(name);
+			}
+			if (choise == 8) {
+				System.out.println("Enter status code:");
+				int chioise = ConsoleReader.readInt();
+				if (choise == 1) {
+					view.setConectionStatus(MesageCommand.COMUNICATOR_CONECTING);
+				}
+				if (choise == 2) {
+					view.setConectionStatus(MesageCommand.COMUNICATOR_DISCONECTED);
+				}
+				if (choise == 3) {
+					view.setConectionStatus(MesageCommand.USER_CONECTED);
+				}
+				if (choise == 3) {
+					view.setConectionStatus(MesageCommand.INVALID_USER_NAME);
+				}
 			}
 		}
 	}

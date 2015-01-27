@@ -81,8 +81,8 @@ public class StatusTab extends JSplitPane implements ActionListener,
 	/**
 	 * Write message to text area.
 	 */
-	public void writeMesage(String name, String text) {
-		textArea.setText(textArea.getText() + createMessage(name, text));
+	public void writeText(String text) {
+		textArea.setText(textArea.getText() + newLine + text);
 	}
 
 	/**
@@ -91,7 +91,6 @@ public class StatusTab extends JSplitPane implements ActionListener,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		messageLogger.logMessage(textField.getText());
-		writeMesage("You", textField.getText());
 		textField.setText("");
 	}
 
