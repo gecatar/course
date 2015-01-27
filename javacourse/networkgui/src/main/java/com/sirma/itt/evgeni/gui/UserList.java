@@ -2,9 +2,12 @@ package com.sirma.itt.evgeni.gui;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ResourceBundle;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 
 /**
  * List whit connected users.
@@ -16,6 +19,12 @@ public class UserList extends JList<String> implements MouseListener {
 
 	private final DefaultListModel<String> listModel = new DefaultListModel<String>();
 	private final View view;
+
+	public void setLocalDetails(ResourceBundle bundle) {
+		Border border = new TitledBorder(
+				bundle.getString(ComponentID.USER_LIST_BORDER_ID));
+		setBorder(border);
+	}
 
 	public UserList(View view) {
 		setModel(listModel);

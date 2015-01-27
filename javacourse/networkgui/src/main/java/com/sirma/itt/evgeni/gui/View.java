@@ -60,6 +60,7 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		menuBar.add(conversationMenu);
 		setJMenuBar(menuBar);
 		conversationPanel.setLocalDetails(bundle, statusTab);
+		userList.setLocalDetails(bundle);
 	}
 
 	@Override

@@ -15,4 +15,5 @@ public class ComponentID {
 	public static final String CONVERSATION_MENU_ID = "CONVERSATION_MENU";
 	public static final String CLOSE_ACTIVE_MENU_ITEM_ID = "CLOSE_ACTIVE_MENU_ITEM";
 	public static final String STATUS_TAB_ID = "STATUS_TAB";
+	public static final String USER_LIST_BORDER_ID = "USER_LIST_BORDER";
 }
