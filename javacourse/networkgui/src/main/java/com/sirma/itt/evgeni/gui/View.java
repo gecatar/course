@@ -23,13 +23,13 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 	private final UserList userList = new UserList(this);
 	private final ConversationPanel conversationPanel = new ConversationPanel();
 	private final MessageNotifyer messageNotifyer = new MessageNotifyer();
-	private final ConectionDialog connectDialog = new ConectionDialog();
 	private final StatusTab statusTab = new StatusTab();
 	private final JMenuBar menuBar = new JMenuBar();
 	private final JSplitPane splitPane = new JSplitPane();
 	private final String defaultLanguegeId = "BG_LANG";
 	private final Dimension defaultViewDimension = new Dimension(600, 300);
 	private final Double dividerLocation = 0.3D;
+	private ConectionDialog connectDialog;
 
 	public View() {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -61,6 +61,7 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		setJMenuBar(menuBar);
 		conversationPanel.setLocalDetails(bundle, statusTab);
 		userList.setLocalDetails(bundle);
+		connectDialog = new ConectionDialog(bundle);
 	}
 
 	@Override

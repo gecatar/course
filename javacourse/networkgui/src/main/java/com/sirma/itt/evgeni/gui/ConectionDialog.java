@@ -1,6 +1,5 @@
 package com.sirma.itt.evgeni.gui;
 
-
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -10,9 +9,7 @@ import java.util.ResourceBundle;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 
 /**
  * Manage user connection request.
@@ -26,15 +23,14 @@ public class ConectionDialog extends JDialog {
 	private final JTextField port = new JTextField(4);
 	private final JTextField nickname = new JTextField(10);
 	private final JLabel conectionStatus = new JLabel();
-	private final Dimension dialogDimension = new Dimension(400,300);
+	private final Dimension dialogDimension = new Dimension(400, 300);
 
 	/**
 	 * Create connection user interface.
 	 */
-	public ConectionDialog() {
+	public ConectionDialog(ResourceBundle bundle) {
 		setLayout(new GridBagLayout());
 		setSize(dialogDimension);
-		ResourceBundle bundle = ResourceBundle.getBundle("BG_LANG");
 		conectionStatus.setText(bundle.getString("user_disconected_message"));
 		ipAdress.setText("localhost");
 		port.setText("1300");
