@@ -41,10 +41,10 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		setVisible(true);
 		splitPane.setDividerLocation(dividerLocation);
 		ResourceBundle bundle = ResourceBundle.getBundle("BG_LANG");
-		setLocalDetails(bundle);
+		initialize(bundle);
 	}
 
-	private void setLocalDetails(ResourceBundle bundle) {
+	private void initialize(ResourceBundle bundle) {
 		JMenu fileMenu = new JMenu(bundle.getString(ComponentID.FILE_MENU_ID));
 		JMenuItem connectItem = new JMenuItem(
 				bundle.getString(ComponentID.CONNECT_MENU_ITEM_ID));
