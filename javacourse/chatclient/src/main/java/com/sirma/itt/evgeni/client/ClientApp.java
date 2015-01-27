@@ -9,6 +9,10 @@ public class ClientApp extends ComunicatorApp {
 		comunicator = new ClientComunicator(window);
 	}
 
+	public void sendSeenNotification(String sender) {
+
+	}
+
 	public void sendMessage(String sender, String text) {
 		comunicator.sendMessage(sender, text);
 	}
