@@ -34,6 +34,10 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 	private final JMenu conversationMenu = new JMenu();
 	private final JMenuItem closeActiveItem = new JMenuItem();
 	private final JMenu languegeMenu = new JMenu();
+	private String USER_CONECTED_MESSAGE;
+	private String USER_DISCONECTED_MESSAGE;
+	private String USERNAME_BISY_MESSAGE;
+	private String CONECTING_MESSAGE;
 	private ConectionDialog connectDialog;
 
 	public View() {
@@ -78,6 +82,10 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		closeActiveItem.setText(bundle
 				.getString(ComponentID.CLOSE_ACTIVE_MENU_ITEM_ID));
 		languegeMenu.setText(bundle.getString(ComponentID.LANGUEGE_MENU_ID));
+		USER_CONECTED_MESSAGE = bundle.getString("user_conected_message");
+		USER_DISCONECTED_MESSAGE = bundle.getString("user_disconected_message");
+		USERNAME_BISY_MESSAGE = bundle.getString("username_bisy_message");
+		CONECTING_MESSAGE = bundle.getString("comunicator_conecting_message");
 		conversationPanel.setLocalDetails(bundle, statusTab);
 		userList.setLocalDetails(bundle);
 		connectDialog = new ConectionDialog(bundle);
@@ -176,9 +184,27 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		}
 	}
 
+	/**
+	 * Change connection status.
+	 */
 	@Override
 	public void setConectionStatus(MesageCommand status) {
-
+		if (status == MesageCommand.USER_CONECTED) {
+			connectDialog.setConectionStatus(USER_CONECTED_MESSAGE);
+			statusTab.setConectionStatus(USER_CONECTED_MESSAGE);
+		}
+		if (status == MesageCommand.COMUNICATOR_CONECTING) {
+			connectDialog.setConectionStatus(CONECTING_MESSAGE);
+			statusTab.setConectionStatus(CONECTING_MESSAGE);
+		}
+		if (status == MesageCommand.COMUNICATOR_DISCONECTED) {
+			connectDialog.setConectionStatus(USER_DISCONECTED_MESSAGE);
+			statusTab.setConectionStatus(USER_DISCONECTED_MESSAGE);
+		}
+		if (status == MesageCommand.INVALID_USER_NAME) {
+			connectDialog.setConectionStatus(USERNAME_BISY_MESSAGE);
+			statusTab.setConectionStatus(USERNAME_BISY_MESSAGE);
+		}
 	}
 
 	/**
