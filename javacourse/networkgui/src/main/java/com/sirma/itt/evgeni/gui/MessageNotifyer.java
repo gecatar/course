@@ -11,11 +11,12 @@ import java.util.ArrayList;
 public class MessageNotifyer {
 
 	private final ArrayList<String> notificationList = new ArrayList<String>();
-	private String youHaveMessage;
-	private String messageMessage;
+	private final String youHaveMessage;
+	private final String messageMessage;
 
-	public boolean hasNotifications(String name) {
-		return notificationList.contains(name);
+	public MessageNotifyer(String youHaveMessage, String messageMessage) {
+		this.youHaveMessage = youHaveMessage;
+		this.messageMessage = messageMessage;
 	}
 
 	/**
@@ -48,5 +49,9 @@ public class MessageNotifyer {
 			stringBuilder.append("->").append(user);
 		}
 		return stringBuilder.toString();
+	}
+
+	public boolean hasNotifications(String name) {
+		return notificationList.contains(name);
 	}
 }

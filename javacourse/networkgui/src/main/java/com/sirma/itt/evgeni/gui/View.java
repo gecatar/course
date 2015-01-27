@@ -89,6 +89,9 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		CONECTING_MESSAGE = bundle.getString("comunicator_conecting_message");
 		conversationPanel.setLocalDetails(bundle, statusTab);
 		userList.setLocalDetails(bundle);
+		messageNotifyer = new MessageNotifyer(
+				bundle.getString("you_have_message"),
+				bundle.getString("message_message"));
 		connectDialog = new ConectionDialog(bundle);
 	}
 
