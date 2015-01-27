@@ -33,6 +33,7 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 	private final JMenuItem connectItem = new JMenuItem();
 	private final JMenu conversationMenu = new JMenu();
 	private final JMenuItem closeActiveItem = new JMenuItem();
+	private final JMenu languegeMenu = new JMenu();
 	private ConectionDialog connectDialog;
 
 	public View() {
@@ -43,6 +44,7 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		splitPane.setDividerSize(3);
 		add(splitPane);
 		setVisible(true);
+		ResourceBundle bundle = ResourceBundle.getBundle(defaultLanguegeId);
 		splitPane.setDividerLocation(dividerLocation);
 		fileMenu.setName(ComponentID.FILE_MENU_ID);
 		connectItem.setName(ComponentID.CONNECT_MENU_ITEM_ID);
@@ -52,10 +54,19 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		closeActiveItem.setName(ComponentID.CLOSE_ACTIVE_MENU_ITEM_ID);
 		closeActiveItem.addActionListener(this);
 		conversationMenu.add(closeActiveItem);
+		languegeMenu.setName(ComponentID.LANGUEGE_MENU_ID);
+		JMenuItem bgLanguege = new JMenuItem(
+				bundle.getString(ComponentID.BG_LANGUEGE_ID));
+		bgLanguege.setName(ComponentID.BG_LANGUEGE_ID);
+		JMenuItem enLanguege = new JMenuItem(
+				bundle.getString(ComponentID.EN_LANGUEGE_ID));
+		enLanguege.setName(ComponentID.EN_LANGUEGE_ID);
+		languegeMenu.add(bgLanguege);
+		languegeMenu.add(enLanguege);
 		menuBar.add(fileMenu);
 		menuBar.add(conversationMenu);
+		menuBar.add(languegeMenu);
 		setJMenuBar(menuBar);
-		ResourceBundle bundle = ResourceBundle.getBundle(defaultLanguegeId);
 		initialize(bundle);
 	}
 
@@ -66,6 +77,7 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 				.getString(ComponentID.CONVERSATION_MENU_ID));
 		closeActiveItem.setText(bundle
 				.getString(ComponentID.CLOSE_ACTIVE_MENU_ITEM_ID));
+		languegeMenu.setText(bundle.getString(ComponentID.LANGUEGE_MENU_ID));
 		conversationPanel.setLocalDetails(bundle, statusTab);
 		userList.setLocalDetails(bundle);
 		connectDialog = new ConectionDialog(bundle);
