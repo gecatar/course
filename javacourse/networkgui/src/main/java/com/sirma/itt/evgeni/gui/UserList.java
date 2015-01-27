@@ -54,6 +54,10 @@ public class UserList extends JList<String> implements MouseListener {
 		}
 	}
 
+	public void clear() {
+		listModel.clear();
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();

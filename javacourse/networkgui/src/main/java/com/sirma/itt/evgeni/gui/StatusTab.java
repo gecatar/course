@@ -56,7 +56,7 @@ public class StatusTab extends JSplitPane implements ActionListener,
 	 * Display connection status.
 	 */
 	public void setConectionStatus(String conectionCondition) {
-
+		writeText(conectionCondition);
 	}
 
 	/**

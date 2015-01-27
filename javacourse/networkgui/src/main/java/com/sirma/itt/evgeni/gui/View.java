@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.ResourceBundle;
 
 import javax.swing.JFrame;
@@ -22,7 +23,6 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 	private final Map<String, Conversation> conversations = new HashMap<String, Conversation>();
 	private final UserList userList = new UserList(this);
 	private final ConversationPanel conversationPanel = new ConversationPanel();
-	private final MessageNotifyer messageNotifyer = new MessageNotifyer();
 	private final StatusTab statusTab = new StatusTab();
 	private final JMenuBar menuBar = new JMenuBar();
 	private final JSplitPane splitPane = new JSplitPane();
@@ -34,11 +34,12 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 	private final JMenu conversationMenu = new JMenu();
 	private final JMenuItem closeActiveItem = new JMenuItem();
 	private final JMenu languegeMenu = new JMenu();
+	private MessageNotifyer messageNotifyer;
+	private ConectionDialog connectDialog;
 	private String USER_CONECTED_MESSAGE;
 	private String USER_DISCONECTED_MESSAGE;
 	private String USERNAME_BISY_MESSAGE;
 	private String CONECTING_MESSAGE;
-	private ConectionDialog connectDialog;
 
 	public View() {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -200,6 +201,13 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		if (status == MesageCommand.COMUNICATOR_DISCONECTED) {
 			connectDialog.setConectionStatus(USER_DISCONECTED_MESSAGE);
 			statusTab.setConectionStatus(USER_DISCONECTED_MESSAGE);
+			userList.clear();
+			for (Entry<String, Conversation> entry : conversations.entrySet()) {
+				entry.getValue().setConected(false);
+				if (!messageNotifyer.hasNotifications(entry.getKey())) {
+					conversationPanel.showConectionStatusIcon(entry.getValue());
+				}
+			}
 		}
 		if (status == MesageCommand.INVALID_USER_NAME) {
 			connectDialog.setConectionStatus(USERNAME_BISY_MESSAGE);
@@ -287,7 +295,7 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 			}
 			if (choise == 8) {
 				System.out.println("Enter status code:");
-				int chioise = ConsoleReader.readInt();
+				choise = ConsoleReader.readInt();
 				if (choise == 1) {
 					view.setConectionStatus(MesageCommand.COMUNICATOR_CONECTING);
 				}
