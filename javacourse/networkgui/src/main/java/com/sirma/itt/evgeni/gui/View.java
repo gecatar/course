@@ -63,9 +63,11 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		JMenuItem bgLanguege = new JMenuItem(
 				bundle.getString(ComponentID.BG_LANGUEGE_ID));
 		bgLanguege.setName(ComponentID.BG_LANGUEGE_ID);
+		bgLanguege.addActionListener(this);
 		JMenuItem enLanguege = new JMenuItem(
 				bundle.getString(ComponentID.EN_LANGUEGE_ID));
 		enLanguege.setName(ComponentID.EN_LANGUEGE_ID);
+		enLanguege.addActionListener(this);
 		languegeMenu.add(bgLanguege);
 		languegeMenu.add(enLanguege);
 		menuBar.add(fileMenu);
@@ -238,12 +240,23 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() instanceof JMenuItem) {
-			JMenuItem menuItem = (JMenuItem) e.getSource();
-
+		if (e.getSource() instanceof Component) {
+			Component component = (Component) (e.getSource());
+			String name = component.getName();
+			if (name.equals(ComponentID.BG_LANGUEGE_ID)) {
+				initialize(ResourceBundle.getBundle("BG_LANG"));
+			}
+			if (name.equals(ComponentID.EN_LANGUEGE_ID)) {
+				initialize(ResourceBundle.getBundle("EN_LANG"));
+			}
+			if (name.equals(ComponentID.CONNECT_MENU_ITEM_ID)) {
+				connectDialog.setLocationRelativeTo(this);
+				connectDialog.setVisible(true);
+			}
+			if (name.equals(ComponentID.CLOSE_ACTIVE_MENU_ITEM_ID)) {
+				closeActiveConversation();
+			}
 		}
-		connectDialog.setLocationRelativeTo(this);
-		connectDialog.setVisible(true);
 	}
 
 	public static void main(String[] args) {
