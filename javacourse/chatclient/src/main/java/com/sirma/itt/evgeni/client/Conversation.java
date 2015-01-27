@@ -97,6 +97,7 @@ public class Conversation extends JSplitPane implements ActionListener,
 		if (conected) {
 			messageLogger.logMessage(textField.getText());
 			writeMesage("You", textField.getText());
+			view.sendMessage(getName(), textField.getText());
 		}
 		textField.setText("");
 	}

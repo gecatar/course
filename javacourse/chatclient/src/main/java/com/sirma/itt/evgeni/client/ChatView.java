@@ -241,6 +241,10 @@ public class ChatView extends Window implements ComunicatorListener,
 		}
 	}
 
+	public void sendMessage(String sender, String text) {
+		listener.sendMessage(sender, text);
+	}
+
 	@Override
 	public void paint(Graphics arg0) {
 		splitPane.setDividerLocation(0.2D);
