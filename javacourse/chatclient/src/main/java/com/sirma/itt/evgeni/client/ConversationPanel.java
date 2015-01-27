@@ -1,10 +1,12 @@
 package com.sirma.itt.evgeni.client;
 
-import java.awt.Component;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ResourceBundle;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
+
+import com.sirma.itt.evgeni.comunication.ComponentID;
 
 /**
  * Create and select users conversations.
@@ -14,63 +16,40 @@ import javax.swing.JTabbedPane;
  */
 public class ConversationPanel extends JTabbedPane {
 
-	private final Map<String, Conversation> conversations = new HashMap<String, Conversation>();
-	private final ChatWindow window;
+	private static final Icon userOnlineIcon = new ImageIcon(
+			ConversationPanel.class.getResource("/user-green-icon.png"));
+	private static final Icon userOflineIcon = new ImageIcon(
+			ConversationPanel.class.getResource("/user-red-icon.png"));
+	private static final Icon checkedMessageIcon = new ImageIcon(
+			ConversationPanel.class.getResource("/mail-check-icon.png"));
+	private static final Icon newMessageIcon = new ImageIcon(
+			ConversationPanel.class.getResource("/mail-icon.png"));
 
-	public ConversationPanel(ChatWindow window) {
-		this.window = window;
-	}
-
-	/**
-	 * Add new Conversation.
-	 */
-	private void addConversation(String name) {
-		if (!conversations.containsKey(name)) {
-			Conversation conversation = new Conversation(window, name);
-			conversations.put(name, conversation);
-			addTab(name, conversation);
-		}
-	}
-
-	/**
-	 * Select conversation.
-	 */
-	public void selectConversation(String name) {
-		if (!conversations.containsKey(name)) {
-			addConversation(name);
-			selectConversation(name);
+	public void showConectionStatusIcon(Conversation conversation) {
+		if (conversation.isConected()) {
+			showOnlineIcon(conversation);
 		} else {
-			setSelectedIndex(indexOfTab(name));
+			showOfflineIcon(conversation);
 		}
 	}
 
-	/**
-	 * Display message. If conversation doesn't exist first its created.
-	 */
-	public void showMessage(String name, String message) {
-		if (conversations.containsKey(name)) {
-			conversations.get(name).writeMesage(name, message);
-			selectConversation(name);
-		} else {
-			addConversation(name);
-			showMessage(name, message);
-		}
+	public void showOnlineIcon(Conversation conversation) {
+		setIconAt(indexOfComponent(conversation), userOnlineIcon);
 	}
 
-	/**
-	 * Close active conversation.
-	 */
-	public void closeActiveConversation() {
-		Component temp = getComponent(getSelectedIndex());
-		conversations.remove(temp.getName());
-		remove(temp);
+	public void showOfflineIcon(Conversation conversation) {
+		setIconAt(indexOfComponent(conversation), userOflineIcon);
 	}
 
-	/**
-	 * Close all conversations.
-	 */
-	public void closeAllConversation() {
-		conversations.clear();
-		removeAll();
+	public void showCheckedMessageIcon(Conversation conversation) {
+		setIconAt(indexOfComponent(conversation), checkedMessageIcon);
+	}
+
+	public void showNewMessageIcon(Conversation conversation) {
+		setIconAt(indexOfComponent(conversation), newMessageIcon);
+	}
+
+	public void setLocalDetails(ResourceBundle bundle, StatusTab statusTab) {
+		addTab(bundle.getString(ComponentID.STATUS_TAB_ID), statusTab);
 	}
 }

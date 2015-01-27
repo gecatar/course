@@ -50,4 +50,8 @@ public class MessageNotifyer {
 		}
 		return stringBuilder.toString();
 	}
+
+	public boolean hasNotifications(String name) {
+		return notificationList.contains(name);
+	}
 }

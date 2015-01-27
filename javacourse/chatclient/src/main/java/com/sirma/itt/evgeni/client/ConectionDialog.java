@@ -1,5 +1,6 @@
 package com.sirma.itt.evgeni.client;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -7,8 +8,8 @@ import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.sirma.itt.evgeni.comunication.ComponentID;
@@ -19,18 +20,21 @@ import com.sirma.itt.evgeni.comunication.ComponentID;
  * @author Evgeni Stefanov
  * 
  */
-public class ConectionPanel extends JPanel {
+public class ConectionDialog extends JDialog {
 
-	private JTextField ipAdress = new JTextField(15);
-	private JTextField port = new JTextField(4);
-	private JTextField nickname = new JTextField(10);
-	private JLabel conectionStatus = new JLabel();
+	private final JTextField ipAdress = new JTextField(15);
+	private final JTextField port = new JTextField(4);
+	private final JTextField nickname = new JTextField(10);
+	private final JLabel conectionStatus = new JLabel();
+	private final Dimension dialogDimension = new Dimension(400, 300);
 
 	/**
 	 * Create connection user interface.
 	 */
-	public ConectionPanel(ActionListener listener, ResourceBundle bundle) {
+	public ConectionDialog(ResourceBundle bundle, ActionListener listener) {
+		setTitle(bundle.getString("conection_tab_name"));
 		setLayout(new GridBagLayout());
+		setSize(dialogDimension);
 		conectionStatus.setText(bundle.getString("user_disconected_message"));
 		ipAdress.setText("localhost");
 		port.setText("1300");

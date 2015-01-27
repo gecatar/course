@@ -2,9 +2,14 @@ package com.sirma.itt.evgeni.client;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ResourceBundle;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+
+import com.sirma.itt.evgeni.comunication.ComponentID;
 
 /**
  * List whit connected users.
@@ -14,14 +19,23 @@ import javax.swing.JList;
  */
 public class UserList extends JList<String> implements MouseListener {
 
-	private final DefaultListModel<String> listModel;
-	private final ChatWindow window;
+	private final DefaultListModel<String> listModel = new DefaultListModel<String>();
+	private final ChatView view;
 
-	public UserList(ChatWindow window) {
-		listModel = new DefaultListModel<String>();
-		this.window = window;
+	public void setLocalDetails(ResourceBundle bundle) {
+		Border border = new TitledBorder(
+				bundle.getString(ComponentID.USER_LIST_BORDER_ID));
+		setBorder(border);
+	}
+
+	public UserList(ChatView view) {
 		setModel(listModel);
+		this.view = view;
 		addMouseListener(this);
+	}
+
+	public boolean contains(String name) {
+		return listModel.contains(name);
 	}
 
 	/**
@@ -42,6 +56,10 @@ public class UserList extends JList<String> implements MouseListener {
 		}
 	}
 
+	public void clear() {
+		listModel.clear();
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
@@ -55,7 +73,10 @@ public class UserList extends JList<String> implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getClickCount() == 2) {
-			window.showConversation(listModel.getElementAt(getSelectedIndex()));
+			String selectedName = getSelectedValue();
+			if (selectedName != null) {
+				view.showConversation(getSelectedValue());
+			}
 		}
 	}
 

@@ -8,8 +8,15 @@ package com.sirma.itt.evgeni.comunication;
  */
 public class ComponentID {
 
-	public static final String CONECT_BUTTON_ID = "BUTTON_CONECT";
-	public static final String DISCONECT_BUTTON_ID = "BUTTON_DISCONECT";
-	public static final String CLOSE_ALL_MENU_ITEM = "MENU_ITEM_CLOSE_ALL";
-	public static final String CLOSE_ACTIVE_MENU_ITEM = "MENU_ITEM_CLOSE_ACTIVE";
+	public static final String CONECT_BUTTON_ID = "CONECT_BUTTON";
+	public static final String DISCONECT_BUTTON_ID = "DISCONECT_BUTTON";
+	public static final String FILE_MENU_ID = "FILE_MENU";
+	public static final String CONNECT_MENU_ITEM_ID = "CONNECT_MENU_ITEM";
+	public static final String CONVERSATION_MENU_ID = "CONVERSATION_MENU";
+	public static final String CLOSE_ACTIVE_MENU_ITEM_ID = "CLOSE_ACTIVE_MENU_ITEM";
+	public static final String STATUS_TAB_ID = "STATUS_TAB";
+	public static final String USER_LIST_BORDER_ID = "USER_LIST_BORDER";
+	public static final String LANGUEGE_MENU_ID = "LANGUEGE_MENU";
+	public static final String BG_LANGUEGE_ID = "BG_LANGUEGE";
+	public static final String EN_LANGUEGE_ID = "EN_LANGUEGE";
 }

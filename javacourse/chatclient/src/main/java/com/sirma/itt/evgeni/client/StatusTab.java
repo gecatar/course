@@ -23,44 +23,40 @@ import com.sirma.itt.evgeni.comunication.MessageLogger;
  * @author Evgeni Stefanov
  * 
  */
-public class Conversation extends JSplitPane implements ActionListener,
+public class StatusTab extends JSplitPane implements ActionListener,
 		KeyListener, MouseListener {
 
-	private static final DateFormat dateFormat = new SimpleDateFormat(
-			"yyyy/MM/dd HH:mm:ss");
 	private static final String newLine = System.getProperty("line.separator");
-	private final MessageLogger messageLogger = new MessageLogger();
-	private final ChatView view;
-	private final JTextArea textArea = new JTextArea();
-	private final JTextField textField = new JTextField();
+	private final JTextArea textArea;
+	private final JTextField textField;
+	private final MessageLogger messageLogger;
+	private final DateFormat dateFormat;
 	private final Double dividerLocation = 0.85D;
-	private boolean conected = false;
 
 	/**
 	 * Create new conversation.
 	 */
-	public Conversation(String name, ChatView view) {
-		setName(name);
+	public StatusTab() {
 		setOrientation(VERTICAL_SPLIT);
-		this.view = view;
-		textArea.setName(name);
-		textArea.setEditable(false);
+		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		textArea = new JTextArea();
 		textArea.addMouseListener(this);
-		JScrollPane scrollTextArea = new JScrollPane(textArea);
-		textField.setName(name);
+		JScrollPane scrollPane = new JScrollPane(textArea);
+		textField = new JTextField();
 		textField.addActionListener(this);
 		textField.addKeyListener(this);
 		textField.addMouseListener(this);
-		setTopComponent(scrollTextArea);
+		textArea.setEditable(false);
+		messageLogger = new MessageLogger();
+		setTopComponent(scrollPane);
 		setBottomComponent(textField);
 	}
 
-	public boolean isConected() {
-		return conected;
-	}
-
-	public void setConected(boolean conected) {
-		this.conected = conected;
+	/**
+	 * Display connection status.
+	 */
+	public void setConectionStatus(String conectionCondition) {
+		writeText(conectionCondition);
 	}
 
 	/**
@@ -85,8 +81,8 @@ public class Conversation extends JSplitPane implements ActionListener,
 	/**
 	 * Write message to text area.
 	 */
-	public void writeMesage(String name, String text) {
-		textArea.setText(textArea.getText() + createMessage(name, text));
+	public void writeText(String text) {
+		textArea.setText(textArea.getText() + newLine + text);
 	}
 
 	/**
@@ -94,10 +90,7 @@ public class Conversation extends JSplitPane implements ActionListener,
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (conected) {
-			messageLogger.logMessage(textField.getText());
-			writeMesage("You", textField.getText());
-		}
+		messageLogger.logMessage(textField.getText());
 		textField.setText("");
 	}
 
@@ -117,29 +110,13 @@ public class Conversation extends JSplitPane implements ActionListener,
 	}
 
 	@Override
-	public void paint(Graphics g) {
+	public void paint(Graphics arg0) {
 		setDividerLocation(dividerLocation);
-		super.paint(g);
-	}
-
-	@Override
-	public void keyReleased(KeyEvent arg0) {
-
-	}
-
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent arg0) {
-
+		super.paint(arg0);
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		view.clearNotification(getName());
 	}
 
 	@Override
@@ -154,6 +131,21 @@ public class Conversation extends JSplitPane implements ActionListener,
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
 
 	}
 }
