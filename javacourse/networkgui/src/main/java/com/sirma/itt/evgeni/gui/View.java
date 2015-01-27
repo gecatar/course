@@ -40,16 +40,19 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		setVisible(true);
 		splitPane.setDividerLocation(dividerLocation);
 		ResourceBundle bundle = ResourceBundle.getBundle("BG_LANG");
-		setMenuBarItems(bundle);
+		setLocalDetails(bundle);
 	}
 
-	private void setMenuBarItems(ResourceBundle bundle) {
-		JMenu fileMenu = new JMenu();
-		JMenuItem connectItem = new JMenuItem();
+	private void setLocalDetails(ResourceBundle bundle) {
+		JMenu fileMenu = new JMenu(bundle.getString(ComponentID.FILE_MENU_ID));
+		JMenuItem connectItem = new JMenuItem(
+				bundle.getString(ComponentID.CONNECT_MENU_ITEM_ID));
 		fileMenu.add(connectItem);
 		connectItem.addActionListener(this);
-		JMenu conversationMenu = new JMenu();
-		JMenuItem closeActiveItem = new JMenuItem();
+		JMenu conversationMenu = new JMenu(
+				bundle.getString(ComponentID.CONVERSATION_MENU_ID));
+		JMenuItem closeActiveItem = new JMenuItem(
+				bundle.getString(ComponentID.CLOSE_ACTIVE_MENU_ITEM_ID));
 		closeActiveItem.addActionListener(this);
 		conversationMenu.add(closeActiveItem);
 		menuBar.add(fileMenu);
