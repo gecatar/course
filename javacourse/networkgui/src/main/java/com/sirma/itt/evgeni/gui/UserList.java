@@ -71,7 +71,10 @@ public class UserList extends JList<String> implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getClickCount() == 2) {
-			view.showConversation(getSelectedValue());
+			String selectedName = getSelectedValue();
+			if (selectedName != null) {
+				view.showConversation(getSelectedValue());
+			}
 		}
 	}
 

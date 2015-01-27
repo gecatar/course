@@ -198,10 +198,12 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		if (status == MesageCommand.USER_CONECTED) {
 			connectDialog.setConectionStatus(USER_CONECTED_MESSAGE);
 			statusTab.setConectionStatus(USER_CONECTED_MESSAGE);
+			return;
 		}
 		if (status == MesageCommand.COMUNICATOR_CONECTING) {
 			connectDialog.setConectionStatus(CONECTING_MESSAGE);
 			statusTab.setConectionStatus(CONECTING_MESSAGE);
+			return;
 		}
 		if (status == MesageCommand.COMUNICATOR_DISCONECTED) {
 			connectDialog.setConectionStatus(USER_DISCONECTED_MESSAGE);
@@ -213,10 +215,12 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 					conversationPanel.showConectionStatusIcon(entry.getValue());
 				}
 			}
+			return;
 		}
 		if (status == MesageCommand.INVALID_USER_NAME) {
 			connectDialog.setConectionStatus(USERNAME_BISY_MESSAGE);
 			statusTab.setConectionStatus(USERNAME_BISY_MESSAGE);
+			return;
 		}
 	}
 
@@ -245,16 +249,20 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 			String name = component.getName();
 			if (name.equals(ComponentID.BG_LANGUEGE_ID)) {
 				initialize(ResourceBundle.getBundle("BG_LANG"));
+				return;
 			}
 			if (name.equals(ComponentID.EN_LANGUEGE_ID)) {
 				initialize(ResourceBundle.getBundle("EN_LANG"));
+				return;
 			}
 			if (name.equals(ComponentID.CONNECT_MENU_ITEM_ID)) {
 				connectDialog.setLocationRelativeTo(this);
 				connectDialog.setVisible(true);
+				return;
 			}
 			if (name.equals(ComponentID.CLOSE_ACTIVE_MENU_ITEM_ID)) {
 				closeActiveConversation();
+				return;
 			}
 		}
 	}

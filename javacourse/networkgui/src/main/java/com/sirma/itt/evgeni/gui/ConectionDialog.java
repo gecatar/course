@@ -29,6 +29,7 @@ public class ConectionDialog extends JDialog {
 	 * Create connection user interface.
 	 */
 	public ConectionDialog(ResourceBundle bundle) {
+		setTitle(bundle.getString("conection_tab_name"));
 		setLayout(new GridBagLayout());
 		setSize(dialogDimension);
 		conectionStatus.setText(bundle.getString("user_disconected_message"));
