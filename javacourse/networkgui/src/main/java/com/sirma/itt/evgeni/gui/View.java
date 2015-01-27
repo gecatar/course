@@ -29,6 +29,10 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 	private final String defaultLanguegeId = "BG_LANG";
 	private final Dimension defaultViewDimension = new Dimension(600, 300);
 	private final Double dividerLocation = 0.3D;
+	private final JMenu fileMenu = new JMenu();
+	private final JMenuItem connectItem = new JMenuItem();
+	private final JMenu conversationMenu = new JMenu();
+	private final JMenuItem closeActiveItem = new JMenuItem();
 	private ConectionDialog connectDialog;
 
 	public View() {
@@ -40,25 +44,28 @@ public class View extends JFrame implements ComunicatorListener, ActionListener 
 		add(splitPane);
 		setVisible(true);
 		splitPane.setDividerLocation(dividerLocation);
-		ResourceBundle bundle = ResourceBundle.getBundle("BG_LANG");
-		initialize(bundle);
-	}
-
-	private void initialize(ResourceBundle bundle) {
-		JMenu fileMenu = new JMenu(bundle.getString(ComponentID.FILE_MENU_ID));
-		JMenuItem connectItem = new JMenuItem(
-				bundle.getString(ComponentID.CONNECT_MENU_ITEM_ID));
+		fileMenu.setName(ComponentID.FILE_MENU_ID);
+		connectItem.setName(ComponentID.CONNECT_MENU_ITEM_ID);
 		fileMenu.add(connectItem);
 		connectItem.addActionListener(this);
-		JMenu conversationMenu = new JMenu(
-				bundle.getString(ComponentID.CONVERSATION_MENU_ID));
-		JMenuItem closeActiveItem = new JMenuItem(
-				bundle.getString(ComponentID.CLOSE_ACTIVE_MENU_ITEM_ID));
+		conversationMenu.setName(ComponentID.CONVERSATION_MENU_ID);
+		closeActiveItem.setName(ComponentID.CLOSE_ACTIVE_MENU_ITEM_ID);
 		closeActiveItem.addActionListener(this);
 		conversationMenu.add(closeActiveItem);
 		menuBar.add(fileMenu);
 		menuBar.add(conversationMenu);
 		setJMenuBar(menuBar);
+		ResourceBundle bundle = ResourceBundle.getBundle(defaultLanguegeId);
+		initialize(bundle);
+	}
+
+	private void initialize(ResourceBundle bundle) {
+		fileMenu.setText(bundle.getString(ComponentID.FILE_MENU_ID));
+		connectItem.setText(bundle.getString(ComponentID.CONNECT_MENU_ITEM_ID));
+		conversationMenu.setText(bundle
+				.getString(ComponentID.CONVERSATION_MENU_ID));
+		closeActiveItem.setText(bundle
+				.getString(ComponentID.CLOSE_ACTIVE_MENU_ITEM_ID));
 		conversationPanel.setLocalDetails(bundle, statusTab);
 		userList.setLocalDetails(bundle);
 		connectDialog = new ConectionDialog(bundle);
