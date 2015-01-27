@@ -17,7 +17,7 @@ public class UserManager {
 	 * Save user in list of registered users.
 	 */
 	public void registerUser(String name, DataTransferer transferator) {
-		if (!isUserInMap(transferator)) {
+		if (!users.containsKey(name)) {
 			addUserInMap(name, transferator);
 			sendUsersList(transferator);
 			notifyForNewUser(name);
