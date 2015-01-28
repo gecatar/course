@@ -31,4 +31,10 @@ public class Mesage implements Serializable {
 		sender = name;
 	}
 
+	public Mesage(String receiver, String text) {
+		commandID = MesageCommand.TEXT_MESAGE;
+		this.receiver = receiver;
+		this.text = text;
+	}
+
 }

@@ -16,7 +16,7 @@ public interface ComunicatorListener {
 	/**
 	 * When new message arrive.
 	 */
-	public void showMesage(String name, String text);
+	public void showMesage(Mesage message);
 
 	/**
 	 * When new user is connected.

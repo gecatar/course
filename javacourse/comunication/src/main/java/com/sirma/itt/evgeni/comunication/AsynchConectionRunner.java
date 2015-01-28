@@ -8,15 +8,15 @@ package com.sirma.itt.evgeni.comunication;
  */
 public class AsynchConectionRunner extends Thread {
 
-	private final Conector conector;
+	private final Comunicator comunicator;
 	private final String ip;
 	private final int port;
 
 	/**
 	 * Create thread that will start connection.
 	 */
-	public AsynchConectionRunner(Conector conector, String ip, int port) {
-		this.conector = conector;
+	public AsynchConectionRunner(Comunicator comunicator, String ip, int port) {
+		this.comunicator = comunicator;
 		this.ip = ip;
 		this.port = port;
 	}
@@ -26,6 +26,6 @@ public class AsynchConectionRunner extends Thread {
 	 */
 	@Override
 	public void run() {
-		conector.connect(ip, port);
+		comunicator.connect(ip, port);
 	}
 }

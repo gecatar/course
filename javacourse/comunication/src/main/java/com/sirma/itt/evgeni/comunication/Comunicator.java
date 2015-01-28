@@ -8,32 +8,11 @@ package com.sirma.itt.evgeni.comunication;
  */
 public abstract class Comunicator {
 
-	protected Conector conector;
-	protected ComunicatorListener listener;
 	protected String name;
 
-	public Comunicator(ComunicatorListener listener) {
-		this.listener = listener;
-	}
+	public abstract void connect(String ip, int port);
 
-	/**
-	 * Start connection and notify listener.
-	 */
-	public void startConection(String ip, int port) {
-		if (conector.startConection(ip, port)) {
-			listener.setConectionStatus(MesageCommand.COMUNICATOR_CONECTING);
-		}
-	}
-
-	/**
-	 * Stop connection and notify listener.
-	 */
-	public void stopConection() {
-		if (conector.stopConection()) {
-			listener.setConectionStatus(MesageCommand.COMUNICATOR_DISCONECTED);
-			close();
-		}
-	}
+	public abstract void stopConnection();
 
 	/**
 	 * Start data transferrer.
@@ -56,11 +35,6 @@ public abstract class Comunicator {
 	}
 
 	/**
-	 * Send message.
-	 */
-	public abstract void sendMessage(String name, String text);
-
-	/**
 	 * Set communicator name.
 	 */
 	public void setName(String name) {
@@ -70,8 +44,6 @@ public abstract class Comunicator {
 	/**
 	 * Close communicator resources.
 	 */
-	public void close() {
-
-	}
+	public abstract void close();
 
 }
