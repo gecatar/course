@@ -10,9 +10,9 @@ import java.awt.event.MouseListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import com.sirma.itt.evgeni.comunication.MessageLogger;
@@ -28,10 +28,12 @@ public class Conversation extends JSplitPane implements ActionListener,
 
 	private static final DateFormat dateFormat = new SimpleDateFormat(
 			"yyyy/MM/dd HH:mm:ss");
+	private static final String myMessageHTMLopenTag = "<b style=\"color:pink\">";
+	private static final String myMessageHTMLcloseTag = "</span>";
 	private static final String newLine = System.getProperty("line.separator");
 	private final MessageLogger messageLogger = new MessageLogger();
 	private final View view;
-	private final JTextArea textArea = new JTextArea();
+	private final JEditorPane textArea = new JEditorPane();
 	private final JTextField textField = new JTextField();
 	private final Double dividerLocation = 0.85D;
 	private boolean conected = false;
@@ -44,6 +46,7 @@ public class Conversation extends JSplitPane implements ActionListener,
 		setOrientation(VERTICAL_SPLIT);
 		this.view = view;
 		textArea.setName(name);
+		textArea.setContentType("text/html");
 		textArea.setEditable(false);
 		textArea.addMouseListener(this);
 		JScrollPane scrollTextArea = new JScrollPane(textArea);
@@ -86,7 +89,7 @@ public class Conversation extends JSplitPane implements ActionListener,
 	 * Write message to text area.
 	 */
 	public void writeMesage(String name, String text) {
-		textArea.setText(textArea.getText() + createMessage(name, text));
+		textArea.setText(textArea.getText() + text);
 	}
 
 	/**
@@ -94,10 +97,11 @@ public class Conversation extends JSplitPane implements ActionListener,
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (conected) {
-			messageLogger.logMessage(textField.getText());
-			writeMesage("You", textField.getText());
-		}
+		messageLogger.logMessage(textField.getText());
+		String htmlMessage = myMessageHTMLopenTag + textField.getText()
+				+ myMessageHTMLcloseTag;
+		textArea.setText("<font face=\"veranda\" size=\"3\" color=\"red\"><i> an h1 header</i></font>"
+				+ textArea.getText());
 		textField.setText("");
 	}
 
