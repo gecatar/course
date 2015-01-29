@@ -17,6 +17,7 @@ import javax.swing.JSplitPane;
 
 import com.sirma.itt.evgeni.comunication.ComponentID;
 import com.sirma.itt.evgeni.comunication.ComunicatorListener;
+import com.sirma.itt.evgeni.comunication.Mesage;
 import com.sirma.itt.evgeni.comunication.MesageCommand;
 import com.sirma.itt.evgeni.comunication.Window;
 
@@ -289,6 +290,12 @@ public class ChatView extends Window implements ComunicatorListener,
 	@Override
 	public int getPort() {
 		return connectDialog.getPort();
+	}
+
+	@Override
+	public void showMesage(Mesage message) {
+		// TODO Auto-generated method stub
+
 	}
 
 }
